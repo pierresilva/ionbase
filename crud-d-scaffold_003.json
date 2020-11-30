@@ -49,7 +49,7 @@
           "nullable": false,
           "unique": false,
           "show_in_list": false,
-          "show_in_detail": false,
+          "show_in_detail": true,
           "belongsto": "",
           "parent_id": 1
         }
@@ -84,8 +84,8 @@
       ],
       "is_pivot": false,
       "schema_id_for_relation": 1,
-      "pos_x": 271,
-      "pos_y": 46,
+      "pos_x": 462,
+      "pos_y": 26,
       "_next_schema_id": 2
     },
     {
@@ -160,7 +160,7 @@
           "input_type": "select",
           "varidate": "",
           "faker_type": "numberBetween(1,30)",
-          "nullable": false,
+          "nullable": true,
           "unique": false,
           "show_in_list": true,
           "show_in_detail": true,
@@ -175,7 +175,7 @@
           "input_type": "select",
           "varidate": "",
           "faker_type": "numberBetween(1,30)",
-          "nullable": false,
+          "nullable": true,
           "unique": false,
           "show_in_list": true,
           "show_in_detail": true,
@@ -431,8 +431,8 @@
       ],
       "is_pivot": false,
       "schema_id_for_relation": 1,
-      "pos_x": 223,
-      "pos_y": 380,
+      "pos_x": 376,
+      "pos_y": 379,
       "_next_schema_id": 4
     },
     {
@@ -520,8 +520,198 @@
       "pos_x": 904,
       "pos_y": 385,
       "_next_schema_id": 3
+    },
+    {
+      "id": 9,
+      "name": "role",
+      "display_name": "ROLES",
+      "use_soft_delete": false,
+      "schemas": [
+        {
+          "id": 1,
+          "name": "name",
+          "display_name": "NOMBRE",
+          "type": "string",
+          "input_type": "text",
+          "varidate": "",
+          "faker_type": "words(3, true)",
+          "nullable": false,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "",
+          "parent_id": 9,
+          "comment": "Nombre del rol",
+          "options": ""
+        },
+        {
+          "id": 2,
+          "name": "code",
+          "display_name": "CÓDIGO",
+          "type": "string",
+          "input_type": "text",
+          "varidate": "",
+          "faker_type": "words(3, true)",
+          "nullable": true,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "",
+          "parent_id": 9,
+          "comment": "Código del rol",
+          "options": ""
+        }
+      ],
+      "is_pivot": false,
+      "schema_id_for_relation": 1,
+      "pos_x": 15,
+      "pos_y": 378,
+      "_next_schema_id": 3,
+      "description": "Roles Model"
+    },
+    {
+      "id": 10,
+      "name": "role_user",
+      "display_name": "PIVOT",
+      "use_soft_delete": true,
+      "schemas": [
+        {
+          "id": 1,
+          "name": "role_id",
+          "display_name": "role - NAME",
+          "type": "integer",
+          "input_type": "select",
+          "varidate": "",
+          "faker_type": "numberBetween(1,30)",
+          "nullable": true,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "role",
+          "parent_id": 10,
+          "comment": "",
+          "options": ""
+        },
+        {
+          "id": 2,
+          "name": "user_id",
+          "display_name": "user - NAME",
+          "type": "integer",
+          "input_type": "select",
+          "varidate": "",
+          "faker_type": "numberBetween(1,30)",
+          "nullable": true,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "user",
+          "parent_id": 10,
+          "comment": "",
+          "options": ""
+        }
+      ],
+      "is_pivot": true,
+      "schema_id_for_relation": 0,
+      "pos_x": 193,
+      "pos_y": 217,
+      "_next_schema_id": 3
+    },
+    {
+      "id": 11,
+      "name": "permission",
+      "display_name": "PERMISOS",
+      "use_soft_delete": false,
+      "schemas": [
+        {
+          "id": 1,
+          "name": "name",
+          "display_name": "NOMBRE",
+          "type": "string",
+          "input_type": "text",
+          "varidate": "",
+          "faker_type": "words(3, true)",
+          "nullable": false,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "",
+          "parent_id": 11,
+          "comment": "",
+          "options": ""
+        },
+        {
+          "id": 2,
+          "name": "code",
+          "display_name": "CÓDIGO",
+          "type": "string",
+          "input_type": "text",
+          "varidate": "",
+          "faker_type": "words(3, true)",
+          "nullable": true,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "",
+          "parent_id": 11,
+          "comment": "",
+          "options": ""
+        }
+      ],
+      "is_pivot": false,
+      "schema_id_for_relation": 1,
+      "pos_x": 0,
+      "pos_y": 680,
+      "_next_schema_id": 3,
+      "description": "Permissions Model"
+    },
+    {
+      "id": 12,
+      "name": "permission_role",
+      "display_name": "PIVOT",
+      "use_soft_delete": true,
+      "schemas": [
+        {
+          "id": 1,
+          "name": "permission_id",
+          "display_name": "permission - NAME",
+          "type": "integer",
+          "input_type": "select",
+          "varidate": "",
+          "faker_type": "numberBetween(1,30)",
+          "nullable": true,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "permission",
+          "parent_id": 12,
+          "comment": "",
+          "options": ""
+        },
+        {
+          "id": 2,
+          "name": "role_id",
+          "display_name": "role - NAME",
+          "type": "integer",
+          "input_type": "select",
+          "varidate": "",
+          "faker_type": "numberBetween(1,30)",
+          "nullable": true,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "role",
+          "parent_id": 12,
+          "comment": "",
+          "options": ""
+        }
+      ],
+      "is_pivot": true,
+      "schema_id_for_relation": 0,
+      "pos_x": 177,
+      "pos_y": 497,
+      "_next_schema_id": 3
     }
   ],
   "tool": "ER-DIAGRAM-TOOL",
-  "_next_model_id": 9
+  "_next_model_id": 13
 }

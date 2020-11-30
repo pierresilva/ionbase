@@ -40,6 +40,8 @@ class AppServiceProvider extends ServiceProvider
             'posts' => 'ENTRADAS',
             'comments' => 'COMENTARIOS',
             'images' => 'IMÁGENES',
+            'roles' => 'ROLES',
+            'permissions' => 'PERMISOS',
         ]);
         
         // Add Pagenate to Collectoin

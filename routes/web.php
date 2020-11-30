@@ -33,6 +33,10 @@ Route::get("comments/{comment}/duplicate", ['as' => 'comments.duplicate', 'uses'
 Route::resource("comments","CommentController");
 Route::get("images/{image}/duplicate", ['as' => 'images.duplicate', 'uses' => 'ImageController@duplicate']);
 Route::resource("images","ImageController");
+Route::get("roles/{role}/duplicate", ['as' => 'roles.duplicate', 'uses' => 'RoleController@duplicate']);
+Route::resource("roles","RoleController");
+Route::get("permissions/{permission}/duplicate", ['as' => 'permissions.duplicate', 'uses' => 'PermissionController@duplicate']);
+Route::resource("permissions","PermissionController");
 
 
 // end section

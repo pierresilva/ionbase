@@ -63,7 +63,7 @@
         $input = $request->input('model');
 
         {{{ foreach($schemas): }}}
-        {{{ if($this.input_type=='password'): }}}
+        {{{ if($this.name=='password'): }}}
                 $input['{{{ $this.name|name_name }}}'] = bcrypt($input['{{{ $this.name|name_name }}}']);
         {{{ endif; }}}
         {{{ endforeach; }}}
@@ -222,12 +222,12 @@
         $input = $request->input('model');
 
         {{{ foreach($schemas): }}}
-        {{{ if($this.input_type=='password'): }}}
-                if( $input['{{{ $this.name|name_name }}}'] === '' ){
-                    $input['{{{ $this.name|name_name }}}'] = ${{{ $name|nameName }}}->{{{ $this.name|name_name }}};
-                }else{
-                    $input['{{{ $this.name|name_name }}}'] = bcrypt($input['{{{ $this.name|name_name }}}']);
-                }
+        {{{ if($this.name=='password'): }}}
+        if( $input['{{{ $this.name|name_name }}}'] === ''){
+            $input['{{{ $this.name|name_name }}}'] = ${{{ $name|nameName }}}->{{{ $this.name|name_name }}};
+        } elseif( $input['{{{ $this.name|name_name }}}'] !== ${{{ $name|nameName }}}->{{{ $this.name|name_name }}} ){
+            $input['{{{ $this.name|name_name }}}'] = bcrypt($input['{{{ $this.name|name_name }}}']);
+        }
         {{{ endif; }}}
         {{{ endforeach; }}}
 

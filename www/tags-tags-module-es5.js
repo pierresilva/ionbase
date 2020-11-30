@@ -22,7 +22,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-header>\n    <ion-toolbar>\n\n        <ion-buttons slot=\"start\">\n            <!-- <ion-button [routerLink]=\"'/tags'\">\n                <ion-icon slot=\"icon-only\" name=\"arrow-back-outline\"></ion-icon>\n            </ion-button> -->\n            <ion-back-button\n              [text]=\"''\"\n              [icon]=\"'arrow-back-outline'\">\n            </ion-back-button>\n        </ion-buttons>\n\n        <ion-buttons slot=\"primary\">\n            <ion-button (click)=\"tagsService.storeTag()\"\n                        color=\"success\"\n                        fill=\"outline\"\n                        [disabled]=\"!tagsService.tagsFormValid.value\"> Guardar\n                <ion-icon slot=\"icon-only\" color=\"success\" name=\"save-outline\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n\n        <ion-title>Crear {{'ETIQUETAS' | titlecase}}</ion-title>\n    </ion-toolbar>\n</ion-header>\n<ion-content fullscreen>\n    <ion-card>\n        <app-tags-form #tagForm [model]=\"tagsService.tag\"></app-tags-form>\n    </ion-card>\n\n</ion-content>\n";
+      __webpack_exports__["default"] = "<ion-header>\n    <ion-toolbar>\n\n        <ion-buttons slot=\"start\">\n            <!-- <ion-button [routerLink]=\"'/tags'\">\n                <ion-icon slot=\"icon-only\" name=\"arrow-back-outline\"></ion-icon>\n            </ion-button> -->\n            <ion-back-button\n              [text]=\"''\"\n              [icon]=\"'arrow-back-outline'\">\n            </ion-back-button>\n        </ion-buttons>\n\n        <ion-buttons slot=\"primary\">\n            <ion-button (click)=\"tagsService.storeTag()\"\n                        color=\"success\"\n                        fill=\"clear\"\n                        [disabled]=\"!tagsService.tagsFormValid.value\">\n                        <ng-container *ngIf=\"!platform.is('mobile')\">Guardar</ng-container>\n                <ion-icon slot=\"end\" color=\"success\" name=\"save-outline\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n\n        <ion-title>Crear {{'ETIQUETAS' | titlecase}}</ion-title>\n    </ion-toolbar>\n</ion-header>\n<ion-content fullscreen>\n    <ion-card>\n        <app-tags-form #tagForm [model]=\"tagsService.tag\"></app-tags-form>\n    </ion-card>\n\n</ion-content>\n";
       /***/
     },
 
@@ -62,7 +62,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-header>\n    <ion-toolbar>\n\n        <ion-buttons slot=\"start\">\n            <!-- <ion-button [routerLink]=\"'/tags'\">\n                <ion-icon slot=\"icon-only\" name=\"arrow-back-outline\"></ion-icon>\n            </ion-button> -->\n            <ion-back-button\n              [text]=\"''\"\n              [icon]=\"'arrow-back-outline'\">\n            </ion-back-button>\n        </ion-buttons>\n\n        <ion-buttons slot=\"primary\">\n            <ion-button (click)=\"tagsService.updateTag()\"\n                        color=\"success\"\n                        fill=\"outline\"\n                        [disabled]=\"!tagsService.tagsFormValid.value\"> Guardar\n                <ion-icon slot=\"icon-only\" color=\"success\" name=\"save-outline\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n\n        <ion-title>Editar {{'ETIQUETAS' | titlecase}}: {{ tagsService.tag?.name }}</ion-title>\n    </ion-toolbar>\n</ion-header>\n<ion-content fullscreen>\n    <ion-card>\n            <app-tags-form #tagForm [model]=\"tagsService.tag\"></app-tags-form>\n    </ion-card>\n\n</ion-content>\n";
+      __webpack_exports__["default"] = "<ion-header>\n    <ion-toolbar>\n\n        <ion-buttons slot=\"start\">\n            <!-- <ion-button [routerLink]=\"'/tags'\">\n                <ion-icon slot=\"icon-only\" name=\"arrow-back-outline\"></ion-icon>\n            </ion-button> -->\n            <ion-back-button\n              [text]=\"''\"\n              [icon]=\"'arrow-back-outline'\">\n            </ion-back-button>\n        </ion-buttons>\n\n        <ion-buttons slot=\"primary\">\n            <ion-button (click)=\"tagsService.updateTag()\"\n                        color=\"success\"\n                        fill=\"clear\"\n                        [disabled]=\"!tagsService.tagsFormValid.value\">\n                        <ng-container *ngIf=\"!platform.is('mobile')\">Guardar</ng-container>\n                <ion-icon slot=\"end\" color=\"success\" name=\"save-outline\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n\n        <ion-title>Editar {{'ETIQUETAS' | titlecase}}: {{ tagsService.tag?.name }}</ion-title>\n    </ion-toolbar>\n</ion-header>\n<ion-content fullscreen>\n    <ion-card>\n            <app-tags-form #tagForm [model]=\"tagsService.tag\"></app-tags-form>\n    </ion-card>\n\n</ion-content>\n";
       /***/
     },
 
@@ -82,7 +82,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<form #tagsForm=\"ngForm\" novalidate autocomplete=\"off\">\n\n\n    <!-- post_ids -->\n    <ion-item class=\"item-transparent\">\n        <ion-label>{{ 'ENTRADAS' | titlecase }}</ion-label>\n        <ionic-selectable name=\"post_ids\"\n                          id=\"post_ids-field\"\n                          [(ngModel)]=\"model.posts\"\n                          [items]=\"tagsService.tagLists.Post\"\n                          itemValueField=\"id\"\n                          itemTextField=\"name\"\n                          [isMultiple]=\"true\"\n                          [canClear]=\"true\"\n                          [hasConfirmButton]=\"true\"\n                          [confirmButtonText]=\"'Seleccionar'\"\n                          [searchPlaceholder]=\"'Buscar ' + ('ENTRADAS' | titlecase)\"\n                          [searchFailText]=\"'No se encontro ' + ('ENTRADAS' | titlecase) + ' que coincida!'\"\n                          [closeButtonText]=\"'Cancelar'\"\n                          [clearButtonText]=\"'Limpiar'\"\n                          [canSearch]=\"true\"\n                          (onChange)=\"setPostIds($event)\">\n        </ionic-selectable>\n    </ion-item>\n    <div class=\"validation-errors\">\n        <ng-container *ngFor=\"let validation of validationMessages.post_ids\">\n            <div class=\"error-message\" *ngIf=\"tagsForm.form.controls['post_ids']?.hasError(validation.type)\">\n                {{ validation.message }}\n            </div>\n        </ng-container>\n    </div>\n    <!-- end post_ids -->\n\n\n            <!-- name -->\n            <ion-item class=\"item-transparent\">\n                <ion-label>{{ 'NOMBRE' | titlecase }}</ion-label>\n                <ion-input [(ngModel)]=\"model.name\"\n                            type=\"text\"\n                            name=\"name\"\n                            id=\"name-field\"\n                            [required]=\"true\"\n                            placeholder=\"\"></ion-input>\n            </ion-item>\n            <div class=\"validation-errors\">\n                <ng-container *ngFor=\"let validation of validationMessages.name\">\n                    <div class=\"error-message\" *ngIf=\"tagsForm.form.controls['name']?.hasError(validation.type)\">\n                        {{ validation.message }}\n                    </div>\n                </ng-container>\n            </div>\n            <!-- end name -->\n\n\n</form>\n\n<pre>\n{{ model | json }}\n</pre>\n";
+      __webpack_exports__["default"] = "<form #tagsForm=\"ngForm\" novalidate autocomplete=\"off\">\n\n\n    <!-- post_ids -->\n    <ion-item class=\"item-transparent\">\n        <ion-label>{{ 'ENTRADAS' | titlecase }}</ion-label>\n        <ionic-selectable name=\"post_ids\"\n                          id=\"post_ids-field\"\n                          [(ngModel)]=\"model.posts\"\n                          [items]=\"tagsService.tagLists.Post\"\n                          itemValueField=\"id\"\n                          itemTextField=\"name\"\n                          [isMultiple]=\"true\"\n                          [canClear]=\"true\"\n                          [hasConfirmButton]=\"true\"\n                          [confirmButtonText]=\"'Seleccionar'\"\n                          [searchPlaceholder]=\"'Buscar ' + ('ENTRADAS' | titlecase)\"\n                          [searchFailText]=\"'No se encontro ' + ('ENTRADAS' | titlecase) + ' que coincida!'\"\n                          [closeButtonText]=\"'Cancelar'\"\n                          [clearButtonText]=\"'Limpiar'\"\n                          [canSearch]=\"true\"\n                          (onChange)=\"setPostIds($event)\">\n        </ionic-selectable>\n    </ion-item>\n    <div class=\"validation-errors\">\n        <ng-container *ngFor=\"let validation of validationMessages.post_ids\">\n            <div class=\"error-message\" *ngIf=\"tagsForm.form.controls['post_ids']?.hasError(validation.type)\">\n                {{ validation.message }}\n            </div>\n        </ng-container>\n    </div>\n    <!-- end post_ids -->\n\n\n            <!-- name -->\n            <ion-item class=\"item-transparent\">\n                <ion-label>{{ 'NOMBRE' | titlecase }}</ion-label>\n                <ion-input [(ngModel)]=\"model.name\"\n                            type=\"text\"\n                            name=\"name\"\n                            id=\"name-field\"\n                            [required]=\"true\"\n                            placeholder=\"\"></ion-input>\n            </ion-item>\n            <div class=\"validation-errors\">\n                <ng-container *ngFor=\"let validation of validationMessages.name\">\n                    <div class=\"error-message\" *ngIf=\"tagsForm.form.controls['name']?.hasError(validation.type)\">\n                        {{ validation.message }}\n                    </div>\n                </ng-container>\n            </div>\n            <!-- end name -->\n\n\n</form>\n";
       /***/
     },
 
@@ -102,7 +102,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<app-main-header title=\"{{'ETIQUETAS' | titlecase}}\"\n                 primaryLink=\"tags/create\"\n                 primaryText=\"Crear {{'ETIQUETAS' | lowercase}}\"\n                 primaryIcon=\"add-circle-outline\"></app-main-header>\n\n<ion-content id=\"pages-content\">\n\n    <ion-searchbar showCancelButton=\"focus\"\n                       [cancelButtonText]=\"'Cancelar'\"\n                       [placeholder]=\"'Buscar ' + ('ETIQUETAS' | lowercase )\"\n                       (ionCancel)=\"this.tagsService.searchValue = ''; tagsService.getTags()\"\n                       (keyup.enter)=\"tagsService.getTags()\"\n                       [(ngModel)]=\"tagsService.searchValue\"></ion-searchbar>\n\n    <ion-card>\n\n        <ng-container *ngIf=\"!(loading.loading | async) && tagsService.tags.length\">\n            <ion-item *ngFor=\"let tag of tagsService.tags; let index = index\">\n                <ion-label>\n                    <h3>{{ 'NOMBRE' | titlecase }}: {{ tag.name }}</h3>\n                    <h3>{{ 'ENTRADAS' | titlecase }}:\n                    <ng-container *ngIf=\"tag.posts.length\">\n                        <ng-container *ngFor=\"let post of tag.posts; let last = last\">\n                        <a routerLink=\"/posts/{{ post.id }}/edit\">{{ post.name }}</a><span *ngIf=\"!last\">, </span>\n                        </ng-container>\n                    </ng-container>\n                    </h3>\n                </ion-label>\n\n\n                <ion-button item-right fill=\"clear\" color=\"success\" [routerLink]=\"'/tags/' + tag.id + '/edit'\">\n                    <ion-icon name=\"create-outline\"></ion-icon>\n                </ion-button>\n                <!--<ion-button item-right fill=\"clear\" color=\"success\" (click)=\"null\">\n                    <ion-icon name=\"eye-outline\"></ion-icon>\n                </ion-button>-->\n                <ion-button item-right fill=\"clear\" color=\"danger\" (click)=\"tagsService.deleteTag(tag.id)\">\n                    <ion-icon name=\"trash-outline\"></ion-icon>\n                </ion-button>\n            </ion-item>\n        </ng-container>\n\n        <ng-container *ngIf=\"!(loading.loading | async) && !tagsService.tags.length\">\n            <ion-item>\n                <ion-icon class=\"text-warning\" name=\"warning-outline\" slot=\"start\"></ion-icon>\n                <ion-label><h2>No se encontraron {{'ETIQUETAS' | titlecase}}</h2></ion-label>\n                <ion-button [routerLink]=\"'/tags/create'\" fill=\"outline\" color=\"success\" slot=\"end\">\n                    Crear {{'ETIQUETAS' | titlecase}}\n                    <ion-icon name=\"add-circle-outline\" slot=\"end\"></ion-icon>\n                </ion-button>\n            </ion-item>\n        </ng-container>\n\n    </ion-card>\n\n</ion-content>\n\n<ion-footer>\n    <ion-row *ngIf=\"tagsService.meta\">\n        <ion-col class=\"ion-text-center\" size=\"12\">\n            <ion-button (click)=\"tagsService.getTags(tagsService.meta.current_page - 1)\"\n                        [disabled]=\"tagsService.meta.current_page == 1\"\n                        fill=\"clear\">\n                <ion-icon slot=\"end\" name=\"play-outline\" style=\"transform: rotate(180deg);\"></ion-icon>\n            </ion-button>\n            <ion-button fill=\"clear\" [disabled]=\"true\"> Pag: {{tagsService.meta.current_page}}\n                /{{tagsService.meta.last_page}} {{tagsService.meta.from}}-{{tagsService.meta.to}}\n                /{{tagsService.meta.total}} </ion-button>\n            <ion-button (click)=\"tagsService.getTags(tagsService.meta.current_page + 1)\"\n                        [disabled]=\"tagsService.meta.current_page == tagsService.meta.last_page\"\n                        fill=\"clear\">\n                <ion-icon slot=\"start\" name=\"play-outline\"></ion-icon>\n            </ion-button>\n        </ion-col>\n    </ion-row>\n</ion-footer>\n";
+      __webpack_exports__["default"] = "<app-main-header title=\"{{'ETIQUETAS' | titlecase}}\"\n                 primaryLink=\"tags/create\"\n                 primaryText=\"Crear {{'ETIQUETAS' | lowercase}}\"\n                 primaryIcon=\"add-circle-outline\"></app-main-header>\n\n<ion-content id=\"pages-content\">\n\n    <ion-searchbar showCancelButton=\"focus\"\n                       [cancelButtonText]=\"'Cancelar'\"\n                       [placeholder]=\"'Buscar ' + ('ETIQUETAS' | lowercase )\"\n                       (ionCancel)=\"this.tagsService.searchValue = ''; tagsService.getTags()\"\n                       (keyup.enter)=\"tagsService.getTags()\"\n                       [(ngModel)]=\"tagsService.searchValue\"></ion-searchbar>\n\n    <ion-card>\n\n        <ng-container *ngIf=\"!(loading.loading | async) && tagsService.tags.length\">\n            <ion-item *ngFor=\"let tag of tagsService.tags; let index = index\">\n                <ion-label>\n                    <h3>{{ 'NOMBRE' | titlecase }}: {{ tag.name }}</h3>\n                    <h3>{{ 'ENTRADAS' | titlecase }}:\n                    <ng-container *ngIf=\"tag.posts.length\">\n                        <ng-container *ngFor=\"let post of tag.posts; let last = last\">\n                        <a routerLink=\"/posts/{{ post.id }}/edit\">{{ post.name }}</a><span *ngIf=\"!last\">, </span>\n                        </ng-container>\n                    </ng-container>\n                    </h3>\n                </ion-label>\n\n\n                <ion-button item-right fill=\"clear\" color=\"success\" [routerLink]=\"'/tags/' + tag.id + '/edit'\">\n                    <ion-icon name=\"create-outline\"></ion-icon>\n                </ion-button>\n                <!--<ion-button item-right fill=\"clear\" color=\"success\" (click)=\"null\">\n                    <ion-icon name=\"eye-outline\"></ion-icon>\n                </ion-button>-->\n                <ion-button item-right fill=\"clear\" color=\"danger\" (click)=\"tagsService.deleteTag(tag.id)\">\n                    <ion-icon name=\"trash-outline\"></ion-icon>\n                </ion-button>\n            </ion-item>\n        </ng-container>\n\n        <ng-container *ngIf=\"!(loading.loading | async) && !tagsService.tags.length\">\n            <ion-item>\n                <ion-icon class=\"text-warning\" name=\"warning-outline\" slot=\"start\"></ion-icon>\n                <ion-label><h2>No se encontraron {{'ETIQUETAS' | titlecase}}</h2></ion-label>\n                <ion-button [routerLink]=\"'/tags/create'\" fill=\"outline\" color=\"success\" slot=\"end\">\n                    Crear {{'ETIQUETAS' | titlecase}}\n                    <ion-icon name=\"add-circle-outline\" slot=\"end\"></ion-icon>\n                </ion-button>\n            </ion-item>\n        </ng-container>\n\n    </ion-card>\n\n</ion-content>\n\n<ion-footer class=\"lists-footer\">\n    <ion-row *ngIf=\"tagsService.meta\">\n        <ion-col class=\"ion-text-center\" size=\"12\">\n            <ion-button (click)=\"tagsService.getTags(tagsService.meta.current_page - 1)\"\n                        [disabled]=\"tagsService.meta.current_page == 1\"\n                        fill=\"clear\">\n                <ion-icon slot=\"end\" name=\"play-outline\" style=\"transform: rotate(180deg);\"></ion-icon>\n            </ion-button>\n            <ion-button fill=\"clear\" [disabled]=\"true\"> Pag: {{tagsService.meta.current_page}}\n                /{{tagsService.meta.last_page}} {{tagsService.meta.from}}-{{tagsService.meta.to}}\n                /{{tagsService.meta.total}} </ion-button>\n            <ion-button (click)=\"tagsService.getTags(tagsService.meta.current_page + 1)\"\n                        [disabled]=\"tagsService.meta.current_page == tagsService.meta.last_page\"\n                        fill=\"clear\">\n                <ion-icon slot=\"start\" name=\"play-outline\"></ion-icon>\n            </ion-button>\n        </ion-col>\n    </ion-row>\n</ion-footer>\n";
       /***/
     },
 
@@ -122,7 +122,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<app-main-header title=\"ETIQUETAS\"></app-main-header>\n\n<ion-content>\n\n</ion-content>\n";
+      __webpack_exports__["default"] = "<app-main-header title=\"ETIQUETAS\"></app-main-header>\n\n<ion-content>\n\n        <ion-row>\n\n            <ion-col size-md=\"3\" size-sm=\"6\" size-xs=\"12\">\n                <ion-card routerLink=\"/tags/list\">\n                    <div style=\"height: 120px; width: 100%; display: flex; align-items: center; justify-content: center;\">\n                        <ion-icon name=\"list-circle-outline\" color=\"primary\" class=\"icon-m\"></ion-icon>\n                    </div>\n                    <ion-card-header>\n                        <ion-card-subtitle class=\"ion-text-center\">\n                            Listar {{ 'ETIQUETAS'  | titlecase }}\n                        </ion-card-subtitle>\n                    </ion-card-header>\n\n                </ion-card>\n            </ion-col>\n\n            <ion-col size-md=\"3\" size-sm=\"6\" size-xs=\"12\">\n                <ion-card routerLink=\"/tags/create\">\n                    <div style=\"height: 120px; width: 100%; display: flex; align-items: center; justify-content: center;\">\n                        <ion-icon name=\"add-circle-outline\" color=\"success\" class=\"icon-m\"></ion-icon>\n                    </div>\n                    <ion-card-header>\n                        <ion-card-subtitle class=\"ion-text-center\">\n                            Crear {{ 'ETIQUETAS' | titlecase }}\n                        </ion-card-subtitle>\n                    </ion-card-header>\n\n                </ion-card>\n            </ion-col>\n\n        </ion-row>\n\n</ion-content>\n";
       /***/
     },
 
@@ -189,13 +189,20 @@
       var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
       /*! @angular/router */
       "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+      /* harmony import */
+
+
+      var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! @ionic/angular */
+      "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
 
       var TagsCreateComponent = /*#__PURE__*/function () {
-        function TagsCreateComponent(tagsService, route) {
+        function TagsCreateComponent(tagsService, route, platform) {
           _classCallCheck(this, TagsCreateComponent);
 
           this.tagsService = tagsService;
           this.route = route;
+          this.platform = platform;
           this.id = null;
           this.formValid = false;
         }
@@ -231,6 +238,8 @@
           type: _tags_service__WEBPACK_IMPORTED_MODULE_2__["TagsService"]
         }, {
           type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"]
+        }, {
+          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["Platform"]
         }];
       };
 
@@ -396,13 +405,20 @@
       var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
       /*! @angular/router */
       "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+      /* harmony import */
+
+
+      var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! @ionic/angular */
+      "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
 
       var TagsEditComponent = /*#__PURE__*/function () {
-        function TagsEditComponent(tagsService, route) {
+        function TagsEditComponent(tagsService, route, platform) {
           _classCallCheck(this, TagsEditComponent);
 
           this.tagsService = tagsService;
           this.route = route;
+          this.platform = platform;
           this.id = null;
           this.model = null;
         }
@@ -432,6 +448,8 @@
           type: _tags_service__WEBPACK_IMPORTED_MODULE_2__["TagsService"]
         }, {
           type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"]
+        }, {
+          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["Platform"]
         }];
       };
 
@@ -763,31 +781,40 @@
       /* harmony import */
 
 
-      var _tags_edit_tags_edit_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      var _tags_page__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! ./tags.page */
+      "./src/app/tags/tags.page.ts");
+      /* harmony import */
+
+
+      var _tags_edit_tags_edit_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
       /*! ./tags-edit/tags-edit.component */
       "./src/app/tags/tags-edit/tags-edit.component.ts");
       /* harmony import */
 
 
-      var _tags_create_tags_create_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      var _tags_create_tags_create_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
       /*! ./tags-create/tags-create.component */
       "./src/app/tags/tags-create/tags-create.component.ts");
       /* harmony import */
 
 
-      var _tags_list_tags_list_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      var _tags_list_tags_list_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
       /*! ./tags-list/tags-list.component */
       "./src/app/tags/tags-list/tags-list.component.ts");
 
       var routes = [{
         path: '',
-        component: _tags_list_tags_list_component__WEBPACK_IMPORTED_MODULE_5__["TagsListComponent"]
+        component: _tags_page__WEBPACK_IMPORTED_MODULE_3__["TagsPage"]
+      }, {
+        path: 'list',
+        component: _tags_list_tags_list_component__WEBPACK_IMPORTED_MODULE_6__["TagsListComponent"]
       }, {
         path: 'create',
-        component: _tags_create_tags_create_component__WEBPACK_IMPORTED_MODULE_4__["TagsCreateComponent"]
+        component: _tags_create_tags_create_component__WEBPACK_IMPORTED_MODULE_5__["TagsCreateComponent"]
       }, {
         path: ':id/edit',
-        component: _tags_edit_tags_edit_component__WEBPACK_IMPORTED_MODULE_3__["TagsEditComponent"]
+        component: _tags_edit_tags_edit_component__WEBPACK_IMPORTED_MODULE_4__["TagsEditComponent"]
       }];
 
       var TagsPageRoutingModule = function TagsPageRoutingModule() {

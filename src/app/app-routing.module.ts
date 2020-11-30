@@ -27,34 +27,8 @@ const routes: Routes = [
         path: 'download',
         loadChildren: () => import('./download/download.module').then(m => m.DownloadPageModule)
     },
-    {
-        path: 'users',
-        loadChildren: () => import('./users/users.module').then(m => m.UsersPageModule)
-    },
 
 // generated section
-
-    {
-        path: 'categories',
-        loadChildren: () => import('./categories/categories.module').then( m => m.CategoriesPageModule)
-    },
-    {
-        path: 'tags',
-        loadChildren: () => import('./tags/tags.module').then( m => m.TagsPageModule)
-    },
-    {
-        path: 'posts',
-        loadChildren: () => import('./posts/posts.module').then( m => m.PostsPageModule)
-    },
-    {
-        path: 'comments',
-        loadChildren: () => import('./comments/comments.module').then( m => m.CommentsPageModule)
-    },
-    {
-        path: 'images',
-        loadChildren: () => import('./images/images.module').then( m => m.ImagesPageModule)
-    },
-
 
 // end section
 ];

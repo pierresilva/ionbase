@@ -9,6 +9,10 @@ import {{{{ $name|NameNames }}}ListComponent} from "./{{{ $name|name-names }}}-l
 const routes: Routes = [
     {
         path: '',
+        component: {{{ $name|NameNames }}}Page
+    },
+    {
+        path: 'list',
         component: {{{ $name|NameNames }}}ListComponent
     },
     {

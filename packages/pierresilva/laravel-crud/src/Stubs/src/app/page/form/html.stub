@@ -309,7 +309,3 @@
 {{{ endforeach; }}}
 
 </form>
-
-<pre>
-{{ model | json }}
-</pre>
