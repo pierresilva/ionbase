@@ -1,0 +1,124 @@
+<app-main-header title="{{'{{{ $display_name }}}' | titlecase}}"
+                 primaryLink="{{{ $name|name-names }}}/create"
+                 primaryText="Crear {{'{{{ $display_name }}}' | lowercase}}"
+                 primaryIcon="add-circle-outline"></app-main-header>
+
+<ion-content id="pages-content">
+
+    <ion-searchbar showCancelButton="focus"
+                       [cancelButtonText]="'Cancelar'"
+                       [placeholder]="'Buscar ' + ('{{{ $display_name }}}' | lowercase )"
+                       (ionCancel)="this.{{{ $name|nameNames }}}Service.searchValue = ''; {{{ $name|nameNames }}}Service.get{{{ $name|NameNames }}}()"
+                       (keyup.enter)="{{{ $name|nameNames }}}Service.get{{{ $name|NameNames }}}()"
+                       [(ngModel)]="{{{ $name|nameNames }}}Service.searchValue"></ion-searchbar>
+
+    <ion-card>
+
+        <ng-container *ngIf="!(loading.loading | async) && {{{ $name|nameNames }}}Service.{{{ $name|nameNames }}}.length">
+            <ion-item *ngFor="let {{{ $name|nameName }}} of {{{ $name|nameNames }}}Service.{{{ $name|nameNames }}}; let index = index">
+                <ion-label>
+{{{ foreach($schemas): }}}
+{{{ if($this.belongsto==''): }}}
+{{{ if($this.show_in_list==true): }}}
+{{{ if($this.input_type=='date'): }}}
+                    <h3>{{ '{{{ $this.display_name }}}' | titlecase }}: {{ {{{ $name|nameName }}}.{{{ $this.name|name_name }}} | date:'dd/MM/yyyy' }}</h3>
+{{{ endif; }}}
+{{{ if($this.input_type=='datetime'): }}}
+                    <h3>{{ '{{{ $this.display_name }}}' | titlecase }}: {{ {{{ $name|nameName }}}.{{{ $this.name|name_name }}} | date:'dd/MM/yyyy HH:mm' }}</h3>
+{{{ endif; }}}
+{{{ if($this.input_type=='time'): }}}
+                    <h3>{{ '{{{ $this.display_name }}}' | titlecase }}: {{ {{{ $name|nameName }}}.{{{ $this.name|name_name }}} | date:'HH:mm' }}</h3>
+{{{ endif; }}}
+{{{ if($this.input_type=='text'): }}}
+                    <h3>{{ '{{{ $this.display_name }}}' | titlecase }}: {{ {{{ $name|nameName }}}.{{{ $this.name|name_name }}} }}</h3>
+{{{ endif; }}}
+{{{ if($this.input_type=='textarea'): }}}
+                    <h3>{{ '{{{ $this.display_name }}}' | titlecase }}: {{ {{{ $name|nameName }}}.{{{ $this.name|name_name }}} }}</h3>
+{{{ endif; }}}
+{{{ if($this.input_type=='html'): }}}
+                    <h3>{{ '{{{ $this.display_name }}}' | titlecase }}: {{ {{{ $name|nameName }}}.{{{ $this.name|name_name }}} | stripHtml }}</h3>
+{{{ endif; }}}
+{{{ if($this.input_type=='select'): }}}
+                    <h3>{{ '{{{ $this.display_name }}}' | titlecase }}: {{ {{{ $name|nameName }}}.{{{ $this.name|name_name }}} | status }}</h3>
+{{{ endif; }}}
+{{{ if($this.input_type=='checkbox'): }}}
+                    <h3>{{ '{{{ $this.display_name }}}' | titlecase }}: {{ {{{ $name|nameName }}}.{{{ $this.name|name_name }}} ? 'Si' : 'No' }}</h3>
+{{{ endif; }}}
+{{{ if($this.input_type=='file'): }}}
+                    <h3>{{ '{{{ $this.display_name }}}' | titlecase }}: <a *ngIf="{{{ $name|nameName }}}.{{{ $this.name|name_name }}}" [href]="{{{ $name|nameName }}}.{{{ $this.name|name_name }}}" target="_blank">Ver archivo</a><span *ngIf="!{{{ $name|nameName }}}.{{{ $this.name|name_name }}}">Sin archivo</span></h3>
+{{{ endif; }}}
+{{{ endif; }}}
+{{{ endif; }}}
+{{{ endforeach; }}}
+{{{ foreach($relations): }}}
+{{{ if($this.type=='belongsTo'): }}}
+                    <h3>{{ '{{{ $this.targetModel.display_name }}}' | titlecase }}: <a routerLink="/{{{ $this.targetModel.name|name-names }}}/{{ {{{ $name|nameName }}}.{{{ $this.targetModel.name|name_name }}}.id }}/edit">{{ {{{ $name|nameName }}}.{{{ $this.targetModel.name|name_name }}}.{{{ $this.targetModel.getRelationSchema().name|name_name }}} }}</a></h3>
+{{{ endif; }}}
+{{{ if($this.type=='belongsToMany'): }}}
+                    <h3>{{ '{{{ $this.targetModel.display_name }}}' | titlecase }}:
+                    <ng-container *ngIf="{{{ $name|nameName }}}.{{{ $this.targetModel.name|name_names }}}.length">
+                        <ng-container *ngFor="let {{{ $this.targetModel.name|nameName }}} of {{{ $name|nameName }}}.{{{ $this.targetModel.name|name_names }}}; let last = last">
+                        <a routerLink="/{{{ $this.targetModel.name|name-names }}}/{{ {{{ $this.targetModel.name|nameName }}}.id }}/edit">{{ {{{ $this.targetModel.name|nameName }}}.{{{ $this.targetModel.getRelationSchema().name|name_name }}} }}</a><span *ngIf="!last">, </span>
+                        </ng-container>
+                    </ng-container>
+                    </h3>
+{{{ endif; }}}
+{{{ if($this.type=='hasMany'): }}}
+                    <h3>{{ '{{{ $this.targetModel.display_name }}}' | titlecase }}:
+                    <ng-container *ngIf="{{{ $name|nameName }}}.{{{ $this.targetModel.name|name_names }}}.length">
+                        <ng-container *ngFor="let {{{ $this.targetModel.name|nameName }}} of {{{ $name|nameName }}}.{{{ $this.targetModel.name|name_names }}}; let last = last">
+                        <a routerLink="/{{{ $this.targetModel.name|name-names }}}/{{ {{{ $this.targetModel.name|nameName }}}.id }}/edit">{{ {{{ $this.targetModel.name|nameName }}}.{{{ $this.targetModel.getRelationSchema().name|name_name }}} }}</a><span *ngIf="!last">, </span>
+                        </ng-container>
+                    </ng-container>
+                    </h3>
+{{{ endif; }}}
+{{{ endforeach; }}}
+                </ion-label>
+
+
+                <ion-button item-right fill="clear" color="success" [routerLink]="'/{{{ $name|name-names }}}/' + {{{ $name|nameName }}}.id + '/edit'">
+                    <ion-icon name="create-outline"></ion-icon>
+                </ion-button>
+                <!--<ion-button item-right fill="clear" color="success" (click)="null">
+                    <ion-icon name="eye-outline"></ion-icon>
+                </ion-button>-->
+                <ion-button item-right fill="clear" color="danger" (click)="{{{ $name|nameNames }}}Service.delete{{{ $name|NameName }}}({{{ $name|nameName }}}.id)">
+                    <ion-icon name="trash-outline"></ion-icon>
+                </ion-button>
+            </ion-item>
+        </ng-container>
+
+        <ng-container *ngIf="!(loading.loading | async) && !{{{ $name|nameNames }}}Service.{{{ $name|nameNames }}}.length">
+            <ion-item>
+                <ion-icon class="text-warning" name="warning-outline" slot="start"></ion-icon>
+                <ion-label><h2>No se encontraron {{'{{{ $display_name }}}' | titlecase}}</h2></ion-label>
+                <ion-button [routerLink]="'/{{{ $name|name-names }}}/create'" fill="outline" color="success" slot="end">
+                    Crear {{'{{{ $display_name }}}' | titlecase}}
+                    <ion-icon name="add-circle-outline" slot="end"></ion-icon>
+                </ion-button>
+            </ion-item>
+        </ng-container>
+
+    </ion-card>
+
+</ion-content>
+
+<ion-footer>
+    <ion-row *ngIf="{{{ $name|nameNames }}}Service.meta">
+        <ion-col class="ion-text-center" size="12">
+            <ion-button (click)="{{{ $name|nameNames }}}Service.get{{{ $name|NameNames }}}({{{ $name|nameNames }}}Service.meta.current_page - 1)"
+                        [disabled]="{{{ $name|nameNames }}}Service.meta.current_page == 1"
+                        fill="clear">
+                <ion-icon slot="end" name="play-outline" style="transform: rotate(180deg);"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear" [disabled]="true"> Pag: {{{{{ $name|nameNames }}}Service.meta.current_page}}
+                /{{{{{ $name|nameNames }}}Service.meta.last_page}} {{{{{ $name|nameNames }}}Service.meta.from}}-{{{{{ $name|nameNames }}}Service.meta.to}}
+                /{{{{{ $name|nameNames }}}Service.meta.total}} </ion-button>
+            <ion-button (click)="{{{ $name|nameNames }}}Service.get{{{ $name|NameNames }}}({{{ $name|nameNames }}}Service.meta.current_page + 1)"
+                        [disabled]="{{{ $name|nameNames }}}Service.meta.current_page == {{{ $name|nameNames }}}Service.meta.last_page"
+                        fill="clear">
+                <ion-icon slot="start" name="play-outline"></ion-icon>
+            </ion-button>
+        </ion-col>
+    </ion-row>
+</ion-footer>

@@ -1,0 +1,21 @@
+<app-main-header title="BarCode Scanner"></app-main-header>
+
+<ion-content>
+
+    <zxing-scanner *ngIf="browserScanner"
+                   [(device)]="currentDevice"
+                   [formats]="formatsEnabled"
+                   (scanError)="onCodeError($event)"
+                   (scanSuccess)="onCodeResult($event)"></zxing-scanner>
+
+    <p>
+        <ion-button (click)="scan()"
+                    fill="clear">Scan Barcode
+            <ion-icon slot="end" name="qr-code-outline"></ion-icon>
+        </ion-button>
+    </p>
+    <pre>
+{{barcodeData | json}}
+</pre>
+
+</ion-content>

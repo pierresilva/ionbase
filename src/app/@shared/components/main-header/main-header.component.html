@@ -1,0 +1,18 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-toggle auto-hide="false" menu="main-menu">
+                <ion-button (click)="toggleMenu()">
+                    <ion-icon slot="icon-only" name="menu"></ion-icon>
+                </ion-button>
+            </ion-menu-toggle>
+        </ion-buttons>
+        <ion-buttons slot="primary" *ngIf="primaryLink">
+            <ion-button [routerLink]="'/' + primaryLink" color="success">
+                <ng-container *ngIf="primaryText && !platform.is('mobile')">{{primaryText}}</ng-container>
+                <ion-icon *ngIf="primaryIcon" slot="end" [name]="primaryIcon"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title *ngIf="title">{{title}}</ion-title>
+    </ion-toolbar>
+</ion-header>

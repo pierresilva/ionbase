@@ -1,0 +1,332 @@
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
+    {
+        // user_can(['{{{ $name|name_name }}}.index']);
+
+		// ${{{ $name|nameNames }}} = new {{{ $name|NameName }}};
+	    ${{{ $name|nameNames }}} = {{{ $name|NameName }}}::with({{{ $name|NameName }}}::getRelationships());
+
+		// (1)filltering
+        ${{{ $name|nameNames }}} = $this->filtering($request, ${{{ $name|nameNames }}});
+        ${{{ $name|nameNames }}} = ${{{ $name|nameNames }}}->get();
+
+        // (2)sort
+        ${{{ $name|nameNames }}} = $this->sorting($request, ${{{ $name|nameNames }}});
+
+        // (3)paginate
+        ${{{ $name|nameNames }}} = ${{{ $name|nameNames }}}->paginate($request->get('per_page') ?? 10);
+
+        $resource = ${{{ $name|nameNames }}}->toArray();
+
+        $resource['lists'] = {{{ $name|NameName }}}::getLists();
+
+        return $this->responseSuccess(
+          '{{{ $display_name|NameName }}} obtenidos!',
+          $resource,
+          true,
+          false
+        );
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        // user_can(['{{{ $name|name_name }}}.create']);
+
+            return response()->json([
+              'message' => 'Formulario para crear {{{ $display_name|NameName }}}!',
+              'data' => null,
+              'lists' => {{{ $name|NameName }}}::getLists()
+            ]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        // user_can(['{{{ $name|name_name }}}.store']);
+
+        $this->varidate($request);
+
+        $input = $request->input('model');
+
+        {{{ foreach($schemas): }}}
+        {{{ if($this.input_type=='password'): }}}
+                $input['{{{ $this.name|name_name }}}'] = bcrypt($input['{{{ $this.name|name_name }}}']);
+        {{{ endif; }}}
+        {{{ endforeach; }}}
+
+        DB::beginTransaction();
+        try {
+          //create data
+          ${{{ $name|nameName }}} = {{{ $name|NameName }}}::create( $input );
+
+          //sync(attach/detach)
+          if ($request->input('pivots')) {
+            $this->sync($request->input('pivots'), ${{{ $name|nameName }}});
+          }
+{{{ foreach($relations): }}}
+{{{ if($this.type=='hasMany'): }}}
+            if (isset($input['{{{ $this.targetModel.name|name_names }}}']) && count($input['{{{ $this.targetModel.name|name_names }}}'])) {
+                foreach ($input['{{{ $this.targetModel.name|name_names }}}'] as ${{{ $this.targetModel.name|nameName }}}) {
+                  \App\Models\{{{ $this.targetModel.name|NameName }}}::find(${{{ $this.targetModel.name|nameName }}}['id'])->update(['{{{ $name|name_name }}}_id' => ${{{ $name|nameName }}}->id]);
+                }
+            }
+{{{ endif; }}}
+{{{ endforeach; }}}
+
+        } catch (\Exception $exception) {
+          DB::rollBack();
+          return $this->responseError(
+            '' . $exception->getMessage(),
+            [
+              'message' => $exception->getMessage(),
+              'file' => $exception->getFile(),
+              'line' => $exception->getLine(),
+            ]
+          );
+        }
+        DB::commit();
+
+        return $this->responseSuccess(
+          '{{{ $display_name|NameName }}} almacenado!',
+          ${{{ $name|nameName }}}->toArray(),
+          false,
+          false,
+          201
+        );
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\{{{ $name|NameName }}}  ${{{ $name|nameName }}}
+     * @return \Illuminate\Http\Response
+     */
+    public function show(${{{ $name|nameName }}}Id)
+    {
+        // user_can(['{{{ $name|name_name }}}.show']);
+
+        ${{{ $name|nameName }}} = {{{ $name|NameName }}}::with({{{ $name|NameName }}}::getRelationships())->findOrFail(${{{ $name|nameName }}}Id);
+
+        {{{ foreach($relations): }}}
+        {{{ if($this.type=='hasMany'): }}}
+        ${{{ $name|nameName }}}->{{{ $this.targetModel.name|name_name }}}_ids = collect(${{{ $name|nameName }}}->{{{ $this.targetModel.name|nameNames }}})->pluck('id');
+        {{{ endif; }}}
+        {{{ if($this.type=='belongsToMany'): }}}
+        ${{{ $name|nameName }}}->{{{ $this.targetModel.name|name_name }}}_ids = collect(${{{ $name|nameName }}}->{{{ $this.targetModel.name|nameNames }}})->pluck('id');
+        {{{ endif; }}}
+        {{{ endforeach; }}}
+
+        $resource = ${{{ $name|nameName }}}->toArray();
+        $resource['lists'] = {{{ $name|NameName }}}::getLists();
+
+        return $this->responseSuccess(
+          '{{{ $display_name|NameName }}} obtenido!',
+          $resource,
+          false,
+          false,
+          200
+        );
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\{{{ $name|NameName }}}  ${{{ $name|nameName }}}
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(${{{ $name|nameName }}}Id)
+    {
+        // user_can(['{{{ $name|name_name }}}.edit']);
+
+        ${{{ $name|nameName }}} = {{{ $name|NameName }}}::with({{{ $name|NameName }}}::getRelationships())->findOrFail(${{{ $name|nameName }}}Id);
+        {{{ foreach($relations): }}}
+        {{{ if($this.type=='hasMany'): }}}
+        ${{{ $name|nameName }}}->{{{ $this.targetModel.name|name_name }}}_ids = collect(${{{ $name|nameName }}}->{{{ $this.targetModel.name|nameNames }}})->pluck('id');
+        {{{ endif; }}}
+        {{{ if($this.type=='belongsToMany'): }}}
+        ${{{ $name|nameName }}}->{{{ $this.targetModel.name|name_name }}}_ids = collect(${{{ $name|nameName }}}->{{{ $this.targetModel.name|nameNames }}})->pluck('id');
+        {{{ endif; }}}
+        {{{ endforeach; }}}
+
+        return $this->responseSuccess(
+          'Formulario para editar {{{ $display_name|NameName }}}!',
+          [
+            'model' => ${{{ $name|nameName }}},
+            'lists' => {{{ $name|NameName }}}::getLists(),
+          ],
+          false
+        );
+    }
+
+	/**
+	 * Show the form for duplicating the specified resource.
+	 *
+	 * @param \App\{{{ $name|NameName }}}  ${{{ $name|nameName }}}
+	 * @return \Illuminate\Http\Response
+	 */
+	public function duplicate(${{{ $name|nameName }}}Id)
+	{
+        // user_can(['{{{ $name|name_name }}}.duplicate']);
+
+        ${{{ $name|nameName }}} = {{{ $name|NameName }}}::with({{{ $name|NameName }}}::getRelationships())->findOrFail(${{{ $name|nameName }}}Id);
+        ${{{ $name|nameName }}}->id = null;
+        {{{ foreach($relations): }}}
+        {{{ if($this.type=='hasMany'): }}}
+        ${{{ $name|nameName }}}->{{{ $this.targetModel.name|name_name }}}_ids = collect(${{{ $name|nameName }}}->{{{ $this.targetModel.name|nameNames }}})->pluck('id');
+        {{{ endif; }}}
+        {{{ if($this.type=='belongsToMany'): }}}
+        ${{{ $name|nameName }}}->{{{ $this.targetModel.name|name_name }}}_ids = collect(${{{ $name|nameName }}}->{{{ $this.targetModel.name|nameNames }}})->pluck('id');
+        {{{ endif; }}}
+        {{{ endforeach; }}}
+
+        return $this->responseSuccess(
+          'Formulario para duplicar {{{ $display_name|NameName }}}!',
+          [
+            'model' => ${{{ $name|nameName }}},
+            'lists' => {{{ $name|NameName }}}::getLists(),
+          ],
+          false
+        );
+	}
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\{{{ $name|NameName }}}  ${{{ $name|nameName }}}
+     * @return \Illuminate\Http\Response
+     */
+    public function update(${{{ $name|nameName }}}Id, Request $request)
+    {
+
+        // user_can(['{{{ $name|name_name }}}.update']);
+
+        ${{{ $name|nameName }}} = {{{ $name|NameName }}}::findOrFail(${{{ $name|nameName }}}Id);
+
+        $this->varidate($request, ${{{ $name|nameName }}});
+
+        $input = $request->input('model');
+
+        {{{ foreach($schemas): }}}
+        {{{ if($this.input_type=='password'): }}}
+                if( $input['{{{ $this.name|name_name }}}'] === '' ){
+                    $input['{{{ $this.name|name_name }}}'] = ${{{ $name|nameName }}}->{{{ $this.name|name_name }}};
+                }else{
+                    $input['{{{ $this.name|name_name }}}'] = bcrypt($input['{{{ $this.name|name_name }}}']);
+                }
+        {{{ endif; }}}
+        {{{ endforeach; }}}
+
+        DB::beginTransaction();
+        try {
+          //update data
+          ${{{ $name|nameName }}}->update($input);
+
+          //sync(attach/detach)
+          if ($request->get('pivots')) {
+            $this->sync($request->get('pivots'), ${{{ $name|nameName }}});
+          }
+
+{{{ foreach($relations): }}}
+{{{ if($this.type=='hasMany'): }}}
+            if (isset($input['{{{ $this.targetModel.name|name_names }}}']) && count($input['{{{ $this.targetModel.name|name_names }}}'])) {
+                \App\Models\{{{ $this.targetModel.name|NameName }}}::where('{{{ $name|name_name }}}_id', ${{{ $name|nameName }}}Id)
+                    ->update(['post_id' => null]);
+                foreach ($input['{{{ $this.targetModel.name|name_names }}}'] as ${{{ $this.targetModel.name|nameName }}}) {
+                  \App\Models\{{{ $this.targetModel.name|NameName }}}::find(${{{ $this.targetModel.name|nameName }}}['id'])->update(['{{{ $name|name_name }}}_id' => ${{{ $name|nameName }}}->id]);
+                }
+            }
+{{{ endif; }}}
+{{{ endforeach; }}}
+
+        } catch (Exception $exception) {
+          DB::rollBack();
+          return $this->responseError(
+            '' . $exception->getMessage(),
+            [
+              'message' => $exception->getMessage(),
+              'file' => $exception->getFile(),
+              'line' => $exception->getLine(),
+            ]
+          );
+        }
+        DB::commit();
+
+        return $this->responseSuccess(
+          '{{{ $display_name|NameName }}} actualizado!',
+          ${{{ $name|nameName }}}->toArray(),
+          false,
+          false,
+          202
+        );
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\{{{ $name|NameName }}}  ${{{ $name|nameName }}}
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(${{{ $name|nameName }}}Id)
+    {
+
+        // user_can(['{{{ $name|name_name }}}.destroy']);
+
+        ${{{ $name|nameName }}} = {{{ $name|NameName }}}::findOrFail(${{{ $name|nameName }}}Id);
+        ${{{ $name|nameName }}}->delete();
+        return $this->responseSuccess(
+          '{{{ $display_name|NameName }}} eliminado!',
+          ${{{ $name|nameName }}}->toArray(),
+          false,
+          false,
+          203
+        );
+    }
+
+    /**
+     * Varidate input data.
+     *
+     * @return array
+     */
+    public function varidate(Request $request, {{{ $name|NameName }}} ${{{ $name|nameName }}} = null)
+    {
+        $request->validate({{{ $name|NameName }}}::getValidateRule(${{{ $name|nameName }}}));
+    }
+
+    /**
+     * sync pivot data
+     *
+     * @return void
+     */
+    public function sync($pivots_data, {{{ $name|NameName }}} ${{{ $name|nameName }}})
+    {
+        foreach( $pivots_data as $pivot_child_model_name => $pivots ){
+
+            $pivotIds = [];
+            // remove 'id'
+            foreach($pivots as &$value){
+                if( array_key_exists('id', $value) ){
+                    $pivotIds[] = $value['id'];
+                    unset($value['id']);
+                }
+            }
+            unset($value);
+
+            $method = Str::camel( Str::plural($pivot_child_model_name) );
+            ${{{ $name|nameName }}}->$method()->sync($pivotIds);
+        }
+    }

@@ -1,0 +1,1 @@
+[Tue Nov 24 20:14:31.394954 2020] [php7:error] [pid 3040] [client 127.0.0.1:53653] PHP Fatal error:  Cannot redeclare App\\User::getValidateRule() in /Users/pierresilva/code/ionbase-be/app/User.php on line 77

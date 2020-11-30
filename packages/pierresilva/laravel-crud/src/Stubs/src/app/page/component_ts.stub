@@ -1,0 +1,15 @@
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-{{{ $name|name-names }}}',
+  templateUrl: './{{{ $name|name-names }}}.page.html',
+  styleUrls: ['./{{{ $name|name-names }}}.page.scss'],
+})
+export class {{{ $name|NameNames }}}Page implements OnInit {
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+}

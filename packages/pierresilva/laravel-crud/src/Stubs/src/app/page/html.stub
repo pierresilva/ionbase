@@ -1,0 +1,5 @@
+<app-main-header title="{{{ $display_name }}}"></app-main-header>
+
+<ion-content>
+
+</ion-content>

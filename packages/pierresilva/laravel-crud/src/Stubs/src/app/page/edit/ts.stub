@@ -1,0 +1,35 @@
+import {Component, OnInit, ViewChild, AfterViewInit} from '@angular/core';
+import {{{{ $name|NameNames }}}Service} from "../{{{ $name|name-names }}}.service";
+import {ActivatedRoute} from "@angular/router";
+import {{{{ $name|NameName }}}} from "../{{{ $name|name-name }}}";
+import {{{{ $name|NameNames }}}FormComponent} from "../{{{ $name|name-names }}}-form/{{{ $name|name-names }}}-form.component";
+
+@Component({
+  selector: 'app-{{{ $name|name-names }}}-edit',
+  templateUrl: './{{{ $name|name-names }}}-edit.component.html',
+  styleUrls: ['./{{{ $name|name-names }}}-edit.component.scss']
+})
+export class {{{ $name|NameNames }}}EditComponent implements OnInit, AfterViewInit {
+
+    @ViewChild('{{{ $name|nameName }}}Form') {{{ $name|nameName }}}Form: {{{ $name|NameNames }}}FormComponent;
+
+    public id: any = null;
+    public model: {{{ $name|NameName }}} = null;
+
+  constructor(
+      public {{{ $name|nameNames }}}Service: {{{ $name|NameNames }}}Service,
+      public route: ActivatedRoute
+  ) { }
+
+  ngOnInit(): void {
+      this.id = this.route.snapshot.paramMap.get('id');
+      this.{{{ $name|nameNames }}}Service.edit{{{ $name|NameName }}}(this.id);
+  }
+
+  ngAfterViewInit() {
+      this.{{{ $name|nameName }}}Form.{{{ $name|nameNames }}}Form.valueChanges.subscribe((data) => {
+          this.{{{ $name|nameNames }}}Service.{{{ $name|nameNames }}}FormValid.next(this.{{{ $name|nameName }}}Form.{{{ $name|nameNames }}}Form.valid);
+      });
+  }
+
+}
