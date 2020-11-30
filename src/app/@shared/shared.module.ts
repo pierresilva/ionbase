@@ -36,6 +36,7 @@ import {ZXingScannerModule} from '@zxing/ngx-scanner';
 import {FileUploadService} from "./services/file-upload.service";
 import {NavigationService} from "./services/navigation.service";
 import { StatusPipe } from './pipes/status.pipe';
+import { DateFormatPipe } from './pipes/date-format.pipe';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { StatusPipe } from './pipes/status.pipe';
         SelectInputComponent,
         StripHtmlPipe,
         StatusPipe,
+        DateFormatPipe,
     ],
     entryComponents: [
         MainHeaderComponent,
@@ -63,6 +65,7 @@ import { StatusPipe } from './pipes/status.pipe';
         SelectInputComponent,
         StripHtmlPipe,
         StatusPipe,
+        DateFormatPipe,
     ],
     imports: [
         CommonModule,

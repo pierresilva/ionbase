@@ -21,13 +21,13 @@
 {{{ if($this.belongsto==''): }}}
 {{{ if($this.show_in_list==true): }}}
 {{{ if($this.input_type=='date'): }}}
-                    <h3>{{ '{{{ $this.display_name }}}' | titlecase }}: {{ {{{ $name|nameName }}}.{{{ $this.name|name_name }}} | date:'dd/MM/yyyy' }}</h3>
+                    <h3>{{ '{{{ $this.display_name }}}' | titlecase }}: {{ {{{ $name|nameName }}}.{{{ $this.name|name_name }}} | dateFormat:'DD/MM/YYYY' }}</h3>
 {{{ endif; }}}
 {{{ if($this.input_type=='datetime'): }}}
-                    <h3>{{ '{{{ $this.display_name }}}' | titlecase }}: {{ {{{ $name|nameName }}}.{{{ $this.name|name_name }}} | date:'dd/MM/yyyy HH:mm' }}</h3>
+                    <h3>{{ '{{{ $this.display_name }}}' | titlecase }}: {{ {{{ $name|nameName }}}.{{{ $this.name|name_name }}} | dateFormat:'DD/MM/YYYY HH:mm' }}</h3>
 {{{ endif; }}}
 {{{ if($this.input_type=='time'): }}}
-                    <h3>{{ '{{{ $this.display_name }}}' | titlecase }}: {{ {{{ $name|nameName }}}.{{{ $this.name|name_name }}} | date:'HH:mm' }}</h3>
+                    <h3>{{ '{{{ $this.display_name }}}' | titlecase }}: {{ {{{ $name|nameName }}}.{{{ $this.name|name_name }}} | dateFormat:'HH:mm' }}</h3>
 {{{ endif; }}}
 {{{ if($this.input_type=='text'): }}}
                     <h3>{{ '{{{ $this.display_name }}}' | titlecase }}: {{ {{{ $name|nameName }}}.{{{ $this.name|name_name }}} }}</h3>

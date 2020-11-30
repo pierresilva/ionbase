@@ -71,7 +71,7 @@
 {{{ endif; }}}
 {{{ if($this.type=='hasMany'): }}}
 
-    <!-- {{{ $this.targetModel.name|name_name }}}_ids
+    <!-- {{{ $this.targetModel.name|name_name }}}_ids -->
     <ion-item class="item-transparent">
         <ion-label>{{ '{{{ $this.targetModel.display_name }}}' | titlecase }}</ion-label>
         <ionic-selectable name="{{{ $this.targetModel.name|name_name }}}_ids"
@@ -99,7 +99,7 @@
             </div>
         </ng-container>
     </div>
-    end {{{ $this.targetModel.name|name_name }}}_ids -->
+    <!-- end {{{ $this.targetModel.name|name_name }}}_ids -->
 
 {{{ endif; }}}
 {{{ endforeach; }}}

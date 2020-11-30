@@ -245,7 +245,7 @@
 {{{ if($this.type=='hasMany'): }}}
             if (isset($input['{{{ $this.targetModel.name|name_names }}}']) && count($input['{{{ $this.targetModel.name|name_names }}}'])) {
                 \App\Models\{{{ $this.targetModel.name|NameName }}}::where('{{{ $name|name_name }}}_id', ${{{ $name|nameName }}}Id)
-                    ->update(['post_id' => null]);
+                    ->update(['{{{ $name|name_name }}}_id' => null]);
                 foreach ($input['{{{ $this.targetModel.name|name_names }}}'] as ${{{ $this.targetModel.name|nameName }}}) {
                   \App\Models\{{{ $this.targetModel.name|NameName }}}::find(${{{ $this.targetModel.name|nameName }}}['id'])->update(['{{{ $name|name_name }}}_id' => ${{{ $name|nameName }}}->id]);
                 }

@@ -215,7 +215,7 @@ class CategoryController extends ApiController
 
             if (isset($input['posts']) && count($input['posts'])) {
                 \App\Models\Post::where('category_id', $categoryId)
-                    ->update(['post_id' => null]);
+                    ->update(['category_id' => null]);
                 foreach ($input['posts'] as $post) {
                   \App\Models\Post::find($post['id'])->update(['category_id' => $category->id]);
                 }

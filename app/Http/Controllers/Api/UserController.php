@@ -215,7 +215,7 @@ class UserController extends ApiController
 
             if (isset($input['posts']) && count($input['posts'])) {
                 \App\Models\Post::where('user_id', $userId)
-                    ->update(['post_id' => null]);
+                    ->update(['user_id' => null]);
                 foreach ($input['posts'] as $post) {
                   \App\Models\Post::find($post['id'])->update(['user_id' => $user->id]);
                 }
