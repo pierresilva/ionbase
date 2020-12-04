@@ -11,6 +11,11 @@ export interface CounMeeting {
     place?: any,
     url?: any,
     act?: any,
+    status?: any,
+    start_content?: any,
+    end_content?: any,
+    consecutive?: any,
+    type?: any,
     coun_meeting_agenda_ids?: any[],
     coun_meeting_agendas?: CounMeetingAgenda[],
     coun_meeting_citation_ids?: any[],
@@ -18,7 +23,6 @@ export interface CounMeeting {
     created_at?: any;
     updated_at?: any;
     deleted_at?: any;
-    status?: any;
 }
 
 export interface CounMeetingLists {

@@ -107,6 +107,72 @@
 </div>
 
 
+<div class="form-group">
+  <label for="status-field">ESTADO</label>
+
+
+  @if($errors->has("model.status"))
+    <div class="invalid-feedback">{{ $errors->first("model.status") }}</div>
+  @else
+    <div class="invalid-feedback">Invalid!</div>
+  @endif
+</div>
+
+
+<div class="form-group">
+  <label for="start_content-field">INICIO</label>
+
+
+  @if($errors->has("model.start_content"))
+    <div class="invalid-feedback">{{ $errors->first("model.start_content") }}</div>
+  @else
+    <div class="invalid-feedback">Invalid!</div>
+  @endif
+</div>
+
+
+<div class="form-group">
+  <label for="end_content-field">FINAL</label>
+
+
+  @if($errors->has("model.end_content"))
+    <div class="invalid-feedback">{{ $errors->first("model.end_content") }}</div>
+  @else
+    <div class="invalid-feedback">Invalid!</div>
+  @endif
+</div>
+
+
+<div class="form-group">
+  <label for="consecutive-field">CONSECUTIVO</label>
+
+  <input type="text" class="form-control
+  @if($errors->any()) @if($errors->has("model.consecutive")) is-invalid @else is-valid @endif @endif;
+  " id="consecutive-field" name="model[consecutive]" value="
+@if(isset($counMeeting))
+@if($errors->any()){{ old('model.consecutive') }}@else{{ $counMeeting->consecutive ?? '' }}@endif
+@endif" >
+
+  @if($errors->has("model.consecutive"))
+    <div class="invalid-feedback">{{ $errors->first("model.consecutive") }}</div>
+  @else
+    <div class="invalid-feedback">Invalid!</div>
+  @endif
+</div>
+
+
+<div class="form-group">
+  <label for="type-field">TIPO</label>
+
+
+  @if($errors->has("model.type"))
+    <div class="invalid-feedback">{{ $errors->first("model.type") }}</div>
+  @else
+    <div class="invalid-feedback">Invalid!</div>
+  @endif
+</div>
+
+
 
 
 

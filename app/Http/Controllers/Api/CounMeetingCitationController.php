@@ -23,10 +23,10 @@ class CounMeetingCitationController extends ApiController
     {
         // user_can(['coun_meeting_citation.index']);
 
-        // $counMeetingCitations = new CounMeetingCitation;
-        $counMeetingCitations = CounMeetingCitation::with(CounMeetingCitation::getRelationships());
+		// $counMeetingCitations = new CounMeetingCitation;
+	    $counMeetingCitations = CounMeetingCitation::with(CounMeetingCitation::getRelationships());
 
-        // (1)filltering
+		// (1)filltering
         $counMeetingCitations = $this->filtering($request, $counMeetingCitations);
         $counMeetingCitations = $counMeetingCitations->get();
 
@@ -41,10 +41,10 @@ class CounMeetingCitationController extends ApiController
         $resource['lists'] = CounMeetingCitation::getLists();
 
         return $this->responseSuccess(
-            'JUNTASCITACIONE obtenidos!',
-            $resource,
-            true,
-            false
+          'JUNTASCITACIONE obtenidos!',
+          $resource,
+          true,
+          false
         );
     }
 
@@ -57,17 +57,17 @@ class CounMeetingCitationController extends ApiController
     {
         // user_can(['coun_meeting_citation.create']);
 
-        return response()->json([
-            'message' => 'Formulario para crear JUNTASCITACIONE!',
-            'data' => null,
-            'lists' => CounMeetingCitation::getLists()
-        ]);
+            return response()->json([
+              'message' => 'Formulario para crear JUNTASCITACIONE!',
+              'data' => null,
+              'lists' => CounMeetingCitation::getLists()
+            ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -78,43 +78,43 @@ class CounMeetingCitationController extends ApiController
 
         $input = $request->input('model');
 
-
+                                                                                                                        
         DB::beginTransaction();
         try {
-            //create data
-            $counMeetingCitation = CounMeetingCitation::create($input);
+          //create data
+          $counMeetingCitation = CounMeetingCitation::create( $input );
 
-            //sync(attach/detach)
-            if ($request->input('pivots')) {
-                $this->sync($request->input('pivots'), $counMeetingCitation);
-            }
+          //sync(attach/detach)
+          if ($request->input('pivots')) {
+            $this->sync($request->input('pivots'), $counMeetingCitation);
+          }
 
         } catch (\Exception $exception) {
-            DB::rollBack();
-            return $this->responseError(
-                '' . $exception->getMessage(),
-                [
-                    'message' => $exception->getMessage(),
-                    'file' => $exception->getFile(),
-                    'line' => $exception->getLine(),
-                ]
-            );
+          DB::rollBack();
+          return $this->responseError(
+            '' . $exception->getMessage(),
+            [
+              'message' => $exception->getMessage(),
+              'file' => $exception->getFile(),
+              'line' => $exception->getLine(),
+            ]
+          );
         }
         DB::commit();
 
         return $this->responseSuccess(
-            'JUNTASCITACIONE almacenado!',
-            $counMeetingCitation->toArray(),
-            false,
-            false,
-            201
+          'JUNTASCITACIONE almacenado!',
+          $counMeetingCitation->toArray(),
+          false,
+          false,
+          201
         );
     }
 
     /**
      * Display the specified resource.
      *
-     * @param \App\CounMeetingCitation $counMeetingCitation * @return \Illuminate\Http\Response
+     * @param  \App\CounMeetingCitation  $counMeetingCitation     * @return \Illuminate\Http\Response
      */
     public function show($counMeetingCitationId)
     {
@@ -122,67 +122,67 @@ class CounMeetingCitationController extends ApiController
 
         $counMeetingCitation = CounMeetingCitation::with(CounMeetingCitation::getRelationships())->findOrFail($counMeetingCitationId);
 
-
+                                                                                
         $resource = $counMeetingCitation->toArray();
         $resource['lists'] = CounMeetingCitation::getLists();
 
         return $this->responseSuccess(
-            'JUNTASCITACIONE obtenido!',
-            $resource,
-            false,
-            false,
-            200
+          'JUNTASCITACIONE obtenido!',
+          $resource,
+          false,
+          false,
+          200
         );
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\CounMeetingCitation $counMeetingCitation * @return \Illuminate\Http\Response
+     * @param  \App\CounMeetingCitation  $counMeetingCitation     * @return \Illuminate\Http\Response
      */
     public function edit($counMeetingCitationId)
     {
         // user_can(['coun_meeting_citation.edit']);
 
         $counMeetingCitation = CounMeetingCitation::with(CounMeetingCitation::getRelationships())->findOrFail($counMeetingCitationId);
-
+                                                                                
         return $this->responseSuccess(
-            'Formulario para editar JUNTASCITACIONE!',
-            [
-                'model' => $counMeetingCitation,
-                'lists' => CounMeetingCitation::getLists(),
-            ],
-            false
+          'Formulario para editar JUNTASCITACIONE!',
+          [
+            'model' => $counMeetingCitation,
+            'lists' => CounMeetingCitation::getLists(),
+          ],
+          false
         );
     }
 
-    /**
-     * Show the form for duplicating the specified resource.
-     *
-     * @param \App\CounMeetingCitation $counMeetingCitation * @return \Illuminate\Http\Response
-     */
-    public function duplicate($counMeetingCitationId)
-    {
+	/**
+	 * Show the form for duplicating the specified resource.
+	 *
+	 * @param \App\CounMeetingCitation  $counMeetingCitation	 * @return \Illuminate\Http\Response
+	 */
+	public function duplicate($counMeetingCitationId)
+	{
         // user_can(['coun_meeting_citation.duplicate']);
 
         $counMeetingCitation = CounMeetingCitation::with(CounMeetingCitation::getRelationships())->findOrFail($counMeetingCitationId);
         $counMeetingCitation->id = null;
-
+                                                                                
         return $this->responseSuccess(
-            'Formulario para duplicar JUNTASCITACIONE!',
-            [
-                'model' => $counMeetingCitation,
-                'lists' => CounMeetingCitation::getLists(),
-            ],
-            false
+          'Formulario para duplicar JUNTASCITACIONE!',
+          [
+            'model' => $counMeetingCitation,
+            'lists' => CounMeetingCitation::getLists(),
+          ],
+          false
         );
-    }
+	}
 
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\CounMeetingCitation $counMeetingCitation * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\CounMeetingCitation  $counMeetingCitation     * @return \Illuminate\Http\Response
      */
     public function update($counMeetingCitationId, Request $request)
     {
@@ -195,44 +195,44 @@ class CounMeetingCitationController extends ApiController
 
         $input = $request->input('model');
 
-
+                                                                                                                        
         DB::beginTransaction();
         try {
-            //update data
-            $counMeetingCitation->update($input);
+          //update data
+          $counMeetingCitation->update($input);
 
-            //sync(attach/detach)
-            if ($request->get('pivots')) {
-                $this->sync($request->get('pivots'), $counMeetingCitation);
-            }
+          //sync(attach/detach)
+          if ($request->get('pivots')) {
+            $this->sync($request->get('pivots'), $counMeetingCitation);
+          }
 
 
         } catch (Exception $exception) {
-            DB::rollBack();
-            return $this->responseError(
-                '' . $exception->getMessage(),
-                [
-                    'message' => $exception->getMessage(),
-                    'file' => $exception->getFile(),
-                    'line' => $exception->getLine(),
-                ]
-            );
+          DB::rollBack();
+          return $this->responseError(
+            '' . $exception->getMessage(),
+            [
+              'message' => $exception->getMessage(),
+              'file' => $exception->getFile(),
+              'line' => $exception->getLine(),
+            ]
+          );
         }
         DB::commit();
 
         return $this->responseSuccess(
-            'JUNTASCITACIONE actualizado!',
-            $counMeetingCitation->toArray(),
-            false,
-            false,
-            202
+          'JUNTASCITACIONE actualizado!',
+          $counMeetingCitation->toArray(),
+          false,
+          false,
+          202
         );
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\CounMeetingCitation $counMeetingCitation * @return \Illuminate\Http\Response
+     * @param  \App\CounMeetingCitation  $counMeetingCitation     * @return \Illuminate\Http\Response
      */
     public function destroy($counMeetingCitationId)
     {
@@ -242,11 +242,11 @@ class CounMeetingCitationController extends ApiController
         $counMeetingCitation = CounMeetingCitation::findOrFail($counMeetingCitationId);
         $counMeetingCitation->delete();
         return $this->responseSuccess(
-            'JUNTASCITACIONE eliminado!',
-            $counMeetingCitation->toArray(),
-            false,
-            false,
-            203
+          'JUNTASCITACIONE eliminado!',
+          $counMeetingCitation->toArray(),
+          false,
+          false,
+          203
         );
     }
 
@@ -267,19 +267,19 @@ class CounMeetingCitationController extends ApiController
      */
     public function sync($pivots_data, CounMeetingCitation $counMeetingCitation)
     {
-        foreach ($pivots_data as $pivot_child_model_name => $pivots) {
+        foreach( $pivots_data as $pivot_child_model_name => $pivots ){
 
             $pivotIds = [];
             // remove 'id'
-            foreach ($pivots as &$value) {
-                if (array_key_exists('id', $value)) {
+            foreach($pivots as &$value){
+                if( array_key_exists('id', $value) ){
                     $pivotIds[] = $value['id'];
                     unset($value['id']);
                 }
             }
             unset($value);
 
-            $method = Str::camel(Str::plural($pivot_child_model_name));
+            $method = Str::camel( Str::plural($pivot_child_model_name) );
             $counMeetingCitation->$method()->sync($pivotIds);
         }
     }

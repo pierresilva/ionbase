@@ -29,10 +29,10 @@ class CounMeetingController extends ApiController
     {
         // user_can(['coun_meeting.index']);
 
-        // $counMeetings = new CounMeeting;
-        $counMeetings = CounMeeting::with(CounMeeting::getRelationships());
+		// $counMeetings = new CounMeeting;
+	    $counMeetings = CounMeeting::with(CounMeeting::getRelationships());
 
-        // (1)filltering
+		// (1)filltering
         $counMeetings = $this->filtering($request, $counMeetings);
         $counMeetings = $counMeetings->get();
 
@@ -47,10 +47,10 @@ class CounMeetingController extends ApiController
         $resource['lists'] = CounMeeting::getLists();
 
         return $this->responseSuccess(
-            'JUNTASDELCONSEJO obtenidos!',
-            $resource,
-            true,
-            false
+          'JUNTASDELCONSEJO obtenidos!',
+          $resource,
+          true,
+          false
         );
     }
 
@@ -63,17 +63,17 @@ class CounMeetingController extends ApiController
     {
         // user_can(['coun_meeting.create']);
 
-        return response()->json([
-            'message' => 'Formulario para crear JUNTASDELCONSEJO!',
-            'data' => null,
-            'lists' => CounMeeting::getLists()
-        ]);
+            return response()->json([
+              'message' => 'Formulario para crear JUNTASDELCONSEJO!',
+              'data' => null,
+              'lists' => CounMeeting::getLists()
+            ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -84,53 +84,53 @@ class CounMeetingController extends ApiController
 
         $input = $request->input('model');
 
-
+                                                                                                                                                                                                        
         DB::beginTransaction();
         try {
-            //create data
-            $counMeeting = CounMeeting::create($input);
+          //create data
+          $counMeeting = CounMeeting::create( $input );
 
-            //sync(attach/detach)
-            if ($request->input('pivots')) {
-                $this->sync($request->input('pivots'), $counMeeting);
-            }
+          //sync(attach/detach)
+          if ($request->input('pivots')) {
+            $this->sync($request->input('pivots'), $counMeeting);
+          }
             if (isset($input['coun_meeting_agendas']) && count($input['coun_meeting_agendas'])) {
                 foreach ($input['coun_meeting_agendas'] as $counMeetingAgenda) {
-                    \App\Models\CounMeetingAgenda::find($counMeetingAgenda['id'])->update(['coun_meeting_id' => $counMeeting->id]);
+                  \App\Models\CounMeetingAgenda::find($counMeetingAgenda['id'])->update(['coun_meeting_id' => $counMeeting->id]);
                 }
             }
             if (isset($input['coun_meeting_citations']) && count($input['coun_meeting_citations'])) {
                 foreach ($input['coun_meeting_citations'] as $counMeetingCitation) {
-                    \App\Models\CounMeetingCitation::find($counMeetingCitation['id'])->update(['coun_meeting_id' => $counMeeting->id]);
+                  \App\Models\CounMeetingCitation::find($counMeetingCitation['id'])->update(['coun_meeting_id' => $counMeeting->id]);
                 }
             }
 
         } catch (\Exception $exception) {
-            DB::rollBack();
-            return $this->responseError(
-                '' . $exception->getMessage(),
-                [
-                    'message' => $exception->getMessage(),
-                    'file' => $exception->getFile(),
-                    'line' => $exception->getLine(),
-                ]
-            );
+          DB::rollBack();
+          return $this->responseError(
+            '' . $exception->getMessage(),
+            [
+              'message' => $exception->getMessage(),
+              'file' => $exception->getFile(),
+              'line' => $exception->getLine(),
+            ]
+          );
         }
         DB::commit();
 
         return $this->responseSuccess(
-            'JUNTASDELCONSEJO almacenado!',
-            $counMeeting->toArray(),
-            false,
-            false,
-            201
+          'JUNTASDELCONSEJO almacenado!',
+          $counMeeting->toArray(),
+          false,
+          false,
+          201
         );
     }
 
     /**
      * Display the specified resource.
      *
-     * @param \App\CounMeeting $counMeeting * @return \Illuminate\Http\Response
+     * @param  \App\CounMeeting  $counMeeting     * @return \Illuminate\Http\Response
      */
     public function show($counMeetingId)
     {
@@ -138,73 +138,73 @@ class CounMeetingController extends ApiController
 
         $counMeeting = CounMeeting::with(CounMeeting::getRelationships())->findOrFail($counMeetingId);
 
-        $counMeeting->coun_meeting_agenda_ids = collect($counMeeting->counMeetingAgendas)->pluck('id');
-        $counMeeting->coun_meeting_citation_ids = collect($counMeeting->counMeetingCitations)->pluck('id');
-
+                        $counMeeting->coun_meeting_agenda_ids = collect($counMeeting->counMeetingAgendas)->pluck('id');
+                                        $counMeeting->coun_meeting_citation_ids = collect($counMeeting->counMeetingCitations)->pluck('id');
+                        
         $resource = $counMeeting->toArray();
         $resource['lists'] = CounMeeting::getLists();
 
         return $this->responseSuccess(
-            'JUNTASDELCONSEJO obtenido!',
-            $resource,
-            false,
-            false,
-            200
+          'JUNTASDELCONSEJO obtenido!',
+          $resource,
+          false,
+          false,
+          200
         );
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\CounMeeting $counMeeting * @return \Illuminate\Http\Response
+     * @param  \App\CounMeeting  $counMeeting     * @return \Illuminate\Http\Response
      */
     public function edit($counMeetingId)
     {
         // user_can(['coun_meeting.edit']);
 
         $counMeeting = CounMeeting::with(CounMeeting::getRelationships())->findOrFail($counMeetingId);
-        $counMeeting->coun_meeting_agenda_ids = collect($counMeeting->counMeetingAgendas)->pluck('id');
-        $counMeeting->coun_meeting_citation_ids = collect($counMeeting->counMeetingCitations)->pluck('id');
-
+                        $counMeeting->coun_meeting_agenda_ids = collect($counMeeting->counMeetingAgendas)->pluck('id');
+                                        $counMeeting->coun_meeting_citation_ids = collect($counMeeting->counMeetingCitations)->pluck('id');
+                        
         return $this->responseSuccess(
-            'Formulario para editar JUNTASDELCONSEJO!',
-            [
-                'model' => $counMeeting,
-                'lists' => CounMeeting::getLists(),
-            ],
-            false
+          'Formulario para editar JUNTASDELCONSEJO!',
+          [
+            'model' => $counMeeting,
+            'lists' => CounMeeting::getLists(),
+          ],
+          false
         );
     }
 
-    /**
-     * Show the form for duplicating the specified resource.
-     *
-     * @param \App\CounMeeting $counMeeting * @return \Illuminate\Http\Response
-     */
-    public function duplicate($counMeetingId)
-    {
+	/**
+	 * Show the form for duplicating the specified resource.
+	 *
+	 * @param \App\CounMeeting  $counMeeting	 * @return \Illuminate\Http\Response
+	 */
+	public function duplicate($counMeetingId)
+	{
         // user_can(['coun_meeting.duplicate']);
 
         $counMeeting = CounMeeting::with(CounMeeting::getRelationships())->findOrFail($counMeetingId);
         $counMeeting->id = null;
-        $counMeeting->coun_meeting_agenda_ids = collect($counMeeting->counMeetingAgendas)->pluck('id');
-        $counMeeting->coun_meeting_citation_ids = collect($counMeeting->counMeetingCitations)->pluck('id');
-
+                        $counMeeting->coun_meeting_agenda_ids = collect($counMeeting->counMeetingAgendas)->pluck('id');
+                                        $counMeeting->coun_meeting_citation_ids = collect($counMeeting->counMeetingCitations)->pluck('id');
+                        
         return $this->responseSuccess(
-            'Formulario para duplicar JUNTASDELCONSEJO!',
-            [
-                'model' => $counMeeting,
-                'lists' => CounMeeting::getLists(),
-            ],
-            false
+          'Formulario para duplicar JUNTASDELCONSEJO!',
+          [
+            'model' => $counMeeting,
+            'lists' => CounMeeting::getLists(),
+          ],
+          false
         );
-    }
+	}
 
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\CounMeeting $counMeeting * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\CounMeeting  $counMeeting     * @return \Illuminate\Http\Response
      */
     public function update($counMeetingId, Request $request)
     {
@@ -217,58 +217,58 @@ class CounMeetingController extends ApiController
 
         $input = $request->input('model');
 
-
+                                                                                                                                                                                                        
         DB::beginTransaction();
         try {
-            //update data
-            $counMeeting->update($input);
+          //update data
+          $counMeeting->update($input);
 
-            //sync(attach/detach)
-            if ($request->get('pivots')) {
-                $this->sync($request->get('pivots'), $counMeeting);
-            }
+          //sync(attach/detach)
+          if ($request->get('pivots')) {
+            $this->sync($request->get('pivots'), $counMeeting);
+          }
 
             if (isset($input['coun_meeting_agendas']) && count($input['coun_meeting_agendas'])) {
                 \App\Models\CounMeetingAgenda::where('coun_meeting_id', $counMeetingId)
                     ->update(['coun_meeting_id' => null]);
                 foreach ($input['coun_meeting_agendas'] as $counMeetingAgenda) {
-                    \App\Models\CounMeetingAgenda::find($counMeetingAgenda['id'])->update(['coun_meeting_id' => $counMeeting->id]);
+                  \App\Models\CounMeetingAgenda::find($counMeetingAgenda['id'])->update(['coun_meeting_id' => $counMeeting->id]);
                 }
             }
             if (isset($input['coun_meeting_citations']) && count($input['coun_meeting_citations'])) {
                 \App\Models\CounMeetingCitation::where('coun_meeting_id', $counMeetingId)
                     ->update(['coun_meeting_id' => null]);
                 foreach ($input['coun_meeting_citations'] as $counMeetingCitation) {
-                    \App\Models\CounMeetingCitation::find($counMeetingCitation['id'])->update(['coun_meeting_id' => $counMeeting->id]);
+                  \App\Models\CounMeetingCitation::find($counMeetingCitation['id'])->update(['coun_meeting_id' => $counMeeting->id]);
                 }
             }
 
         } catch (Exception $exception) {
-            DB::rollBack();
-            return $this->responseError(
-                '' . $exception->getMessage(),
-                [
-                    'message' => $exception->getMessage(),
-                    'file' => $exception->getFile(),
-                    'line' => $exception->getLine(),
-                ]
-            );
+          DB::rollBack();
+          return $this->responseError(
+            '' . $exception->getMessage(),
+            [
+              'message' => $exception->getMessage(),
+              'file' => $exception->getFile(),
+              'line' => $exception->getLine(),
+            ]
+          );
         }
         DB::commit();
 
         return $this->responseSuccess(
-            'JUNTASDELCONSEJO actualizado!',
-            $counMeeting->toArray(),
-            false,
-            false,
-            202
+          'JUNTASDELCONSEJO actualizado!',
+          $counMeeting->toArray(),
+          false,
+          false,
+          202
         );
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\CounMeeting $counMeeting * @return \Illuminate\Http\Response
+     * @param  \App\CounMeeting  $counMeeting     * @return \Illuminate\Http\Response
      */
     public function destroy($counMeetingId)
     {
@@ -278,11 +278,11 @@ class CounMeetingController extends ApiController
         $counMeeting = CounMeeting::findOrFail($counMeetingId);
         $counMeeting->delete();
         return $this->responseSuccess(
-            'JUNTASDELCONSEJO eliminado!',
-            $counMeeting->toArray(),
-            false,
-            false,
-            203
+          'JUNTASDELCONSEJO eliminado!',
+          $counMeeting->toArray(),
+          false,
+          false,
+          203
         );
     }
 
@@ -303,19 +303,19 @@ class CounMeetingController extends ApiController
      */
     public function sync($pivots_data, CounMeeting $counMeeting)
     {
-        foreach ($pivots_data as $pivot_child_model_name => $pivots) {
+        foreach( $pivots_data as $pivot_child_model_name => $pivots ){
 
             $pivotIds = [];
             // remove 'id'
-            foreach ($pivots as &$value) {
-                if (array_key_exists('id', $value)) {
+            foreach($pivots as &$value){
+                if( array_key_exists('id', $value) ){
                     $pivotIds[] = $value['id'];
                     unset($value['id']);
                 }
             }
             unset($value);
 
-            $method = Str::camel(Str::plural($pivot_child_model_name));
+            $method = Str::camel( Str::plural($pivot_child_model_name) );
             $counMeeting->$method()->sync($pivotIds);
         }
     }

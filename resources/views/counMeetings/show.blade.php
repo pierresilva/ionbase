@@ -37,6 +37,11 @@
                                                                                                                   <li class="list-group-item d-inline-flex flex-wrap"><div><strong>LUGAR : </strong></div><div>{{ $counMeeting->place }}</div></li>
                                                                                                                   <li class="list-group-item d-inline-flex flex-wrap"><div><strong>DIRECCIÓN REUNIÓN VIRTUAL : </strong></div><div>{{ $counMeeting->url }}</div></li>
                                                                                                                   <li class="list-group-item d-inline-flex flex-wrap"><div><strong>ACTA : </strong></div><div>{{ $counMeeting->act }}</div></li>
+                                                                                                                  <li class="list-group-item d-inline-flex flex-wrap"><div><strong>ESTADO : </strong></div><div>{{ $counMeeting->status }}</div></li>
+                                                                                                                  <li class="list-group-item d-inline-flex flex-wrap"><div><strong>INICIO : </strong></div><div>{{ $counMeeting->start_content }}</div></li>
+                                                                                                                  <li class="list-group-item d-inline-flex flex-wrap"><div><strong>FINAL : </strong></div><div>{{ $counMeeting->end_content }}</div></li>
+                                                                                                                  <li class="list-group-item d-inline-flex flex-wrap"><div><strong>CONSECUTIVO : </strong></div><div>{{ $counMeeting->consecutive }}</div></li>
+                                                                                                                  <li class="list-group-item d-inline-flex flex-wrap"><div><strong>TIPO : </strong></div><div>{{ $counMeeting->type }}</div></li>
                                                       
                                                                                           
                                                             <li class="list-group-item"><p><strong>JUNTAS AGENDAS : </strong></p><div>

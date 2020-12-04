@@ -201,4 +201,107 @@
             <!-- end act -->
 
 
+            <!-- status -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'ESTADO' | titlecase }}</ion-label>
+                <ion-select [(ngModel)]="model.status"
+                            name="status"
+                            id="status-field"
+                            okText="Seleccionar"
+                            cancelText="Cancelar">
+                    <ion-select-option value="">{{ 'Ninguno' | titlecase }}</ion-select-option>
+                    <ion-select-option value="active">{{ 'Activo' | titlecase }}</ion-select-option>
+                    <ion-select-option value="inactive">{{ 'Inactivo' | titlecase }}</ion-select-option>
+                    <ion-select-option value="in_progress">{{ 'En progreso' | titlecase }}</ion-select-option>
+                    <ion-select-option value="finalized">{{ 'Finalizado' | titlecase }}</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <div class="validation-errors">
+            <ng-container *ngFor="let validation of validationMessages.status">
+                <div class="error-message" *ngIf="counMeetingsForm.form.controls['status']?.hasError(validation.type)">
+                    {{ validation.message }}
+                </div>
+            </ng-container>
+        </div>
+        <!-- end status -->
+
+
+            <!-- start_content -->
+            <ion-item class="item-transparent">
+                <ion-label position="stacked" style="font-size: 1rem;">{{ 'INICIO' | titlecase }}</ion-label>
+                <input [ngxSummernote]
+                       name="start_content"
+                       id="start_content-field"
+                       [(ngModel)]="model.start_content">
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.start_content">
+                    <div class="error-message" *ngIf="counMeetingsForm.form.controls['start_content']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end start_content -->
+
+
+            <!-- end_content -->
+            <ion-item class="item-transparent">
+                <ion-label position="stacked" style="font-size: 1rem;">{{ 'FINAL' | titlecase }}</ion-label>
+                <input [ngxSummernote]
+                       name="end_content"
+                       id="end_content-field"
+                       [(ngModel)]="model.end_content">
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.end_content">
+                    <div class="error-message" *ngIf="counMeetingsForm.form.controls['end_content']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end end_content -->
+
+
+            <!-- consecutive -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'CONSECUTIVO' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.consecutive"
+                            type="text"
+                            name="consecutive"
+                            id="consecutive-field"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.consecutive">
+                    <div class="error-message" *ngIf="counMeetingsForm.form.controls['consecutive']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end consecutive -->
+
+
+            <!-- type -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'TIPO' | titlecase }}</ion-label>
+                <ion-select [(ngModel)]="model.type"
+                            name="type"
+                            id="type-field"
+                            okText="Seleccionar"
+                            cancelText="Cancelar">
+                    <ion-select-option value="">{{ 'Ninguno' | titlecase }}</ion-select-option>
+                    <ion-select-option value="council">{{ 'Junta del Consejo' | titlecase }}</ion-select-option>
+                    <ion-select-option value="coexistence">{{ 'Junta de Convivencia' | titlecase }}</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <div class="validation-errors">
+            <ng-container *ngFor="let validation of validationMessages.type">
+                <div class="error-message" *ngIf="counMeetingsForm.form.controls['type']?.hasError(validation.type)">
+                    {{ validation.message }}
+                </div>
+            </ng-container>
+        </div>
+        <!-- end type -->
+
+
 </form>

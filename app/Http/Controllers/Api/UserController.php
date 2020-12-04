@@ -22,10 +22,6 @@ class UserController extends ApiController
     {
         // user_can(['user.index']);
 
-        if ($request->get('all')) {
-            return $this->responseSuccess('OK', User::get());
-        }
-
 		// $users = new User;
 	    $users = User::with(User::getRelationships());
 
@@ -82,7 +78,7 @@ class UserController extends ApiController
         $input = $request->input('model');
 
                                                                                 $input['password'] = bcrypt($input['password']);
-
+                
         DB::beginTransaction();
         try {
           //create data
@@ -144,7 +140,7 @@ class UserController extends ApiController
                                                 $user->user_profile_ids = collect($user->userProfiles)->pluck('id');
                                         $user->coun_meeting_citation_ids = collect($user->counMeetingCitations)->pluck('id');
                                         $user->coun_member_ids = collect($user->counMembers)->pluck('id');
-
+                        
         $resource = $user->toArray();
         $resource['lists'] = User::getLists();
 
@@ -170,7 +166,7 @@ class UserController extends ApiController
                                                 $user->user_profile_ids = collect($user->userProfiles)->pluck('id');
                                         $user->coun_meeting_citation_ids = collect($user->counMeetingCitations)->pluck('id');
                                         $user->coun_member_ids = collect($user->counMembers)->pluck('id');
-
+                        
         return $this->responseSuccess(
           'Formulario para editar USUARIO!',
           [
@@ -195,7 +191,7 @@ class UserController extends ApiController
                                                 $user->user_profile_ids = collect($user->userProfiles)->pluck('id');
                                         $user->coun_meeting_citation_ids = collect($user->counMeetingCitations)->pluck('id');
                                         $user->coun_member_ids = collect($user->counMembers)->pluck('id');
-
+                        
         return $this->responseSuccess(
           'Formulario para duplicar USUARIO!',
           [
@@ -228,7 +224,7 @@ class UserController extends ApiController
         } elseif( $input['password'] !== $user->password ){
             $input['password'] = bcrypt($input['password']);
         }
-
+                
         DB::beginTransaction();
         try {
           //update data

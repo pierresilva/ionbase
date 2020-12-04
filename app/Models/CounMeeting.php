@@ -14,7 +14,7 @@ class CounMeeting extends Model
 // generated section
 
 	// Mass Assignment
-	protected $fillable = ['name','description','date','hour','place','url','act','status'];
+	protected $fillable = ['name','description','date','hour','place','url','act','status','start_content','end_content','consecutive','type',];
     protected $dates = ['deleted_at'];
 
 	// Validate Rule
@@ -33,6 +33,11 @@ class CounMeeting extends Model
             'model.place' => 'nullable',
             'model.url' => 'nullable',
             'model.act' => 'nullable',
+            'model.status' => 'nullable',
+            'model.start_content' => 'nullable',
+            'model.end_content' => 'nullable',
+            'model.consecutive' => 'nullable',
+            'model.type' => 'nullable',
 
 
         ];
@@ -43,7 +48,7 @@ class CounMeeting extends Model
     }
 
 	public function counMeetingAgendas() {
-		return $this->hasMany('App\Models\CounMeetingAgenda')->orderBy('order', 'asc');
+		return $this->hasMany('App\Models\CounMeetingAgenda');
 	}
 	public function counMeetingCitations() {
 		return $this->hasMany('App\Models\CounMeetingCitation');

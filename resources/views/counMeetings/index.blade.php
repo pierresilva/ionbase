@@ -85,6 +85,36 @@
                                 <input class="form-control form-control-sm" id="q_act_cont" name="q[act:cont]" type="search" value="{{ @(Request::input('q.act:cont')) }}">
                               </div>
                             </div>
+                                                                                                                                                                        <div class="form-group row">
+                              <label for="q_status_cont" class="col-sm-2 col-form-label col-form-label-sm">ESTADO</label>
+                              <div class="col-sm-10">
+                                <input class="form-control form-control-sm" id="q_status_cont" name="q[status:cont]" type="search" value="{{ @(Request::input('q.status:cont')) }}">
+                              </div>
+                            </div>
+                                                                                                                                                                        <div class="form-group row">
+                              <label for="q_start_content_cont" class="col-sm-2 col-form-label col-form-label-sm">INICIO</label>
+                              <div class="col-sm-10">
+                                <input class="form-control form-control-sm" id="q_start_content_cont" name="q[start_content:cont]" type="search" value="{{ @(Request::input('q.start_content:cont')) }}">
+                              </div>
+                            </div>
+                                                                                                                                                                        <div class="form-group row">
+                              <label for="q_end_content_cont" class="col-sm-2 col-form-label col-form-label-sm">FINAL</label>
+                              <div class="col-sm-10">
+                                <input class="form-control form-control-sm" id="q_end_content_cont" name="q[end_content:cont]" type="search" value="{{ @(Request::input('q.end_content:cont')) }}">
+                              </div>
+                            </div>
+                                                                                                                                                                        <div class="form-group row">
+                              <label for="q_consecutive_cont" class="col-sm-2 col-form-label col-form-label-sm">CONSECUTIVO</label>
+                              <div class="col-sm-10">
+                                <input class="form-control form-control-sm" id="q_consecutive_cont" name="q[consecutive:cont]" type="search" value="{{ @(Request::input('q.consecutive:cont')) }}">
+                              </div>
+                            </div>
+                                                                                                                                                                        <div class="form-group row">
+                              <label for="q_type_cont" class="col-sm-2 col-form-label col-form-label-sm">TIPO</label>
+                              <div class="col-sm-10">
+                                <input class="form-control form-control-sm" id="q_type_cont" name="q[type:cont]" type="search" value="{{ @(Request::input('q.type:cont')) }}">
+                              </div>
+                            </div>
                                                                                     
                                                                                                                 <div class="form-group row">
                               <label for="q_coun_meeting_agendas_id_eq" class="col-sm-2 col-form-label col-form-label-sm">JUNTAS AGENDAS<br>hasMany</label>

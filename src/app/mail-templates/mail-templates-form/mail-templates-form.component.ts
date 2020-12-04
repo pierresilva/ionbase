@@ -3,7 +3,6 @@ import {MailTemplate} from "../mail-template";
 import {FormGroup} from "@angular/forms";
 import {MailTemplatesService} from "../mail-templates.service";
 import {TitleCasePipe} from "@angular/common";
-import {SummernoteConfigs} from "../../@shared/classes/summernote-configs";
 
 @Component({
     selector: 'app-mail-templates-form',
@@ -34,23 +33,17 @@ export class MailTemplatesFormComponent implements OnInit, AfterViewInit {
         ],
     };
 
-    summernote: any = new SummernoteConfigs();
-
-    summernoteConfig: any;
-
     constructor(
         public mailTemplatesService: MailTemplatesService,
-        private toTitlecase: TitleCasePipe,
+        private toTitlecase: TitleCasePipe
     ) {
 
     }
 
     ngOnInit(): void {
-
     }
 
     ngAfterViewInit() {
-
     }
 
 

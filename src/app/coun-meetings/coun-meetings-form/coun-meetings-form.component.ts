@@ -37,6 +37,21 @@ export class CounMeetingsFormComponent implements OnInit, AfterViewInit {
         'act': [
             {type: 'required', message: 'El campo ' + this.toTitlecase.transform('ACTA') + ' es obligatorio.'},
         ],
+        'status': [
+            {type: 'required', message: 'El campo ' + this.toTitlecase.transform('ESTADO') + ' es obligatorio.'},
+        ],
+        'start_content': [
+            {type: 'required', message: 'El campo ' + this.toTitlecase.transform('INICIO') + ' es obligatorio.'},
+        ],
+        'end_content': [
+            {type: 'required', message: 'El campo ' + this.toTitlecase.transform('FINAL') + ' es obligatorio.'},
+        ],
+        'consecutive': [
+            {type: 'required', message: 'El campo ' + this.toTitlecase.transform('CONSECUTIVO') + ' es obligatorio.'},
+        ],
+        'type': [
+            {type: 'required', message: 'El campo ' + this.toTitlecase.transform('TIPO') + ' es obligatorio.'},
+        ],
         'coun_meeting_agenda_ids': [
             {type: 'required', message: 'El campo ' + this.toTitlecase.transform('JUNTAS AGENDAS') + ' es obligatorio.'},
         ],

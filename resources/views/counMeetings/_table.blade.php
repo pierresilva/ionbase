@@ -71,6 +71,46 @@
                     @else
                       ACTA                    @endif
                   </div></th>
+                  <th scope="col"><div class="d-flex">
+                    @if( method_exists($counMeetings, 'appends') )
+                      <a href="javascript:sortByColumn('status')">ESTADO</a>
+                      @if( Request::input('q.s') == 'status_asc' )<i class="material-icons">arrow_drop_up</i>
+                      @elseif( Request::input('q.s') == 'status_desc' )<i class="material-icons">arrow_drop_down</i> @endif
+                    @else
+                      ESTADO                    @endif
+                  </div></th>
+                  <th scope="col"><div class="d-flex">
+                    @if( method_exists($counMeetings, 'appends') )
+                      <a href="javascript:sortByColumn('start_content')">INICIO</a>
+                      @if( Request::input('q.s') == 'start_content_asc' )<i class="material-icons">arrow_drop_up</i>
+                      @elseif( Request::input('q.s') == 'start_content_desc' )<i class="material-icons">arrow_drop_down</i> @endif
+                    @else
+                      INICIO                    @endif
+                  </div></th>
+                  <th scope="col"><div class="d-flex">
+                    @if( method_exists($counMeetings, 'appends') )
+                      <a href="javascript:sortByColumn('end_content')">FINAL</a>
+                      @if( Request::input('q.s') == 'end_content_asc' )<i class="material-icons">arrow_drop_up</i>
+                      @elseif( Request::input('q.s') == 'end_content_desc' )<i class="material-icons">arrow_drop_down</i> @endif
+                    @else
+                      FINAL                    @endif
+                  </div></th>
+                  <th scope="col"><div class="d-flex">
+                    @if( method_exists($counMeetings, 'appends') )
+                      <a href="javascript:sortByColumn('consecutive')">CONSECUTIVO</a>
+                      @if( Request::input('q.s') == 'consecutive_asc' )<i class="material-icons">arrow_drop_up</i>
+                      @elseif( Request::input('q.s') == 'consecutive_desc' )<i class="material-icons">arrow_drop_down</i> @endif
+                    @else
+                      CONSECUTIVO                    @endif
+                  </div></th>
+                  <th scope="col"><div class="d-flex">
+                    @if( method_exists($counMeetings, 'appends') )
+                      <a href="javascript:sortByColumn('type')">TIPO</a>
+                      @if( Request::input('q.s') == 'type_asc' )<i class="material-icons">arrow_drop_up</i>
+                      @elseif( Request::input('q.s') == 'type_desc' )<i class="material-icons">arrow_drop_down</i> @endif
+                    @else
+                      TIPO                    @endif
+                  </div></th>
 
 
                   <th scope="col">JUNTAS AGENDAS</th>
@@ -91,6 +131,11 @@
                       <td>{{$counMeeting->place}}</td>
                       <td>{{$counMeeting->url}}</td>
                       <td>{{$counMeeting->act}}</td>
+                      <td>{{$counMeeting->status}}</td>
+                      <td>{{$counMeeting->start_content}}</td>
+                      <td>{{$counMeeting->end_content}}</td>
+                      <td>{{$counMeeting->consecutive}}</td>
+                      <td>{{$counMeeting->type}}</td>
 
 
                       <td>

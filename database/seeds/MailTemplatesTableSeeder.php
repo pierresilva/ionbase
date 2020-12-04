@@ -17,11 +17,11 @@ class MailTemplatesTableSeeder extends Seeder
         $faker = Faker\Factory::create();
 
         for($i=0;$i<30;$i++){
-            $name = $faker->words(3, true);
+
             DB::table('mail_templates')->insert([
 
-                'subject' => $name,
-                'mailable' => '\App\Mail\\' . \Illuminate\Support\Str::studly($name) . 'Mail',
+                'subject' => $faker->words(5, true),
+                'mailable' => '',
                 'html_template' => $faker->paragraphs(3, true),
                 'text_template' => $faker->paragraphs(2, true),
             ]);
