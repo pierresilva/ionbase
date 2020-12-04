@@ -1,0 +1,112 @@
+<form #mailTemplatesForm="ngForm" novalidate autocomplete="off">
+
+
+    <!-- mail_ids -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'CORREOS' | titlecase }}</ion-label>
+        <ionic-selectable name="mail_ids"
+                          id="mail_ids-field"
+                          [(ngModel)]="model.mails"
+                          [items]="mailTemplatesService.mailTemplateLists.Mail"
+                          itemValueField="id"
+                          itemTextField="subject"
+                          [isMultiple]="true"
+                          [canClear]="true"
+                          [hasConfirmButton]="true"
+                          [confirmButtonText]="'Seleccionar'"
+                          [searchPlaceholder]="'Buscar ' + ('CORREOS' | titlecase)"
+                          [searchFailText]="'No se encontro ' + ('CORREOS' | titlecase) + ' que coincida!'"
+                          [closeButtonText]="'Cancelar'"
+                          [clearButtonText]="'Limpiar'"
+                          [canSearch]="true"
+                          (onChange)="setMailIds($event)">
+        </ionic-selectable>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.mail_ids">
+            <div class="error-message" *ngIf="mailTemplatesForm.form.controls['mail_ids']?.hasError(validation.type)">
+            {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end mail_ids -->
+
+
+            <!-- subject -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'ASUNTO' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.subject"
+                            type="text"
+                            name="subject"
+                            id="subject-field"
+                            [required]="true"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.subject">
+                    <div class="error-message" *ngIf="mailTemplatesForm.form.controls['subject']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end subject -->
+
+
+            <!-- mailable -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'CLASE' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.mailable"
+                            type="text"
+                            name="mailable"
+                            id="mailable-field"
+                            [required]="true"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.mailable">
+                    <div class="error-message" *ngIf="mailTemplatesForm.form.controls['mailable']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end mailable -->
+
+
+            <!-- html_template -->
+            <ion-item class="item-transparent">
+                <ion-label position="stacked" style="font-size: 1rem;">{{ 'HTML' | titlecase }}</ion-label>
+                <input [ngxSummernote]="summernote.configMinimal"
+                       name="html_template"
+                       id="html_template-field"
+                       [(ngModel)]="model.html_template">
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.html_template">
+                    <div class="error-message" *ngIf="mailTemplatesForm.form.controls['html_template']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end html_template -->
+
+
+            <!-- text_template -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'TEXTO' | titlecase }}</ion-label>
+                <ion-textarea [(ngModel)]="model.text_template"
+                              name="text_template"
+                              id="text_template-field"
+                              rows="6"
+                              placeholder=""></ion-textarea>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.text_template">
+                    <div class="error-message" *ngIf="mailTemplatesForm.form.controls['text_template']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end text_template -->
+
+
+</form>

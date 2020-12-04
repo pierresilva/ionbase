@@ -1,4 +1,10 @@
 (function () {
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+  function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+  function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
   function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
   function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -655,6 +661,232 @@
       }();
       /***/
 
+    },
+
+    /***/
+    "./src/app/users/users.service.ts":
+    /*!****************************************!*\
+      !*** ./src/app/users/users.service.ts ***!
+      \****************************************/
+
+    /*! exports provided: UsersService */
+
+    /***/
+    function srcAppUsersUsersServiceTs(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "UsersService", function () {
+        return UsersService;
+      });
+      /* harmony import */
+
+
+      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! tslib */
+      "./node_modules/tslib/tslib.es6.js");
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! @angular/core */
+      "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+      /* harmony import */
+
+
+      var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! @angular/router */
+      "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+      /* harmony import */
+
+
+      var _shared_services_api_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! ../@shared/services/api.service */
+      "./src/app/@shared/services/api.service.ts");
+      /* harmony import */
+
+
+      var _shared_services_alert_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! ../@shared/services/alert.service */
+      "./src/app/@shared/services/alert.service.ts");
+      /* harmony import */
+
+
+      var _shared_services_toast_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      /*! ../@shared/services/toast.service */
+      "./src/app/@shared/services/toast.service.ts");
+      /* harmony import */
+
+
+      var _shared_services_navigation_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      /*! ../@shared/services/navigation.service */
+      "./src/app/@shared/services/navigation.service.ts");
+      /* harmony import */
+
+
+      var rxjs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      /*! rxjs */
+      "./node_modules/rxjs/_esm2015/index.js");
+
+      var UsersService = /*#__PURE__*/function () {
+        function UsersService(api, alert, toast, router, navigation) {
+          _classCallCheck(this, UsersService);
+
+          this.api = api;
+          this.alert = alert;
+          this.toast = toast;
+          this.router = router;
+          this.navigation = navigation;
+          this.usersUrl = 'users';
+          this.usersFormValid = new rxjs__WEBPACK_IMPORTED_MODULE_7__["BehaviorSubject"](false);
+          this.users = [];
+          this.user = {};
+          this.userLists = {};
+          this.searchValue = '';
+          this.perPage = 10;
+          this.meta = null;
+          this.page = 1;
+          this.pagesContent = document.getElementById('pages-content');
+        }
+
+        _createClass(UsersService, [{
+          key: "getUsers",
+          value: function getUsers() {
+            var _this = this;
+
+            var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.page;
+            var perPage = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.perPage;
+            this.api.get(this.usersUrl + '?page=' + page + '&perPage=' + perPage + '&q[name:cont]=' + this.searchValue).subscribe(function (res) {
+              // @ts-ignore
+              document.getElementById('pages-content').scrollToTop(300);
+              _this.users = res.data;
+              _this.userLists = res.lists;
+              _this.meta = res.meta;
+            }, function (err) {
+              console.error(err);
+            });
+          }
+        }, {
+          key: "editUser",
+          value: function editUser(id) {
+            var _this2 = this;
+
+            this.api.get(this.usersUrl + '/' + id + '/edit').subscribe(function (res) {
+              _this2.user = res.data.model;
+              _this2.userLists = res.lists;
+            }, function (err) {
+              console.error(err);
+            });
+          }
+        }, {
+          key: "updateUser",
+          value: function updateUser() {
+            var _this3 = this;
+
+            this.api.put(this.usersUrl + '/' + this.user.id, {
+              model: this.user,
+              pivots: {}
+            }).subscribe(function (res) {
+              _this3.toast.present(res.message, 'toast-success', 'top');
+
+              _this3.navigation.back();
+
+              _this3.getUsers(1);
+            });
+          }
+        }, {
+          key: "createUser",
+          value: function createUser() {
+            var _this4 = this;
+
+            this.api.get(this.usersUrl + '/create').subscribe(function (res) {
+              _this4.user = {};
+              _this4.userLists = res.lists;
+            });
+          }
+        }, {
+          key: "storeUser",
+          value: function storeUser() {
+            var _this5 = this;
+
+            this.api.post(this.usersUrl, {
+              model: this.user,
+              pivots: {}
+            }).subscribe(function (res) {
+              _this5.toast.present(res.message, 'toast-success', 'top');
+
+              _this5.navigation.back();
+
+              _this5.getUsers(1);
+            });
+          }
+        }, {
+          key: "deleteUser",
+          value: function deleteUser(id) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+              var _this6 = this;
+
+              var confirm;
+              return regeneratorRuntime.wrap(function _callee3$(_context3) {
+                while (1) {
+                  switch (_context3.prev = _context3.next) {
+                    case 0:
+                      _context3.next = 2;
+                      return this.alert.confirmation('Desea eliminar el item?');
+
+                    case 2:
+                      confirm = _context3.sent;
+
+                      if (!confirm) {
+                        _context3.next = 7;
+                        break;
+                      }
+
+                      this.api["delete"](this.usersUrl + '/' + id, {}).subscribe(function (res) {
+                        _this6.toast.present(res.message, 'toast-success', 'top');
+
+                        _this6.getUsers(1);
+                      });
+                      _context3.next = 8;
+                      break;
+
+                    case 7:
+                      return _context3.abrupt("return");
+
+                    case 8:
+                    case "end":
+                      return _context3.stop();
+                  }
+                }
+              }, _callee3, this);
+            }));
+          }
+        }]);
+
+        return UsersService;
+      }();
+
+      UsersService.ctorParameters = function () {
+        return [{
+          type: _shared_services_api_service__WEBPACK_IMPORTED_MODULE_3__["ApiService"]
+        }, {
+          type: _shared_services_alert_service__WEBPACK_IMPORTED_MODULE_4__["AlertService"]
+        }, {
+          type: _shared_services_toast_service__WEBPACK_IMPORTED_MODULE_5__["ToastService"]
+        }, {
+          type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
+        }, {
+          type: _shared_services_navigation_service__WEBPACK_IMPORTED_MODULE_6__["NavigationService"]
+        }];
+      };
+
+      UsersService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+      })], UsersService);
+      /***/
     }
   }]);
 })();

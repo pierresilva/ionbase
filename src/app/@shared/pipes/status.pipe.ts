@@ -14,6 +14,8 @@ export class StatusPipe implements PipeTransform {
               active: 'Activo',
               inactive: 'Inactivo',
               hold: 'En espera',
+              finalized: 'Finalizado',
+              in_progress: 'En progreso',
               unknown: 'Desconocido'
           };
 

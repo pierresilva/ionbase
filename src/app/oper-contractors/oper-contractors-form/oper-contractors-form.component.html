@@ -1,0 +1,246 @@
+<form #operContractorsForm="ngForm" novalidate autocomplete="off">
+
+
+    <!-- oper_movement_ids -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'MOVIMIENTOS OPERATIVOS' | titlecase }}</ion-label>
+        <ionic-selectable name="oper_movement_ids"
+                          id="oper_movement_ids-field"
+                          [(ngModel)]="model.oper_movements"
+                          [items]="operContractorsService.operContractorLists.OperMovement"
+                          itemValueField="id"
+                          itemTextField="name"
+                          [isMultiple]="true"
+                          [canClear]="true"
+                          [hasConfirmButton]="true"
+                          [confirmButtonText]="'Seleccionar'"
+                          [searchPlaceholder]="'Buscar ' + ('MOVIMIENTOS OPERATIVOS' | titlecase)"
+                          [searchFailText]="'No se encontro ' + ('MOVIMIENTOS OPERATIVOS' | titlecase) + ' que coincida!'"
+                          [closeButtonText]="'Cancelar'"
+                          [clearButtonText]="'Limpiar'"
+                          [canSearch]="true"
+                          (onChange)="setOperMovementIds($event)">
+        </ionic-selectable>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.oper_movement_ids">
+            <div class="error-message" *ngIf="operContractorsForm.form.controls['oper_movement_ids']?.hasError(validation.type)">
+            {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end oper_movement_ids -->
+
+
+            <!-- name -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'NOMBRE' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.name"
+                            type="text"
+                            name="name"
+                            id="name-field"
+                            [required]="true"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.name">
+                    <div class="error-message" *ngIf="operContractorsForm.form.controls['name']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end name -->
+
+
+            <!-- document -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'DOCUMENTO' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.document"
+                            type="text"
+                            name="document"
+                            id="document-field"
+                            [required]="true"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.document">
+                    <div class="error-message" *ngIf="operContractorsForm.form.controls['document']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end document -->
+
+
+            <!-- address -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'DIRECCIÓN' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.address"
+                            type="text"
+                            name="address"
+                            id="address-field"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.address">
+                    <div class="error-message" *ngIf="operContractorsForm.form.controls['address']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end address -->
+
+
+            <!-- phone -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'TELÉFONO' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.phone"
+                            type="text"
+                            name="phone"
+                            id="phone-field"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.phone">
+                    <div class="error-message" *ngIf="operContractorsForm.form.controls['phone']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end phone -->
+
+
+            <!-- email -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'CORREO' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.email"
+                            type="text"
+                            name="email"
+                            id="email-field"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.email">
+                    <div class="error-message" *ngIf="operContractorsForm.form.controls['email']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end email -->
+
+
+            <!-- phone_support -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'TELÉFONO DE SOPORTE' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.phone_support"
+                            type="text"
+                            name="phone_support"
+                            id="phone_support-field"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.phone_support">
+                    <div class="error-message" *ngIf="operContractorsForm.form.controls['phone_support']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end phone_support -->
+
+
+            <!-- email_support -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'CORREO DE SOPORTE' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.email_support"
+                            type="text"
+                            name="email_support"
+                            id="email_support-field"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.email_support">
+                    <div class="error-message" *ngIf="operContractorsForm.form.controls['email_support']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end email_support -->
+
+
+            <!-- contact -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'CONTACTO' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.contact"
+                            type="text"
+                            name="contact"
+                            id="contact-field"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.contact">
+                    <div class="error-message" *ngIf="operContractorsForm.form.controls['contact']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end contact -->
+
+
+            <!-- business_hour -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'HORARIO DE ATENCIÓN' | titlecase }}</ion-label>
+                <ion-textarea [(ngModel)]="model.business_hour"
+                              name="business_hour"
+                              id="business_hour-field"
+                              rows="6"
+                              placeholder=""></ion-textarea>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.business_hour">
+                    <div class="error-message" *ngIf="operContractorsForm.form.controls['business_hour']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end business_hour -->
+
+
+            <!-- phone_emergency -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'TELÉFONO DE EMERGENCIA' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.phone_emergency"
+                            type="text"
+                            name="phone_emergency"
+                            id="phone_emergency-field"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.phone_emergency">
+                    <div class="error-message" *ngIf="operContractorsForm.form.controls['phone_emergency']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end phone_emergency -->
+
+
+            <!-- email_emergency -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'CORREO DE EMERGENCIA' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.email_emergency"
+                            type="text"
+                            name="email_emergency"
+                            id="email_emergency-field"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.email_emergency">
+                    <div class="error-message" *ngIf="operContractorsForm.form.controls['email_emergency']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end email_emergency -->
+
+
+</form>

@@ -15,9 +15,10 @@ class Model
         $this->use_soft_delete = $model['use_soft_delete'];
         $this->is_pivot = $model['is_pivot'];
         $this->schema_id_for_relation = $model['schema_id_for_relation'];
-        // $this->description = $model['description'];
+        $this->description = $model['description'] ?? '';
         $this->migrationNumber = null;
         $this->column = null;
+        $this->model = $this;
 
         foreach( $model['schemas'] as $schema ){
             $this->schemas[] = new Schema($schema);

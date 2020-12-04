@@ -1,0 +1,86 @@
+<form #compResponsabilitiesForm="ngForm" novalidate autocomplete="off">
+
+
+    <!-- company_id -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'EMPRESA' | titlecase }}</ion-label>
+        <ionic-selectable name="company_id"
+                          id="company_id-field"
+                          [required]="true"
+                          [(ngModel)]="model.company"
+                          [items]="compResponsabilitiesService.compResponsabilityLists.Company"
+                          itemValueField="id"
+                          itemTextField="name"
+                          [canClear]="true"
+                          [hasConfirmButton]="true"
+                          [confirmButtonText]="'Seleccionar'"
+                          [searchPlaceholder]="'Buscar ' + ('EMPRESAS' | titlecase)"
+                          [searchFailText]="'No se encontro ' + ('EMPRESAS' | titlecase) + ' que coincida!'"
+                          [closeButtonText]="'Cancelar'"
+                          [clearButtonText]="'Limpiar'"
+                          [canSearch]="true"
+                          (onChange)="setCompanyId($event)">
+        </ionic-selectable>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.company_id">
+            <div class="error-message" *ngIf="compResponsabilitiesForm.form.controls['company_id']?.hasError(validation.type)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end company_id -->
+
+
+    <!-- syst_parameter_id -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'PARAMETRO' | titlecase }}</ion-label>
+        <ionic-selectable name="syst_parameter_id"
+                          id="syst_parameter_id-field"
+                          [required]="true"
+                          [(ngModel)]="model.syst_parameter"
+                          [items]="compResponsabilitiesService.compResponsabilityLists.SystParameter"
+                          itemValueField="id"
+                          itemTextField="name"
+                          [canClear]="true"
+                          [hasConfirmButton]="true"
+                          [confirmButtonText]="'Seleccionar'"
+                          [searchPlaceholder]="'Buscar ' + ('PARAMETROS' | titlecase)"
+                          [searchFailText]="'No se encontro ' + ('PARAMETROS' | titlecase) + ' que coincida!'"
+                          [closeButtonText]="'Cancelar'"
+                          [clearButtonText]="'Limpiar'"
+                          [canSearch]="true"
+                          (onChange)="setSystParameterId($event)">
+        </ionic-selectable>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.syst_parameter_id">
+            <div class="error-message" *ngIf="compResponsabilitiesForm.form.controls['syst_parameter_id']?.hasError(validation.type)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end syst_parameter_id -->
+
+
+            <!-- name -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'NOMBRE' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.name"
+                            type="text"
+                            name="name"
+                            id="name-field"
+                            [required]="true"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.name">
+                    <div class="error-message" *ngIf="compResponsabilitiesForm.form.controls['name']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end name -->
+
+
+</form>

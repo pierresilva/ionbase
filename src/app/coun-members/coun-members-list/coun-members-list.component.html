@@ -1,0 +1,87 @@
+<app-main-header title="{{'JUNTAS MIEMBROS' | titlecase}}"
+                 primaryLink="coun-members/create"
+                 primaryText="Crear {{'JUNTAS MIEMBROS' | lowercase}}"
+                 primaryIcon="add-circle-outline"></app-main-header>
+
+<ion-content id="pages-content">
+
+    <ion-searchbar showCancelButton="focus"
+                       [cancelButtonText]="'Cancelar'"
+                       [placeholder]="'Buscar ' + ('JUNTAS MIEMBROS' | lowercase )"
+                       (ionCancel)="this.counMembersService.searchValue = ''; counMembersService.getCounMembers()"
+                       (keyup.enter)="counMembersService.getCounMembers()"
+                       [(ngModel)]="counMembersService.searchValue"></ion-searchbar>
+
+    <ng-container *ngIf="!(loading.loading | async) && counMembersService.counMembers?.length">
+        <ion-card *ngFor="let counMember of counMembersService.counMembers; let index = index">
+            <ion-list>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'NOMBRE' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ counMember?.name }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'JUNTAS CITACIONES' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">
+                            <ng-container *ngIf="counMember?.coun_meeting_citations?.length">
+                                <ng-container *ngFor="let counMeetingCitation of counMember?.coun_meeting_citations; let last = last">
+                                    <a routerLink="/coun-meeting-citations/{{ counMeetingCitation?.id }}/edit">{{ counMeetingCitation?.name }}</a><span *ngIf="!last">, </span>
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'USUARIOS' | titlecase }}</b></ion-label>
+                        <div class="wrap-text"><a routerLink="/users/{{ counMember?.user?.id }}/edit">{{ counMember?.user?.name }}</a></div>
+                    </ion-item>
+            </ion-list>
+            <ion-footer>
+                <ion-row>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="success" size="small" fill="clear" [routerLink]="'/coun-members/' + counMember?.id + '/edit'">
+                            <ion-icon name="create-outline"></ion-icon>
+                            <div>Editar</div>
+                        </ion-button>
+                    </ion-col>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="danger" size="small" fill="clear" (click)="counMembersService.deleteCounMember(counMember?.id)">
+                            <ion-icon name="trash-outline"></ion-icon>
+                            <div>Eliminar</div>
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-footer>
+        </ion-card>
+    </ng-container>
+
+    <ng-container *ngIf="!(loading.loading | async) && !counMembersService.counMembers?.length">
+        <ion-item>
+            <ion-icon class="text-warning" name="warning-outline" slot="start"></ion-icon>
+            <ion-label><h2>No se encontraron {{'JUNTAS MIEMBROS' | titlecase}}</h2></ion-label>
+            <ion-button [routerLink]="'/coun-members/create'" fill="outline" color="success" slot="end">
+                Crear {{'JUNTAS MIEMBROS' | titlecase}}
+                <ion-icon name="add-circle-outline" slot="end"></ion-icon>
+            </ion-button>
+        </ion-item>
+    </ng-container>
+
+</ion-content>
+
+<ion-footer class="lists-footer">
+    <ion-row *ngIf="counMembersService.meta">
+        <ion-col class="ion-text-center" size="12">
+            <ion-button (click)="counMembersService.getCounMembers(counMembersService.meta.current_page - 1)"
+                        [disabled]="counMembersService.meta.current_page == 1"
+                        fill="clear">
+                <ion-icon slot="end" name="play-outline" style="transform: rotate(180deg);"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear" [disabled]="true"> Pag: {{counMembersService.meta.current_page}}
+                /{{counMembersService.meta.last_page}} {{counMembersService.meta.from}}-{{counMembersService.meta.to}}
+                /{{counMembersService.meta.total}} </ion-button>
+            <ion-button (click)="counMembersService.getCounMembers(counMembersService.meta.current_page + 1)"
+                        [disabled]="counMembersService.meta.current_page == counMembersService.meta.last_page"
+                        fill="clear">
+                <ion-icon slot="start" name="play-outline"></ion-icon>
+            </ion-button>
+        </ion-col>
+    </ion-row>
+</ion-footer>

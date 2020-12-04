@@ -1,0 +1,99 @@
+<app-main-header title="{{'PARAMETROS' | titlecase}}"
+                 primaryLink="syst-parameters/create"
+                 primaryText="Crear {{'PARAMETROS' | lowercase}}"
+                 primaryIcon="add-circle-outline"></app-main-header>
+
+<ion-content id="pages-content">
+
+    <ion-searchbar showCancelButton="focus"
+                       [cancelButtonText]="'Cancelar'"
+                       [placeholder]="'Buscar ' + ('PARAMETROS' | lowercase )"
+                       (ionCancel)="this.systParametersService.searchValue = ''; systParametersService.getSystParameters()"
+                       (keyup.enter)="systParametersService.getSystParameters()"
+                       [(ngModel)]="systParametersService.searchValue"></ion-searchbar>
+
+    <ng-container *ngIf="!(loading.loading | async) && systParametersService.systParameters?.length">
+        <ion-card *ngFor="let systParameter of systParametersService.systParameters; let index = index">
+            <ion-list>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'NOMBRE' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ systParameter?.name }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'CÓDIGO' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ systParameter?.code }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'TEXTO ENRIQUECIDO' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ systParameter?.riched_text }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'VALOR' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ systParameter?.value }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'GRUPOS DE PARAMETROS' | titlecase }}</b></ion-label>
+                        <div class="wrap-text"><a routerLink="/syst-parameter-groups/{{ systParameter?.syst_parameter_group?.id }}/edit">{{ systParameter?.syst_parameter_group?.name }}</a></div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'EMPRESAS RESPONSABILIDADES LEGALES' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">
+                            <ng-container *ngIf="systParameter?.comp_responsabilities?.length">
+                                <ng-container *ngFor="let compResponsability of systParameter?.comp_responsabilities; let last = last">
+                                    <a routerLink="/comp-responsabilities/{{ compResponsability?.id }}/edit">{{ compResponsability?.name }}</a><span *ngIf="!last">, </span>
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                    </ion-item>
+            </ion-list>
+            <ion-footer>
+                <ion-row>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="success" size="small" fill="clear" [routerLink]="'/syst-parameters/' + systParameter?.id + '/edit'">
+                            <ion-icon name="create-outline"></ion-icon>
+                            <div>Editar</div>
+                        </ion-button>
+                    </ion-col>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="danger" size="small" fill="clear" (click)="systParametersService.deleteSystParameter(systParameter?.id)">
+                            <ion-icon name="trash-outline"></ion-icon>
+                            <div>Eliminar</div>
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-footer>
+        </ion-card>
+    </ng-container>
+
+    <ng-container *ngIf="!(loading.loading | async) && !systParametersService.systParameters?.length">
+        <ion-item>
+            <ion-icon class="text-warning" name="warning-outline" slot="start"></ion-icon>
+            <ion-label><h2>No se encontraron {{'PARAMETROS' | titlecase}}</h2></ion-label>
+            <ion-button [routerLink]="'/syst-parameters/create'" fill="outline" color="success" slot="end">
+                Crear {{'PARAMETROS' | titlecase}}
+                <ion-icon name="add-circle-outline" slot="end"></ion-icon>
+            </ion-button>
+        </ion-item>
+    </ng-container>
+
+</ion-content>
+
+<ion-footer class="lists-footer">
+    <ion-row *ngIf="systParametersService.meta">
+        <ion-col class="ion-text-center" size="12">
+            <ion-button (click)="systParametersService.getSystParameters(systParametersService.meta.current_page - 1)"
+                        [disabled]="systParametersService.meta.current_page == 1"
+                        fill="clear">
+                <ion-icon slot="end" name="play-outline" style="transform: rotate(180deg);"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear" [disabled]="true"> Pag: {{systParametersService.meta.current_page}}
+                /{{systParametersService.meta.last_page}} {{systParametersService.meta.from}}-{{systParametersService.meta.to}}
+                /{{systParametersService.meta.total}} </ion-button>
+            <ion-button (click)="systParametersService.getSystParameters(systParametersService.meta.current_page + 1)"
+                        [disabled]="systParametersService.meta.current_page == systParametersService.meta.last_page"
+                        fill="clear">
+                <ion-icon slot="start" name="play-outline"></ion-icon>
+            </ion-button>
+        </ion-col>
+    </ion-row>
+</ion-footer>

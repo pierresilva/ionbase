@@ -1,0 +1,85 @@
+<app-main-header title="{{'JUNTAS AGENDAS' | titlecase}}"
+                 primaryLink="coun-meeting-agendas/create"
+                 primaryText="Crear {{'JUNTAS AGENDAS' | lowercase}}"
+                 primaryIcon="add-circle-outline"></app-main-header>
+
+<ion-content id="pages-content">
+
+    <ion-searchbar showCancelButton="focus"
+                       [cancelButtonText]="'Cancelar'"
+                       [placeholder]="'Buscar ' + ('JUNTAS AGENDAS' | lowercase )"
+                       (ionCancel)="this.counMeetingAgendasService.searchValue = ''; counMeetingAgendasService.getCounMeetingAgendas()"
+                       (keyup.enter)="counMeetingAgendasService.getCounMeetingAgendas()"
+                       [(ngModel)]="counMeetingAgendasService.searchValue"></ion-searchbar>
+
+    <ng-container *ngIf="!(loading.loading | async) && counMeetingAgendasService.counMeetingAgendas?.length">
+        <ion-card *ngFor="let counMeetingAgenda of counMeetingAgendasService.counMeetingAgendas; let index = index">
+            <ion-list>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'NOMBRE' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ counMeetingAgenda?.name }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'ORDEN' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ counMeetingAgenda?.order }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'CONTENIDO' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ counMeetingAgenda?.content | stripHtml }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'JUNTAS DEL CONSEJO' | titlecase }}</b></ion-label>
+                        <div class="wrap-text"><a routerLink="/coun-meetings/{{ counMeetingAgenda?.coun_meeting?.id }}/edit">{{ counMeetingAgenda?.coun_meeting?.name }}</a></div>
+                    </ion-item>
+            </ion-list>
+            <ion-footer>
+                <ion-row>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="success" size="small" fill="clear" [routerLink]="'/coun-meeting-agendas/' + counMeetingAgenda?.id + '/edit'">
+                            <ion-icon name="create-outline"></ion-icon>
+                            <div>Editar</div>
+                        </ion-button>
+                    </ion-col>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="danger" size="small" fill="clear" (click)="counMeetingAgendasService.deleteCounMeetingAgenda(counMeetingAgenda?.id)">
+                            <ion-icon name="trash-outline"></ion-icon>
+                            <div>Eliminar</div>
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-footer>
+        </ion-card>
+    </ng-container>
+
+    <ng-container *ngIf="!(loading.loading | async) && !counMeetingAgendasService.counMeetingAgendas?.length">
+        <ion-item>
+            <ion-icon class="text-warning" name="warning-outline" slot="start"></ion-icon>
+            <ion-label><h2>No se encontraron {{'JUNTAS AGENDAS' | titlecase}}</h2></ion-label>
+            <ion-button [routerLink]="'/coun-meeting-agendas/create'" fill="outline" color="success" slot="end">
+                Crear {{'JUNTAS AGENDAS' | titlecase}}
+                <ion-icon name="add-circle-outline" slot="end"></ion-icon>
+            </ion-button>
+        </ion-item>
+    </ng-container>
+
+</ion-content>
+
+<ion-footer class="lists-footer">
+    <ion-row *ngIf="counMeetingAgendasService.meta">
+        <ion-col class="ion-text-center" size="12">
+            <ion-button (click)="counMeetingAgendasService.getCounMeetingAgendas(counMeetingAgendasService.meta.current_page - 1)"
+                        [disabled]="counMeetingAgendasService.meta.current_page == 1"
+                        fill="clear">
+                <ion-icon slot="end" name="play-outline" style="transform: rotate(180deg);"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear" [disabled]="true"> Pag: {{counMeetingAgendasService.meta.current_page}}
+                /{{counMeetingAgendasService.meta.last_page}} {{counMeetingAgendasService.meta.from}}-{{counMeetingAgendasService.meta.to}}
+                /{{counMeetingAgendasService.meta.total}} </ion-button>
+            <ion-button (click)="counMeetingAgendasService.getCounMeetingAgendas(counMeetingAgendasService.meta.current_page + 1)"
+                        [disabled]="counMeetingAgendasService.meta.current_page == counMeetingAgendasService.meta.last_page"
+                        fill="clear">
+                <ion-icon slot="start" name="play-outline"></ion-icon>
+            </ion-button>
+        </ion-col>
+    </ion-row>
+</ion-footer>

@@ -1,0 +1,81 @@
+<app-main-header title="{{'AGENDA DE OPERACIONES' | titlecase}}"
+                 primaryLink="oper-schedules/create"
+                 primaryText="Crear {{'AGENDA DE OPERACIONES' | lowercase}}"
+                 primaryIcon="add-circle-outline"></app-main-header>
+
+<ion-content id="pages-content">
+
+    <ion-searchbar showCancelButton="focus"
+                       [cancelButtonText]="'Cancelar'"
+                       [placeholder]="'Buscar ' + ('AGENDA DE OPERACIONES' | lowercase )"
+                       (ionCancel)="this.operSchedulesService.searchValue = ''; operSchedulesService.getOperSchedules()"
+                       (keyup.enter)="operSchedulesService.getOperSchedules()"
+                       [(ngModel)]="operSchedulesService.searchValue"></ion-searchbar>
+
+    <ng-container *ngIf="!(loading.loading | async) && operSchedulesService.operSchedules?.length">
+        <ion-card *ngFor="let operSchedule of operSchedulesService.operSchedules; let index = index">
+            <ion-list>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'NOMBRE' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ operSchedule?.name }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'AREAS DE UNIDADES HABITACIONALES' | titlecase }}</b></ion-label>
+                        <div class="wrap-text"><a routerLink="/hous-unit-areas/{{ operSchedule?.hous_unit_area?.id }}/edit">{{ operSchedule?.hous_unit_area?.name }}</a></div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'SECTORES OPERATIVOS' | titlecase }}</b></ion-label>
+                        <div class="wrap-text"><a routerLink="/oper-sectors/{{ operSchedule?.oper_sector?.id }}/edit">{{ operSchedule?.oper_sector?.name }}</a></div>
+                    </ion-item>
+            </ion-list>
+            <ion-footer>
+                <ion-row>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="success" size="small" fill="clear" [routerLink]="'/oper-schedules/' + operSchedule?.id + '/edit'">
+                            <ion-icon name="create-outline"></ion-icon>
+                            <div>Editar</div>
+                        </ion-button>
+                    </ion-col>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="danger" size="small" fill="clear" (click)="operSchedulesService.deleteOperSchedule(operSchedule?.id)">
+                            <ion-icon name="trash-outline"></ion-icon>
+                            <div>Eliminar</div>
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-footer>
+        </ion-card>
+    </ng-container>
+
+    <ng-container *ngIf="!(loading.loading | async) && !operSchedulesService.operSchedules?.length">
+        <ion-item>
+            <ion-icon class="text-warning" name="warning-outline" slot="start"></ion-icon>
+            <ion-label><h2>No se encontraron {{'AGENDA DE OPERACIONES' | titlecase}}</h2></ion-label>
+            <ion-button [routerLink]="'/oper-schedules/create'" fill="outline" color="success" slot="end">
+                Crear {{'AGENDA DE OPERACIONES' | titlecase}}
+                <ion-icon name="add-circle-outline" slot="end"></ion-icon>
+            </ion-button>
+        </ion-item>
+    </ng-container>
+
+</ion-content>
+
+<ion-footer class="lists-footer">
+    <ion-row *ngIf="operSchedulesService.meta">
+        <ion-col class="ion-text-center" size="12">
+            <ion-button (click)="operSchedulesService.getOperSchedules(operSchedulesService.meta.current_page - 1)"
+                        [disabled]="operSchedulesService.meta.current_page == 1"
+                        fill="clear">
+                <ion-icon slot="end" name="play-outline" style="transform: rotate(180deg);"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear" [disabled]="true"> Pag: {{operSchedulesService.meta.current_page}}
+                /{{operSchedulesService.meta.last_page}} {{operSchedulesService.meta.from}}-{{operSchedulesService.meta.to}}
+                /{{operSchedulesService.meta.total}} </ion-button>
+            <ion-button (click)="operSchedulesService.getOperSchedules(operSchedulesService.meta.current_page + 1)"
+                        [disabled]="operSchedulesService.meta.current_page == operSchedulesService.meta.last_page"
+                        fill="clear">
+                <ion-icon slot="start" name="play-outline"></ion-icon>
+            </ion-button>
+        </ion-col>
+    </ion-row>
+</ion-footer>

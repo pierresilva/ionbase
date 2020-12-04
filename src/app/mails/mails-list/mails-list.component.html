@@ -1,0 +1,89 @@
+<app-main-header title="{{'CORREOS' | titlecase}}"
+                 primaryLink="mails/create"
+                 primaryText="Crear {{'CORREOS' | lowercase}}"
+                 primaryIcon="add-circle-outline"></app-main-header>
+
+<ion-content id="pages-content">
+
+    <ion-searchbar showCancelButton="focus"
+                       [cancelButtonText]="'Cancelar'"
+                       [placeholder]="'Buscar ' + ('CORREOS' | lowercase )"
+                       (ionCancel)="this.mailsService.searchValue = ''; mailsService.getMails()"
+                       (keyup.enter)="mailsService.getMails()"
+                       [(ngModel)]="mailsService.searchValue"></ion-searchbar>
+
+    <ng-container *ngIf="!(loading.loading | async) && mailsService.mails?.length">
+        <ion-card *ngFor="let mail of mailsService.mails; let index = index">
+            <ion-list>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'ASUNTO' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ mail?.subject }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'PARA' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ mail?.receiver }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'HTML' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ mail?.html | stripHtml }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'TEXTO' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ mail?.text }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'CORREOS PLANTILLAS' | titlecase }}</b></ion-label>
+                        <div class="wrap-text"><a routerLink="/mail-templates/{{ mail?.mail_template?.id }}/edit">{{ mail?.mail_template?.subject }}</a></div>
+                    </ion-item>
+            </ion-list>
+            <ion-footer>
+                <ion-row>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="success" size="small" fill="clear" [routerLink]="'/mails/' + mail?.id + '/edit'">
+                            <ion-icon name="create-outline"></ion-icon>
+                            <div>Editar</div>
+                        </ion-button>
+                    </ion-col>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="danger" size="small" fill="clear" (click)="mailsService.deleteMail(mail?.id)">
+                            <ion-icon name="trash-outline"></ion-icon>
+                            <div>Eliminar</div>
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-footer>
+        </ion-card>
+    </ng-container>
+
+    <ng-container *ngIf="!(loading.loading | async) && !mailsService.mails?.length">
+        <ion-item>
+            <ion-icon class="text-warning" name="warning-outline" slot="start"></ion-icon>
+            <ion-label><h2>No se encontraron {{'CORREOS' | titlecase}}</h2></ion-label>
+            <ion-button [routerLink]="'/mails/create'" fill="outline" color="success" slot="end">
+                Crear {{'CORREOS' | titlecase}}
+                <ion-icon name="add-circle-outline" slot="end"></ion-icon>
+            </ion-button>
+        </ion-item>
+    </ng-container>
+
+</ion-content>
+
+<ion-footer class="lists-footer">
+    <ion-row *ngIf="mailsService.meta">
+        <ion-col class="ion-text-center" size="12">
+            <ion-button (click)="mailsService.getMails(mailsService.meta.current_page - 1)"
+                        [disabled]="mailsService.meta.current_page == 1"
+                        fill="clear">
+                <ion-icon slot="end" name="play-outline" style="transform: rotate(180deg);"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear" [disabled]="true"> Pag: {{mailsService.meta.current_page}}
+                /{{mailsService.meta.last_page}} {{mailsService.meta.from}}-{{mailsService.meta.to}}
+                /{{mailsService.meta.total}} </ion-button>
+            <ion-button (click)="mailsService.getMails(mailsService.meta.current_page + 1)"
+                        [disabled]="mailsService.meta.current_page == mailsService.meta.last_page"
+                        fill="clear">
+                <ion-icon slot="start" name="play-outline"></ion-icon>
+            </ion-button>
+        </ion-col>
+    </ion-row>
+</ion-footer>

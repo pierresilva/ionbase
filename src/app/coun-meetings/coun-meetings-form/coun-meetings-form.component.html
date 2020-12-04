@@ -1,0 +1,204 @@
+<form #counMeetingsForm="ngForm" novalidate autocomplete="off">
+
+
+    <!-- coun_meeting_agenda_ids -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'JUNTAS AGENDAS' | titlecase }}</ion-label>
+        <ionic-selectable name="coun_meeting_agenda_ids"
+                          id="coun_meeting_agenda_ids-field"
+                          [(ngModel)]="model.coun_meeting_agendas"
+                          [items]="counMeetingsService.counMeetingLists.CounMeetingAgenda"
+                          itemValueField="id"
+                          itemTextField="name"
+                          [isMultiple]="true"
+                          [canClear]="true"
+                          [hasConfirmButton]="true"
+                          [confirmButtonText]="'Seleccionar'"
+                          [searchPlaceholder]="'Buscar ' + ('JUNTAS AGENDAS' | titlecase)"
+                          [searchFailText]="'No se encontro ' + ('JUNTAS AGENDAS' | titlecase) + ' que coincida!'"
+                          [closeButtonText]="'Cancelar'"
+                          [clearButtonText]="'Limpiar'"
+                          [canSearch]="true"
+                          (onChange)="setCounMeetingAgendaIds($event)">
+        </ionic-selectable>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.coun_meeting_agenda_ids">
+            <div class="error-message" *ngIf="counMeetingsForm.form.controls['coun_meeting_agenda_ids']?.hasError(validation.type)">
+            {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end coun_meeting_agenda_ids -->
+
+
+    <!-- coun_meeting_citation_ids -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'JUNTAS CITACIONES' | titlecase }}</ion-label>
+        <ionic-selectable name="coun_meeting_citation_ids"
+                          id="coun_meeting_citation_ids-field"
+                          [(ngModel)]="model.coun_meeting_citations"
+                          [items]="counMeetingsService.counMeetingLists.CounMeetingCitation"
+                          itemValueField="id"
+                          itemTextField="name"
+                          [isMultiple]="true"
+                          [canClear]="true"
+                          [hasConfirmButton]="true"
+                          [confirmButtonText]="'Seleccionar'"
+                          [searchPlaceholder]="'Buscar ' + ('JUNTAS CITACIONES' | titlecase)"
+                          [searchFailText]="'No se encontro ' + ('JUNTAS CITACIONES' | titlecase) + ' que coincida!'"
+                          [closeButtonText]="'Cancelar'"
+                          [clearButtonText]="'Limpiar'"
+                          [canSearch]="true"
+                          (onChange)="setCounMeetingCitationIds($event)">
+        </ionic-selectable>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.coun_meeting_citation_ids">
+            <div class="error-message" *ngIf="counMeetingsForm.form.controls['coun_meeting_citation_ids']?.hasError(validation.type)">
+            {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end coun_meeting_citation_ids -->
+
+
+            <!-- name -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'NOMBRE' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.name"
+                            type="text"
+                            name="name"
+                            id="name-field"
+                            [required]="true"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.name">
+                    <div class="error-message" *ngIf="counMeetingsForm.form.controls['name']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end name -->
+
+
+            <!-- description -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'DESCRIPCIÓN' | titlecase }}</ion-label>
+                <ion-textarea [(ngModel)]="model.description"
+                              name="description"
+                              id="description-field"
+                              rows="6"
+                              placeholder=""></ion-textarea>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.description">
+                    <div class="error-message" *ngIf="counMeetingsForm.form.controls['description']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end description -->
+
+
+            <!-- date -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'FECHA' | titlecase }}</ion-label>
+                <ion-datetime name="date"
+                              id="date-field"
+                              [required]="true"
+                              [doneText]="'Seleccionar'"
+                              max="2040-12-31"
+                              [cancelText]="'Cancelar'"
+                              [(ngModel)]="model.date"
+                              displayFormat="DD/MM/YYYY"></ion-datetime>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.date">
+                    <div class="error-message" *ngIf="counMeetingsForm.form.controls['date']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end date -->
+
+
+            <!-- hour -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'HORA' | titlecase }}</ion-label>
+                <ion-datetime name="hour"
+                              id="hour-field"
+                              [doneText]="'Seleccionar'"
+                              max="2040-12-31 23:59:59"
+                              [cancelText]="'Cancelar'"
+                              [(ngModel)]="model.hour"
+                              displayFormat="HH:mm"></ion-datetime>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.hour">
+                    <div class="error-message" *ngIf="counMeetingsForm.form.controls['hour']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end hour -->
+
+
+            <!-- place -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'LUGAR' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.place"
+                            type="text"
+                            name="place"
+                            id="place-field"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.place">
+                    <div class="error-message" *ngIf="counMeetingsForm.form.controls['place']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end place -->
+
+
+            <!-- url -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'DIRECCIÓN REUNIÓN VIRTUAL' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.url"
+                            type="text"
+                            name="url"
+                            id="url-field"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.url">
+                    <div class="error-message" *ngIf="counMeetingsForm.form.controls['url']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end url -->
+
+
+            <!-- act -->
+            <ion-item class="item-transparent">
+                <ion-label position="stacked" style="font-size: 1rem;">{{ 'ACTA' | titlecase }}</ion-label>
+                <input [ngxSummernote]
+                       name="act"
+                       id="act-field"
+                       [(ngModel)]="model.act">
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.act">
+                    <div class="error-message" *ngIf="counMeetingsForm.form.controls['act']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end act -->
+
+
+</form>

@@ -37,6 +37,9 @@ import {FileUploadService} from "./services/file-upload.service";
 import {NavigationService} from "./services/navigation.service";
 import { StatusPipe } from './pipes/status.pipe';
 import { DateFormatPipe } from './pipes/date-format.pipe';
+import { SignaturePadModule } from 'angular2-signaturepad';
+import { IonicSignaturePadModule,IonicsignaturepadProvider } from 'ionicsignaturepad';
+import { ZeroLeadingPipe } from './pipes/zero-leading.pipe';
 
 
 @NgModule({
@@ -47,6 +50,7 @@ import { DateFormatPipe } from './pipes/date-format.pipe';
         StripHtmlPipe,
         StatusPipe,
         DateFormatPipe,
+        ZeroLeadingPipe,
     ],
     entryComponents: [
         MainHeaderComponent,
@@ -58,6 +62,8 @@ import { DateFormatPipe } from './pipes/date-format.pipe';
         IonicSelectableModule,
         NgxSummernoteModule,
         ZXingScannerModule,
+        SignaturePadModule,
+        IonicSignaturePadModule,
 
         HttpClientModule,
         FormsModule,
@@ -66,6 +72,7 @@ import { DateFormatPipe } from './pipes/date-format.pipe';
         StripHtmlPipe,
         StatusPipe,
         DateFormatPipe,
+        ZeroLeadingPipe,
     ],
     imports: [
         CommonModule,
@@ -81,6 +88,8 @@ import { DateFormatPipe } from './pipes/date-format.pipe';
         HTTP,
         FileTransfer,
         FileOpener,
+        IonicsignaturepadProvider,
+
         ApiService,
         AuthService,
         GeoLocationService,
@@ -106,6 +115,7 @@ import { DateFormatPipe } from './pipes/date-format.pipe';
         LowerCasePipe,
         UpperCasePipe,
         JsonPipe,
+        ZeroLeadingPipe,
     ]
 })
 export class SharedModule {

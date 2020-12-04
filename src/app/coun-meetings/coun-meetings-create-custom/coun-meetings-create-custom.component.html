@@ -1,0 +1,333 @@
+<ion-header>
+    <ion-toolbar>
+
+        <ion-buttons slot="start">
+            <ion-buttons slot="start" *ngIf="true">
+                <ion-menu-toggle auto-hide="false" menu="main-menu">
+                    <ion-button (click)="toggleMenu()">
+                        <ion-icon slot="icon-only" name="menu"></ion-icon>
+                    </ion-button>
+                </ion-menu-toggle>
+            </ion-buttons>
+        </ion-buttons>
+
+        <ion-buttons slot="primary">
+            <ion-button (click)="saveCounMeeting()"
+                        color="success"
+                        fill="clear"
+                        [disabled]="!counMeetingsForm.valid">
+                <ng-container *ngIf="!platform.is('mobile')">Guardar</ng-container>
+                <ion-icon slot="end" color="success" name="save-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+
+        <ion-title>{{'JUNTA DEL CONSEJO' | titlecase}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <ion-segment color="primary"
+                             [(ngModel)]="type"
+                             (ionChange)="segmentChanged($event)"
+                             scrollable>
+                    <ion-segment-button value="general">
+                        <ion-label>JUNTA</ion-label>
+                    </ion-segment-button>
+                    <ion-segment-button value="agenda">
+                        <ion-label>AGENDA</ion-label>
+                    </ion-segment-button>
+                    <ion-segment-button value="citations">
+                        <ion-label>CITACIONES</ion-label>
+                    </ion-segment-button>
+                    <ion-segment-button *ngIf="counMeetingId" value="assistance">
+                        <ion-label>ASISTENCIA</ion-label>
+                    </ion-segment-button>
+                    <ion-segment-button *ngIf="counMeetingId && model.status == 'in_progress'" value="act">
+                        <ion-label>ACTA</ion-label>
+                    </ion-segment-button>
+                </ion-segment>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ng-container>
+        <form #counMeetingsForm="ngForm" novalidate autocomplete="off">
+            <ion-card [ngStyle]="{'display': (type == 'general') ? 'block' : 'none'}">
+                <ion-list>
+                    <ion-list-header class="item-transparent">Junta</ion-list-header>
+                    <!-- name -->
+                    <ion-item class="item-transparent">
+                        <ion-label position="floating">Nombre de la junta</ion-label>
+                        <ion-input [(ngModel)]="model.name"
+                                   type="text"
+                                   name="name"
+                                   [readonly]="!!counMeetingId"
+                                   id="name-field"
+                                   [required]="true"
+                                   placeholder=""></ion-input>
+                    </ion-item>
+                    <div class="validation-errors">
+                        <ng-container *ngFor="let validation of validationMessages.name">
+                            <div class="error-message"
+                                 *ngIf="counMeetingsForm.form.controls['name']?.hasError(validation.type)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
+                    </div>
+                    <!-- end name -->
+                    <!-- description -->
+                    <ion-item class="item-transparent">
+                        <ion-label position="floating">Descripción</ion-label>
+                        <ion-textarea [(ngModel)]="model.description"
+                                      name="description"
+                                      required
+                                      [readonly]="!!counMeetingId"
+                                      id="description-field"
+                                      rows="6"
+                                      placeholder=""></ion-textarea>
+                    </ion-item>
+                    <div class="validation-errors">
+                        <ng-container *ngFor="let validation of validationMessages.description">
+                            <div class="error-message"
+                                 *ngIf="counMeetingsForm.form.controls['description']?.hasError(validation.type)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
+                    </div>
+                    <!-- end description -->
+                    <!-- date -->
+                    <ion-item class="item-transparent">
+                        <ion-label position="floating">Fecha</ion-label>
+                        <ion-datetime name="date"
+                                      id="date-field"
+                                      [required]="true"
+                                      [readonly]="!!counMeetingId"
+                                      [doneText]="'Seleccionar'"
+                                      max="2040-12-31"
+                                      [cancelText]="'Cancelar'"
+                                      [(ngModel)]="model.date"
+                                      displayFormat="DD/MM/YYYY"></ion-datetime>
+                    </ion-item>
+                    <div class="validation-errors">
+                        <ng-container *ngFor="let validation of validationMessages.date">
+                            <div class="error-message"
+                                 *ngIf="counMeetingsForm.form.controls['date']?.hasError(validation.type)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
+                    </div>
+                    <!-- end date -->
+                    <!-- hour -->
+                    <ion-item class="item-transparent">
+                        <ion-label position="floating">Hora</ion-label>
+                        <ion-datetime name="hour"
+                                      id="hour-field"
+                                      [required]="true"
+                                      [readonly]="!!counMeetingId"
+                                      [doneText]="'Seleccionar'"
+                                      [cancelText]="'Cancelar'"
+                                      [(ngModel)]="model.hour"
+                                      displayFormat="h:mm A"
+                                      minuteValues="0,15,30,45"
+                                      pickerFormat="h:mm A"></ion-datetime>
+                    </ion-item>
+                    <div class="validation-errors">
+                        <ng-container *ngFor="let validation of validationMessages.hour">
+                            <div class="error-message"
+                                 *ngIf="counMeetingsForm.form.controls['hour']?.hasError(validation.type)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
+                    </div>
+                    <!-- end hour -->
+                    <!-- place -->
+                    <ion-item class="item-transparent">
+                        <ion-label position="floating">Lugar</ion-label>
+                        <ion-input [(ngModel)]="model.place"
+                                   type="text"
+                                   [required]="true"
+                                   [readonly]="!!counMeetingId"
+                                   name="place"
+                                   id="place-field"
+                                   placeholder=""></ion-input>
+                    </ion-item>
+                    <div class="validation-errors">
+                        <ng-container *ngFor="let validation of validationMessages.place">
+                            <div class="error-message"
+                                 *ngIf="counMeetingsForm.form.controls['place']?.hasError(validation.type)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
+                    </div>
+                    <!-- end place -->
+                    <!-- url -->
+                    <ion-item class="item-transparent">
+                        <ion-label position="floating">URl virtual</ion-label>
+                        <ion-input [(ngModel)]="model.url"
+                                   type="text"
+                                   [readonly]="!!counMeetingId"
+                                   name="url"
+                                   id="url-field"
+                                   placeholder=""></ion-input>
+                    </ion-item>
+                    <div class="validation-errors">
+                        <ng-container *ngFor="let validation of validationMessages.url">
+                            <div class="error-message"
+                                 *ngIf="counMeetingsForm.form.controls['url']?.hasError(validation.type)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
+                    </div>
+                    <!-- end url -->
+
+                </ion-list>
+
+            </ion-card>
+
+            <ion-card [ngStyle]="{'display': (type == 'agenda') ? 'block' : 'none'}">
+                <ion-list>
+                    <ion-list-header class="item-transparent">Orden del dia</ion-list-header>
+                    <ion-item class="item-transparent">
+                        <ion-label position="floating">Ingrese orden del día</ion-label>
+                        <ion-input type="text"
+                                   id="order-day-field"
+                                   value=""
+                                   (keyup.enter)="addAgendaItem($event)"></ion-input>
+                    </ion-item>
+                </ion-list>
+                <ng-container *ngIf="model?.coun_meeting_agendas?.length">
+                    <ion-reorder-group disabled="false" (ionItemReorder)="onRenderItems($event)">
+                        <ion-item class="item-transparent" *ngFor="let agenda of model.coun_meeting_agendas">
+                            <ion-reorder slot="end"></ion-reorder>
+                            <ion-label>{{agenda.name}}</ion-label>
+                            <ion-icon name="remove-circle-outline"
+                                      color="danger"
+                                      slot="end"
+                                      (click)="removeAgendaItem(agenda)"></ion-icon>
+                        </ion-item>
+                    </ion-reorder-group>
+                </ng-container>
+                <ng-container *ngIf="!model?.coun_meeting_agendas?.length">
+                    <ion-list>
+                        <ion-item class="item-transparent">
+                            Sin orden del día.
+                        </ion-item>
+                    </ion-list>
+                </ng-container>
+
+            </ion-card>
+
+            <ion-card [ngStyle]="{'display': (type == 'citations') ? 'block' : 'none'}">
+                <ion-list-header>Citaciones adicionales</ion-list-header>
+                <ion-list *ngIf="!counMeetingId">
+                    <ion-item class="item-transparent">
+                        <ion-label>Usuarios</ion-label>
+                        <ionic-selectable #userSelect
+                                          name="user"
+                                          id="user-field"
+                                          [(ngModel)]="user"
+                                          [items]="usersService.users"
+                                          itemValueField="id"
+                                          itemTextField="name"
+                                          [isMultiple]="false"
+                                          [canClear]="false"
+                                          [hasConfirmButton]="false"
+                                          [confirmButtonText]="'Seleccionar'"
+                                          [searchPlaceholder]="'Buscar usuarios'"
+                                          [searchFailText]="'No se encontro usuario que coincida!'"
+                                          [closeButtonText]="'Cancelar'"
+                                          [clearButtonText]="'Limpiar'"
+                                          [canSearch]="true"
+                                          (onChange)="setCitations($event)">
+                        </ionic-selectable>
+                    </ion-item>
+                </ion-list>
+
+                <ng-container *ngIf="getAdditionalCitations().length">
+                    <ion-list>
+                        <ion-item class="item-transparent" *ngFor="let citation of getAdditionalCitations()">
+                            <ion-label>{{citation.name}}</ion-label>
+                            <ion-icon name="remove-circle-outline"
+                                      color="danger"
+                                      slot="end"
+                                      (click)="removeCitations(citation)"></ion-icon>
+                        </ion-item>
+                    </ion-list>
+                </ng-container>
+                <ng-container *ngIf="!getAdditionalCitations().length">
+                    <ion-list>
+                        <ion-item class="item-transparent">
+                            Sin citaciones adicionales.
+                        </ion-item>
+                    </ion-list>
+                </ng-container>
+            </ion-card>
+
+            <ion-card [ngStyle]="{'display': (type == 'assistance') ? 'block' : 'none'}">
+                <ion-list-header>Asistencia</ion-list-header>
+
+                <ng-container *ngIf="model.coun_meeting_citations.length">
+                    <ion-list>
+                        <ion-item class="item-transparent" *ngFor="let citation of model.coun_meeting_citations">
+                            <ion-label>{{citation.name}}</ion-label>
+                            <ion-icon [name]="citation.attended ? 'checkbox-outline' : 'square-outline'"
+                                      [color]="citation.attended ? 'success' : 'danger'"
+                                      slot="end"
+                                      (click)="markAssistance(citation)"></ion-icon>
+                        </ion-item>
+                    </ion-list>
+                </ng-container>
+                <ng-container *ngIf="!model.coun_meeting_citations.length">
+                    <ion-list>
+                        <ion-item class="item-transparent">
+                            Sin asistentes.
+                        </ion-item>
+                    </ion-list>
+                </ng-container>
+                <div class="ion-text-center ion-margin">
+                    <ion-button *ngIf="!model.status"
+                                color="success"
+                                (click)="startCouncil()">
+                        Iniciar Junta
+                    </ion-button>
+                </div>
+            </ion-card>
+
+            <ion-card [ngStyle]="{'display': (type == 'act') ? 'block' : 'none'}">
+                <ion-list-header>Acta</ion-list-header>
+
+                <ng-container *ngIf="model.coun_meeting_agendas.length">
+                    <ion-item class="item-transparent"
+                              *ngFor="let agenda of model.coun_meeting_agendas; let index = index">
+                        <ion-label position="stacked"><b>{{agenda.name}}</b></ion-label>
+                        <div style="width: 100%;"
+                             [ngxSummernote]="{width: '100%', dialogsInBody: true}"
+                             [name]="'html' + index"
+                             [id]="'html-field' + index"
+                             [(ngModel)]="agenda.content"></div>
+                    </ion-item>
+                </ng-container>
+                <ng-container *ngIf="!model.coun_meeting_agendas.length">
+                    <ion-item class="item-transparent">
+                        Sin ordenes del día.
+                    </ion-item>
+                </ng-container>
+                <div class="ion-text-center ion-margin">
+                    <ion-button *ngIf="model.status == 'in_progress'"
+                                color="success"
+                                (click)="finalizeCouncil()">
+                        Finalizar Junta
+                    </ion-button>
+                </div>
+            </ion-card>
+        </form>
+    </ng-container>
+
+<!--    <pre>
+        {{model | json}}
+    </pre>-->
+
+</ion-content>

@@ -1,0 +1,105 @@
+<app-main-header title="{{'MOVIMIENTOS OPERATIVOS' | titlecase}}"
+                 primaryLink="oper-movements/create"
+                 primaryText="Crear {{'MOVIMIENTOS OPERATIVOS' | lowercase}}"
+                 primaryIcon="add-circle-outline"></app-main-header>
+
+<ion-content id="pages-content">
+
+    <ion-searchbar showCancelButton="focus"
+                       [cancelButtonText]="'Cancelar'"
+                       [placeholder]="'Buscar ' + ('MOVIMIENTOS OPERATIVOS' | lowercase )"
+                       (ionCancel)="this.operMovementsService.searchValue = ''; operMovementsService.getOperMovements()"
+                       (keyup.enter)="operMovementsService.getOperMovements()"
+                       [(ngModel)]="operMovementsService.searchValue"></ion-searchbar>
+
+    <ng-container *ngIf="!(loading.loading | async) && operMovementsService.operMovements?.length">
+        <ion-card *ngFor="let operMovement of operMovementsService.operMovements; let index = index">
+            <ion-list>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'NOMBRE' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ operMovement?.name }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'FECHA INICIO' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ operMovement?.date_statr | dateFormat:'DD/MM/YYYY' }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'FECHA FINAL' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ operMovement?.date_end | dateFormat:'DD/MM/YYYY' }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'HORA INICIAL' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ operMovement?.time_start | dateFormat:'HH:mm' }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'HORA FINAL' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ operMovement?.time_end }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'TIEMPO UTILIZADO' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ operMovement?.time_total }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'FOTO DEL AREA INTERVENIDA' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ operMovement?.photo }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'SECTORES OPERATIVOS' | titlecase }}</b></ion-label>
+                        <div class="wrap-text"><a routerLink="/oper-sectors/{{ operMovement?.oper_sector?.id }}/edit">{{ operMovement?.oper_sector?.name }}</a></div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'CONTRATISTAS OPERATIVOS' | titlecase }}</b></ion-label>
+                        <div class="wrap-text"><a routerLink="/oper-contractors/{{ operMovement?.oper_contractor?.id }}/edit">{{ operMovement?.oper_contractor?.name }}</a></div>
+                    </ion-item>
+            </ion-list>
+            <ion-footer>
+                <ion-row>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="success" size="small" fill="clear" [routerLink]="'/oper-movements/' + operMovement?.id + '/edit'">
+                            <ion-icon name="create-outline"></ion-icon>
+                            <div>Editar</div>
+                        </ion-button>
+                    </ion-col>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="danger" size="small" fill="clear" (click)="operMovementsService.deleteOperMovement(operMovement?.id)">
+                            <ion-icon name="trash-outline"></ion-icon>
+                            <div>Eliminar</div>
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-footer>
+        </ion-card>
+    </ng-container>
+
+    <ng-container *ngIf="!(loading.loading | async) && !operMovementsService.operMovements?.length">
+        <ion-item>
+            <ion-icon class="text-warning" name="warning-outline" slot="start"></ion-icon>
+            <ion-label><h2>No se encontraron {{'MOVIMIENTOS OPERATIVOS' | titlecase}}</h2></ion-label>
+            <ion-button [routerLink]="'/oper-movements/create'" fill="outline" color="success" slot="end">
+                Crear {{'MOVIMIENTOS OPERATIVOS' | titlecase}}
+                <ion-icon name="add-circle-outline" slot="end"></ion-icon>
+            </ion-button>
+        </ion-item>
+    </ng-container>
+
+</ion-content>
+
+<ion-footer class="lists-footer">
+    <ion-row *ngIf="operMovementsService.meta">
+        <ion-col class="ion-text-center" size="12">
+            <ion-button (click)="operMovementsService.getOperMovements(operMovementsService.meta.current_page - 1)"
+                        [disabled]="operMovementsService.meta.current_page == 1"
+                        fill="clear">
+                <ion-icon slot="end" name="play-outline" style="transform: rotate(180deg);"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear" [disabled]="true"> Pag: {{operMovementsService.meta.current_page}}
+                /{{operMovementsService.meta.last_page}} {{operMovementsService.meta.from}}-{{operMovementsService.meta.to}}
+                /{{operMovementsService.meta.total}} </ion-button>
+            <ion-button (click)="operMovementsService.getOperMovements(operMovementsService.meta.current_page + 1)"
+                        [disabled]="operMovementsService.meta.current_page == operMovementsService.meta.last_page"
+                        fill="clear">
+                <ion-icon slot="start" name="play-outline"></ion-icon>
+            </ion-button>
+        </ion-col>
+    </ion-row>
+</ion-footer>

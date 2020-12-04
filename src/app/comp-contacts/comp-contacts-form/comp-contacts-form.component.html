@@ -1,0 +1,143 @@
+<form #compContactsForm="ngForm" novalidate autocomplete="off">
+
+
+    <!-- company_id -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'EMPRESA' | titlecase }}</ion-label>
+        <ionic-selectable name="company_id"
+                          id="company_id-field"
+                          [required]="true"
+                          [(ngModel)]="model.company"
+                          [items]="compContactsService.compContactLists.Company"
+                          itemValueField="id"
+                          itemTextField="name"
+                          [canClear]="true"
+                          [hasConfirmButton]="true"
+                          [confirmButtonText]="'Seleccionar'"
+                          [searchPlaceholder]="'Buscar ' + ('EMPRESAS' | titlecase)"
+                          [searchFailText]="'No se encontro ' + ('EMPRESAS' | titlecase) + ' que coincida!'"
+                          [closeButtonText]="'Cancelar'"
+                          [clearButtonText]="'Limpiar'"
+                          [canSearch]="true"
+                          (onChange)="setCompanyId($event)">
+        </ionic-selectable>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.company_id">
+            <div class="error-message" *ngIf="compContactsForm.form.controls['company_id']?.hasError(validation.type)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end company_id -->
+
+
+    <!-- syst_position_id -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'CARGO' | titlecase }}</ion-label>
+        <ionic-selectable name="syst_position_id"
+                          id="syst_position_id-field"
+                          [required]="true"
+                          [(ngModel)]="model.syst_position"
+                          [items]="compContactsService.compContactLists.SystPosition"
+                          itemValueField="id"
+                          itemTextField="name"
+                          [canClear]="true"
+                          [hasConfirmButton]="true"
+                          [confirmButtonText]="'Seleccionar'"
+                          [searchPlaceholder]="'Buscar ' + ('CARGOS' | titlecase)"
+                          [searchFailText]="'No se encontro ' + ('CARGOS' | titlecase) + ' que coincida!'"
+                          [closeButtonText]="'Cancelar'"
+                          [clearButtonText]="'Limpiar'"
+                          [canSearch]="true"
+                          (onChange)="setSystPositionId($event)">
+        </ionic-selectable>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.syst_position_id">
+            <div class="error-message" *ngIf="compContactsForm.form.controls['syst_position_id']?.hasError(validation.type)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end syst_position_id -->
+
+
+            <!-- name -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'NOMBRE' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.name"
+                            type="text"
+                            name="name"
+                            id="name-field"
+                            [required]="true"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.name">
+                    <div class="error-message" *ngIf="compContactsForm.form.controls['name']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end name -->
+
+
+            <!-- phone -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'TELÉFONO' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.phone"
+                            type="text"
+                            name="phone"
+                            id="phone-field"
+                            [required]="true"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.phone">
+                    <div class="error-message" *ngIf="compContactsForm.form.controls['phone']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end phone -->
+
+
+            <!-- email -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'CORREO' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.email"
+                            type="text"
+                            name="email"
+                            id="email-field"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.email">
+                    <div class="error-message" *ngIf="compContactsForm.form.controls['email']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end email -->
+
+
+            <!-- main -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'PRINCIPAL' | titlecase }}</ion-label>
+                <ion-toggle name="main"
+                            id="main-field"
+                            slot="end"
+                            [(ngModel)]="model.main"></ion-toggle>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.main">
+                    <div class="error-message" *ngIf="compContactsForm.form.controls['main']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end main -->
+
+
+</form>

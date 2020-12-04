@@ -1,0 +1,101 @@
+<app-main-header title="{{'CIUDADES' | titlecase}}"
+                 primaryLink="syst-cities/create"
+                 primaryText="Crear {{'CIUDADES' | lowercase}}"
+                 primaryIcon="add-circle-outline"></app-main-header>
+
+<ion-content id="pages-content">
+
+    <ion-searchbar showCancelButton="focus"
+                       [cancelButtonText]="'Cancelar'"
+                       [placeholder]="'Buscar ' + ('CIUDADES' | lowercase )"
+                       (ionCancel)="this.systCitiesService.searchValue = ''; systCitiesService.getSystCities()"
+                       (keyup.enter)="systCitiesService.getSystCities()"
+                       [(ngModel)]="systCitiesService.searchValue"></ion-searchbar>
+
+    <ng-container *ngIf="!(loading.loading | async) && systCitiesService.systCities?.length">
+        <ion-card *ngFor="let systCity of systCitiesService.systCities; let index = index">
+            <ion-list>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'NOMBRE' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ systCity?.name }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'CÓDIGO' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ systCity?.code }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'PERFILES DE USUARIOS' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">
+                            <ng-container *ngIf="systCity?.user_profiles?.length">
+                                <ng-container *ngFor="let userProfile of systCity?.user_profiles; let last = last">
+                                    <a routerLink="/user-profiles/{{ userProfile?.id }}/edit">{{ userProfile?.name }}</a><span *ngIf="!last">, </span>
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'DEPARTAMENTOS' | titlecase }}</b></ion-label>
+                        <div class="wrap-text"><a routerLink="/syst-regions/{{ systCity?.syst_region?.id }}/edit">{{ systCity?.syst_region?.name }}</a></div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'EMPRESAS DIRECCIONES' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">
+                            <ng-container *ngIf="systCity?.comp_addresses?.length">
+                                <ng-container *ngFor="let compAddress of systCity?.comp_addresses; let last = last">
+                                    <a routerLink="/comp-addresses/{{ compAddress?.id }}/edit">{{ compAddress?.name }}</a><span *ngIf="!last">, </span>
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                    </ion-item>
+            </ion-list>
+            <ion-footer>
+                <ion-row>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="success" size="small" fill="clear" [routerLink]="'/syst-cities/' + systCity?.id + '/edit'">
+                            <ion-icon name="create-outline"></ion-icon>
+                            <div>Editar</div>
+                        </ion-button>
+                    </ion-col>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="danger" size="small" fill="clear" (click)="systCitiesService.deleteSystCity(systCity?.id)">
+                            <ion-icon name="trash-outline"></ion-icon>
+                            <div>Eliminar</div>
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-footer>
+        </ion-card>
+    </ng-container>
+
+    <ng-container *ngIf="!(loading.loading | async) && !systCitiesService.systCities?.length">
+        <ion-item>
+            <ion-icon class="text-warning" name="warning-outline" slot="start"></ion-icon>
+            <ion-label><h2>No se encontraron {{'CIUDADES' | titlecase}}</h2></ion-label>
+            <ion-button [routerLink]="'/syst-cities/create'" fill="outline" color="success" slot="end">
+                Crear {{'CIUDADES' | titlecase}}
+                <ion-icon name="add-circle-outline" slot="end"></ion-icon>
+            </ion-button>
+        </ion-item>
+    </ng-container>
+
+</ion-content>
+
+<ion-footer class="lists-footer">
+    <ion-row *ngIf="systCitiesService.meta">
+        <ion-col class="ion-text-center" size="12">
+            <ion-button (click)="systCitiesService.getSystCities(systCitiesService.meta.current_page - 1)"
+                        [disabled]="systCitiesService.meta.current_page == 1"
+                        fill="clear">
+                <ion-icon slot="end" name="play-outline" style="transform: rotate(180deg);"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear" [disabled]="true"> Pag: {{systCitiesService.meta.current_page}}
+                /{{systCitiesService.meta.last_page}} {{systCitiesService.meta.from}}-{{systCitiesService.meta.to}}
+                /{{systCitiesService.meta.total}} </ion-button>
+            <ion-button (click)="systCitiesService.getSystCities(systCitiesService.meta.current_page + 1)"
+                        [disabled]="systCitiesService.meta.current_page == systCitiesService.meta.last_page"
+                        fill="clear">
+                <ion-icon slot="start" name="play-outline"></ion-icon>
+            </ion-button>
+        </ion-col>
+    </ion-row>
+</ion-footer>

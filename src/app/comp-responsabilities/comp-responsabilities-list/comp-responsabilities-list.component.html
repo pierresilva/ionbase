@@ -1,0 +1,81 @@
+<app-main-header title="{{'EMPRESAS RESPONSABILIDADES LEGALES' | titlecase}}"
+                 primaryLink="comp-responsabilities/create"
+                 primaryText="Crear {{'EMPRESAS RESPONSABILIDADES LEGALES' | lowercase}}"
+                 primaryIcon="add-circle-outline"></app-main-header>
+
+<ion-content id="pages-content">
+
+    <ion-searchbar showCancelButton="focus"
+                       [cancelButtonText]="'Cancelar'"
+                       [placeholder]="'Buscar ' + ('EMPRESAS RESPONSABILIDADES LEGALES' | lowercase )"
+                       (ionCancel)="this.compResponsabilitiesService.searchValue = ''; compResponsabilitiesService.getCompResponsabilities()"
+                       (keyup.enter)="compResponsabilitiesService.getCompResponsabilities()"
+                       [(ngModel)]="compResponsabilitiesService.searchValue"></ion-searchbar>
+
+    <ng-container *ngIf="!(loading.loading | async) && compResponsabilitiesService.compResponsabilities?.length">
+        <ion-card *ngFor="let compResponsability of compResponsabilitiesService.compResponsabilities; let index = index">
+            <ion-list>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'NOMBRE' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ compResponsability?.name }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'EMPRESAS' | titlecase }}</b></ion-label>
+                        <div class="wrap-text"><a routerLink="/companies/{{ compResponsability?.company?.id }}/edit">{{ compResponsability?.company?.name }}</a></div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'PARAMETROS' | titlecase }}</b></ion-label>
+                        <div class="wrap-text"><a routerLink="/syst-parameters/{{ compResponsability?.syst_parameter?.id }}/edit">{{ compResponsability?.syst_parameter?.name }}</a></div>
+                    </ion-item>
+            </ion-list>
+            <ion-footer>
+                <ion-row>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="success" size="small" fill="clear" [routerLink]="'/comp-responsabilities/' + compResponsability?.id + '/edit'">
+                            <ion-icon name="create-outline"></ion-icon>
+                            <div>Editar</div>
+                        </ion-button>
+                    </ion-col>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="danger" size="small" fill="clear" (click)="compResponsabilitiesService.deleteCompResponsability(compResponsability?.id)">
+                            <ion-icon name="trash-outline"></ion-icon>
+                            <div>Eliminar</div>
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-footer>
+        </ion-card>
+    </ng-container>
+
+    <ng-container *ngIf="!(loading.loading | async) && !compResponsabilitiesService.compResponsabilities?.length">
+        <ion-item>
+            <ion-icon class="text-warning" name="warning-outline" slot="start"></ion-icon>
+            <ion-label><h2>No se encontraron {{'EMPRESAS RESPONSABILIDADES LEGALES' | titlecase}}</h2></ion-label>
+            <ion-button [routerLink]="'/comp-responsabilities/create'" fill="outline" color="success" slot="end">
+                Crear {{'EMPRESAS RESPONSABILIDADES LEGALES' | titlecase}}
+                <ion-icon name="add-circle-outline" slot="end"></ion-icon>
+            </ion-button>
+        </ion-item>
+    </ng-container>
+
+</ion-content>
+
+<ion-footer class="lists-footer">
+    <ion-row *ngIf="compResponsabilitiesService.meta">
+        <ion-col class="ion-text-center" size="12">
+            <ion-button (click)="compResponsabilitiesService.getCompResponsabilities(compResponsabilitiesService.meta.current_page - 1)"
+                        [disabled]="compResponsabilitiesService.meta.current_page == 1"
+                        fill="clear">
+                <ion-icon slot="end" name="play-outline" style="transform: rotate(180deg);"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear" [disabled]="true"> Pag: {{compResponsabilitiesService.meta.current_page}}
+                /{{compResponsabilitiesService.meta.last_page}} {{compResponsabilitiesService.meta.from}}-{{compResponsabilitiesService.meta.to}}
+                /{{compResponsabilitiesService.meta.total}} </ion-button>
+            <ion-button (click)="compResponsabilitiesService.getCompResponsabilities(compResponsabilitiesService.meta.current_page + 1)"
+                        [disabled]="compResponsabilitiesService.meta.current_page == compResponsabilitiesService.meta.last_page"
+                        fill="clear">
+                <ion-icon slot="start" name="play-outline"></ion-icon>
+            </ion-button>
+        </ion-col>
+    </ion-row>
+</ion-footer>

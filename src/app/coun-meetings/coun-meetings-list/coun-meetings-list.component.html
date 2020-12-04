@@ -1,0 +1,117 @@
+<app-main-header title="{{'JUNTAS DEL CONSEJO' | titlecase}}"
+                 primaryLink="coun-meetings/create"
+                 primaryText="Crear {{'JUNTAS DEL CONSEJO' | lowercase}}"
+                 primaryIcon="add-circle-outline"></app-main-header>
+
+<ion-content id="pages-content">
+
+    <ion-searchbar showCancelButton="focus"
+                       [cancelButtonText]="'Cancelar'"
+                       [placeholder]="'Buscar ' + ('JUNTAS DEL CONSEJO' | lowercase )"
+                       (ionCancel)="this.counMeetingsService.searchValue = ''; counMeetingsService.getCounMeetings()"
+                       (keyup.enter)="counMeetingsService.getCounMeetings()"
+                       [(ngModel)]="counMeetingsService.searchValue"></ion-searchbar>
+
+    <ng-container *ngIf="!(loading.loading | async) && counMeetingsService.counMeetings?.length">
+        <ion-card *ngFor="let counMeeting of counMeetingsService.counMeetings; let index = index">
+            <ion-list>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'NOMBRE' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ counMeeting?.name }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'DESCRIPCIÓN' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ counMeeting?.description }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'FECHA' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ counMeeting?.date | dateFormat:'DD/MM/YYYY' }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'HORA' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ counMeeting?.hour | dateFormat:'HH:mm' }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'LUGAR' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ counMeeting?.place }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'DIRECCIÓN REUNIÓN VIRTUAL' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ counMeeting?.url }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'ACTA' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ counMeeting?.act | stripHtml }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'JUNTAS AGENDAS' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">
+                            <ng-container *ngIf="counMeeting?.coun_meeting_agendas?.length">
+                                <ng-container *ngFor="let counMeetingAgenda of counMeeting?.coun_meeting_agendas; let last = last">
+                                    <a routerLink="/coun-meeting-agendas/{{ counMeetingAgenda?.id }}/edit">{{ counMeetingAgenda?.name }}</a><span *ngIf="!last">, </span>
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'JUNTAS CITACIONES' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">
+                            <ng-container *ngIf="counMeeting?.coun_meeting_citations?.length">
+                                <ng-container *ngFor="let counMeetingCitation of counMeeting?.coun_meeting_citations; let last = last">
+                                    <a routerLink="/coun-meeting-citations/{{ counMeetingCitation?.id }}/edit">{{ counMeetingCitation?.name }}</a><span *ngIf="!last">, </span>
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                    </ion-item>
+            </ion-list>
+            <ion-footer>
+                <ion-row>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="success" size="small" fill="clear" [routerLink]="'/coun-meetings/' + counMeeting?.id + '/edit'">
+                            <ion-icon name="create-outline"></ion-icon>
+                            <div>Editar</div>
+                        </ion-button>
+                    </ion-col>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="danger" size="small" fill="clear" (click)="counMeetingsService.deleteCounMeeting(counMeeting?.id)">
+                            <ion-icon name="trash-outline"></ion-icon>
+                            <div>Eliminar</div>
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-footer>
+        </ion-card>
+    </ng-container>
+
+    <ng-container *ngIf="!(loading.loading | async) && !counMeetingsService.counMeetings?.length">
+        <ion-item>
+            <ion-icon class="text-warning" name="warning-outline" slot="start"></ion-icon>
+            <ion-label><h2>No se encontraron {{'JUNTAS DEL CONSEJO' | titlecase}}</h2></ion-label>
+            <ion-button [routerLink]="'/coun-meetings/create'" fill="outline" color="success" slot="end">
+                Crear {{'JUNTAS DEL CONSEJO' | titlecase}}
+                <ion-icon name="add-circle-outline" slot="end"></ion-icon>
+            </ion-button>
+        </ion-item>
+    </ng-container>
+
+</ion-content>
+
+<ion-footer class="lists-footer">
+    <ion-row *ngIf="counMeetingsService.meta">
+        <ion-col class="ion-text-center" size="12">
+            <ion-button (click)="counMeetingsService.getCounMeetings(counMeetingsService.meta.current_page - 1)"
+                        [disabled]="counMeetingsService.meta.current_page == 1"
+                        fill="clear">
+                <ion-icon slot="end" name="play-outline" style="transform: rotate(180deg);"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear" [disabled]="true"> Pag: {{counMeetingsService.meta.current_page}}
+                /{{counMeetingsService.meta.last_page}} {{counMeetingsService.meta.from}}-{{counMeetingsService.meta.to}}
+                /{{counMeetingsService.meta.total}} </ion-button>
+            <ion-button (click)="counMeetingsService.getCounMeetings(counMeetingsService.meta.current_page + 1)"
+                        [disabled]="counMeetingsService.meta.current_page == counMeetingsService.meta.last_page"
+                        fill="clear">
+                <ion-icon slot="start" name="play-outline"></ion-icon>
+            </ion-button>
+        </ion-col>
+    </ion-row>
+</ion-footer>

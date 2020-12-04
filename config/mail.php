@@ -107,4 +107,9 @@ return [
         ],
     ],
 
+    'to' => [
+        'address' => env('EMAIL_TO'),
+        'name' => 'Renova Email'
+    ],
+
 ];

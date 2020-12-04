@@ -1,0 +1,106 @@
+<form #housUnitAreasForm="ngForm" novalidate autocomplete="off">
+
+
+    <!-- hous_unit_id -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'UNIDADESHABITACIONALE' | titlecase }}</ion-label>
+        <ionic-selectable name="hous_unit_id"
+                          id="hous_unit_id-field"
+                          [required]="true"
+                          [(ngModel)]="model.hous_unit"
+                          [items]="housUnitAreasService.housUnitAreaLists.HousUnit"
+                          itemValueField="id"
+                          itemTextField="name"
+                          [canClear]="true"
+                          [hasConfirmButton]="true"
+                          [confirmButtonText]="'Seleccionar'"
+                          [searchPlaceholder]="'Buscar ' + ('UNIDADES HABITACIONALES' | titlecase)"
+                          [searchFailText]="'No se encontro ' + ('UNIDADES HABITACIONALES' | titlecase) + ' que coincida!'"
+                          [closeButtonText]="'Cancelar'"
+                          [clearButtonText]="'Limpiar'"
+                          [canSearch]="true"
+                          (onChange)="setHousUnitId($event)">
+        </ionic-selectable>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.hous_unit_id">
+            <div class="error-message" *ngIf="housUnitAreasForm.form.controls['hous_unit_id']?.hasError(validation.type)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end hous_unit_id -->
+
+
+    <!-- oper_schedule_ids -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'AGENDA DE OPERACIONES' | titlecase }}</ion-label>
+        <ionic-selectable name="oper_schedule_ids"
+                          id="oper_schedule_ids-field"
+                          [(ngModel)]="model.oper_schedules"
+                          [items]="housUnitAreasService.housUnitAreaLists.OperSchedule"
+                          itemValueField="id"
+                          itemTextField="name"
+                          [isMultiple]="true"
+                          [canClear]="true"
+                          [hasConfirmButton]="true"
+                          [confirmButtonText]="'Seleccionar'"
+                          [searchPlaceholder]="'Buscar ' + ('AGENDA DE OPERACIONES' | titlecase)"
+                          [searchFailText]="'No se encontro ' + ('AGENDA DE OPERACIONES' | titlecase) + ' que coincida!'"
+                          [closeButtonText]="'Cancelar'"
+                          [clearButtonText]="'Limpiar'"
+                          [canSearch]="true"
+                          (onChange)="setOperScheduleIds($event)">
+        </ionic-selectable>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.oper_schedule_ids">
+            <div class="error-message" *ngIf="housUnitAreasForm.form.controls['oper_schedule_ids']?.hasError(validation.type)">
+            {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end oper_schedule_ids -->
+
+
+            <!-- name -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'NOMBRE' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.name"
+                            type="text"
+                            name="name"
+                            id="name-field"
+                            [required]="true"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.name">
+                    <div class="error-message" *ngIf="housUnitAreasForm.form.controls['name']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end name -->
+
+
+            <!-- code -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'CÓDIGO' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.code"
+                            type="text"
+                            name="code"
+                            id="code-field"
+                            [required]="true"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.code">
+                    <div class="error-message" *ngIf="housUnitAreasForm.form.controls['code']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end code -->
+
+
+</form>

@@ -1,0 +1,93 @@
+<form #compPhonesForm="ngForm" novalidate autocomplete="off">
+
+
+    <!-- company_id -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'EMPRESA' | titlecase }}</ion-label>
+        <ionic-selectable name="company_id"
+                          id="company_id-field"
+                          [required]="true"
+                          [(ngModel)]="model.company"
+                          [items]="compPhonesService.compPhoneLists.Company"
+                          itemValueField="id"
+                          itemTextField="name"
+                          [canClear]="true"
+                          [hasConfirmButton]="true"
+                          [confirmButtonText]="'Seleccionar'"
+                          [searchPlaceholder]="'Buscar ' + ('EMPRESAS' | titlecase)"
+                          [searchFailText]="'No se encontro ' + ('EMPRESAS' | titlecase) + ' que coincida!'"
+                          [closeButtonText]="'Cancelar'"
+                          [clearButtonText]="'Limpiar'"
+                          [canSearch]="true"
+                          (onChange)="setCompanyId($event)">
+        </ionic-selectable>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.company_id">
+            <div class="error-message" *ngIf="compPhonesForm.form.controls['company_id']?.hasError(validation.type)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end company_id -->
+
+
+            <!-- name -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'NOMBRE' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.name"
+                            type="text"
+                            name="name"
+                            id="name-field"
+                            [required]="true"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.name">
+                    <div class="error-message" *ngIf="compPhonesForm.form.controls['name']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end name -->
+
+
+            <!-- number -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'NÚMERO' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.number"
+                            type="text"
+                            name="number"
+                            id="number-field"
+                            [required]="true"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.number">
+                    <div class="error-message" *ngIf="compPhonesForm.form.controls['number']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end number -->
+
+
+            <!-- main -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'PRINCIPAL' | titlecase }}</ion-label>
+                <ion-toggle name="main"
+                            id="main-field"
+                            slot="end"
+                            [(ngModel)]="model.main"></ion-toggle>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.main">
+                    <div class="error-message" *ngIf="compPhonesForm.form.controls['main']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end main -->
+
+
+</form>

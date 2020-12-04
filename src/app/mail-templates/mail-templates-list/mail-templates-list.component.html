@@ -1,0 +1,95 @@
+<app-main-header title="{{'CORREOS PLANTILLAS' | titlecase}}"
+                 primaryLink="mail-templates/create"
+                 primaryText="Crear {{'CORREOS PLANTILLAS' | lowercase}}"
+                 primaryIcon="add-circle-outline"></app-main-header>
+
+<ion-content id="pages-content">
+
+    <ion-searchbar showCancelButton="focus"
+                       [cancelButtonText]="'Cancelar'"
+                       [placeholder]="'Buscar ' + ('CORREOS PLANTILLAS' | lowercase )"
+                       (ionCancel)="this.mailTemplatesService.searchValue = ''; mailTemplatesService.getMailTemplates()"
+                       (keyup.enter)="mailTemplatesService.getMailTemplates()"
+                       [(ngModel)]="mailTemplatesService.searchValue"></ion-searchbar>
+
+    <ng-container *ngIf="!(loading.loading | async) && mailTemplatesService.mailTemplates?.length">
+        <ion-card *ngFor="let mailTemplate of mailTemplatesService.mailTemplates; let index = index">
+            <ion-list>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'ASUNTO' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ mailTemplate?.subject }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'CLASE' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ mailTemplate?.mailable }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'HTML' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ mailTemplate?.html_template | stripHtml }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'TEXTO' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ mailTemplate?.text_template }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'CORREOS' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">
+                            <ng-container *ngIf="mailTemplate?.mails?.length">
+                                <ng-container *ngFor="let mail of mailTemplate?.mails; let last = last">
+                                    <a routerLink="/mails/{{ mail?.id }}/edit">{{ mail?.subject }}</a><span *ngIf="!last">, </span>
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                    </ion-item>
+            </ion-list>
+            <ion-footer>
+                <ion-row>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="success" size="small" fill="clear" [routerLink]="'/mail-templates/' + mailTemplate?.id + '/edit'">
+                            <ion-icon name="create-outline"></ion-icon>
+                            <div>Editar</div>
+                        </ion-button>
+                    </ion-col>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="danger" size="small" fill="clear" (click)="mailTemplatesService.deleteMailTemplate(mailTemplate?.id)">
+                            <ion-icon name="trash-outline"></ion-icon>
+                            <div>Eliminar</div>
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-footer>
+        </ion-card>
+    </ng-container>
+
+    <ng-container *ngIf="!(loading.loading | async) && !mailTemplatesService.mailTemplates?.length">
+        <ion-item>
+            <ion-icon class="text-warning" name="warning-outline" slot="start"></ion-icon>
+            <ion-label><h2>No se encontraron {{'CORREOS PLANTILLAS' | titlecase}}</h2></ion-label>
+            <ion-button [routerLink]="'/mail-templates/create'" fill="outline" color="success" slot="end">
+                Crear {{'CORREOS PLANTILLAS' | titlecase}}
+                <ion-icon name="add-circle-outline" slot="end"></ion-icon>
+            </ion-button>
+        </ion-item>
+    </ng-container>
+
+</ion-content>
+
+<ion-footer class="lists-footer">
+    <ion-row *ngIf="mailTemplatesService.meta">
+        <ion-col class="ion-text-center" size="12">
+            <ion-button (click)="mailTemplatesService.getMailTemplates(mailTemplatesService.meta.current_page - 1)"
+                        [disabled]="mailTemplatesService.meta.current_page == 1"
+                        fill="clear">
+                <ion-icon slot="end" name="play-outline" style="transform: rotate(180deg);"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear" [disabled]="true"> Pag: {{mailTemplatesService.meta.current_page}}
+                /{{mailTemplatesService.meta.last_page}} {{mailTemplatesService.meta.from}}-{{mailTemplatesService.meta.to}}
+                /{{mailTemplatesService.meta.total}} </ion-button>
+            <ion-button (click)="mailTemplatesService.getMailTemplates(mailTemplatesService.meta.current_page + 1)"
+                        [disabled]="mailTemplatesService.meta.current_page == mailTemplatesService.meta.last_page"
+                        fill="clear">
+                <ion-icon slot="start" name="play-outline"></ion-icon>
+            </ion-button>
+        </ion-col>
+    </ion-row>
+</ion-footer>

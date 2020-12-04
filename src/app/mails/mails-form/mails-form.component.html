@@ -1,0 +1,112 @@
+<form #mailsForm="ngForm" novalidate autocomplete="off">
+
+
+    <!-- mail_template_id -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'CORREOSPLANTILLA' | titlecase }}</ion-label>
+        <ionic-selectable name="mail_template_id"
+                          id="mail_template_id-field"
+                          [required]="true"
+                          [(ngModel)]="model.mail_template"
+                          [items]="mailsService.mailLists.MailTemplate"
+                          itemValueField="id"
+                          itemTextField="subject"
+                          [canClear]="true"
+                          [hasConfirmButton]="true"
+                          [confirmButtonText]="'Seleccionar'"
+                          [searchPlaceholder]="'Buscar ' + ('CORREOS PLANTILLAS' | titlecase)"
+                          [searchFailText]="'No se encontro ' + ('CORREOS PLANTILLAS' | titlecase) + ' que coincida!'"
+                          [closeButtonText]="'Cancelar'"
+                          [clearButtonText]="'Limpiar'"
+                          [canSearch]="true"
+                          (onChange)="setMailTemplateId($event)">
+        </ionic-selectable>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.mail_template_id">
+            <div class="error-message" *ngIf="mailsForm.form.controls['mail_template_id']?.hasError(validation.type)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end mail_template_id -->
+
+
+            <!-- subject -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'ASUNTO' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.subject"
+                            type="text"
+                            name="subject"
+                            id="subject-field"
+                            [required]="true"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.subject">
+                    <div class="error-message" *ngIf="mailsForm.form.controls['subject']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end subject -->
+
+
+            <!-- receiver -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'PARA' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.receiver"
+                            type="text"
+                            name="receiver"
+                            id="receiver-field"
+                            [required]="true"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.receiver">
+                    <div class="error-message" *ngIf="mailsForm.form.controls['receiver']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end receiver -->
+
+
+            <!-- html -->
+            <ion-item class="item-transparent">
+                <ion-label position="stacked" style="font-size: 1rem;">{{ 'HTML' | titlecase }}</ion-label>
+                <input [ngxSummernote]
+                       name="html"
+                       id="html-field"
+                       [(ngModel)]="model.html">
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.html">
+                    <div class="error-message" *ngIf="mailsForm.form.controls['html']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end html -->
+
+
+            <!-- text -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'TEXTO' | titlecase }}</ion-label>
+                <ion-textarea [(ngModel)]="model.text"
+                              name="text"
+                              id="text-field"
+                              rows="6"
+                              placeholder=""></ion-textarea>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.text">
+                    <div class="error-message" *ngIf="mailsForm.form.controls['text']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end text -->
+
+
+</form>

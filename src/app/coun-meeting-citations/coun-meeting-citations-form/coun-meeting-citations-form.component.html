@@ -1,0 +1,172 @@
+<form #counMeetingCitationsForm="ngForm" novalidate autocomplete="off">
+
+
+    <!-- coun_meeting_id -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'JUNTASDELCONSEJO' | titlecase }}</ion-label>
+        <ionic-selectable name="coun_meeting_id"
+                          id="coun_meeting_id-field"
+                          [required]="true"
+                          [(ngModel)]="model.coun_meeting"
+                          [items]="counMeetingCitationsService.counMeetingCitationLists.CounMeeting"
+                          itemValueField="id"
+                          itemTextField="name"
+                          [canClear]="true"
+                          [hasConfirmButton]="true"
+                          [confirmButtonText]="'Seleccionar'"
+                          [searchPlaceholder]="'Buscar ' + ('JUNTAS DEL CONSEJO' | titlecase)"
+                          [searchFailText]="'No se encontro ' + ('JUNTAS DEL CONSEJO' | titlecase) + ' que coincida!'"
+                          [closeButtonText]="'Cancelar'"
+                          [clearButtonText]="'Limpiar'"
+                          [canSearch]="true"
+                          (onChange)="setCounMeetingId($event)">
+        </ionic-selectable>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.coun_meeting_id">
+            <div class="error-message" *ngIf="counMeetingCitationsForm.form.controls['coun_meeting_id']?.hasError(validation.type)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end coun_meeting_id -->
+
+
+    <!-- user_id -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'USUARIO' | titlecase }}</ion-label>
+        <ionic-selectable name="user_id"
+                          id="user_id-field"
+                          [required]="true"
+                          [(ngModel)]="model.user"
+                          [items]="counMeetingCitationsService.counMeetingCitationLists.User"
+                          itemValueField="id"
+                          itemTextField="name"
+                          [canClear]="true"
+                          [hasConfirmButton]="true"
+                          [confirmButtonText]="'Seleccionar'"
+                          [searchPlaceholder]="'Buscar ' + ('USUARIOS' | titlecase)"
+                          [searchFailText]="'No se encontro ' + ('USUARIOS' | titlecase) + ' que coincida!'"
+                          [closeButtonText]="'Cancelar'"
+                          [clearButtonText]="'Limpiar'"
+                          [canSearch]="true"
+                          (onChange)="setUserId($event)">
+        </ionic-selectable>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.user_id">
+            <div class="error-message" *ngIf="counMeetingCitationsForm.form.controls['user_id']?.hasError(validation.type)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end user_id -->
+
+
+    <!-- coun_member_id -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'JUNTASMIEMBRO' | titlecase }}</ion-label>
+        <ionic-selectable name="coun_member_id"
+                          id="coun_member_id-field"
+                          [required]="true"
+                          [(ngModel)]="model.coun_member"
+                          [items]="counMeetingCitationsService.counMeetingCitationLists.CounMember"
+                          itemValueField="id"
+                          itemTextField="name"
+                          [canClear]="true"
+                          [hasConfirmButton]="true"
+                          [confirmButtonText]="'Seleccionar'"
+                          [searchPlaceholder]="'Buscar ' + ('JUNTAS MIEMBROS' | titlecase)"
+                          [searchFailText]="'No se encontro ' + ('JUNTAS MIEMBROS' | titlecase) + ' que coincida!'"
+                          [closeButtonText]="'Cancelar'"
+                          [clearButtonText]="'Limpiar'"
+                          [canSearch]="true"
+                          (onChange)="setCounMemberId($event)">
+        </ionic-selectable>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.coun_member_id">
+            <div class="error-message" *ngIf="counMeetingCitationsForm.form.controls['coun_member_id']?.hasError(validation.type)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end coun_member_id -->
+
+
+            <!-- name -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'NOMBRE' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.name"
+                            type="text"
+                            name="name"
+                            id="name-field"
+                            [required]="true"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.name">
+                    <div class="error-message" *ngIf="counMeetingCitationsForm.form.controls['name']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end name -->
+
+
+            <!-- attended -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'ASISTIÓ' | titlecase }}</ion-label>
+                <ion-toggle name="attended"
+                            id="attended-field"
+                            slot="end"
+                            [(ngModel)]="model.attended"></ion-toggle>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.attended">
+                    <div class="error-message" *ngIf="counMeetingCitationsForm.form.controls['attended']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end attended -->
+
+
+            <!-- signed -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'FIRMÓ' | titlecase }}</ion-label>
+                <ion-toggle name="signed"
+                            id="signed-field"
+                            slot="end"
+                            [(ngModel)]="model.signed"></ion-toggle>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.signed">
+                    <div class="error-message" *ngIf="counMeetingCitationsForm.form.controls['signed']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end signed -->
+
+
+            <!-- signature -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'FIRMA' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.signature"
+                            type="text"
+                            name="signature"
+                            id="signature-field"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.signature">
+                    <div class="error-message" *ngIf="counMeetingCitationsForm.form.controls['signature']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end signature -->
+
+
+</form>

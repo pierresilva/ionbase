@@ -1,0 +1,97 @@
+<app-main-header title="{{'JUNTAS CITACIONES' | titlecase}}"
+                 primaryLink="coun-meeting-citations/create"
+                 primaryText="Crear {{'JUNTAS CITACIONES' | lowercase}}"
+                 primaryIcon="add-circle-outline"></app-main-header>
+
+<ion-content id="pages-content">
+
+    <ion-searchbar showCancelButton="focus"
+                       [cancelButtonText]="'Cancelar'"
+                       [placeholder]="'Buscar ' + ('JUNTAS CITACIONES' | lowercase )"
+                       (ionCancel)="this.counMeetingCitationsService.searchValue = ''; counMeetingCitationsService.getCounMeetingCitations()"
+                       (keyup.enter)="counMeetingCitationsService.getCounMeetingCitations()"
+                       [(ngModel)]="counMeetingCitationsService.searchValue"></ion-searchbar>
+
+    <ng-container *ngIf="!(loading.loading | async) && counMeetingCitationsService.counMeetingCitations?.length">
+        <ion-card *ngFor="let counMeetingCitation of counMeetingCitationsService.counMeetingCitations; let index = index">
+            <ion-list>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'NOMBRE' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ counMeetingCitation?.name }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'ASISTIÓ' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ counMeetingCitation?.attended  ? 'Si' : 'No' }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'FIRMÓ' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ counMeetingCitation?.signed  ? 'Si' : 'No' }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'FIRMA' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ counMeetingCitation?.signature }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'JUNTAS DEL CONSEJO' | titlecase }}</b></ion-label>
+                        <div class="wrap-text"><a routerLink="/coun-meetings/{{ counMeetingCitation?.coun_meeting?.id }}/edit">{{ counMeetingCitation?.coun_meeting?.name }}</a></div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'USUARIOS' | titlecase }}</b></ion-label>
+                        <div class="wrap-text"><a routerLink="/users/{{ counMeetingCitation?.user?.id }}/edit">{{ counMeetingCitation?.user?.name }}</a></div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'JUNTAS MIEMBROS' | titlecase }}</b></ion-label>
+                        <div class="wrap-text"><a routerLink="/coun-members/{{ counMeetingCitation?.coun_member?.id }}/edit">{{ counMeetingCitation?.coun_member?.name }}</a></div>
+                    </ion-item>
+            </ion-list>
+            <ion-footer>
+                <ion-row>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="success" size="small" fill="clear" [routerLink]="'/coun-meeting-citations/' + counMeetingCitation?.id + '/edit'">
+                            <ion-icon name="create-outline"></ion-icon>
+                            <div>Editar</div>
+                        </ion-button>
+                    </ion-col>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="danger" size="small" fill="clear" (click)="counMeetingCitationsService.deleteCounMeetingCitation(counMeetingCitation?.id)">
+                            <ion-icon name="trash-outline"></ion-icon>
+                            <div>Eliminar</div>
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-footer>
+        </ion-card>
+    </ng-container>
+
+    <ng-container *ngIf="!(loading.loading | async) && !counMeetingCitationsService.counMeetingCitations?.length">
+        <ion-item>
+            <ion-icon class="text-warning" name="warning-outline" slot="start"></ion-icon>
+            <ion-label><h2>No se encontraron {{'JUNTAS CITACIONES' | titlecase}}</h2></ion-label>
+            <ion-button [routerLink]="'/coun-meeting-citations/create'" fill="outline" color="success" slot="end">
+                Crear {{'JUNTAS CITACIONES' | titlecase}}
+                <ion-icon name="add-circle-outline" slot="end"></ion-icon>
+            </ion-button>
+        </ion-item>
+    </ng-container>
+
+</ion-content>
+
+<ion-footer class="lists-footer">
+    <ion-row *ngIf="counMeetingCitationsService.meta">
+        <ion-col class="ion-text-center" size="12">
+            <ion-button (click)="counMeetingCitationsService.getCounMeetingCitations(counMeetingCitationsService.meta.current_page - 1)"
+                        [disabled]="counMeetingCitationsService.meta.current_page == 1"
+                        fill="clear">
+                <ion-icon slot="end" name="play-outline" style="transform: rotate(180deg);"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear" [disabled]="true"> Pag: {{counMeetingCitationsService.meta.current_page}}
+                /{{counMeetingCitationsService.meta.last_page}} {{counMeetingCitationsService.meta.from}}-{{counMeetingCitationsService.meta.to}}
+                /{{counMeetingCitationsService.meta.total}} </ion-button>
+            <ion-button (click)="counMeetingCitationsService.getCounMeetingCitations(counMeetingCitationsService.meta.current_page + 1)"
+                        [disabled]="counMeetingCitationsService.meta.current_page == counMeetingCitationsService.meta.last_page"
+                        fill="clear">
+                <ion-icon slot="start" name="play-outline"></ion-icon>
+            </ion-button>
+        </ion-col>
+    </ion-row>
+</ion-footer>

@@ -42,7 +42,7 @@ export class {{{ $name|NameNames }}}Service {
 
     public get{{{ $name|NameNames }}}(page: any = this.page, perPage: any = this.perPage) {
 
-        this.api.get(this.{{{ $name|nameNames }}}Url + '?page=' + page + '&perPage=' + perPage + '&q[name:cont]=' + this.searchValue)
+        this.api.get(this.{{{ $name|nameNames }}}Url + '?page=' + page + '&perPage=' + perPage + '&q[{{{ $model.getRelationSchema().name|name_name }}}:cont]=' + this.searchValue)
             .subscribe(
                 (res: any) => {
                     // @ts-ignore

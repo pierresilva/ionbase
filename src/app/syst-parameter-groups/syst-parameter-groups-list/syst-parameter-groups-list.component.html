@@ -1,0 +1,87 @@
+<app-main-header title="{{'GRUPOS DE PARAMETROS' | titlecase}}"
+                 primaryLink="syst-parameter-groups/create"
+                 primaryText="Crear {{'GRUPOS DE PARAMETROS' | lowercase}}"
+                 primaryIcon="add-circle-outline"></app-main-header>
+
+<ion-content id="pages-content">
+
+    <ion-searchbar showCancelButton="focus"
+                       [cancelButtonText]="'Cancelar'"
+                       [placeholder]="'Buscar ' + ('GRUPOS DE PARAMETROS' | lowercase )"
+                       (ionCancel)="this.systParameterGroupsService.searchValue = ''; systParameterGroupsService.getSystParameterGroups()"
+                       (keyup.enter)="systParameterGroupsService.getSystParameterGroups()"
+                       [(ngModel)]="systParameterGroupsService.searchValue"></ion-searchbar>
+
+    <ng-container *ngIf="!(loading.loading | async) && systParameterGroupsService.systParameterGroups?.length">
+        <ion-card *ngFor="let systParameterGroup of systParameterGroupsService.systParameterGroups; let index = index">
+            <ion-list>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'NOMBRE' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ systParameterGroup?.name }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'CÓDIGO' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ systParameterGroup?.code }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'PARAMETROS' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">
+                            <ng-container *ngIf="systParameterGroup?.syst_parameters?.length">
+                                <ng-container *ngFor="let systParameter of systParameterGroup?.syst_parameters; let last = last">
+                                    <a routerLink="/syst-parameters/{{ systParameter?.id }}/edit">{{ systParameter?.name }}</a><span *ngIf="!last">, </span>
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                    </ion-item>
+            </ion-list>
+            <ion-footer>
+                <ion-row>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="success" size="small" fill="clear" [routerLink]="'/syst-parameter-groups/' + systParameterGroup?.id + '/edit'">
+                            <ion-icon name="create-outline"></ion-icon>
+                            <div>Editar</div>
+                        </ion-button>
+                    </ion-col>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="danger" size="small" fill="clear" (click)="systParameterGroupsService.deleteSystParameterGroup(systParameterGroup?.id)">
+                            <ion-icon name="trash-outline"></ion-icon>
+                            <div>Eliminar</div>
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-footer>
+        </ion-card>
+    </ng-container>
+
+    <ng-container *ngIf="!(loading.loading | async) && !systParameterGroupsService.systParameterGroups?.length">
+        <ion-item>
+            <ion-icon class="text-warning" name="warning-outline" slot="start"></ion-icon>
+            <ion-label><h2>No se encontraron {{'GRUPOS DE PARAMETROS' | titlecase}}</h2></ion-label>
+            <ion-button [routerLink]="'/syst-parameter-groups/create'" fill="outline" color="success" slot="end">
+                Crear {{'GRUPOS DE PARAMETROS' | titlecase}}
+                <ion-icon name="add-circle-outline" slot="end"></ion-icon>
+            </ion-button>
+        </ion-item>
+    </ng-container>
+
+</ion-content>
+
+<ion-footer class="lists-footer">
+    <ion-row *ngIf="systParameterGroupsService.meta">
+        <ion-col class="ion-text-center" size="12">
+            <ion-button (click)="systParameterGroupsService.getSystParameterGroups(systParameterGroupsService.meta.current_page - 1)"
+                        [disabled]="systParameterGroupsService.meta.current_page == 1"
+                        fill="clear">
+                <ion-icon slot="end" name="play-outline" style="transform: rotate(180deg);"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear" [disabled]="true"> Pag: {{systParameterGroupsService.meta.current_page}}
+                /{{systParameterGroupsService.meta.last_page}} {{systParameterGroupsService.meta.from}}-{{systParameterGroupsService.meta.to}}
+                /{{systParameterGroupsService.meta.total}} </ion-button>
+            <ion-button (click)="systParameterGroupsService.getSystParameterGroups(systParameterGroupsService.meta.current_page + 1)"
+                        [disabled]="systParameterGroupsService.meta.current_page == systParameterGroupsService.meta.last_page"
+                        fill="clear">
+                <ion-icon slot="start" name="play-outline"></ion-icon>
+            </ion-button>
+        </ion-col>
+    </ion-row>
+</ion-footer>

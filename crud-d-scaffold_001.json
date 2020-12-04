@@ -60,19 +60,19 @@
           "type": "string",
           "input_type": "text",
           "varidate": "",
-          "faker_type": "",
+          "faker_type": "secret",
           "nullable": false,
           "unique": false,
           "show_in_list": false,
-          "show_in_detail": false,
+          "show_in_detail": true,
           "belongsto": "",
           "parent_id": 1
         }
       ],
       "is_pivot": false,
       "schema_id_for_relation": 1,
-      "pos_x": 19,
-      "pos_y": 13,
+      "pos_x": 33,
+      "pos_y": -1,
       "_next_schema_id": 5
     },
     {
@@ -204,8 +204,8 @@
       ],
       "is_pivot": false,
       "schema_id_for_relation": 1,
-      "pos_x": 13,
-      "pos_y": 328,
+      "pos_x": 31,
+      "pos_y": 321,
       "_next_schema_id": 11
     },
     {
@@ -487,7 +487,7 @@
     },
     {
       "id": 9,
-      "name": "companyPhone",
+      "name": "compPhone",
       "display_name": "TELÉFONOS DE EMPRESAS",
       "use_soft_delete": true,
       "schemas": [
@@ -560,8 +560,8 @@
     },
     {
       "id": 10,
-      "name": "companyAddress",
-      "display_name": "DIRECCIONES DE EMPRESAS",
+      "name": "compAddress",
+      "display_name": "EMPRESAS DIRECCIONES",
       "use_soft_delete": true,
       "schemas": [
         {
@@ -648,8 +648,8 @@
     },
     {
       "id": 11,
-      "name": "companyContact",
-      "display_name": "CONTACTOS DE EMPRESAS",
+      "name": "compContact",
+      "display_name": "EMPRESAS CONTACTOS",
       "use_soft_delete": true,
       "schemas": [
         {
@@ -793,79 +793,6 @@
       "_next_schema_id": 3
     },
     {
-      "id": 13,
-      "name": "companyDirectorate",
-      "display_name": "JUNTA DIRECTIVA",
-      "use_soft_delete": true,
-      "schemas": [
-        {
-          "id": 4,
-          "name": "company_id",
-          "display_name": "EMPRESA",
-          "type": "integer",
-          "input_type": "select",
-          "varidate": "",
-          "faker_type": "numberBetween(1,30)",
-          "nullable": true,
-          "unique": false,
-          "show_in_list": false,
-          "show_in_detail": true,
-          "belongsto": "company",
-          "parent_id": 13
-        },
-        {
-          "id": 1,
-          "name": "name",
-          "display_name": "NOMBRE",
-          "type": "string",
-          "input_type": "text",
-          "varidate": "",
-          "faker_type": "words(3, true)",
-          "nullable": false,
-          "unique": false,
-          "show_in_list": true,
-          "show_in_detail": true,
-          "belongsto": "",
-          "parent_id": 13
-        },
-        {
-          "id": 2,
-          "name": "user_id",
-          "display_name": "USUARIO",
-          "type": "integer",
-          "input_type": "select",
-          "varidate": "",
-          "faker_type": "numberBetween(1,30)",
-          "nullable": true,
-          "unique": false,
-          "show_in_list": true,
-          "show_in_detail": true,
-          "belongsto": "user",
-          "parent_id": 13
-        },
-        {
-          "id": 3,
-          "name": "systPosition_id",
-          "display_name": "CARGO",
-          "type": "integer",
-          "input_type": "select",
-          "varidate": "",
-          "faker_type": "numberBetween(1,30)",
-          "nullable": true,
-          "unique": false,
-          "show_in_list": true,
-          "show_in_detail": true,
-          "belongsto": "systPosition",
-          "parent_id": 13
-        }
-      ],
-      "is_pivot": false,
-      "schema_id_for_relation": 1,
-      "pos_x": 1064,
-      "pos_y": -11,
-      "_next_schema_id": 5
-    },
-    {
       "id": 14,
       "name": "systParameter",
       "display_name": "PARAMETROS",
@@ -951,8 +878,8 @@
       ],
       "is_pivot": false,
       "schema_id_for_relation": 1,
-      "pos_x": 448,
-      "pos_y": 3,
+      "pos_x": 502,
+      "pos_y": -2,
       "_next_schema_id": 6
     },
     {
@@ -994,14 +921,14 @@
       ],
       "is_pivot": false,
       "schema_id_for_relation": 1,
-      "pos_x": 454,
-      "pos_y": 362,
+      "pos_x": 505,
+      "pos_y": 365,
       "_next_schema_id": 3
     },
     {
       "id": 16,
-      "name": "companyLegalResponsability",
-      "display_name": "RESPONSABILIDADES LEGALES",
+      "name": "compResponsability",
+      "display_name": "EMPRESAS RESPONSABILIDADES LEGALES",
       "use_soft_delete": true,
       "schemas": [
         {
@@ -1058,7 +985,7 @@
     },
     {
       "id": 17,
-      "name": "housingUnit",
+      "name": "housUnit",
       "display_name": "UNIDADES HABITACIONALES",
       "use_soft_delete": true,
       "schemas": [
@@ -1095,20 +1022,20 @@
       ],
       "is_pivot": false,
       "schema_id_for_relation": 1,
-      "pos_x": 468,
-      "pos_y": 594,
+      "pos_x": 507,
+      "pos_y": 585,
       "_next_schema_id": 3
     },
     {
       "id": 18,
-      "name": "housingUnitArea",
+      "name": "housUnitArea",
       "display_name": "AREAS DE UNIDADES HABITACIONALES",
       "use_soft_delete": true,
       "schemas": [
         {
-          "id": 3,
-          "name": "housingUnit_id",
-          "display_name": "UNIDAD HABITACIONAL",
+          "id": 4,
+          "name": "housUnit_id",
+          "display_name": "housUnit - NAME",
           "type": "integer",
           "input_type": "select",
           "varidate": "",
@@ -1117,8 +1044,10 @@
           "unique": false,
           "show_in_list": true,
           "show_in_detail": true,
-          "belongsto": "housingUnit",
-          "parent_id": 18
+          "belongsto": "housUnit",
+          "parent_id": 18,
+          "comment": "",
+          "options": ""
         },
         {
           "id": 1,
@@ -1153,9 +1082,9 @@
       ],
       "is_pivot": false,
       "schema_id_for_relation": 1,
-      "pos_x": 472,
-      "pos_y": 847,
-      "_next_schema_id": 4
+      "pos_x": 513,
+      "pos_y": 830,
+      "_next_schema_id": 5
     },
     {
       "id": 19,
@@ -1163,21 +1092,6 @@
       "display_name": "SECTORES OPERATIVOS",
       "use_soft_delete": true,
       "schemas": [
-        {
-          "id": 3,
-          "name": "housingUnit_id",
-          "display_name": "UNIDAD HABITACIONAL",
-          "type": "integer",
-          "input_type": "select",
-          "varidate": "",
-          "faker_type": "numberBetween(1,30)",
-          "nullable": true,
-          "unique": false,
-          "show_in_list": true,
-          "show_in_detail": true,
-          "belongsto": "housingUnit",
-          "parent_id": 19
-        },
         {
           "id": 1,
           "name": "name",
@@ -1207,17 +1121,34 @@
           "show_in_detail": true,
           "belongsto": "",
           "parent_id": 19
+        },
+        {
+          "id": 4,
+          "name": "housUnit_id",
+          "display_name": "housUnit - NAME",
+          "type": "integer",
+          "input_type": "select",
+          "varidate": "",
+          "faker_type": "numberBetween(1,30)",
+          "nullable": true,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "housUnit",
+          "parent_id": 19,
+          "comment": "",
+          "options": ""
         }
       ],
       "is_pivot": false,
       "schema_id_for_relation": 1,
-      "pos_x": 465,
-      "pos_y": 1147,
-      "_next_schema_id": 4
+      "pos_x": 499,
+      "pos_y": 1131,
+      "_next_schema_id": 5
     },
     {
       "id": 20,
-      "name": "councilMeeting",
+      "name": "counMeeting",
       "display_name": "JUNTAS DEL CONSEJO",
       "use_soft_delete": true,
       "schemas": [
@@ -1270,8 +1201,8 @@
           "id": 4,
           "name": "hour",
           "display_name": "HORA",
-          "type": "string",
-          "input_type": "text",
+          "type": "time",
+          "input_type": "time",
           "varidate": "",
           "faker_type": "time('H:i:s')",
           "nullable": true,
@@ -1310,35 +1241,122 @@
           "show_in_detail": true,
           "belongsto": "",
           "parent_id": 20
-        }
-      ],
-      "is_pivot": false,
-      "schema_id_for_relation": 1,
-      "pos_x": 32,
-      "pos_y": 863,
-      "_next_schema_id": 7
-    },
-    {
-      "id": 21,
-      "name": "councilMeetingAgenda",
-      "display_name": "ORDEN DEL DIA",
-      "use_soft_delete": true,
-      "schemas": [
+        },
         {
-          "id": 2,
-          "name": "councilMeeting_id",
-          "display_name": "JUNTA DEL CONSEJO",
-          "type": "integer",
-          "input_type": "select",
+          "id": 7,
+          "name": "act",
+          "display_name": "ACTA",
+          "type": "longText",
+          "input_type": "html",
           "varidate": "",
-          "faker_type": "numberBetween(1,30)",
+          "faker_type": "",
           "nullable": true,
           "unique": false,
           "show_in_list": true,
           "show_in_detail": true,
-          "belongsto": "councilMeeting",
-          "parent_id": 21
+          "belongsto": "",
+          "parent_id": 20,
+          "comment": "",
+          "options": ""
         },
+        {
+          "id": 8,
+          "name": "status",
+          "display_name": "ESTADO",
+          "type": "string",
+          "input_type": "select",
+          "varidate": "",
+          "faker_type": "randomElement(['active','inactive','in_progress','finalized'])",
+          "nullable": true,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "",
+          "parent_id": 20,
+          "comment": "",
+          "options": "active:Activo|inactive:Inactivo|in_progress:En progreso|finalized:Finalizado"
+        },
+        {
+          "id": 9,
+          "name": "startContent",
+          "display_name": "INICIO",
+          "type": "longText",
+          "input_type": "html",
+          "varidate": "",
+          "faker_type": "paragraphs(3, true)",
+          "nullable": true,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "",
+          "parent_id": 20,
+          "comment": "",
+          "options": ""
+        },
+        {
+          "id": 10,
+          "name": "endContent",
+          "display_name": "FINAL",
+          "type": "longText",
+          "input_type": "html",
+          "varidate": "",
+          "faker_type": "paragraphs(3, true)",
+          "nullable": true,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "",
+          "parent_id": 20,
+          "comment": "",
+          "options": ""
+        },
+        {
+          "id": 11,
+          "name": "consecutive",
+          "display_name": "CONSECUTIVO",
+          "type": "string",
+          "input_type": "text",
+          "varidate": "",
+          "faker_type": "randomNumber(8, true)",
+          "nullable": true,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "",
+          "parent_id": 20,
+          "comment": "",
+          "options": ""
+        },
+        {
+          "id": 12,
+          "name": "type",
+          "display_name": "TIPO",
+          "type": "string",
+          "input_type": "select",
+          "varidate": "",
+          "faker_type": "randomElement(['coexistence','council'])",
+          "nullable": true,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "",
+          "parent_id": 20,
+          "comment": "",
+          "options": "council:Junta del Consejo|coexistence:Junta de Convivencia"
+        }
+      ],
+      "is_pivot": false,
+      "schema_id_for_relation": 1,
+      "pos_x": 37,
+      "pos_y": 843,
+      "_next_schema_id": 13
+    },
+    {
+      "id": 21,
+      "name": "counMeetingAgenda",
+      "display_name": "JUNTAS AGENDAS",
+      "use_soft_delete": true,
+      "schemas": [
         {
           "id": 1,
           "name": "name",
@@ -1368,24 +1386,11 @@
           "show_in_detail": true,
           "belongsto": "",
           "parent_id": 21
-        }
-      ],
-      "is_pivot": false,
-      "schema_id_for_relation": 1,
-      "pos_x": 32,
-      "pos_y": 1304,
-      "_next_schema_id": 4
-    },
-    {
-      "id": 23,
-      "name": "councilMeetingCitation",
-      "display_name": "CITACIONES A JUNTAS DEL CONCEJO",
-      "use_soft_delete": true,
-      "schemas": [
+        },
         {
-          "id": 2,
-          "name": "councilMeeting_id",
-          "display_name": "JUNTA DEL CONSEJO",
+          "id": 4,
+          "name": "counMeeting_id",
+          "display_name": "counMeeting - NAME",
           "type": "integer",
           "input_type": "select",
           "varidate": "",
@@ -1394,13 +1399,62 @@
           "unique": false,
           "show_in_list": true,
           "show_in_detail": true,
-          "belongsto": "councilMeeting",
-          "parent_id": 23
+          "belongsto": "counMeeting",
+          "parent_id": 21,
+          "comment": "",
+          "options": ""
         },
         {
-          "id": 3,
+          "id": 5,
+          "name": "content",
+          "display_name": "CONTENIDO",
+          "type": "longText",
+          "input_type": "html",
+          "varidate": "",
+          "faker_type": "",
+          "nullable": true,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "",
+          "parent_id": 21,
+          "comment": "",
+          "options": ""
+        }
+      ],
+      "is_pivot": false,
+      "schema_id_for_relation": 1,
+      "pos_x": 37,
+      "pos_y": 1581,
+      "_next_schema_id": 6
+    },
+    {
+      "id": 23,
+      "name": "counMeetingCitation",
+      "display_name": "JUNTAS CITACIONES",
+      "use_soft_delete": true,
+      "schemas": [
+        {
+          "id": 7,
+          "name": "counMeeting_id",
+          "display_name": "counMeeting - NAME",
+          "type": "integer",
+          "input_type": "select",
+          "varidate": "",
+          "faker_type": "numberBetween(1,30)",
+          "nullable": true,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "counMeeting",
+          "parent_id": 23,
+          "comment": "",
+          "options": ""
+        },
+        {
+          "id": 9,
           "name": "user_id",
-          "display_name": "USUARIO",
+          "display_name": "user - NAME",
           "type": "integer",
           "input_type": "select",
           "varidate": "",
@@ -1410,7 +1464,26 @@
           "show_in_list": true,
           "show_in_detail": true,
           "belongsto": "user",
-          "parent_id": 23
+          "parent_id": 23,
+          "comment": "",
+          "options": ""
+        },
+        {
+          "id": 8,
+          "name": "counMember_id",
+          "display_name": "counMember - NAME",
+          "type": "integer",
+          "input_type": "select",
+          "varidate": "",
+          "faker_type": "numberBetween(1,30)",
+          "nullable": true,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "counMember",
+          "parent_id": 23,
+          "comment": "",
+          "options": ""
         },
         {
           "id": 1,
@@ -1475,9 +1548,9 @@
       ],
       "is_pivot": false,
       "schema_id_for_relation": 1,
-      "pos_x": 31,
-      "pos_y": 1598,
-      "_next_schema_id": 7
+      "pos_x": 28,
+      "pos_y": 1932,
+      "_next_schema_id": 10
     },
     {
       "id": 24,
@@ -1485,21 +1558,6 @@
       "display_name": "AGENDA DE OPERACIONES",
       "use_soft_delete": true,
       "schemas": [
-        {
-          "id": 2,
-          "name": "housingUnitArea_id",
-          "display_name": "AREA",
-          "type": "integer",
-          "input_type": "select",
-          "varidate": "",
-          "faker_type": "numberBetween(1,30)",
-          "nullable": true,
-          "unique": false,
-          "show_in_list": true,
-          "show_in_detail": true,
-          "belongsto": "housingUnitArea",
-          "parent_id": 24
-        },
         {
           "id": 1,
           "name": "name",
@@ -1514,6 +1572,23 @@
           "show_in_detail": true,
           "belongsto": "",
           "parent_id": 24
+        },
+        {
+          "id": 5,
+          "name": "housUnitArea_id",
+          "display_name": "housUnitArea - NAME",
+          "type": "integer",
+          "input_type": "select",
+          "varidate": "",
+          "faker_type": "numberBetween(1,30)",
+          "nullable": true,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "housUnitArea",
+          "parent_id": 24,
+          "comment": "",
+          "options": ""
         },
         {
           "id": 4,
@@ -1535,9 +1610,9 @@
       ],
       "is_pivot": false,
       "schema_id_for_relation": 1,
-      "pos_x": 452,
-      "pos_y": 1440,
-      "_next_schema_id": 5
+      "pos_x": 499,
+      "pos_y": 1450,
+      "_next_schema_id": 6
     },
     {
       "id": 25,
@@ -1868,8 +1943,234 @@
       "pos_x": 783,
       "pos_y": 1646,
       "_next_schema_id": 12
+    },
+    {
+      "id": 28,
+      "name": "counMember",
+      "display_name": "JUNTAS MIEMBROS",
+      "use_soft_delete": true,
+      "schemas": [
+        {
+          "id": 1,
+          "name": "name",
+          "display_name": "NOMBRE",
+          "type": "string",
+          "input_type": "text",
+          "varidate": "",
+          "faker_type": "words(3, true)",
+          "nullable": false,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "",
+          "parent_id": 28,
+          "comment": "",
+          "options": ""
+        },
+        {
+          "id": 2,
+          "name": "user_id",
+          "display_name": "user - NAME",
+          "type": "integer",
+          "input_type": "select",
+          "varidate": "",
+          "faker_type": "numberBetween(1,30)",
+          "nullable": true,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "user",
+          "parent_id": 28,
+          "comment": "",
+          "options": ""
+        }
+      ],
+      "is_pivot": false,
+      "schema_id_for_relation": 1,
+      "pos_x": 342,
+      "pos_y": 1768,
+      "_next_schema_id": 5
+    },
+    {
+      "id": 30,
+      "name": "mailTemplate",
+      "display_name": "CORREOS PLANTILLAS",
+      "use_soft_delete": true,
+      "schemas": [
+        {
+          "id": 1,
+          "name": "subject",
+          "display_name": "ASUNTO",
+          "type": "string",
+          "input_type": "text",
+          "varidate": "",
+          "faker_type": "words(5, true)",
+          "nullable": false,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "",
+          "parent_id": 30,
+          "comment": "",
+          "options": ""
+        },
+        {
+          "id": 2,
+          "name": "mailable",
+          "display_name": "CLASE",
+          "type": "string",
+          "input_type": "text",
+          "varidate": "",
+          "faker_type": "",
+          "nullable": false,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "",
+          "parent_id": 30,
+          "comment": "",
+          "options": ""
+        },
+        {
+          "id": 3,
+          "name": "htmlTemplate",
+          "display_name": "HTML",
+          "type": "longText",
+          "input_type": "html",
+          "varidate": "",
+          "faker_type": "paragraphs(3, true)",
+          "nullable": true,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "",
+          "parent_id": 30,
+          "comment": "",
+          "options": ""
+        },
+        {
+          "id": 4,
+          "name": "textTemplate",
+          "display_name": "TEXTO",
+          "type": "longText",
+          "input_type": "textarea",
+          "varidate": "",
+          "faker_type": "paragraphs(2, true)",
+          "nullable": true,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "",
+          "parent_id": 30,
+          "comment": "",
+          "options": ""
+        }
+      ],
+      "is_pivot": false,
+      "schema_id_for_relation": 1,
+      "pos_x": 1686,
+      "pos_y": 17,
+      "_next_schema_id": 5
+    },
+    {
+      "id": 31,
+      "name": "mail",
+      "display_name": "CORREOS",
+      "use_soft_delete": true,
+      "schemas": [
+        {
+          "id": 5,
+          "name": "mailTemplate_id",
+          "display_name": "mailTemplate - NAME",
+          "type": "integer",
+          "input_type": "select",
+          "varidate": "",
+          "faker_type": "numberBetween(1,30)",
+          "nullable": true,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "mailTemplate",
+          "parent_id": 31,
+          "comment": "",
+          "options": ""
+        },
+        {
+          "id": 1,
+          "name": "subject",
+          "display_name": "ASUNTO",
+          "type": "string",
+          "input_type": "text",
+          "varidate": "",
+          "faker_type": "words(3, true)",
+          "nullable": false,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "",
+          "parent_id": 31,
+          "comment": "",
+          "options": ""
+        },
+        {
+          "id": 2,
+          "name": "receiver",
+          "display_name": "PARA",
+          "type": "string",
+          "input_type": "text",
+          "varidate": "",
+          "faker_type": "email",
+          "nullable": false,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "",
+          "parent_id": 31,
+          "comment": "",
+          "options": ""
+        },
+        {
+          "id": 3,
+          "name": "html",
+          "display_name": "HTML",
+          "type": "longText",
+          "input_type": "html",
+          "varidate": "",
+          "faker_type": "paragraphs(3, true)",
+          "nullable": true,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "",
+          "parent_id": 31,
+          "comment": "",
+          "options": ""
+        },
+        {
+          "id": 4,
+          "name": "text",
+          "display_name": "TEXTO",
+          "type": "longText",
+          "input_type": "textarea",
+          "varidate": "",
+          "faker_type": "paragraphs(3, true)",
+          "nullable": true,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "",
+          "parent_id": 31,
+          "comment": "",
+          "options": ""
+        }
+      ],
+      "is_pivot": false,
+      "schema_id_for_relation": 1,
+      "pos_x": 1676,
+      "pos_y": 385,
+      "_next_schema_id": 6
     }
   ],
   "tool": "ER-DIAGRAM-TOOL",
-  "_next_model_id": 28
+  "_next_model_id": 32
 }

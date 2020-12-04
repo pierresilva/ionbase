@@ -1,0 +1,265 @@
+<form #companiesForm="ngForm" novalidate autocomplete="off">
+
+
+    <!-- comp_phone_ids -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'TELÉFONOS DE EMPRESAS' | titlecase }}</ion-label>
+        <ionic-selectable name="comp_phone_ids"
+                          id="comp_phone_ids-field"
+                          [(ngModel)]="model.comp_phones"
+                          [items]="companiesService.companyLists.CompPhone"
+                          itemValueField="id"
+                          itemTextField="name"
+                          [isMultiple]="true"
+                          [canClear]="true"
+                          [hasConfirmButton]="true"
+                          [confirmButtonText]="'Seleccionar'"
+                          [searchPlaceholder]="'Buscar ' + ('TELÉFONOS DE EMPRESAS' | titlecase)"
+                          [searchFailText]="'No se encontro ' + ('TELÉFONOS DE EMPRESAS' | titlecase) + ' que coincida!'"
+                          [closeButtonText]="'Cancelar'"
+                          [clearButtonText]="'Limpiar'"
+                          [canSearch]="true"
+                          (onChange)="setCompPhoneIds($event)">
+        </ionic-selectable>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.comp_phone_ids">
+            <div class="error-message" *ngIf="companiesForm.form.controls['comp_phone_ids']?.hasError(validation.type)">
+            {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end comp_phone_ids -->
+
+
+    <!-- comp_address_ids -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'EMPRESAS DIRECCIONES' | titlecase }}</ion-label>
+        <ionic-selectable name="comp_address_ids"
+                          id="comp_address_ids-field"
+                          [(ngModel)]="model.comp_addresses"
+                          [items]="companiesService.companyLists.CompAddress"
+                          itemValueField="id"
+                          itemTextField="name"
+                          [isMultiple]="true"
+                          [canClear]="true"
+                          [hasConfirmButton]="true"
+                          [confirmButtonText]="'Seleccionar'"
+                          [searchPlaceholder]="'Buscar ' + ('EMPRESAS DIRECCIONES' | titlecase)"
+                          [searchFailText]="'No se encontro ' + ('EMPRESAS DIRECCIONES' | titlecase) + ' que coincida!'"
+                          [closeButtonText]="'Cancelar'"
+                          [clearButtonText]="'Limpiar'"
+                          [canSearch]="true"
+                          (onChange)="setCompAddressIds($event)">
+        </ionic-selectable>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.comp_address_ids">
+            <div class="error-message" *ngIf="companiesForm.form.controls['comp_address_ids']?.hasError(validation.type)">
+            {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end comp_address_ids -->
+
+
+    <!-- comp_contact_ids -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'EMPRESAS CONTACTOS' | titlecase }}</ion-label>
+        <ionic-selectable name="comp_contact_ids"
+                          id="comp_contact_ids-field"
+                          [(ngModel)]="model.comp_contacts"
+                          [items]="companiesService.companyLists.CompContact"
+                          itemValueField="id"
+                          itemTextField="name"
+                          [isMultiple]="true"
+                          [canClear]="true"
+                          [hasConfirmButton]="true"
+                          [confirmButtonText]="'Seleccionar'"
+                          [searchPlaceholder]="'Buscar ' + ('EMPRESAS CONTACTOS' | titlecase)"
+                          [searchFailText]="'No se encontro ' + ('EMPRESAS CONTACTOS' | titlecase) + ' que coincida!'"
+                          [closeButtonText]="'Cancelar'"
+                          [clearButtonText]="'Limpiar'"
+                          [canSearch]="true"
+                          (onChange)="setCompContactIds($event)">
+        </ionic-selectable>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.comp_contact_ids">
+            <div class="error-message" *ngIf="companiesForm.form.controls['comp_contact_ids']?.hasError(validation.type)">
+            {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end comp_contact_ids -->
+
+
+    <!-- comp_responsability_ids -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'EMPRESAS RESPONSABILIDADES LEGALES' | titlecase }}</ion-label>
+        <ionic-selectable name="comp_responsability_ids"
+                          id="comp_responsability_ids-field"
+                          [(ngModel)]="model.comp_responsabilities"
+                          [items]="companiesService.companyLists.CompResponsability"
+                          itemValueField="id"
+                          itemTextField="name"
+                          [isMultiple]="true"
+                          [canClear]="true"
+                          [hasConfirmButton]="true"
+                          [confirmButtonText]="'Seleccionar'"
+                          [searchPlaceholder]="'Buscar ' + ('EMPRESAS RESPONSABILIDADES LEGALES' | titlecase)"
+                          [searchFailText]="'No se encontro ' + ('EMPRESAS RESPONSABILIDADES LEGALES' | titlecase) + ' que coincida!'"
+                          [closeButtonText]="'Cancelar'"
+                          [clearButtonText]="'Limpiar'"
+                          [canSearch]="true"
+                          (onChange)="setCompResponsabilityIds($event)">
+        </ionic-selectable>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.comp_responsability_ids">
+            <div class="error-message" *ngIf="companiesForm.form.controls['comp_responsability_ids']?.hasError(validation.type)">
+            {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end comp_responsability_ids -->
+
+
+            <!-- name -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'NOMBRE' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.name"
+                            type="text"
+                            name="name"
+                            id="name-field"
+                            [required]="true"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.name">
+                    <div class="error-message" *ngIf="companiesForm.form.controls['name']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end name -->
+
+
+            <!-- code -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'CÓDIGO' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.code"
+                            type="text"
+                            name="code"
+                            id="code-field"
+                            [required]="true"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.code">
+                    <div class="error-message" *ngIf="companiesForm.form.controls['code']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end code -->
+
+
+            <!-- nit -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'NIT' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.nit"
+                            type="text"
+                            name="nit"
+                            id="nit-field"
+                            [required]="true"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.nit">
+                    <div class="error-message" *ngIf="companiesForm.form.controls['nit']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end nit -->
+
+
+            <!-- manager_name -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'NOMBRE REPRESENTANTE LEGAL' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.manager_name"
+                            type="text"
+                            name="manager_name"
+                            id="manager_name-field"
+                            [required]="true"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.manager_name">
+                    <div class="error-message" *ngIf="companiesForm.form.controls['manager_name']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end manager_name -->
+
+
+            <!-- manager_document -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'CÉDULA REPRESENTANTE LEGAL' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.manager_document"
+                            type="text"
+                            name="manager_document"
+                            id="manager_document-field"
+                            [required]="true"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.manager_document">
+                    <div class="error-message" *ngIf="companiesForm.form.controls['manager_document']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end manager_document -->
+
+
+            <!-- logo -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'LOGOTIPO' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.logo"
+                            type="text"
+                            name="logo"
+                            id="logo-field"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.logo">
+                    <div class="error-message" *ngIf="companiesForm.form.controls['logo']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end logo -->
+
+
+            <!-- main -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'PRINCIPAL' | titlecase }}</ion-label>
+                <ion-toggle name="main"
+                            id="main-field"
+                            slot="end"
+                            [(ngModel)]="model.main"></ion-toggle>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.main">
+                    <div class="error-message" *ngIf="companiesForm.form.controls['main']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end main -->
+
+
+</form>

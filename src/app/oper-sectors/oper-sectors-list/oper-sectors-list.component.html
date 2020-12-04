@@ -1,0 +1,101 @@
+<app-main-header title="{{'SECTORES OPERATIVOS' | titlecase}}"
+                 primaryLink="oper-sectors/create"
+                 primaryText="Crear {{'SECTORES OPERATIVOS' | lowercase}}"
+                 primaryIcon="add-circle-outline"></app-main-header>
+
+<ion-content id="pages-content">
+
+    <ion-searchbar showCancelButton="focus"
+                       [cancelButtonText]="'Cancelar'"
+                       [placeholder]="'Buscar ' + ('SECTORES OPERATIVOS' | lowercase )"
+                       (ionCancel)="this.operSectorsService.searchValue = ''; operSectorsService.getOperSectors()"
+                       (keyup.enter)="operSectorsService.getOperSectors()"
+                       [(ngModel)]="operSectorsService.searchValue"></ion-searchbar>
+
+    <ng-container *ngIf="!(loading.loading | async) && operSectorsService.operSectors?.length">
+        <ion-card *ngFor="let operSector of operSectorsService.operSectors; let index = index">
+            <ion-list>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'NAME' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ operSector?.name }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'CÓDIGO' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ operSector?.code }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'UNIDADES HABITACIONALES' | titlecase }}</b></ion-label>
+                        <div class="wrap-text"><a routerLink="/hous-units/{{ operSector?.hous_unit?.id }}/edit">{{ operSector?.hous_unit?.name }}</a></div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'AGENDA DE OPERACIONES' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">
+                            <ng-container *ngIf="operSector?.oper_schedules?.length">
+                                <ng-container *ngFor="let operSchedule of operSector?.oper_schedules; let last = last">
+                                    <a routerLink="/oper-schedules/{{ operSchedule?.id }}/edit">{{ operSchedule?.name }}</a><span *ngIf="!last">, </span>
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'MOVIMIENTOS OPERATIVOS' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">
+                            <ng-container *ngIf="operSector?.oper_movements?.length">
+                                <ng-container *ngFor="let operMovement of operSector?.oper_movements; let last = last">
+                                    <a routerLink="/oper-movements/{{ operMovement?.id }}/edit">{{ operMovement?.name }}</a><span *ngIf="!last">, </span>
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                    </ion-item>
+            </ion-list>
+            <ion-footer>
+                <ion-row>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="success" size="small" fill="clear" [routerLink]="'/oper-sectors/' + operSector?.id + '/edit'">
+                            <ion-icon name="create-outline"></ion-icon>
+                            <div>Editar</div>
+                        </ion-button>
+                    </ion-col>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="danger" size="small" fill="clear" (click)="operSectorsService.deleteOperSector(operSector?.id)">
+                            <ion-icon name="trash-outline"></ion-icon>
+                            <div>Eliminar</div>
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-footer>
+        </ion-card>
+    </ng-container>
+
+    <ng-container *ngIf="!(loading.loading | async) && !operSectorsService.operSectors?.length">
+        <ion-item>
+            <ion-icon class="text-warning" name="warning-outline" slot="start"></ion-icon>
+            <ion-label><h2>No se encontraron {{'SECTORES OPERATIVOS' | titlecase}}</h2></ion-label>
+            <ion-button [routerLink]="'/oper-sectors/create'" fill="outline" color="success" slot="end">
+                Crear {{'SECTORES OPERATIVOS' | titlecase}}
+                <ion-icon name="add-circle-outline" slot="end"></ion-icon>
+            </ion-button>
+        </ion-item>
+    </ng-container>
+
+</ion-content>
+
+<ion-footer class="lists-footer">
+    <ion-row *ngIf="operSectorsService.meta">
+        <ion-col class="ion-text-center" size="12">
+            <ion-button (click)="operSectorsService.getOperSectors(operSectorsService.meta.current_page - 1)"
+                        [disabled]="operSectorsService.meta.current_page == 1"
+                        fill="clear">
+                <ion-icon slot="end" name="play-outline" style="transform: rotate(180deg);"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear" [disabled]="true"> Pag: {{operSectorsService.meta.current_page}}
+                /{{operSectorsService.meta.last_page}} {{operSectorsService.meta.from}}-{{operSectorsService.meta.to}}
+                /{{operSectorsService.meta.total}} </ion-button>
+            <ion-button (click)="operSectorsService.getOperSectors(operSectorsService.meta.current_page + 1)"
+                        [disabled]="operSectorsService.meta.current_page == operSectorsService.meta.last_page"
+                        fill="clear">
+                <ion-icon slot="start" name="play-outline"></ion-icon>
+            </ion-button>
+        </ion-col>
+    </ion-row>
+</ion-footer>

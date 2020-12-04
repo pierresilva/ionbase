@@ -1,0 +1,101 @@
+<app-main-header title="{{'PERFILES DE USUARIOS' | titlecase}}"
+                 primaryLink="user-profiles/create"
+                 primaryText="Crear {{'PERFILES DE USUARIOS' | lowercase}}"
+                 primaryIcon="add-circle-outline"></app-main-header>
+
+<ion-content id="pages-content">
+
+    <ion-searchbar showCancelButton="focus"
+                       [cancelButtonText]="'Cancelar'"
+                       [placeholder]="'Buscar ' + ('PERFILES DE USUARIOS' | lowercase )"
+                       (ionCancel)="this.userProfilesService.searchValue = ''; userProfilesService.getUserProfiles()"
+                       (keyup.enter)="userProfilesService.getUserProfiles()"
+                       [(ngModel)]="userProfilesService.searchValue"></ion-searchbar>
+
+    <ng-container *ngIf="!(loading.loading | async) && userProfilesService.userProfiles?.length">
+        <ion-card *ngFor="let userProfile of userProfilesService.userProfiles; let index = index">
+            <ion-list>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'NOMBRE' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ userProfile?.name }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'DORECCIÓN' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ userProfile?.address }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'TELÉFONO' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ userProfile?.phone }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'AVATAR' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ userProfile?.avatar }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'USUARIOS' | titlecase }}</b></ion-label>
+                        <div class="wrap-text"><a routerLink="/users/{{ userProfile?.user?.id }}/edit">{{ userProfile?.user?.name }}</a></div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'CIUDADES' | titlecase }}</b></ion-label>
+                        <div class="wrap-text"><a routerLink="/syst-cities/{{ userProfile?.syst_city?.id }}/edit">{{ userProfile?.syst_city?.name }}</a></div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'DEPARTAMENTOS' | titlecase }}</b></ion-label>
+                        <div class="wrap-text"><a routerLink="/syst-regions/{{ userProfile?.syst_region?.id }}/edit">{{ userProfile?.syst_region?.name }}</a></div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'PAISES' | titlecase }}</b></ion-label>
+                        <div class="wrap-text"><a routerLink="/syst-countries/{{ userProfile?.syst_country?.id }}/edit">{{ userProfile?.syst_country?.name }}</a></div>
+                    </ion-item>
+            </ion-list>
+            <ion-footer>
+                <ion-row>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="success" size="small" fill="clear" [routerLink]="'/user-profiles/' + userProfile?.id + '/edit'">
+                            <ion-icon name="create-outline"></ion-icon>
+                            <div>Editar</div>
+                        </ion-button>
+                    </ion-col>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="danger" size="small" fill="clear" (click)="userProfilesService.deleteUserProfile(userProfile?.id)">
+                            <ion-icon name="trash-outline"></ion-icon>
+                            <div>Eliminar</div>
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-footer>
+        </ion-card>
+    </ng-container>
+
+    <ng-container *ngIf="!(loading.loading | async) && !userProfilesService.userProfiles?.length">
+        <ion-item>
+            <ion-icon class="text-warning" name="warning-outline" slot="start"></ion-icon>
+            <ion-label><h2>No se encontraron {{'PERFILES DE USUARIOS' | titlecase}}</h2></ion-label>
+            <ion-button [routerLink]="'/user-profiles/create'" fill="outline" color="success" slot="end">
+                Crear {{'PERFILES DE USUARIOS' | titlecase}}
+                <ion-icon name="add-circle-outline" slot="end"></ion-icon>
+            </ion-button>
+        </ion-item>
+    </ng-container>
+
+</ion-content>
+
+<ion-footer class="lists-footer">
+    <ion-row *ngIf="userProfilesService.meta">
+        <ion-col class="ion-text-center" size="12">
+            <ion-button (click)="userProfilesService.getUserProfiles(userProfilesService.meta.current_page - 1)"
+                        [disabled]="userProfilesService.meta.current_page == 1"
+                        fill="clear">
+                <ion-icon slot="end" name="play-outline" style="transform: rotate(180deg);"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear" [disabled]="true"> Pag: {{userProfilesService.meta.current_page}}
+                /{{userProfilesService.meta.last_page}} {{userProfilesService.meta.from}}-{{userProfilesService.meta.to}}
+                /{{userProfilesService.meta.total}} </ion-button>
+            <ion-button (click)="userProfilesService.getUserProfiles(userProfilesService.meta.current_page + 1)"
+                        [disabled]="userProfilesService.meta.current_page == userProfilesService.meta.last_page"
+                        fill="clear">
+                <ion-icon slot="start" name="play-outline"></ion-icon>
+            </ion-button>
+        </ion-col>
+    </ion-row>
+</ion-footer>

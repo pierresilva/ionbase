@@ -1,0 +1,137 @@
+<app-main-header title="{{'EMPRESAS' | titlecase}}"
+                 primaryLink="companies/create"
+                 primaryText="Crear {{'EMPRESAS' | lowercase}}"
+                 primaryIcon="add-circle-outline"></app-main-header>
+
+<ion-content id="pages-content">
+
+    <ion-searchbar showCancelButton="focus"
+                       [cancelButtonText]="'Cancelar'"
+                       [placeholder]="'Buscar ' + ('EMPRESAS' | lowercase )"
+                       (ionCancel)="this.companiesService.searchValue = ''; companiesService.getCompanies()"
+                       (keyup.enter)="companiesService.getCompanies()"
+                       [(ngModel)]="companiesService.searchValue"></ion-searchbar>
+
+    <ng-container *ngIf="!(loading.loading | async) && companiesService.companies?.length">
+        <ion-card *ngFor="let company of companiesService.companies; let index = index">
+            <ion-list>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'NOMBRE' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ company?.name }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'CÓDIGO' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ company?.code }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'NIT' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ company?.nit }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'NOMBRE REPRESENTANTE LEGAL' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ company?.manager_name }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'CÉDULA REPRESENTANTE LEGAL' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ company?.manager_document }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'LOGOTIPO' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ company?.logo }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'PRINCIPAL' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ company?.main  ? 'Si' : 'No' }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'TELÉFONOS DE EMPRESAS' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">
+                            <ng-container *ngIf="company?.comp_phones?.length">
+                                <ng-container *ngFor="let compPhone of company?.comp_phones; let last = last">
+                                    <a routerLink="/comp-phones/{{ compPhone?.id }}/edit">{{ compPhone?.name }}</a><span *ngIf="!last">, </span>
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'EMPRESAS DIRECCIONES' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">
+                            <ng-container *ngIf="company?.comp_addresses?.length">
+                                <ng-container *ngFor="let compAddress of company?.comp_addresses; let last = last">
+                                    <a routerLink="/comp-addresses/{{ compAddress?.id }}/edit">{{ compAddress?.name }}</a><span *ngIf="!last">, </span>
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'EMPRESAS CONTACTOS' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">
+                            <ng-container *ngIf="company?.comp_contacts?.length">
+                                <ng-container *ngFor="let compContact of company?.comp_contacts; let last = last">
+                                    <a routerLink="/comp-contacts/{{ compContact?.id }}/edit">{{ compContact?.name }}</a><span *ngIf="!last">, </span>
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'EMPRESAS RESPONSABILIDADES LEGALES' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">
+                            <ng-container *ngIf="company?.comp_responsabilities?.length">
+                                <ng-container *ngFor="let compResponsability of company?.comp_responsabilities; let last = last">
+                                    <a routerLink="/comp-responsabilities/{{ compResponsability?.id }}/edit">{{ compResponsability?.name }}</a><span *ngIf="!last">, </span>
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                    </ion-item>
+            </ion-list>
+            <ion-footer>
+                <ion-row>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="success" size="small" fill="clear" [routerLink]="'/companies/' + company?.id + '/edit'">
+                            <ion-icon name="create-outline"></ion-icon>
+                            <div>Editar</div>
+                        </ion-button>
+                    </ion-col>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="danger" size="small" fill="clear" (click)="companiesService.deleteCompany(company?.id)">
+                            <ion-icon name="trash-outline"></ion-icon>
+                            <div>Eliminar</div>
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-footer>
+        </ion-card>
+    </ng-container>
+
+    <ng-container *ngIf="!(loading.loading | async) && !companiesService.companies?.length">
+        <ion-item>
+            <ion-icon class="text-warning" name="warning-outline" slot="start"></ion-icon>
+            <ion-label><h2>No se encontraron {{'EMPRESAS' | titlecase}}</h2></ion-label>
+            <ion-button [routerLink]="'/companies/create'" fill="outline" color="success" slot="end">
+                Crear {{'EMPRESAS' | titlecase}}
+                <ion-icon name="add-circle-outline" slot="end"></ion-icon>
+            </ion-button>
+        </ion-item>
+    </ng-container>
+
+</ion-content>
+
+<ion-footer class="lists-footer">
+    <ion-row *ngIf="companiesService.meta">
+        <ion-col class="ion-text-center" size="12">
+            <ion-button (click)="companiesService.getCompanies(companiesService.meta.current_page - 1)"
+                        [disabled]="companiesService.meta.current_page == 1"
+                        fill="clear">
+                <ion-icon slot="end" name="play-outline" style="transform: rotate(180deg);"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear" [disabled]="true"> Pag: {{companiesService.meta.current_page}}
+                /{{companiesService.meta.last_page}} {{companiesService.meta.from}}-{{companiesService.meta.to}}
+                /{{companiesService.meta.total}} </ion-button>
+            <ion-button (click)="companiesService.getCompanies(companiesService.meta.current_page + 1)"
+                        [disabled]="companiesService.meta.current_page == companiesService.meta.last_page"
+                        fill="clear">
+                <ion-icon slot="start" name="play-outline"></ion-icon>
+            </ion-button>
+        </ion-col>
+    </ion-row>
+</ion-footer>

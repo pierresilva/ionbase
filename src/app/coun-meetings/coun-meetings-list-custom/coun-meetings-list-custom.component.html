@@ -1,0 +1,53 @@
+<app-main-header title="{{'JUNTAS DEL CONSEJO' | titlecase}}"
+                 primaryLink="coun-meetings/create/custom"
+                 primaryText="Crear {{'JUNTAS DEL CONSEJO' | lowercase}}"
+                 primaryIcon="add-circle-outline"></app-main-header>
+
+<ion-content id="pages-content">
+    <ion-list>
+        <ion-list-header>
+            <ion-label>Juntas del consejo</ion-label>
+        </ion-list-header>
+
+        <ng-container *ngIf="counMeetingsService.counMeetings.length">
+            <ion-item-sliding *ngFor="let meeting of counMeetingsService.counMeetings">
+                <ion-item>
+                    <ion-label>
+                        <h2>{{meeting.name}}</h2>
+                        <h2>No. {{meeting.id | zeroLeading}}</h2>
+                    </ion-label>
+                    <div>{{meeting.status | status}}</div>
+                </ion-item>
+                <ion-item-options side="end">
+                     <ion-item-option color="primary"
+                                      *ngIf="meeting.status == 'finalized'"
+                                      target="_blank"
+                                      (click)="openAct(environment.serverUrl + '/api/coun-meeting-pdf/' + meeting.id)">
+                         Descargar Acta
+                        <ion-icon name="download-outline" slot="start"></ion-icon>
+                    </ion-item-option>
+                    <ion-item-option *ngIf="!meeting.status"
+                                     [routerLink]="'/coun-meetings/create/custom/' + meeting.id"
+                                     color="success"
+                                     style="color: #fff;">
+                        Registrar Junta del Concejo
+                        <ion-icon name="create-outline" slot="start"></ion-icon>
+                    </ion-item-option>
+                    <ion-item-option *ngIf="meeting.status == 'in_progress'"
+                                     [routerLink]="'/coun-meetings/create/custom/' + meeting.id"
+                                     color="success"
+                                     style="color: #fff;">
+                        Continuar Junta
+                        <ion-icon name="create-outline" slot="start"></ion-icon>
+                    </ion-item-option>
+                </ion-item-options>
+            </ion-item-sliding>
+        </ng-container>
+        <ng-container *ngIf="!counMeetingsService.counMeetings.length">
+            <ion-item>
+                <ion-label>Sin juntas del consejo</ion-label>
+            </ion-item>
+        </ng-container>
+
+    </ion-list>
+</ion-content>

@@ -1,0 +1,97 @@
+<app-main-header title="{{'CARGOS' | titlecase}}"
+                 primaryLink="syst-positions/create"
+                 primaryText="Crear {{'CARGOS' | lowercase}}"
+                 primaryIcon="add-circle-outline"></app-main-header>
+
+<ion-content id="pages-content">
+
+    <ion-searchbar showCancelButton="focus"
+                       [cancelButtonText]="'Cancelar'"
+                       [placeholder]="'Buscar ' + ('CARGOS' | lowercase )"
+                       (ionCancel)="this.systPositionsService.searchValue = ''; systPositionsService.getSystPositions()"
+                       (keyup.enter)="systPositionsService.getSystPositions()"
+                       [(ngModel)]="systPositionsService.searchValue"></ion-searchbar>
+
+    <ng-container *ngIf="!(loading.loading | async) && systPositionsService.systPositions?.length">
+        <ion-card *ngFor="let systPosition of systPositionsService.systPositions; let index = index">
+            <ion-list>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'NOMBRE' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ systPosition?.name }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'CÓDIGO' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ systPosition?.code }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'USUARIOS' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">
+                            <ng-container *ngIf="systPosition?.users?.length">
+                                <ng-container *ngFor="let user of systPosition?.users; let last = last">
+                                    <a routerLink="/users/{{ user?.id }}/edit">{{ user?.name }}</a><span *ngIf="!last">, </span>
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'EMPRESAS CONTACTOS' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">
+                            <ng-container *ngIf="systPosition?.comp_contacts?.length">
+                                <ng-container *ngFor="let compContact of systPosition?.comp_contacts; let last = last">
+                                    <a routerLink="/comp-contacts/{{ compContact?.id }}/edit">{{ compContact?.name }}</a><span *ngIf="!last">, </span>
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                    </ion-item>
+            </ion-list>
+            <ion-footer>
+                <ion-row>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="success" size="small" fill="clear" [routerLink]="'/syst-positions/' + systPosition?.id + '/edit'">
+                            <ion-icon name="create-outline"></ion-icon>
+                            <div>Editar</div>
+                        </ion-button>
+                    </ion-col>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="danger" size="small" fill="clear" (click)="systPositionsService.deleteSystPosition(systPosition?.id)">
+                            <ion-icon name="trash-outline"></ion-icon>
+                            <div>Eliminar</div>
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-footer>
+        </ion-card>
+    </ng-container>
+
+    <ng-container *ngIf="!(loading.loading | async) && !systPositionsService.systPositions?.length">
+        <ion-item>
+            <ion-icon class="text-warning" name="warning-outline" slot="start"></ion-icon>
+            <ion-label><h2>No se encontraron {{'CARGOS' | titlecase}}</h2></ion-label>
+            <ion-button [routerLink]="'/syst-positions/create'" fill="outline" color="success" slot="end">
+                Crear {{'CARGOS' | titlecase}}
+                <ion-icon name="add-circle-outline" slot="end"></ion-icon>
+            </ion-button>
+        </ion-item>
+    </ng-container>
+
+</ion-content>
+
+<ion-footer class="lists-footer">
+    <ion-row *ngIf="systPositionsService.meta">
+        <ion-col class="ion-text-center" size="12">
+            <ion-button (click)="systPositionsService.getSystPositions(systPositionsService.meta.current_page - 1)"
+                        [disabled]="systPositionsService.meta.current_page == 1"
+                        fill="clear">
+                <ion-icon slot="end" name="play-outline" style="transform: rotate(180deg);"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear" [disabled]="true"> Pag: {{systPositionsService.meta.current_page}}
+                /{{systPositionsService.meta.last_page}} {{systPositionsService.meta.from}}-{{systPositionsService.meta.to}}
+                /{{systPositionsService.meta.total}} </ion-button>
+            <ion-button (click)="systPositionsService.getSystPositions(systPositionsService.meta.current_page + 1)"
+                        [disabled]="systPositionsService.meta.current_page == systPositionsService.meta.last_page"
+                        fill="clear">
+                <ion-icon slot="start" name="play-outline"></ion-icon>
+            </ion-button>
+        </ion-col>
+    </ion-row>
+</ion-footer>

@@ -48,7 +48,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<form #usersForm=\"ngForm\" novalidate autocomplete=\"off\">\n\n\n    <!-- post_ids -->\n    <ion-item class=\"item-transparent\">\n        <ion-label>{{ 'ENTRADAS' | titlecase }}</ion-label>\n        <ionic-selectable name=\"post_ids\"\n                          id=\"post_ids-field\"\n                          [(ngModel)]=\"model.posts\"\n                          [items]=\"usersService.userLists.Post\"\n                          itemValueField=\"id\"\n                          itemTextField=\"name\"\n                          [isMultiple]=\"true\"\n                          [canClear]=\"true\"\n                          [hasConfirmButton]=\"true\"\n                          [confirmButtonText]=\"'Seleccionar'\"\n                          [searchPlaceholder]=\"'Buscar ' + ('ENTRADAS' | titlecase)\"\n                          [searchFailText]=\"'No se encontro ' + ('ENTRADAS' | titlecase) + ' que coincida!'\"\n                          [closeButtonText]=\"'Cancelar'\"\n                          [clearButtonText]=\"'Limpiar'\"\n                          [canSearch]=\"true\"\n                          (onChange)=\"setPostIds($event)\">\n        </ionic-selectable>\n    </ion-item>\n    <div class=\"validation-errors\">\n        <ng-container *ngFor=\"let validation of validationMessages.post_ids\">\n            <div class=\"error-message\" *ngIf=\"usersForm.form.controls['post_ids']?.hasError(validation.type)\">\n            {{ validation.message }}\n            </div>\n        </ng-container>\n    </div>\n    <!-- end post_ids -->\n\n\n    <!-- role_ids -->\n    <ion-item class=\"item-transparent\">\n        <ion-label>{{ 'ROLES' | titlecase }}</ion-label>\n        <ionic-selectable name=\"role_ids\"\n                          id=\"role_ids-field\"\n                          [(ngModel)]=\"model.roles\"\n                          [items]=\"usersService.userLists.Role\"\n                          itemValueField=\"id\"\n                          itemTextField=\"name\"\n                          [isMultiple]=\"true\"\n                          [canClear]=\"true\"\n                          [hasConfirmButton]=\"true\"\n                          [confirmButtonText]=\"'Seleccionar'\"\n                          [searchPlaceholder]=\"'Buscar ' + ('ROLES' | titlecase)\"\n                          [searchFailText]=\"'No se encontro ' + ('ROLES' | titlecase) + ' que coincida!'\"\n                          [closeButtonText]=\"'Cancelar'\"\n                          [clearButtonText]=\"'Limpiar'\"\n                          [canSearch]=\"true\"\n                          (onChange)=\"setRoleIds($event)\">\n        </ionic-selectable>\n    </ion-item>\n    <div class=\"validation-errors\">\n        <ng-container *ngFor=\"let validation of validationMessages.role_ids\">\n            <div class=\"error-message\" *ngIf=\"usersForm.form.controls['role_ids']?.hasError(validation.type)\">\n                {{ validation.message }}\n            </div>\n        </ng-container>\n    </div>\n    <!-- end role_ids -->\n\n\n            <!-- name -->\n            <ion-item class=\"item-transparent\">\n                <ion-label>{{ 'NAME' | titlecase }}</ion-label>\n                <ion-input [(ngModel)]=\"model.name\"\n                            type=\"text\"\n                            name=\"name\"\n                            id=\"name-field\"\n                            [required]=\"true\"\n                            placeholder=\"\"></ion-input>\n            </ion-item>\n            <div class=\"validation-errors\">\n                <ng-container *ngFor=\"let validation of validationMessages.name\">\n                    <div class=\"error-message\" *ngIf=\"usersForm.form.controls['name']?.hasError(validation.type)\">\n                        {{ validation.message }}\n                    </div>\n                </ng-container>\n            </div>\n            <!-- end name -->\n\n\n            <!-- email -->\n            <ion-item class=\"item-transparent\">\n                <ion-label>{{ 'EMAIL' | titlecase }}</ion-label>\n                <ion-input [(ngModel)]=\"model.email\"\n                            type=\"text\"\n                            name=\"email\"\n                            id=\"email-field\"\n                            [required]=\"true\"\n                            placeholder=\"\"></ion-input>\n            </ion-item>\n            <div class=\"validation-errors\">\n                <ng-container *ngFor=\"let validation of validationMessages.email\">\n                    <div class=\"error-message\" *ngIf=\"usersForm.form.controls['email']?.hasError(validation.type)\">\n                        {{ validation.message }}\n                    </div>\n                </ng-container>\n            </div>\n            <!-- end email -->\n\n\n            <!-- password -->\n            <ion-item class=\"item-transparent\">\n                <ion-label>{{ 'PASSWORD' | titlecase }}</ion-label>\n                <ion-input [(ngModel)]=\"model.password\"\n                            type=\"text\"\n                            name=\"password\"\n                            id=\"password-field\"\n                            [required]=\"true\"\n                            placeholder=\"\"></ion-input>\n            </ion-item>\n            <div class=\"validation-errors\">\n                <ng-container *ngFor=\"let validation of validationMessages.password\">\n                    <div class=\"error-message\" *ngIf=\"usersForm.form.controls['password']?.hasError(validation.type)\">\n                        {{ validation.message }}\n                    </div>\n                </ng-container>\n            </div>\n            <!-- end password -->\n\n\n</form>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<form #usersForm=\"ngForm\" novalidate autocomplete=\"off\">\n\n\n    <!-- syst_position_id -->\n    <ion-item class=\"item-transparent\">\n        <ion-label>{{ 'CARGO' | titlecase }}</ion-label>\n        <ionic-selectable name=\"syst_position_id\"\n                          id=\"syst_position_id-field\"\n                          [required]=\"true\"\n                          [(ngModel)]=\"model.syst_position\"\n                          [items]=\"usersService.userLists.SystPosition\"\n                          itemValueField=\"id\"\n                          itemTextField=\"name\"\n                          [canClear]=\"true\"\n                          [hasConfirmButton]=\"true\"\n                          [confirmButtonText]=\"'Seleccionar'\"\n                          [searchPlaceholder]=\"'Buscar ' + ('CARGOS' | titlecase)\"\n                          [searchFailText]=\"'No se encontro ' + ('CARGOS' | titlecase) + ' que coincida!'\"\n                          [closeButtonText]=\"'Cancelar'\"\n                          [clearButtonText]=\"'Limpiar'\"\n                          [canSearch]=\"true\"\n                          (onChange)=\"setSystPositionId($event)\">\n        </ionic-selectable>\n    </ion-item>\n    <div class=\"validation-errors\">\n        <ng-container *ngFor=\"let validation of validationMessages.syst_position_id\">\n            <div class=\"error-message\" *ngIf=\"usersForm.form.controls['syst_position_id']?.hasError(validation.type)\">\n                {{ validation.message }}\n            </div>\n        </ng-container>\n    </div>\n    <!-- end syst_position_id -->\n\n\n    <!-- user_profile_ids -->\n    <ion-item class=\"item-transparent\">\n        <ion-label>{{ 'PERFILES DE USUARIOS' | titlecase }}</ion-label>\n        <ionic-selectable name=\"user_profile_ids\"\n                          id=\"user_profile_ids-field\"\n                          [(ngModel)]=\"model.user_profiles\"\n                          [items]=\"usersService.userLists.UserProfile\"\n                          itemValueField=\"id\"\n                          itemTextField=\"name\"\n                          [isMultiple]=\"true\"\n                          [canClear]=\"true\"\n                          [hasConfirmButton]=\"true\"\n                          [confirmButtonText]=\"'Seleccionar'\"\n                          [searchPlaceholder]=\"'Buscar ' + ('PERFILES DE USUARIOS' | titlecase)\"\n                          [searchFailText]=\"'No se encontro ' + ('PERFILES DE USUARIOS' | titlecase) + ' que coincida!'\"\n                          [closeButtonText]=\"'Cancelar'\"\n                          [clearButtonText]=\"'Limpiar'\"\n                          [canSearch]=\"true\"\n                          (onChange)=\"setUserProfileIds($event)\">\n        </ionic-selectable>\n    </ion-item>\n    <div class=\"validation-errors\">\n        <ng-container *ngFor=\"let validation of validationMessages.user_profile_ids\">\n            <div class=\"error-message\" *ngIf=\"usersForm.form.controls['user_profile_ids']?.hasError(validation.type)\">\n            {{ validation.message }}\n            </div>\n        </ng-container>\n    </div>\n    <!-- end user_profile_ids -->\n\n\n    <!-- coun_member_ids -->\n    <ion-item class=\"item-transparent\">\n        <ion-label>{{ 'JUNTAS MIEMBROS' | titlecase }}</ion-label>\n        <ionic-selectable name=\"coun_member_ids\"\n                          id=\"coun_member_ids-field\"\n                          [(ngModel)]=\"model.coun_members\"\n                          [items]=\"usersService.userLists.CounMember\"\n                          itemValueField=\"id\"\n                          itemTextField=\"name\"\n                          [isMultiple]=\"true\"\n                          [canClear]=\"true\"\n                          [hasConfirmButton]=\"true\"\n                          [confirmButtonText]=\"'Seleccionar'\"\n                          [searchPlaceholder]=\"'Buscar ' + ('JUNTAS MIEMBROS' | titlecase)\"\n                          [searchFailText]=\"'No se encontro ' + ('JUNTAS MIEMBROS' | titlecase) + ' que coincida!'\"\n                          [closeButtonText]=\"'Cancelar'\"\n                          [clearButtonText]=\"'Limpiar'\"\n                          [canSearch]=\"true\"\n                          (onChange)=\"setCounMemberIds($event)\">\n        </ionic-selectable>\n    </ion-item>\n    <div class=\"validation-errors\">\n        <ng-container *ngFor=\"let validation of validationMessages.coun_member_ids\">\n            <div class=\"error-message\" *ngIf=\"usersForm.form.controls['coun_member_ids']?.hasError(validation.type)\">\n            {{ validation.message }}\n            </div>\n        </ng-container>\n    </div>\n    <!-- end coun_member_ids -->\n\n\n            <!-- name -->\n            <ion-item class=\"item-transparent\">\n                <ion-label>{{ 'NOMBRE' | titlecase }}</ion-label>\n                <ion-input [(ngModel)]=\"model.name\"\n                            type=\"text\"\n                            name=\"name\"\n                            id=\"name-field\"\n                            [required]=\"true\"\n                            placeholder=\"\"></ion-input>\n            </ion-item>\n            <div class=\"validation-errors\">\n                <ng-container *ngFor=\"let validation of validationMessages.name\">\n                    <div class=\"error-message\" *ngIf=\"usersForm.form.controls['name']?.hasError(validation.type)\">\n                        {{ validation.message }}\n                    </div>\n                </ng-container>\n            </div>\n            <!-- end name -->\n\n\n            <!-- email -->\n            <ion-item class=\"item-transparent\">\n                <ion-label>{{ 'EMAIL' | titlecase }}</ion-label>\n                <ion-input [(ngModel)]=\"model.email\"\n                            type=\"text\"\n                            name=\"email\"\n                            id=\"email-field\"\n                            [required]=\"true\"\n                            placeholder=\"\"></ion-input>\n            </ion-item>\n            <div class=\"validation-errors\">\n                <ng-container *ngFor=\"let validation of validationMessages.email\">\n                    <div class=\"error-message\" *ngIf=\"usersForm.form.controls['email']?.hasError(validation.type)\">\n                        {{ validation.message }}\n                    </div>\n                </ng-container>\n            </div>\n            <!-- end email -->\n\n\n            <!-- password -->\n            <ion-item class=\"item-transparent\">\n                <ion-label>{{ 'CONTRASEÑA' | titlecase }}</ion-label>\n                <ion-input [(ngModel)]=\"model.password\"\n                            type=\"text\"\n                            name=\"password\"\n                            id=\"password-field\"\n                            [required]=\"true\"\n                            placeholder=\"\"></ion-input>\n            </ion-item>\n            <div class=\"validation-errors\">\n                <ng-container *ngFor=\"let validation of validationMessages.password\">\n                    <div class=\"error-message\" *ngIf=\"usersForm.form.controls['password']?.hasError(validation.type)\">\n                        {{ validation.message }}\n                    </div>\n                </ng-container>\n            </div>\n            <!-- end password -->\n\n\n</form>\n");
 
 /***/ }),
 
@@ -61,7 +61,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<app-main-header title=\"{{'USUARIOS' | titlecase}}\"\n                 primaryLink=\"users/create\"\n                 primaryText=\"Crear {{'USUARIOS' | lowercase}}\"\n                 primaryIcon=\"add-circle-outline\"></app-main-header>\n\n<ion-content id=\"pages-content\">\n\n    <ion-searchbar showCancelButton=\"focus\"\n                       [cancelButtonText]=\"'Cancelar'\"\n                       [placeholder]=\"'Buscar ' + ('USUARIOS' | lowercase )\"\n                       (ionCancel)=\"this.usersService.searchValue = ''; usersService.getUsers()\"\n                       (keyup.enter)=\"usersService.getUsers()\"\n                       [(ngModel)]=\"usersService.searchValue\"></ion-searchbar>\n\n    <ion-card>\n\n        <ng-container *ngIf=\"!(loading.loading | async) && usersService.users.length\">\n            <ion-item *ngFor=\"let user of usersService.users; let index = index\">\n                <ion-label>\n                    <h3>{{ 'NAME' | titlecase }}: {{ user.name }}</h3>\n                    <h3>{{ 'EMAIL' | titlecase }}: {{ user.email }}</h3>\n                    <h3>{{ 'ENTRADAS' | titlecase }}:\n                    <ng-container *ngIf=\"user.posts.length\">\n                        <ng-container *ngFor=\"let post of user.posts; let last = last\">\n                        <a routerLink=\"/posts/{{ post.id }}/edit\">{{ post.name }}</a><span *ngIf=\"!last\">, </span>\n                        </ng-container>\n                    </ng-container>\n                    </h3>\n                    <h3>{{ 'ROLES' | titlecase }}:\n                    <ng-container *ngIf=\"user.roles.length\">\n                        <ng-container *ngFor=\"let role of user.roles; let last = last\">\n                        <a routerLink=\"/roles/{{ role.id }}/edit\">{{ role.name }}</a><span *ngIf=\"!last\">, </span>\n                        </ng-container>\n                    </ng-container>\n                    </h3>\n                </ion-label>\n\n\n                <ion-button item-right fill=\"clear\" color=\"success\" [routerLink]=\"'/users/' + user.id + '/edit'\">\n                    <ion-icon name=\"create-outline\"></ion-icon>\n                </ion-button>\n                <!--<ion-button item-right fill=\"clear\" color=\"success\" (click)=\"null\">\n                    <ion-icon name=\"eye-outline\"></ion-icon>\n                </ion-button>-->\n                <ion-button item-right fill=\"clear\" color=\"danger\" (click)=\"usersService.deleteUser(user.id)\">\n                    <ion-icon name=\"trash-outline\"></ion-icon>\n                </ion-button>\n            </ion-item>\n        </ng-container>\n\n        <ng-container *ngIf=\"!(loading.loading | async) && !usersService.users.length\">\n            <ion-item>\n                <ion-icon class=\"text-warning\" name=\"warning-outline\" slot=\"start\"></ion-icon>\n                <ion-label><h2>No se encontraron {{'USUARIOS' | titlecase}}</h2></ion-label>\n                <ion-button [routerLink]=\"'/users/create'\" fill=\"outline\" color=\"success\" slot=\"end\">\n                    Crear {{'USUARIOS' | titlecase}}\n                    <ion-icon name=\"add-circle-outline\" slot=\"end\"></ion-icon>\n                </ion-button>\n            </ion-item>\n        </ng-container>\n\n    </ion-card>\n\n</ion-content>\n\n<ion-footer class=\"lists-footer\">\n    <ion-row *ngIf=\"usersService.meta\">\n        <ion-col class=\"ion-text-center\" size=\"12\">\n            <ion-button (click)=\"usersService.getUsers(usersService.meta.current_page - 1)\"\n                        [disabled]=\"usersService.meta.current_page == 1\"\n                        fill=\"clear\">\n                <ion-icon slot=\"end\" name=\"play-outline\" style=\"transform: rotate(180deg);\"></ion-icon>\n            </ion-button>\n            <ion-button fill=\"clear\" [disabled]=\"true\"> Pag: {{usersService.meta.current_page}}\n                /{{usersService.meta.last_page}} {{usersService.meta.from}}-{{usersService.meta.to}}\n                /{{usersService.meta.total}} </ion-button>\n            <ion-button (click)=\"usersService.getUsers(usersService.meta.current_page + 1)\"\n                        [disabled]=\"usersService.meta.current_page == usersService.meta.last_page\"\n                        fill=\"clear\">\n                <ion-icon slot=\"start\" name=\"play-outline\"></ion-icon>\n            </ion-button>\n        </ion-col>\n    </ion-row>\n</ion-footer>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<app-main-header title=\"{{'USUARIOS' | titlecase}}\"\n                 primaryLink=\"users/create\"\n                 primaryText=\"Crear {{'USUARIOS' | lowercase}}\"\n                 primaryIcon=\"add-circle-outline\"></app-main-header>\n\n<ion-content id=\"pages-content\">\n\n    <ion-searchbar showCancelButton=\"focus\"\n                       [cancelButtonText]=\"'Cancelar'\"\n                       [placeholder]=\"'Buscar ' + ('USUARIOS' | lowercase )\"\n                       (ionCancel)=\"this.usersService.searchValue = ''; usersService.getUsers()\"\n                       (keyup.enter)=\"usersService.getUsers()\"\n                       [(ngModel)]=\"usersService.searchValue\"></ion-searchbar>\n\n    <ng-container *ngIf=\"!(loading.loading | async) && usersService.users.length\">\n        <ion-card *ngFor=\"let user of usersService.users; let index = index\">\n            <ion-list>\n                    <ion-item class=\"item-transparent\">\n                        <ion-label position=\"fixed\"><b>{{ 'NOMBRE' | titlecase }}</b></ion-label>\n                        <div class=\"wrap-text\">{{ user.name }}</div>\n                    </ion-item>\n                    <ion-item class=\"item-transparent\">\n                        <ion-label position=\"fixed\"><b>{{ 'EMAIL' | titlecase }}</b></ion-label>\n                        <div class=\"wrap-text\">{{ user.email }}</div>\n                    </ion-item>\n                    <ion-item class=\"item-transparent\">\n                        <ion-label position=\"fixed\"><b>{{ 'CARGOS' | titlecase }}</b></ion-label>\n                        <div class=\"wrap-text\"><a routerLink=\"/syst-positions/{{ user.syst_position.id }}/edit\">{{ user.syst_position.name }}</a></div>\n                    </ion-item>\n                    <ion-item class=\"item-transparent\">\n                        <ion-label position=\"fixed\"><b>{{ 'PERFILES DE USUARIOS' | titlecase }}</b></ion-label>\n                        <div class=\"wrap-text\">\n                            <ng-container *ngIf=\"user.user_profiles.length\">\n                                <ng-container *ngFor=\"let userProfile of user.user_profiles; let last = last\">\n                                    <a routerLink=\"/user-profiles/{{ userProfile.id }}/edit\">{{ userProfile.name }}</a><span *ngIf=\"!last\">, </span>\n                                </ng-container>\n                            </ng-container>\n                        </div>\n                    </ion-item>\n                    <ion-item class=\"item-transparent\">\n                        <ion-label position=\"fixed\"><b>{{ 'JUNTAS MIEMBROS' | titlecase }}</b></ion-label>\n                        <div class=\"wrap-text\">\n                            <ng-container *ngIf=\"user.coun_members.length\">\n                                <ng-container *ngFor=\"let counMember of user.coun_members; let last = last\">\n                                    <a routerLink=\"/coun-members/{{ counMember.id }}/edit\">{{ counMember.name }}</a><span *ngIf=\"!last\">, </span>\n                                </ng-container>\n                            </ng-container>\n                        </div>\n                    </ion-item>\n            </ion-list>\n            <ion-footer>\n                <ion-row>\n                    <ion-col class=\"ion-text-center\">\n                        <ion-button color=\"success\" size=\"small\" fill=\"clear\" [routerLink]=\"'/users/' + user.id + '/edit'\">\n                            <ion-icon name=\"create-outline\"></ion-icon>\n                            <div>Editar</div>\n                        </ion-button>\n                    </ion-col>\n                    <ion-col class=\"ion-text-center\">\n                        <ion-button color=\"danger\" size=\"small\" fill=\"clear\" (click)=\"usersService.deleteUser(user.id)\">\n                            <ion-icon name=\"trash-outline\"></ion-icon>\n                            <div>Eliminar</div>\n                        </ion-button>\n                    </ion-col>\n                </ion-row>\n            </ion-footer>\n        </ion-card>\n    </ng-container>\n\n    <ng-container *ngIf=\"!(loading.loading | async) && !usersService.users.length\">\n        <ion-item>\n            <ion-icon class=\"text-warning\" name=\"warning-outline\" slot=\"start\"></ion-icon>\n            <ion-label><h2>No se encontraron {{'USUARIOS' | titlecase}}</h2></ion-label>\n            <ion-button [routerLink]=\"'/users/create'\" fill=\"outline\" color=\"success\" slot=\"end\">\n                Crear {{'USUARIOS' | titlecase}}\n                <ion-icon name=\"add-circle-outline\" slot=\"end\"></ion-icon>\n            </ion-button>\n        </ion-item>\n    </ng-container>\n\n</ion-content>\n\n<ion-footer class=\"lists-footer\">\n    <ion-row *ngIf=\"usersService.meta\">\n        <ion-col class=\"ion-text-center\" size=\"12\">\n            <ion-button (click)=\"usersService.getUsers(usersService.meta.current_page - 1)\"\n                        [disabled]=\"usersService.meta.current_page == 1\"\n                        fill=\"clear\">\n                <ion-icon slot=\"end\" name=\"play-outline\" style=\"transform: rotate(180deg);\"></ion-icon>\n            </ion-button>\n            <ion-button fill=\"clear\" [disabled]=\"true\"> Pag: {{usersService.meta.current_page}}\n                /{{usersService.meta.last_page}} {{usersService.meta.from}}-{{usersService.meta.to}}\n                /{{usersService.meta.total}} </ion-button>\n            <ion-button (click)=\"usersService.getUsers(usersService.meta.current_page + 1)\"\n                        [disabled]=\"usersService.meta.current_page == usersService.meta.last_page\"\n                        fill=\"clear\">\n                <ion-icon slot=\"start\" name=\"play-outline\"></ion-icon>\n            </ion-button>\n        </ion-col>\n    </ion-row>\n</ion-footer>\n");
 
 /***/ }),
 
@@ -305,20 +305,23 @@ let UsersFormComponent = class UsersFormComponent {
         this.toTitlecase = toTitlecase;
         this.model = {};
         this.validationMessages = {
+            'syst_position_id': [
+                { type: 'required', message: 'El campo ' + this.toTitlecase.transform('CARGO') + ' es obligatorio.' },
+            ],
             'name': [
-                { type: 'required', message: 'El campo ' + this.toTitlecase.transform('NAME') + ' es obligatorio.' },
+                { type: 'required', message: 'El campo ' + this.toTitlecase.transform('NOMBRE') + ' es obligatorio.' },
             ],
             'email': [
                 { type: 'required', message: 'El campo ' + this.toTitlecase.transform('EMAIL') + ' es obligatorio.' },
             ],
             'password': [
-                { type: 'required', message: 'El campo ' + this.toTitlecase.transform('PASSWORD') + ' es obligatorio.' },
+                { type: 'required', message: 'El campo ' + this.toTitlecase.transform('CONTRASEÑA') + ' es obligatorio.' },
             ],
-            'post_ids': [
-                { type: 'required', message: 'El campo ' + this.toTitlecase.transform('ENTRADAS') + ' es obligatorio.' },
+            'user_profile_ids': [
+                { type: 'required', message: 'El campo ' + this.toTitlecase.transform('PERFILES DE USUARIOS') + ' es obligatorio.' },
             ],
-            'role_ids': [
-                { type: 'required', message: 'El campo ' + this.toTitlecase.transform('ROLES') + ' es obligatorio.' },
+            'coun_member_ids': [
+                { type: 'required', message: 'El campo ' + this.toTitlecase.transform('JUNTAS MIEMBROS') + ' es obligatorio.' },
             ],
         };
     }
@@ -326,28 +329,33 @@ let UsersFormComponent = class UsersFormComponent {
     }
     ngAfterViewInit() {
     }
-    // set setPostIds
-    setPostIds(event) {
-        let postIds = null;
-        if (event.value.length) {
-            postIds = [];
-            for (let i = 0; i < event.value.length; i++) {
-                postIds.push(event.value[i].id);
-            }
-        }
-        this.usersService.user.post_ids = postIds;
+    // set setSystPositionId
+    setSystPositionId(event) {
+        this.usersService.user.syst_position_id = event.value ? event.value.id : null;
     }
-    // end setPostIds
-    // set setRoleIds
-    setRoleIds(event) {
-        let roleIds = null;
+    // end setSystPositionId
+    // set setUserProfileIds
+    setUserProfileIds(event) {
+        let userProfileIds = null;
         if (event.value.length) {
-            roleIds = [];
+            userProfileIds = [];
             for (let i = 0; i < event.value.length; i++) {
-                roleIds.push(event.value[i].id);
+                userProfileIds.push(event.value[i].id);
             }
         }
-        this.usersService.user.role_ids = roleIds;
+        this.usersService.user.user_profile_ids = userProfileIds;
+    }
+    // end setUserProfileIds
+    // set setCounMemberIds
+    setCounMemberIds(event) {
+        let counMemberIds = null;
+        if (event.value.length) {
+            counMemberIds = [];
+            for (let i = 0; i < event.value.length; i++) {
+                counMemberIds.push(event.value[i].id);
+            }
+        }
+        this.usersService.user.coun_member_ids = counMemberIds;
     }
 };
 UsersFormComponent.ctorParameters = () => [
@@ -597,135 +605,6 @@ UsersPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
         styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./users.page.scss */ "./src/app/users/users.page.scss")).default]
     })
 ], UsersPage);
-
-
-
-/***/ }),
-
-/***/ "./src/app/users/users.service.ts":
-/*!****************************************!*\
-  !*** ./src/app/users/users.service.ts ***!
-  \****************************************/
-/*! exports provided: UsersService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UsersService", function() { return UsersService; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
-/* harmony import */ var _shared_services_api_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../@shared/services/api.service */ "./src/app/@shared/services/api.service.ts");
-/* harmony import */ var _shared_services_alert_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../@shared/services/alert.service */ "./src/app/@shared/services/alert.service.ts");
-/* harmony import */ var _shared_services_toast_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../@shared/services/toast.service */ "./src/app/@shared/services/toast.service.ts");
-/* harmony import */ var _shared_services_navigation_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../@shared/services/navigation.service */ "./src/app/@shared/services/navigation.service.ts");
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
-
-
-
-
-
-
-
-
-let UsersService = class UsersService {
-    constructor(api, alert, toast, router, navigation) {
-        this.api = api;
-        this.alert = alert;
-        this.toast = toast;
-        this.router = router;
-        this.navigation = navigation;
-        this.usersUrl = 'users';
-        this.usersFormValid = new rxjs__WEBPACK_IMPORTED_MODULE_7__["BehaviorSubject"](false);
-        this.users = [];
-        this.user = {};
-        this.userLists = {};
-        this.searchValue = '';
-        this.perPage = 10;
-        this.meta = null;
-        this.page = 1;
-        this.pagesContent = document.getElementById('pages-content');
-    }
-    getUsers(page = this.page, perPage = this.perPage) {
-        this.api.get(this.usersUrl + '?page=' + page + '&perPage=' + perPage + '&q[name:cont]=' + this.searchValue)
-            .subscribe((res) => {
-            // @ts-ignore
-            document.getElementById('pages-content').scrollToTop(300);
-            this.users = res.data;
-            this.userLists = res.lists;
-            this.meta = res.meta;
-        }, (err) => {
-            console.error(err);
-        });
-    }
-    editUser(id) {
-        this.api.get(this.usersUrl + '/' + id + '/edit')
-            .subscribe((res) => {
-            this.user = res.data.model;
-            this.userLists = res.lists;
-        }, (err) => {
-            console.error(err);
-        });
-    }
-    updateUser() {
-        this.api.put(this.usersUrl + '/' + this.user.id, {
-            model: this.user,
-            pivots: {
-                role: this.user.roles,
-            }
-        }).subscribe((res) => {
-            this.toast.present(res.message, 'toast-success', 'top');
-            this.navigation.back();
-            this.getUsers(1);
-        });
-    }
-    createUser() {
-        this.api.get(this.usersUrl + '/create')
-            .subscribe((res) => {
-            this.user = {};
-            this.userLists = res.lists;
-        });
-    }
-    storeUser() {
-        this.api.post(this.usersUrl, {
-            model: this.user,
-            pivots: {
-                role: this.user.roles,
-            }
-        }).subscribe((res) => {
-            this.toast.present(res.message, 'toast-success', 'top');
-            this.navigation.back();
-            this.getUsers(1);
-        });
-    }
-    deleteUser(id) {
-        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            const confirm = yield this.alert.confirmation('Desea eliminar el item?');
-            if (confirm) {
-                this.api.delete(this.usersUrl + '/' + id, {})
-                    .subscribe((res) => {
-                    this.toast.present(res.message, 'toast-success', 'top');
-                    this.getUsers(1);
-                });
-            }
-            else {
-                return;
-            }
-        });
-    }
-};
-UsersService.ctorParameters = () => [
-    { type: _shared_services_api_service__WEBPACK_IMPORTED_MODULE_3__["ApiService"] },
-    { type: _shared_services_alert_service__WEBPACK_IMPORTED_MODULE_4__["AlertService"] },
-    { type: _shared_services_toast_service__WEBPACK_IMPORTED_MODULE_5__["ToastService"] },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
-    { type: _shared_services_navigation_service__WEBPACK_IMPORTED_MODULE_6__["NavigationService"] }
-];
-UsersService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-        providedIn: 'root'
-    })
-], UsersService);
 
 
 

@@ -578,7 +578,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-app>\n    <ion-split-pane contentId=\"main-content\">\n        <ion-menu contentId=\"main-content\" type=\"overlay\" *ngIf=\"true\">\n            <ion-content>\n                <ion-list id=\"inbox-list\">\n                    <ion-list-header>{{'INBOX' | lowercase}}</ion-list-header>\n                    <ion-note>hi@ionicframework.com</ion-note>\n\n                    <ion-menu-toggle auto-hide=\"false\"\n                                     *ngFor=\"let p of appPages;\n                                     let i = index\">\n                        <ion-item (click)=\"selectedIndex = i\"\n                                  routerDirection=\"root\"\n                                  [routerLink]=\"[p.url]\"\n                                  lines=\"none\"\n                                  detail=\"false\"\n                                  [class.selected]=\"selectedIndex == i\">\n                            <ion-icon slot=\"start\"\n                                      [ios]=\"p.icon + '-outline'\"\n                                      [md]=\"p.icon + '-sharp'\"></ion-icon>\n                            <ion-label>{{ p.title }}</ion-label>\n                        </ion-item>\n                    </ion-menu-toggle>\n                </ion-list>\n                <ion-list id=\"pages-list\">\n<!--                    <ion-list-header>Pages</ion-list-header>-->\n                    <ion-item-divider>\n                        Pages\n                    </ion-item-divider>\n                    <ion-menu-toggle auto-hide=\"false\">\n                        <ion-item [routerLinkActive]=\"'selected'\"\n                                  [routerLinkActiveOptions]=\"{exact: true}\"\n                                  [routerLink]=\"'/barcode-scanner'\"\n                                  lines=\"none\"\n                                  detail=\"false\">\n                            <ion-icon slot=\"start\"\n                                      ios=\"bookmark-outline\"\n                                      md=\"bookmark-sharp\"></ion-icon>\n                            <ion-label>Barcode Scanner</ion-label>\n                        </ion-item>\n                        <ion-item [routerLinkActive]=\"'selected'\"\n                                  [routerLinkActiveOptions]=\"{exact: true}\"\n                                  [routerLink]=\"'/camera'\"\n                                  lines=\"none\"\n                                  detail=\"false\">\n                            <ion-icon slot=\"start\"\n                                      ios=\"bookmark-outline\"\n                                      md=\"bookmark-sharp\"></ion-icon>\n                            <ion-label>Camera</ion-label>\n                        </ion-item><ion-item [routerLinkActive]=\"'selected'\"\n                                             [routerLinkActiveOptions]=\"{exact: true}\"\n                                             [routerLink]=\"'/download'\"\n                                             lines=\"none\"\n                                             detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>Download</ion-label>\n                    </ion-item>\n\n                    </ion-menu-toggle>\n\n                </ion-list>\n                <ion-list id=\"admin-pages-list\">\n                    <ion-item-divider>\n                        Admin\n                    </ion-item-divider>\n                    <ion-menu-toggle auto-hide=\"false\">\n<!-- generated section -->\n\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/categories'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>CATEGORÍAS</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/tags'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>ETIQUETAS</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/posts'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>ENTRADAS</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/comments'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>COMENTARIOS</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/images'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>IMÁGENES</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/roles'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>ROLES</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/permissions'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>PERMISOS</ion-label>\n                    </ion-item>\n\n\n<!-- end section -->\n                    </ion-menu-toggle>\n                </ion-list>\n\n                <ion-list id=\"labels-list\">\n                    <ion-item-divider>\n                        Labels\n                    </ion-item-divider>\n\n                    <ion-item *ngFor=\"let label of labels\" lines=\"none\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>{{ label }}</ion-label>\n                    </ion-item>\n                    <ion-item-divider>\n                        Opciones\n                    </ion-item-divider>\n                    <ion-item lines=\"full\">\n                        <ion-icon slot=\"start\" [name]=\"dark ? 'moon-outline' : 'sunny-outline'\"></ion-icon>\n                        <ion-label>\n                            {{ (dark ? 'Tema Oscuro' : 'Trema Claro') }}\n                        </ion-label>\n                        <ion-toggle id=\"themeToggle\" slot=\"end\"  [(ngModel)]=\"dark\" (ionChange)=\"updateDarkMode()\"></ion-toggle>\n                    </ion-item>\n                </ion-list>\n            </ion-content>\n        </ion-menu>\n        <ion-router-outlet id=\"main-content\"></ion-router-outlet>\n    </ion-split-pane>\n</ion-app>\n";
+      __webpack_exports__["default"] = "<ion-app>\n    <ion-split-pane contentId=\"main-content\">\n        <ion-menu contentId=\"main-content\" type=\"overlay\" *ngIf=\"true\">\n            <ion-content>\n                <ion-list id=\"inbox-list\">\n                    <ion-list-header>{{'INBOX' | lowercase}}</ion-list-header>\n                    <ion-note>hi@ionicframework.com</ion-note>\n\n                    <ion-menu-toggle auto-hide=\"false\"\n                                     *ngFor=\"let p of appPages;\n                                     let i = index\">\n                        <ion-item (click)=\"selectedIndex = i\"\n                                  routerDirection=\"root\"\n                                  [routerLink]=\"[p.url]\"\n                                  lines=\"none\"\n                                  detail=\"false\"\n                                  [class.selected]=\"selectedIndex == i\">\n                            <ion-icon slot=\"start\"\n                                      [ios]=\"p.icon + '-outline'\"\n                                      [md]=\"p.icon + '-sharp'\"></ion-icon>\n                            <ion-label>{{ p.title }}</ion-label>\n                        </ion-item>\n                    </ion-menu-toggle>\n                </ion-list>\n                <ion-list id=\"pages-list\">\n                    <!--                    <ion-list-header>Pages</ion-list-header>-->\n                    <ion-item-divider>\n                        Pages\n                    </ion-item-divider>\n                    <ion-menu-toggle auto-hide=\"false\">\n                        <ion-item [routerLinkActive]=\"'selected'\"\n                                  [routerLinkActiveOptions]=\"{exact: true}\"\n                                  [routerLink]=\"'/barcode-scanner'\"\n                                  lines=\"none\"\n                                  detail=\"false\">\n                            <ion-icon slot=\"start\"\n                                      ios=\"bookmark-outline\"\n                                      md=\"bookmark-sharp\"></ion-icon>\n                            <ion-label>Barcode Scanner</ion-label>\n                        </ion-item>\n                        <ion-item [routerLinkActive]=\"'selected'\"\n                                  [routerLinkActiveOptions]=\"{exact: true}\"\n                                  [routerLink]=\"'/camera'\"\n                                  lines=\"none\"\n                                  detail=\"false\">\n                            <ion-icon slot=\"start\"\n                                      ios=\"bookmark-outline\"\n                                      md=\"bookmark-sharp\"></ion-icon>\n                            <ion-label>Camera</ion-label>\n                        </ion-item>\n                        <ion-item [routerLinkActive]=\"'selected'\"\n                                  [routerLinkActiveOptions]=\"{exact: true}\"\n                                  [routerLink]=\"'/download'\"\n                                  lines=\"none\"\n                                  detail=\"false\">\n                            <ion-icon slot=\"start\"\n                                      ios=\"bookmark-outline\"\n                                      md=\"bookmark-sharp\"></ion-icon>\n                            <ion-label>Download</ion-label>\n                        </ion-item>\n\n                    </ion-menu-toggle>\n\n                </ion-list>\n                <ion-list id=\"admin-pages-list\">\n\n                    <ion-item-divider>\n                        Juntas del consejo\n                    </ion-item-divider>\n                    <ion-menu-toggle auto-hide=\"false\">\n                        <ion-item [routerLinkActive]=\"'selected'\"\n                                  [routerLink]=\"'/coun-meetings/create/custom'\"\n                                  lines=\"none\"\n                                  detail=\"false\">\n                            <ion-icon slot=\"start\"\n                                      ios=\"bookmark-outline\"\n                                      md=\"bookmark-sharp\"></ion-icon>\n                            <ion-label>Crear junta</ion-label>\n                        </ion-item>\n                    </ion-menu-toggle>\n\n                    <ion-item-divider>\n                        Admin\n                    </ion-item-divider>\n                    <ion-menu-toggle auto-hide=\"false\">\n                        <ion-item [routerLinkActive]=\"'selected'\"\n                                  [routerLink]=\"'/users'\"\n                                  lines=\"none\"\n                                  detail=\"false\">\n                            <ion-icon slot=\"start\"\n                                      ios=\"bookmark-outline\"\n                                      md=\"bookmark-sharp\"></ion-icon>\n                            <ion-label>USUARIOS</ion-label>\n                        </ion-item>\n<!-- generated section -->\n\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/user-profiles'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>PERFILES DE USUARIOS</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/syst-cities'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>CIUDADES</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/syst-regions'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>DEPARTAMENTOS</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/syst-countries'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>PAISES</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/companies'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>EMPRESAS</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/comp-phones'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>TELÉFONOS DE EMPRESAS</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/comp-addresses'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>EMPRESAS DIRECCIONES</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/comp-contacts'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>EMPRESAS CONTACTOS</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/syst-positions'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>CARGOS</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/syst-parameters'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>PARAMETROS</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/syst-parameter-groups'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>GRUPOS DE PARAMETROS</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/comp-responsabilities'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>EMPRESAS RESPONSABILIDADES LEGALES</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/hous-units'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>UNIDADES HABITACIONALES</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/hous-unit-areas'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>AREAS DE UNIDADES HABITACIONALES</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/oper-sectors'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>SECTORES OPERATIVOS</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/coun-meetings'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>JUNTAS DEL CONSEJO</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/coun-meeting-agendas'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>JUNTAS AGENDAS</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/coun-meeting-citations'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>JUNTAS CITACIONES</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/oper-schedules'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>AGENDA DE OPERACIONES</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/oper-contractors'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>CONTRATISTAS OPERATIVOS</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/oper-movements'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>MOVIMIENTOS OPERATIVOS</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/coun-members'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>JUNTAS MIEMBROS</ion-label>\n                    </ion-item>\n\n\n<!-- end section -->\n                    </ion-menu-toggle>\n                </ion-list>\n\n                <ion-list id=\"labels-list\">\n                    <ion-item-divider>\n                        Labels\n                    </ion-item-divider>\n\n                    <ion-item *ngFor=\"let label of labels\" lines=\"none\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>{{ label }}</ion-label>\n                    </ion-item>\n                    <ion-item-divider>\n                        Opciones\n                    </ion-item-divider>\n                    <ion-item lines=\"full\">\n                        <ion-icon slot=\"start\" [name]=\"dark ? 'moon-outline' : 'sunny-outline'\"></ion-icon>\n                        <ion-label>\n                            {{ (dark ? 'Tema Oscuro' : 'Trema Claro') }}\n                        </ion-label>\n                        <ion-toggle id=\"themeToggle\" slot=\"end\" [(ngModel)]=\"dark\"\n                                    (ionChange)=\"updateDarkMode()\"></ion-toggle>\n                    </ion-item>\n                </ion-list>\n            </ion-content>\n        </ion-menu>\n        <ion-router-outlet id=\"main-content\"></ion-router-outlet>\n    </ion-split-pane>\n</ion-app>\n";
       /***/
     },
 
@@ -4296,9 +4296,9 @@
       }, {
         path: 'users',
         loadChildren: function loadChildren() {
-          return __webpack_require__.e(
+          return Promise.all(
           /*! import() | users-users-module */
-          "users-users-module").then(__webpack_require__.bind(null,
+          [__webpack_require__.e("common"), __webpack_require__.e("users-users-module")]).then(__webpack_require__.bind(null,
           /*! ./users/users.module */
           "./src/app/users/users.module.ts")).then(function (m) {
             return m.UsersPageModule;
@@ -4306,80 +4306,245 @@
         }
       }, // generated section
       {
-        path: 'categories',
+        path: 'user-profiles',
         loadChildren: function loadChildren() {
           return __webpack_require__.e(
-          /*! import() | categories-categories-module */
-          "categories-categories-module").then(__webpack_require__.bind(null,
-          /*! ./categories/categories.module */
-          "./src/app/categories/categories.module.ts")).then(function (m) {
-            return m.CategoriesPageModule;
+          /*! import() | user-profiles-user-profiles-module */
+          "user-profiles-user-profiles-module").then(__webpack_require__.bind(null,
+          /*! ./user-profiles/user-profiles.module */
+          "./src/app/user-profiles/user-profiles.module.ts")).then(function (m) {
+            return m.UserProfilesPageModule;
           });
         }
       }, {
-        path: 'tags',
+        path: 'syst-cities',
         loadChildren: function loadChildren() {
           return __webpack_require__.e(
-          /*! import() | tags-tags-module */
-          "tags-tags-module").then(__webpack_require__.bind(null,
-          /*! ./tags/tags.module */
-          "./src/app/tags/tags.module.ts")).then(function (m) {
-            return m.TagsPageModule;
+          /*! import() | syst-cities-syst-cities-module */
+          "syst-cities-syst-cities-module").then(__webpack_require__.bind(null,
+          /*! ./syst-cities/syst-cities.module */
+          "./src/app/syst-cities/syst-cities.module.ts")).then(function (m) {
+            return m.SystCitiesPageModule;
           });
         }
       }, {
-        path: 'posts',
+        path: 'syst-regions',
         loadChildren: function loadChildren() {
           return __webpack_require__.e(
-          /*! import() | posts-posts-module */
-          "posts-posts-module").then(__webpack_require__.bind(null,
-          /*! ./posts/posts.module */
-          "./src/app/posts/posts.module.ts")).then(function (m) {
-            return m.PostsPageModule;
+          /*! import() | syst-regions-syst-regions-module */
+          "syst-regions-syst-regions-module").then(__webpack_require__.bind(null,
+          /*! ./syst-regions/syst-regions.module */
+          "./src/app/syst-regions/syst-regions.module.ts")).then(function (m) {
+            return m.SystRegionsPageModule;
           });
         }
       }, {
-        path: 'comments',
+        path: 'syst-countries',
         loadChildren: function loadChildren() {
           return __webpack_require__.e(
-          /*! import() | comments-comments-module */
-          "comments-comments-module").then(__webpack_require__.bind(null,
-          /*! ./comments/comments.module */
-          "./src/app/comments/comments.module.ts")).then(function (m) {
-            return m.CommentsPageModule;
+          /*! import() | syst-countries-syst-countries-module */
+          "syst-countries-syst-countries-module").then(__webpack_require__.bind(null,
+          /*! ./syst-countries/syst-countries.module */
+          "./src/app/syst-countries/syst-countries.module.ts")).then(function (m) {
+            return m.SystCountriesPageModule;
           });
         }
       }, {
-        path: 'images',
+        path: 'companies',
         loadChildren: function loadChildren() {
           return __webpack_require__.e(
-          /*! import() | images-images-module */
-          "images-images-module").then(__webpack_require__.bind(null,
-          /*! ./images/images.module */
-          "./src/app/images/images.module.ts")).then(function (m) {
-            return m.ImagesPageModule;
+          /*! import() | companies-companies-module */
+          "companies-companies-module").then(__webpack_require__.bind(null,
+          /*! ./companies/companies.module */
+          "./src/app/companies/companies.module.ts")).then(function (m) {
+            return m.CompaniesPageModule;
           });
         }
       }, {
-        path: 'roles',
+        path: 'comp-phones',
         loadChildren: function loadChildren() {
           return __webpack_require__.e(
-          /*! import() | roles-roles-module */
-          "roles-roles-module").then(__webpack_require__.bind(null,
-          /*! ./roles/roles.module */
-          "./src/app/roles/roles.module.ts")).then(function (m) {
-            return m.RolesPageModule;
+          /*! import() | comp-phones-comp-phones-module */
+          "comp-phones-comp-phones-module").then(__webpack_require__.bind(null,
+          /*! ./comp-phones/comp-phones.module */
+          "./src/app/comp-phones/comp-phones.module.ts")).then(function (m) {
+            return m.CompPhonesPageModule;
           });
         }
       }, {
-        path: 'permissions',
+        path: 'comp-addresses',
         loadChildren: function loadChildren() {
           return __webpack_require__.e(
-          /*! import() | permissions-permissions-module */
-          "permissions-permissions-module").then(__webpack_require__.bind(null,
-          /*! ./permissions/permissions.module */
-          "./src/app/permissions/permissions.module.ts")).then(function (m) {
-            return m.PermissionsPageModule;
+          /*! import() | comp-addresses-comp-addresses-module */
+          "comp-addresses-comp-addresses-module").then(__webpack_require__.bind(null,
+          /*! ./comp-addresses/comp-addresses.module */
+          "./src/app/comp-addresses/comp-addresses.module.ts")).then(function (m) {
+            return m.CompAddressesPageModule;
+          });
+        }
+      }, {
+        path: 'comp-contacts',
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | comp-contacts-comp-contacts-module */
+          "comp-contacts-comp-contacts-module").then(__webpack_require__.bind(null,
+          /*! ./comp-contacts/comp-contacts.module */
+          "./src/app/comp-contacts/comp-contacts.module.ts")).then(function (m) {
+            return m.CompContactsPageModule;
+          });
+        }
+      }, {
+        path: 'syst-positions',
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | syst-positions-syst-positions-module */
+          "syst-positions-syst-positions-module").then(__webpack_require__.bind(null,
+          /*! ./syst-positions/syst-positions.module */
+          "./src/app/syst-positions/syst-positions.module.ts")).then(function (m) {
+            return m.SystPositionsPageModule;
+          });
+        }
+      }, {
+        path: 'syst-parameters',
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | syst-parameters-syst-parameters-module */
+          "syst-parameters-syst-parameters-module").then(__webpack_require__.bind(null,
+          /*! ./syst-parameters/syst-parameters.module */
+          "./src/app/syst-parameters/syst-parameters.module.ts")).then(function (m) {
+            return m.SystParametersPageModule;
+          });
+        }
+      }, {
+        path: 'syst-parameter-groups',
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | syst-parameter-groups-syst-parameter-groups-module */
+          "syst-parameter-groups-syst-parameter-groups-module").then(__webpack_require__.bind(null,
+          /*! ./syst-parameter-groups/syst-parameter-groups.module */
+          "./src/app/syst-parameter-groups/syst-parameter-groups.module.ts")).then(function (m) {
+            return m.SystParameterGroupsPageModule;
+          });
+        }
+      }, {
+        path: 'comp-responsabilities',
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | comp-responsabilities-comp-responsabilities-module */
+          "comp-responsabilities-comp-responsabilities-module").then(__webpack_require__.bind(null,
+          /*! ./comp-responsabilities/comp-responsabilities.module */
+          "./src/app/comp-responsabilities/comp-responsabilities.module.ts")).then(function (m) {
+            return m.CompResponsabilitiesPageModule;
+          });
+        }
+      }, {
+        path: 'hous-units',
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | hous-units-hous-units-module */
+          "hous-units-hous-units-module").then(__webpack_require__.bind(null,
+          /*! ./hous-units/hous-units.module */
+          "./src/app/hous-units/hous-units.module.ts")).then(function (m) {
+            return m.HousUnitsPageModule;
+          });
+        }
+      }, {
+        path: 'hous-unit-areas',
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | hous-unit-areas-hous-unit-areas-module */
+          "hous-unit-areas-hous-unit-areas-module").then(__webpack_require__.bind(null,
+          /*! ./hous-unit-areas/hous-unit-areas.module */
+          "./src/app/hous-unit-areas/hous-unit-areas.module.ts")).then(function (m) {
+            return m.HousUnitAreasPageModule;
+          });
+        }
+      }, {
+        path: 'oper-sectors',
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | oper-sectors-oper-sectors-module */
+          "oper-sectors-oper-sectors-module").then(__webpack_require__.bind(null,
+          /*! ./oper-sectors/oper-sectors.module */
+          "./src/app/oper-sectors/oper-sectors.module.ts")).then(function (m) {
+            return m.OperSectorsPageModule;
+          });
+        }
+      }, {
+        path: 'coun-meetings',
+        loadChildren: function loadChildren() {
+          return Promise.all(
+          /*! import() | coun-meetings-coun-meetings-module */
+          [__webpack_require__.e("common"), __webpack_require__.e("coun-meetings-coun-meetings-module")]).then(__webpack_require__.bind(null,
+          /*! ./coun-meetings/coun-meetings.module */
+          "./src/app/coun-meetings/coun-meetings.module.ts")).then(function (m) {
+            return m.CounMeetingsPageModule;
+          });
+        }
+      }, {
+        path: 'coun-meeting-agendas',
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | coun-meeting-agendas-coun-meeting-agendas-module */
+          "coun-meeting-agendas-coun-meeting-agendas-module").then(__webpack_require__.bind(null,
+          /*! ./coun-meeting-agendas/coun-meeting-agendas.module */
+          "./src/app/coun-meeting-agendas/coun-meeting-agendas.module.ts")).then(function (m) {
+            return m.CounMeetingAgendasPageModule;
+          });
+        }
+      }, {
+        path: 'coun-meeting-citations',
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | coun-meeting-citations-coun-meeting-citations-module */
+          "coun-meeting-citations-coun-meeting-citations-module").then(__webpack_require__.bind(null,
+          /*! ./coun-meeting-citations/coun-meeting-citations.module */
+          "./src/app/coun-meeting-citations/coun-meeting-citations.module.ts")).then(function (m) {
+            return m.CounMeetingCitationsPageModule;
+          });
+        }
+      }, {
+        path: 'oper-schedules',
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | oper-schedules-oper-schedules-module */
+          "oper-schedules-oper-schedules-module").then(__webpack_require__.bind(null,
+          /*! ./oper-schedules/oper-schedules.module */
+          "./src/app/oper-schedules/oper-schedules.module.ts")).then(function (m) {
+            return m.OperSchedulesPageModule;
+          });
+        }
+      }, {
+        path: 'oper-contractors',
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | oper-contractors-oper-contractors-module */
+          "oper-contractors-oper-contractors-module").then(__webpack_require__.bind(null,
+          /*! ./oper-contractors/oper-contractors.module */
+          "./src/app/oper-contractors/oper-contractors.module.ts")).then(function (m) {
+            return m.OperContractorsPageModule;
+          });
+        }
+      }, {
+        path: 'oper-movements',
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | oper-movements-oper-movements-module */
+          "oper-movements-oper-movements-module").then(__webpack_require__.bind(null,
+          /*! ./oper-movements/oper-movements.module */
+          "./src/app/oper-movements/oper-movements.module.ts")).then(function (m) {
+            return m.OperMovementsPageModule;
+          });
+        }
+      }, {
+        path: 'coun-members',
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | coun-members-coun-members-module */
+          "coun-members-coun-members-module").then(__webpack_require__.bind(null,
+          /*! ./coun-members/coun-members.module */
+          "./src/app/coun-members/coun-members.module.ts")).then(function (m) {
+            return m.CounMembersPageModule;
           });
         }
       }];

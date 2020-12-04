@@ -63,6 +63,31 @@
 
                 </ion-list>
                 <ion-list id="admin-pages-list">
+
+                    <ion-item-divider>
+                        Juntas del consejo
+                    </ion-item-divider>
+                    <ion-menu-toggle auto-hide="false">
+                        <ion-item [routerLinkActive]="'selected'"
+                                  [routerLink]="'/coun-meetings/create/custom'"
+                                  lines="none"
+                                  detail="false">
+                            <ion-icon slot="start"
+                                      ios="bookmark-outline"
+                                      md="bookmark-sharp"></ion-icon>
+                            <ion-label>Crear junta</ion-label>
+                        </ion-item>
+                        <ion-item [routerLinkActive]="'selected'"
+                                  [routerLink]="'/coun-meetings/list/custom'"
+                                  lines="none"
+                                  detail="false">
+                            <ion-icon slot="start"
+                                      ios="bookmark-outline"
+                                      md="bookmark-sharp"></ion-icon>
+                            <ion-label>Registrar juntas de consejo</ion-label>
+                        </ion-item>
+                    </ion-menu-toggle>
+
                     <ion-item-divider>
                         Admin
                     </ion-item-divider>
@@ -77,6 +102,224 @@
                             <ion-label>USUARIOS</ion-label>
                         </ion-item>
 <!-- generated section -->
+
+                    <ion-item [routerLinkActive]="'selected'"
+                              [routerLink]="'/user-profiles'"
+                              lines="none"
+                              detail="false">
+                        <ion-icon slot="start"
+                                  ios="bookmark-outline"
+                                  md="bookmark-sharp"></ion-icon>
+                        <ion-label>PERFILES DE USUARIOS</ion-label>
+                    </ion-item>
+                    <ion-item [routerLinkActive]="'selected'"
+                              [routerLink]="'/syst-cities'"
+                              lines="none"
+                              detail="false">
+                        <ion-icon slot="start"
+                                  ios="bookmark-outline"
+                                  md="bookmark-sharp"></ion-icon>
+                        <ion-label>CIUDADES</ion-label>
+                    </ion-item>
+                    <ion-item [routerLinkActive]="'selected'"
+                              [routerLink]="'/syst-regions'"
+                              lines="none"
+                              detail="false">
+                        <ion-icon slot="start"
+                                  ios="bookmark-outline"
+                                  md="bookmark-sharp"></ion-icon>
+                        <ion-label>DEPARTAMENTOS</ion-label>
+                    </ion-item>
+                    <ion-item [routerLinkActive]="'selected'"
+                              [routerLink]="'/syst-countries'"
+                              lines="none"
+                              detail="false">
+                        <ion-icon slot="start"
+                                  ios="bookmark-outline"
+                                  md="bookmark-sharp"></ion-icon>
+                        <ion-label>PAISES</ion-label>
+                    </ion-item>
+                    <ion-item [routerLinkActive]="'selected'"
+                              [routerLink]="'/companies'"
+                              lines="none"
+                              detail="false">
+                        <ion-icon slot="start"
+                                  ios="bookmark-outline"
+                                  md="bookmark-sharp"></ion-icon>
+                        <ion-label>EMPRESAS</ion-label>
+                    </ion-item>
+                    <ion-item [routerLinkActive]="'selected'"
+                              [routerLink]="'/comp-phones'"
+                              lines="none"
+                              detail="false">
+                        <ion-icon slot="start"
+                                  ios="bookmark-outline"
+                                  md="bookmark-sharp"></ion-icon>
+                        <ion-label>TELÉFONOS DE EMPRESAS</ion-label>
+                    </ion-item>
+                    <ion-item [routerLinkActive]="'selected'"
+                              [routerLink]="'/comp-addresses'"
+                              lines="none"
+                              detail="false">
+                        <ion-icon slot="start"
+                                  ios="bookmark-outline"
+                                  md="bookmark-sharp"></ion-icon>
+                        <ion-label>EMPRESAS DIRECCIONES</ion-label>
+                    </ion-item>
+                    <ion-item [routerLinkActive]="'selected'"
+                              [routerLink]="'/comp-contacts'"
+                              lines="none"
+                              detail="false">
+                        <ion-icon slot="start"
+                                  ios="bookmark-outline"
+                                  md="bookmark-sharp"></ion-icon>
+                        <ion-label>EMPRESAS CONTACTOS</ion-label>
+                    </ion-item>
+                    <ion-item [routerLinkActive]="'selected'"
+                              [routerLink]="'/syst-positions'"
+                              lines="none"
+                              detail="false">
+                        <ion-icon slot="start"
+                                  ios="bookmark-outline"
+                                  md="bookmark-sharp"></ion-icon>
+                        <ion-label>CARGOS</ion-label>
+                    </ion-item>
+                    <ion-item [routerLinkActive]="'selected'"
+                              [routerLink]="'/syst-parameters'"
+                              lines="none"
+                              detail="false">
+                        <ion-icon slot="start"
+                                  ios="bookmark-outline"
+                                  md="bookmark-sharp"></ion-icon>
+                        <ion-label>PARAMETROS</ion-label>
+                    </ion-item>
+                    <ion-item [routerLinkActive]="'selected'"
+                              [routerLink]="'/syst-parameter-groups'"
+                              lines="none"
+                              detail="false">
+                        <ion-icon slot="start"
+                                  ios="bookmark-outline"
+                                  md="bookmark-sharp"></ion-icon>
+                        <ion-label>GRUPOS DE PARAMETROS</ion-label>
+                    </ion-item>
+                    <ion-item [routerLinkActive]="'selected'"
+                              [routerLink]="'/comp-responsabilities'"
+                              lines="none"
+                              detail="false">
+                        <ion-icon slot="start"
+                                  ios="bookmark-outline"
+                                  md="bookmark-sharp"></ion-icon>
+                        <ion-label>EMPRESAS RESPONSABILIDADES LEGALES</ion-label>
+                    </ion-item>
+                    <ion-item [routerLinkActive]="'selected'"
+                              [routerLink]="'/hous-units'"
+                              lines="none"
+                              detail="false">
+                        <ion-icon slot="start"
+                                  ios="bookmark-outline"
+                                  md="bookmark-sharp"></ion-icon>
+                        <ion-label>UNIDADES HABITACIONALES</ion-label>
+                    </ion-item>
+                    <ion-item [routerLinkActive]="'selected'"
+                              [routerLink]="'/hous-unit-areas'"
+                              lines="none"
+                              detail="false">
+                        <ion-icon slot="start"
+                                  ios="bookmark-outline"
+                                  md="bookmark-sharp"></ion-icon>
+                        <ion-label>AREAS DE UNIDADES HABITACIONALES</ion-label>
+                    </ion-item>
+                    <ion-item [routerLinkActive]="'selected'"
+                              [routerLink]="'/oper-sectors'"
+                              lines="none"
+                              detail="false">
+                        <ion-icon slot="start"
+                                  ios="bookmark-outline"
+                                  md="bookmark-sharp"></ion-icon>
+                        <ion-label>SECTORES OPERATIVOS</ion-label>
+                    </ion-item>
+                    <ion-item [routerLinkActive]="'selected'"
+                              [routerLink]="'/coun-meetings'"
+                              lines="none"
+                              detail="false">
+                        <ion-icon slot="start"
+                                  ios="bookmark-outline"
+                                  md="bookmark-sharp"></ion-icon>
+                        <ion-label>JUNTAS DEL CONSEJO</ion-label>
+                    </ion-item>
+                    <ion-item [routerLinkActive]="'selected'"
+                              [routerLink]="'/coun-meeting-agendas'"
+                              lines="none"
+                              detail="false">
+                        <ion-icon slot="start"
+                                  ios="bookmark-outline"
+                                  md="bookmark-sharp"></ion-icon>
+                        <ion-label>JUNTAS AGENDAS</ion-label>
+                    </ion-item>
+                    <ion-item [routerLinkActive]="'selected'"
+                              [routerLink]="'/coun-meeting-citations'"
+                              lines="none"
+                              detail="false">
+                        <ion-icon slot="start"
+                                  ios="bookmark-outline"
+                                  md="bookmark-sharp"></ion-icon>
+                        <ion-label>JUNTAS CITACIONES</ion-label>
+                    </ion-item>
+                    <ion-item [routerLinkActive]="'selected'"
+                              [routerLink]="'/oper-schedules'"
+                              lines="none"
+                              detail="false">
+                        <ion-icon slot="start"
+                                  ios="bookmark-outline"
+                                  md="bookmark-sharp"></ion-icon>
+                        <ion-label>AGENDA DE OPERACIONES</ion-label>
+                    </ion-item>
+                    <ion-item [routerLinkActive]="'selected'"
+                              [routerLink]="'/oper-contractors'"
+                              lines="none"
+                              detail="false">
+                        <ion-icon slot="start"
+                                  ios="bookmark-outline"
+                                  md="bookmark-sharp"></ion-icon>
+                        <ion-label>CONTRATISTAS OPERATIVOS</ion-label>
+                    </ion-item>
+                    <ion-item [routerLinkActive]="'selected'"
+                              [routerLink]="'/oper-movements'"
+                              lines="none"
+                              detail="false">
+                        <ion-icon slot="start"
+                                  ios="bookmark-outline"
+                                  md="bookmark-sharp"></ion-icon>
+                        <ion-label>MOVIMIENTOS OPERATIVOS</ion-label>
+                    </ion-item>
+                    <ion-item [routerLinkActive]="'selected'"
+                              [routerLink]="'/coun-members'"
+                              lines="none"
+                              detail="false">
+                        <ion-icon slot="start"
+                                  ios="bookmark-outline"
+                                  md="bookmark-sharp"></ion-icon>
+                        <ion-label>JUNTAS MIEMBROS</ion-label>
+                    </ion-item>
+                    <ion-item [routerLinkActive]="'selected'"
+                              [routerLink]="'/mail-templates'"
+                              lines="none"
+                              detail="false">
+                        <ion-icon slot="start"
+                                  ios="bookmark-outline"
+                                  md="bookmark-sharp"></ion-icon>
+                        <ion-label>CORREOS PLANTILLAS</ion-label>
+                    </ion-item>
+                    <ion-item [routerLinkActive]="'selected'"
+                              [routerLink]="'/mails'"
+                              lines="none"
+                              detail="false">
+                        <ion-icon slot="start"
+                                  ios="bookmark-outline"
+                                  md="bookmark-sharp"></ion-icon>
+                        <ion-label>CORREOS</ion-label>
+                    </ion-item>
+
 
 <!-- end section -->
                     </ion-menu-toggle>

@@ -1,0 +1,101 @@
+<app-main-header title="{{'DEPARTAMENTOS' | titlecase}}"
+                 primaryLink="syst-regions/create"
+                 primaryText="Crear {{'DEPARTAMENTOS' | lowercase}}"
+                 primaryIcon="add-circle-outline"></app-main-header>
+
+<ion-content id="pages-content">
+
+    <ion-searchbar showCancelButton="focus"
+                       [cancelButtonText]="'Cancelar'"
+                       [placeholder]="'Buscar ' + ('DEPARTAMENTOS' | lowercase )"
+                       (ionCancel)="this.systRegionsService.searchValue = ''; systRegionsService.getSystRegions()"
+                       (keyup.enter)="systRegionsService.getSystRegions()"
+                       [(ngModel)]="systRegionsService.searchValue"></ion-searchbar>
+
+    <ng-container *ngIf="!(loading.loading | async) && systRegionsService.systRegions?.length">
+        <ion-card *ngFor="let systRegion of systRegionsService.systRegions; let index = index">
+            <ion-list>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'NAME' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ systRegion?.name }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'CÓDIGO' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ systRegion?.code }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'PERFILES DE USUARIOS' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">
+                            <ng-container *ngIf="systRegion?.user_profiles?.length">
+                                <ng-container *ngFor="let userProfile of systRegion?.user_profiles; let last = last">
+                                    <a routerLink="/user-profiles/{{ userProfile?.id }}/edit">{{ userProfile?.name }}</a><span *ngIf="!last">, </span>
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'CIUDADES' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">
+                            <ng-container *ngIf="systRegion?.syst_cities?.length">
+                                <ng-container *ngFor="let systCity of systRegion?.syst_cities; let last = last">
+                                    <a routerLink="/syst-cities/{{ systCity?.id }}/edit">{{ systCity?.name }}</a><span *ngIf="!last">, </span>
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'PAISES' | titlecase }}</b></ion-label>
+                        <div class="wrap-text"><a routerLink="/syst-countries/{{ systRegion?.syst_country?.id }}/edit">{{ systRegion?.syst_country?.name }}</a></div>
+                    </ion-item>
+            </ion-list>
+            <ion-footer>
+                <ion-row>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="success" size="small" fill="clear" [routerLink]="'/syst-regions/' + systRegion?.id + '/edit'">
+                            <ion-icon name="create-outline"></ion-icon>
+                            <div>Editar</div>
+                        </ion-button>
+                    </ion-col>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="danger" size="small" fill="clear" (click)="systRegionsService.deleteSystRegion(systRegion?.id)">
+                            <ion-icon name="trash-outline"></ion-icon>
+                            <div>Eliminar</div>
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-footer>
+        </ion-card>
+    </ng-container>
+
+    <ng-container *ngIf="!(loading.loading | async) && !systRegionsService.systRegions?.length">
+        <ion-item>
+            <ion-icon class="text-warning" name="warning-outline" slot="start"></ion-icon>
+            <ion-label><h2>No se encontraron {{'DEPARTAMENTOS' | titlecase}}</h2></ion-label>
+            <ion-button [routerLink]="'/syst-regions/create'" fill="outline" color="success" slot="end">
+                Crear {{'DEPARTAMENTOS' | titlecase}}
+                <ion-icon name="add-circle-outline" slot="end"></ion-icon>
+            </ion-button>
+        </ion-item>
+    </ng-container>
+
+</ion-content>
+
+<ion-footer class="lists-footer">
+    <ion-row *ngIf="systRegionsService.meta">
+        <ion-col class="ion-text-center" size="12">
+            <ion-button (click)="systRegionsService.getSystRegions(systRegionsService.meta.current_page - 1)"
+                        [disabled]="systRegionsService.meta.current_page == 1"
+                        fill="clear">
+                <ion-icon slot="end" name="play-outline" style="transform: rotate(180deg);"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear" [disabled]="true"> Pag: {{systRegionsService.meta.current_page}}
+                /{{systRegionsService.meta.last_page}} {{systRegionsService.meta.from}}-{{systRegionsService.meta.to}}
+                /{{systRegionsService.meta.total}} </ion-button>
+            <ion-button (click)="systRegionsService.getSystRegions(systRegionsService.meta.current_page + 1)"
+                        [disabled]="systRegionsService.meta.current_page == systRegionsService.meta.last_page"
+                        fill="clear">
+                <ion-icon slot="start" name="play-outline"></ion-icon>
+            </ion-button>
+        </ion-col>
+    </ion-row>
+</ion-footer>

@@ -1,0 +1,205 @@
+<form #userProfilesForm="ngForm" novalidate autocomplete="off">
+
+
+    <!-- user_id -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'USUARIO' | titlecase }}</ion-label>
+        <ionic-selectable name="user_id"
+                          id="user_id-field"
+                          [required]="true"
+                          [(ngModel)]="model.user"
+                          [items]="userProfilesService.userProfileLists.User"
+                          itemValueField="id"
+                          itemTextField="name"
+                          [canClear]="true"
+                          [hasConfirmButton]="true"
+                          [confirmButtonText]="'Seleccionar'"
+                          [searchPlaceholder]="'Buscar ' + ('USUARIOS' | titlecase)"
+                          [searchFailText]="'No se encontro ' + ('USUARIOS' | titlecase) + ' que coincida!'"
+                          [closeButtonText]="'Cancelar'"
+                          [clearButtonText]="'Limpiar'"
+                          [canSearch]="true"
+                          (onChange)="setUserId($event)">
+        </ionic-selectable>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.user_id">
+            <div class="error-message" *ngIf="userProfilesForm.form.controls['user_id']?.hasError(validation.type)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end user_id -->
+
+
+    <!-- syst_city_id -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'CIUDADE' | titlecase }}</ion-label>
+        <ionic-selectable name="syst_city_id"
+                          id="syst_city_id-field"
+                          [required]="true"
+                          [(ngModel)]="model.syst_city"
+                          [items]="userProfilesService.userProfileLists.SystCity"
+                          itemValueField="id"
+                          itemTextField="name"
+                          [canClear]="true"
+                          [hasConfirmButton]="true"
+                          [confirmButtonText]="'Seleccionar'"
+                          [searchPlaceholder]="'Buscar ' + ('CIUDADES' | titlecase)"
+                          [searchFailText]="'No se encontro ' + ('CIUDADES' | titlecase) + ' que coincida!'"
+                          [closeButtonText]="'Cancelar'"
+                          [clearButtonText]="'Limpiar'"
+                          [canSearch]="true"
+                          (onChange)="setSystCityId($event)">
+        </ionic-selectable>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.syst_city_id">
+            <div class="error-message" *ngIf="userProfilesForm.form.controls['syst_city_id']?.hasError(validation.type)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end syst_city_id -->
+
+
+    <!-- syst_region_id -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'DEPARTAMENTO' | titlecase }}</ion-label>
+        <ionic-selectable name="syst_region_id"
+                          id="syst_region_id-field"
+                          [required]="true"
+                          [(ngModel)]="model.syst_region"
+                          [items]="userProfilesService.userProfileLists.SystRegion"
+                          itemValueField="id"
+                          itemTextField="name"
+                          [canClear]="true"
+                          [hasConfirmButton]="true"
+                          [confirmButtonText]="'Seleccionar'"
+                          [searchPlaceholder]="'Buscar ' + ('DEPARTAMENTOS' | titlecase)"
+                          [searchFailText]="'No se encontro ' + ('DEPARTAMENTOS' | titlecase) + ' que coincida!'"
+                          [closeButtonText]="'Cancelar'"
+                          [clearButtonText]="'Limpiar'"
+                          [canSearch]="true"
+                          (onChange)="setSystRegionId($event)">
+        </ionic-selectable>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.syst_region_id">
+            <div class="error-message" *ngIf="userProfilesForm.form.controls['syst_region_id']?.hasError(validation.type)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end syst_region_id -->
+
+
+    <!-- syst_country_id -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'PAISE' | titlecase }}</ion-label>
+        <ionic-selectable name="syst_country_id"
+                          id="syst_country_id-field"
+                          [required]="true"
+                          [(ngModel)]="model.syst_country"
+                          [items]="userProfilesService.userProfileLists.SystCountry"
+                          itemValueField="id"
+                          itemTextField="name"
+                          [canClear]="true"
+                          [hasConfirmButton]="true"
+                          [confirmButtonText]="'Seleccionar'"
+                          [searchPlaceholder]="'Buscar ' + ('PAISES' | titlecase)"
+                          [searchFailText]="'No se encontro ' + ('PAISES' | titlecase) + ' que coincida!'"
+                          [closeButtonText]="'Cancelar'"
+                          [clearButtonText]="'Limpiar'"
+                          [canSearch]="true"
+                          (onChange)="setSystCountryId($event)">
+        </ionic-selectable>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.syst_country_id">
+            <div class="error-message" *ngIf="userProfilesForm.form.controls['syst_country_id']?.hasError(validation.type)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end syst_country_id -->
+
+
+            <!-- name -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'NOMBRE' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.name"
+                            type="text"
+                            name="name"
+                            id="name-field"
+                            [required]="true"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.name">
+                    <div class="error-message" *ngIf="userProfilesForm.form.controls['name']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end name -->
+
+
+            <!-- address -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'DORECCIÓN' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.address"
+                            type="text"
+                            name="address"
+                            id="address-field"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.address">
+                    <div class="error-message" *ngIf="userProfilesForm.form.controls['address']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end address -->
+
+
+            <!-- phone -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'TELÉFONO' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.phone"
+                            type="text"
+                            name="phone"
+                            id="phone-field"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.phone">
+                    <div class="error-message" *ngIf="userProfilesForm.form.controls['phone']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end phone -->
+
+
+            <!-- avatar -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'AVATAR' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.avatar"
+                            type="text"
+                            name="avatar"
+                            id="avatar-field"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.avatar">
+                    <div class="error-message" *ngIf="userProfilesForm.form.controls['avatar']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end avatar -->
+
+
+</form>

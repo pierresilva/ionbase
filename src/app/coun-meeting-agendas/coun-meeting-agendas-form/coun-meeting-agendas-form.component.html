@@ -1,0 +1,92 @@
+<form #counMeetingAgendasForm="ngForm" novalidate autocomplete="off">
+
+
+    <!-- coun_meeting_id -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'JUNTASDELCONSEJO' | titlecase }}</ion-label>
+        <ionic-selectable name="coun_meeting_id"
+                          id="coun_meeting_id-field"
+                          [required]="true"
+                          [(ngModel)]="model.coun_meeting"
+                          [items]="counMeetingAgendasService.counMeetingAgendaLists.CounMeeting"
+                          itemValueField="id"
+                          itemTextField="name"
+                          [canClear]="true"
+                          [hasConfirmButton]="true"
+                          [confirmButtonText]="'Seleccionar'"
+                          [searchPlaceholder]="'Buscar ' + ('JUNTAS DEL CONSEJO' | titlecase)"
+                          [searchFailText]="'No se encontro ' + ('JUNTAS DEL CONSEJO' | titlecase) + ' que coincida!'"
+                          [closeButtonText]="'Cancelar'"
+                          [clearButtonText]="'Limpiar'"
+                          [canSearch]="true"
+                          (onChange)="setCounMeetingId($event)">
+        </ionic-selectable>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.coun_meeting_id">
+            <div class="error-message" *ngIf="counMeetingAgendasForm.form.controls['coun_meeting_id']?.hasError(validation.type)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end coun_meeting_id -->
+
+
+            <!-- name -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'NOMBRE' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.name"
+                            type="text"
+                            name="name"
+                            id="name-field"
+                            [required]="true"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.name">
+                    <div class="error-message" *ngIf="counMeetingAgendasForm.form.controls['name']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end name -->
+
+
+            <!-- order -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'ORDEN' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.order"
+                            type="text"
+                            name="order"
+                            id="order-field"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.order">
+                    <div class="error-message" *ngIf="counMeetingAgendasForm.form.controls['order']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end order -->
+
+
+            <!-- content -->
+            <ion-item class="item-transparent">
+                <ion-label position="stacked" style="font-size: 1rem;">{{ 'CONTENIDO' | titlecase }}</ion-label>
+                <input [ngxSummernote]
+                       name="content"
+                       id="content-field"
+                       [(ngModel)]="model.content">
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.content">
+                    <div class="error-message" *ngIf="counMeetingAgendasForm.form.controls['content']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end content -->
+
+
+</form>

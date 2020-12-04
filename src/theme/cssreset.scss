@@ -1,0 +1,118 @@
+/*e
+	TODO will need to remove settings on HTML since we can't namespace it.
+	TODO with the prefix, should I group by selector or property for weight savings?
+*/
+.cssreset html{
+    color:#000 !important;
+    background:#FFF !important;
+}
+/*
+	TODO remove settings on BODY since we can't namespace it.
+*/
+/*
+	TODO test putting a class on HEAD.
+		- Fails on FF.
+*/
+.cssreset body,
+.cssreset div,
+.cssreset dl,
+.cssreset dt,
+.cssreset dd,
+.cssreset ul,
+.cssreset ol,
+.cssreset li,
+.cssreset h1,
+.cssreset h2,
+.cssreset h3,
+.cssreset h4,
+.cssreset h5,
+.cssreset h6,
+.cssreset pre,
+.cssreset code,
+.cssreset form,
+.cssreset fieldset,
+.cssreset legend,
+.cssreset input,
+.cssreset textarea,
+.cssreset p,
+.cssreset blockquote,
+.cssreset th,
+.cssreset td {
+    margin:0 !important;
+    padding:0 !important;
+}
+.cssreset table {
+    border-collapse:collapse !important;
+    border-spacing:0 !important;
+}
+.cssreset fieldset,
+.cssreset img {
+    border:0 !important;
+}
+/*
+	TODO think about hanlding inheritence differently, maybe letting IE6 fail a bit...
+*/
+.cssreset address,
+.cssreset caption,
+.cssreset cite,
+.cssreset code,
+.cssreset dfn,
+.cssreset em,
+.cssreset strong,
+.cssreset th,
+.cssreset var {
+    font-style:normal !important;
+    font-weight:normal !important;
+}
+
+.cssreset ol,
+.cssreset ul {
+    list-style:none !important;
+}
+
+.cssreset caption,
+.cssreset th {
+    text-align:left !important;
+}
+.cssreset h1,
+.cssreset h2,
+.cssreset h3,
+.cssreset h4,
+.cssreset h5,
+.cssreset h6 {
+    font-size:100% !important;
+    font-weight:normal !important;
+}
+.cssreset q:before,
+.cssreset q:after {
+    content:'' !important;
+}
+.cssreset abbr,
+.cssreset acronym {
+    border:0 !important;
+    font-variant:normal !important;
+}
+/* to preserve line-height and selector appearance */
+.cssreset sup {
+    vertical-align:text-top !important;
+}
+.cssreset sub {
+    vertical-align:text-bottom !important;
+}
+.cssreset input,
+.cssreset textarea,
+.cssreset select {
+    font-family:inherit !important;
+    font-size:inherit !important;
+    font-weight:inherit !important;
+}
+/*to enable resizing for IE*/
+.cssreset input,
+.cssreset textarea,
+.cssreset select {
+    *font-size:100% !important;
+}
+/*because legend doesn't inherit in IE */
+.cssreset legend {
+    color:#000 !important;
+}

@@ -1,0 +1,97 @@
+<app-main-header title="{{'UNIDADES HABITACIONALES' | titlecase}}"
+                 primaryLink="hous-units/create"
+                 primaryText="Crear {{'UNIDADES HABITACIONALES' | lowercase}}"
+                 primaryIcon="add-circle-outline"></app-main-header>
+
+<ion-content id="pages-content">
+
+    <ion-searchbar showCancelButton="focus"
+                       [cancelButtonText]="'Cancelar'"
+                       [placeholder]="'Buscar ' + ('UNIDADES HABITACIONALES' | lowercase )"
+                       (ionCancel)="this.housUnitsService.searchValue = ''; housUnitsService.getHousUnits()"
+                       (keyup.enter)="housUnitsService.getHousUnits()"
+                       [(ngModel)]="housUnitsService.searchValue"></ion-searchbar>
+
+    <ng-container *ngIf="!(loading.loading | async) && housUnitsService.housUnits?.length">
+        <ion-card *ngFor="let housUnit of housUnitsService.housUnits; let index = index">
+            <ion-list>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'NOMBRE' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ housUnit?.name }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'CÓDIGO' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ housUnit?.code }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'AREAS DE UNIDADES HABITACIONALES' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">
+                            <ng-container *ngIf="housUnit?.hous_unit_areas?.length">
+                                <ng-container *ngFor="let housUnitArea of housUnit?.hous_unit_areas; let last = last">
+                                    <a routerLink="/hous-unit-areas/{{ housUnitArea?.id }}/edit">{{ housUnitArea?.name }}</a><span *ngIf="!last">, </span>
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'SECTORES OPERATIVOS' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">
+                            <ng-container *ngIf="housUnit?.oper_sectors?.length">
+                                <ng-container *ngFor="let operSector of housUnit?.oper_sectors; let last = last">
+                                    <a routerLink="/oper-sectors/{{ operSector?.id }}/edit">{{ operSector?.name }}</a><span *ngIf="!last">, </span>
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                    </ion-item>
+            </ion-list>
+            <ion-footer>
+                <ion-row>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="success" size="small" fill="clear" [routerLink]="'/hous-units/' + housUnit?.id + '/edit'">
+                            <ion-icon name="create-outline"></ion-icon>
+                            <div>Editar</div>
+                        </ion-button>
+                    </ion-col>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="danger" size="small" fill="clear" (click)="housUnitsService.deleteHousUnit(housUnit?.id)">
+                            <ion-icon name="trash-outline"></ion-icon>
+                            <div>Eliminar</div>
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-footer>
+        </ion-card>
+    </ng-container>
+
+    <ng-container *ngIf="!(loading.loading | async) && !housUnitsService.housUnits?.length">
+        <ion-item>
+            <ion-icon class="text-warning" name="warning-outline" slot="start"></ion-icon>
+            <ion-label><h2>No se encontraron {{'UNIDADES HABITACIONALES' | titlecase}}</h2></ion-label>
+            <ion-button [routerLink]="'/hous-units/create'" fill="outline" color="success" slot="end">
+                Crear {{'UNIDADES HABITACIONALES' | titlecase}}
+                <ion-icon name="add-circle-outline" slot="end"></ion-icon>
+            </ion-button>
+        </ion-item>
+    </ng-container>
+
+</ion-content>
+
+<ion-footer class="lists-footer">
+    <ion-row *ngIf="housUnitsService.meta">
+        <ion-col class="ion-text-center" size="12">
+            <ion-button (click)="housUnitsService.getHousUnits(housUnitsService.meta.current_page - 1)"
+                        [disabled]="housUnitsService.meta.current_page == 1"
+                        fill="clear">
+                <ion-icon slot="end" name="play-outline" style="transform: rotate(180deg);"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear" [disabled]="true"> Pag: {{housUnitsService.meta.current_page}}
+                /{{housUnitsService.meta.last_page}} {{housUnitsService.meta.from}}-{{housUnitsService.meta.to}}
+                /{{housUnitsService.meta.total}} </ion-button>
+            <ion-button (click)="housUnitsService.getHousUnits(housUnitsService.meta.current_page + 1)"
+                        [disabled]="housUnitsService.meta.current_page == housUnitsService.meta.last_page"
+                        fill="clear">
+                <ion-icon slot="start" name="play-outline"></ion-icon>
+            </ion-button>
+        </ion-col>
+    </ion-row>
+</ion-footer>

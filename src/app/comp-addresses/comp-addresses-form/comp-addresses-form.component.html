@@ -1,0 +1,124 @@
+<form #compAddressesForm="ngForm" novalidate autocomplete="off">
+
+
+    <!-- company_id -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'EMPRESA' | titlecase }}</ion-label>
+        <ionic-selectable name="company_id"
+                          id="company_id-field"
+                          [required]="true"
+                          [(ngModel)]="model.company"
+                          [items]="compAddressesService.compAddressLists.Company"
+                          itemValueField="id"
+                          itemTextField="name"
+                          [canClear]="true"
+                          [hasConfirmButton]="true"
+                          [confirmButtonText]="'Seleccionar'"
+                          [searchPlaceholder]="'Buscar ' + ('EMPRESAS' | titlecase)"
+                          [searchFailText]="'No se encontro ' + ('EMPRESAS' | titlecase) + ' que coincida!'"
+                          [closeButtonText]="'Cancelar'"
+                          [clearButtonText]="'Limpiar'"
+                          [canSearch]="true"
+                          (onChange)="setCompanyId($event)">
+        </ionic-selectable>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.company_id">
+            <div class="error-message" *ngIf="compAddressesForm.form.controls['company_id']?.hasError(validation.type)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end company_id -->
+
+
+    <!-- syst_city_id -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'CIUDADE' | titlecase }}</ion-label>
+        <ionic-selectable name="syst_city_id"
+                          id="syst_city_id-field"
+                          [required]="true"
+                          [(ngModel)]="model.syst_city"
+                          [items]="compAddressesService.compAddressLists.SystCity"
+                          itemValueField="id"
+                          itemTextField="name"
+                          [canClear]="true"
+                          [hasConfirmButton]="true"
+                          [confirmButtonText]="'Seleccionar'"
+                          [searchPlaceholder]="'Buscar ' + ('CIUDADES' | titlecase)"
+                          [searchFailText]="'No se encontro ' + ('CIUDADES' | titlecase) + ' que coincida!'"
+                          [closeButtonText]="'Cancelar'"
+                          [clearButtonText]="'Limpiar'"
+                          [canSearch]="true"
+                          (onChange)="setSystCityId($event)">
+        </ionic-selectable>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.syst_city_id">
+            <div class="error-message" *ngIf="compAddressesForm.form.controls['syst_city_id']?.hasError(validation.type)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end syst_city_id -->
+
+
+            <!-- name -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'NOMBRE' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.name"
+                            type="text"
+                            name="name"
+                            id="name-field"
+                            [required]="true"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.name">
+                    <div class="error-message" *ngIf="compAddressesForm.form.controls['name']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end name -->
+
+
+            <!-- address -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'DIRECCIÓN' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.address"
+                            type="text"
+                            name="address"
+                            id="address-field"
+                            [required]="true"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.address">
+                    <div class="error-message" *ngIf="compAddressesForm.form.controls['address']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end address -->
+
+
+            <!-- main -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'PRINCIPAL' | titlecase }}</ion-label>
+                <ion-toggle name="main"
+                            id="main-field"
+                            slot="end"
+                            [(ngModel)]="model.main"></ion-toggle>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.main">
+                    <div class="error-message" *ngIf="compAddressesForm.form.controls['main']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end main -->
+
+
+</form>

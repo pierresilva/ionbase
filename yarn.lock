@@ -1706,6 +1706,13 @@ alphanum-sort@^1.0.0:
   resolved "https://registry.yarnpkg.com/alphanum-sort/-/alphanum-sort-1.0.2.tgz#97a1119649b211ad33691d9f9f486a8ec9fbe0a3"
   integrity sha1-l6ERlkmyEa0zaR2fn0hqjsn74KM=
 
+angular2-signaturepad@^2.11.0:
+  version "2.11.0"
+  resolved "https://registry.yarnpkg.com/angular2-signaturepad/-/angular2-signaturepad-2.11.0.tgz#c2b147800b1262534edc35c08e70dd72c9f6d5aa"
+  integrity sha512-20Dc9wfLYzXUDaziKBllCkvgcccEriV3kEAfWaWVKj/QM+8CXBUVk/eo3iNLA9XKE5xmomIwPcVAx4Ge3jkliA==
+  dependencies:
+    signature_pad "2.3.2"
+
 ansi-colors@4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/ansi-colors/-/ansi-colors-4.1.1.tgz#cbb9ae256bf750af1eab344f229aa27fe94ba348"
@@ -4959,6 +4966,11 @@ ionicons@^5.1.2:
   version "5.2.3"
   resolved "https://registry.yarnpkg.com/ionicons/-/ionicons-5.2.3.tgz#af4018ea7585b1e9ae11757731c77f2f36e0c7ac"
   integrity sha512-87qtgBkieKVFagwYA9Cf91B3PCahQbEOMwMt8bSvlQSgflZ4eE5qI4MGj2ZlIyadeX0dgo+0CzZsy3ow0CsBAg==
+
+ionicsignaturepad@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/ionicsignaturepad/-/ionicsignaturepad-1.0.1.tgz#426a44bb4805157ca9580357b5be3eeb8fe6cfb1"
+  integrity sha512-RIUslEYlAEvkxeUbtOBFvW9YbBO6VyyrYUVWoZ+j1zu87TX3zKo81BkkXUp66UsTo9mRfuy8HSxdXhSoDzlqBw==
 
 ip-regex@^2.1.0:
   version "2.1.0"
@@ -8216,6 +8228,16 @@ signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.3.tgz#a1410c2edd8f077b08b4e253c8eacfcaf057461c"
   integrity sha512-VUJ49FC8U1OxwZLxIbTTrDvLnf/6TDgxZcK8wxR8zs13xpx7xbG60ndBlhNrFi2EMuFRoeDoJO7wthSLq42EjA==
+
+signature_pad@2.3.2:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/signature_pad/-/signature_pad-2.3.2.tgz#ca7230021c89cedeead27b33d8d16ff254e5f04a"
+  integrity sha512-peYXLxOsIY6MES2TrRLDiNg2T++8gGbpP2yaC+6Ohtxr+a2dzoaqWosWDY9sWqTAAk6E/TyQO+LJw9zQwyu5kA==
+
+signature_pad@^3.0.0-beta.4:
+  version "3.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/signature_pad/-/signature_pad-3.0.0-beta.4.tgz#2a8441559e9f439e7f2f525da3ee630ef973ecf6"
+  integrity sha512-cOf2NhVuTiuNqe2X/ycEmizvCDXk0DoemhsEpnkcGnA4kS5iJYTCqZ9As7tFBbsch45Q1EdX61833+6sjJ8rrw==
 
 simple-swizzle@^0.2.2:
   version "0.2.2"

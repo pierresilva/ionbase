@@ -1,0 +1,89 @@
+<app-main-header title="{{'EMPRESAS DIRECCIONES' | titlecase}}"
+                 primaryLink="comp-addresses/create"
+                 primaryText="Crear {{'EMPRESAS DIRECCIONES' | lowercase}}"
+                 primaryIcon="add-circle-outline"></app-main-header>
+
+<ion-content id="pages-content">
+
+    <ion-searchbar showCancelButton="focus"
+                       [cancelButtonText]="'Cancelar'"
+                       [placeholder]="'Buscar ' + ('EMPRESAS DIRECCIONES' | lowercase )"
+                       (ionCancel)="this.compAddressesService.searchValue = ''; compAddressesService.getCompAddresses()"
+                       (keyup.enter)="compAddressesService.getCompAddresses()"
+                       [(ngModel)]="compAddressesService.searchValue"></ion-searchbar>
+
+    <ng-container *ngIf="!(loading.loading | async) && compAddressesService.compAddresses?.length">
+        <ion-card *ngFor="let compAddress of compAddressesService.compAddresses; let index = index">
+            <ion-list>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'NOMBRE' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ compAddress?.name }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'DIRECCIÓN' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ compAddress?.address }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'PRINCIPAL' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ compAddress?.main  ? 'Si' : 'No' }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'EMPRESAS' | titlecase }}</b></ion-label>
+                        <div class="wrap-text"><a routerLink="/companies/{{ compAddress?.company?.id }}/edit">{{ compAddress?.company?.name }}</a></div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'CIUDADES' | titlecase }}</b></ion-label>
+                        <div class="wrap-text"><a routerLink="/syst-cities/{{ compAddress?.syst_city?.id }}/edit">{{ compAddress?.syst_city?.name }}</a></div>
+                    </ion-item>
+            </ion-list>
+            <ion-footer>
+                <ion-row>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="success" size="small" fill="clear" [routerLink]="'/comp-addresses/' + compAddress?.id + '/edit'">
+                            <ion-icon name="create-outline"></ion-icon>
+                            <div>Editar</div>
+                        </ion-button>
+                    </ion-col>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="danger" size="small" fill="clear" (click)="compAddressesService.deleteCompAddress(compAddress?.id)">
+                            <ion-icon name="trash-outline"></ion-icon>
+                            <div>Eliminar</div>
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-footer>
+        </ion-card>
+    </ng-container>
+
+    <ng-container *ngIf="!(loading.loading | async) && !compAddressesService.compAddresses?.length">
+        <ion-item>
+            <ion-icon class="text-warning" name="warning-outline" slot="start"></ion-icon>
+            <ion-label><h2>No se encontraron {{'EMPRESAS DIRECCIONES' | titlecase}}</h2></ion-label>
+            <ion-button [routerLink]="'/comp-addresses/create'" fill="outline" color="success" slot="end">
+                Crear {{'EMPRESAS DIRECCIONES' | titlecase}}
+                <ion-icon name="add-circle-outline" slot="end"></ion-icon>
+            </ion-button>
+        </ion-item>
+    </ng-container>
+
+</ion-content>
+
+<ion-footer class="lists-footer">
+    <ion-row *ngIf="compAddressesService.meta">
+        <ion-col class="ion-text-center" size="12">
+            <ion-button (click)="compAddressesService.getCompAddresses(compAddressesService.meta.current_page - 1)"
+                        [disabled]="compAddressesService.meta.current_page == 1"
+                        fill="clear">
+                <ion-icon slot="end" name="play-outline" style="transform: rotate(180deg);"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear" [disabled]="true"> Pag: {{compAddressesService.meta.current_page}}
+                /{{compAddressesService.meta.last_page}} {{compAddressesService.meta.from}}-{{compAddressesService.meta.to}}
+                /{{compAddressesService.meta.total}} </ion-button>
+            <ion-button (click)="compAddressesService.getCompAddresses(compAddressesService.meta.current_page + 1)"
+                        [disabled]="compAddressesService.meta.current_page == compAddressesService.meta.last_page"
+                        fill="clear">
+                <ion-icon slot="start" name="play-outline"></ion-icon>
+            </ion-button>
+        </ion-col>
+    </ion-row>
+</ion-footer>
