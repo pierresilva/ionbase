@@ -31,6 +31,30 @@
                     @else
                       EMAIL                    @endif
                   </div></th>
+                  <th scope="col"><div class="d-flex">
+                    @if( method_exists($users, 'appends') )
+                      <a href="javascript:sortByColumn('first_name')">NOMBRE</a>
+                      @if( Request::input('q.s') == 'first_name_asc' )<i class="material-icons">arrow_drop_up</i>
+                      @elseif( Request::input('q.s') == 'first_name_desc' )<i class="material-icons">arrow_drop_down</i> @endif
+                    @else
+                      NOMBRE                    @endif
+                  </div></th>
+                  <th scope="col"><div class="d-flex">
+                    @if( method_exists($users, 'appends') )
+                      <a href="javascript:sortByColumn('last_name')">APELLIDOS</a>
+                      @if( Request::input('q.s') == 'last_name_asc' )<i class="material-icons">arrow_drop_up</i>
+                      @elseif( Request::input('q.s') == 'last_name_desc' )<i class="material-icons">arrow_drop_down</i> @endif
+                    @else
+                      APELLIDOS                    @endif
+                  </div></th>
+                  <th scope="col"><div class="d-flex">
+                    @if( method_exists($users, 'appends') )
+                      <a href="javascript:sortByColumn('accept_terms_condition')"></a>
+                      @if( Request::input('q.s') == 'accept_terms_condition_asc' )<i class="material-icons">arrow_drop_up</i>
+                      @elseif( Request::input('q.s') == 'accept_terms_condition_desc' )<i class="material-icons">arrow_drop_down</i> @endif
+                    @else
+                                          @endif
+                  </div></th>
 
                   <th scope="col">CARGOS</th>
 
@@ -48,6 +72,9 @@
                       <td scope="row"><a href="{{ route('users.show', $user->id) }}">{{$user->id}}</a></td>
                       <td>{{$user->name}}</td>
                       <td>{{$user->email}}</td>
+                      <td>{{$user->first_name}}</td>
+                      <td>{{$user->last_name}}</td>
+                      <td>{{$user->accept_terms_condition}}</td>
 
                       <td>@if($user->systPosition)<a href="{{ route('systPositions.show', $user->systPosition->id) }}">{{ $user->systPosition->name }}</a>@else - @endif</td>
 

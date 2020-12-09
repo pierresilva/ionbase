@@ -7,7 +7,7 @@ export interface File {
     extension?: any,
     mime?: any,
     url?: any,
-    filable_id?: any,
+    fileable_id?: any,
     fileable_type?: any,
     created_at?: any;
     updated_at?: any;

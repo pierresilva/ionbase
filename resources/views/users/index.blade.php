@@ -55,7 +55,25 @@
                                 <input class="form-control form-control-sm" id="q_email_cont" name="q[email:cont]" type="search" value="{{ @(Request::input('q.email:cont')) }}">
                               </div>
                             </div>
-                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                        <div class="form-group row">
+                              <label for="q_first_name_cont" class="col-sm-2 col-form-label col-form-label-sm">NOMBRE</label>
+                              <div class="col-sm-10">
+                                <input class="form-control form-control-sm" id="q_first_name_cont" name="q[first_name:cont]" type="search" value="{{ @(Request::input('q.first_name:cont')) }}">
+                              </div>
+                            </div>
+                                                                                                                                                                        <div class="form-group row">
+                              <label for="q_last_name_cont" class="col-sm-2 col-form-label col-form-label-sm">APELLIDOS</label>
+                              <div class="col-sm-10">
+                                <input class="form-control form-control-sm" id="q_last_name_cont" name="q[last_name:cont]" type="search" value="{{ @(Request::input('q.last_name:cont')) }}">
+                              </div>
+                            </div>
+                                                                                                                                                                        <div class="form-group row">
+                              <label for="q_accept_terms_condition_cont" class="col-sm-2 col-form-label col-form-label-sm"></label>
+                              <div class="col-sm-10">
+                                <input class="form-control form-control-sm" id="q_accept_terms_condition_cont" name="q[accept_terms_condition:cont]" type="search" value="{{ @(Request::input('q.accept_terms_condition:cont')) }}">
+                              </div>
+                            </div>
+                                                                                    
                                                                                     <div class="form-group row">
                               <label for="q_syst_position_id_eq" class="col-sm-2 col-form-label col-form-label-sm">CARGOS<br>belongsTo</label>
                               <div class="col-sm-10">

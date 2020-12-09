@@ -51,13 +51,11 @@ class File extends Model
 	protected $fillable = ['name','file','extension','mime','url','fileable_id','fileable_type',];
     protected $dates = ['deleted_at'];
 
-
 	// Validate Rule
     public static function getValidateRule(File $file=null){
+        $ignore_unique = null;
         if($file){
             $ignore_unique = $file->id;
-        }else{
-            $ignore_unique = 'NULL';
         }
         $table_name = 'files';
         $validation_rule = [
@@ -67,7 +65,7 @@ class File extends Model
             'model.extension' => 'nullable',
             'model.mime' => 'nullable',
             'model.url' => 'nullable',
-            'model.filableid' => 'nullable',
+            'model.fileable_id' => 'nullable',
             'model.fileable_type' => 'nullable',
 
 
@@ -77,8 +75,6 @@ class File extends Model
         }
         return $validation_rule;
     }
-
-
 
 
 
@@ -93,6 +89,7 @@ class File extends Model
 		$lists = [];
 		return $lists;
 	}
+
 
 
 // end section

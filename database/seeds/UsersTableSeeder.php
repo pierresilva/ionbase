@@ -24,6 +24,9 @@ class UsersTableSeeder extends Seeder
                 'name' => $faker->name,
                 'email' => $faker->email,
                 'password' => bcrypt('secret'),
+                'first_name' => $faker->firstName(),
+                'last_name' => $faker->lastName,
+                'accept_terms_condition' => $faker->boolean(50),
             ]);
         }
         Schema::enableForeignKeyConstraints();

@@ -28,6 +28,15 @@ export class UsersFormComponent implements OnInit, AfterViewInit {
         'password': [
             {type: 'required', message: 'El campo ' + this.toTitlecase.transform('CONTRASEÑA') + ' es obligatorio.'},
         ],
+        'first_name': [
+            {type: 'required', message: 'El campo ' + this.toTitlecase.transform('NOMBRE') + ' es obligatorio.'},
+        ],
+        'last_name': [
+            {type: 'required', message: 'El campo ' + this.toTitlecase.transform('APELLIDOS') + ' es obligatorio.'},
+        ],
+        'accept_terms_condition': [
+            {type: 'required', message: 'El campo ' + this.toTitlecase.transform('') + ' es obligatorio.'},
+        ],
         'user_profile_ids': [
             {type: 'required', message: 'El campo ' + this.toTitlecase.transform('PERFILES DE USUARIOS') + ' es obligatorio.'},
         ],

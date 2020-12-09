@@ -57,9 +57,9 @@
                   </div></th>
                   <th scope="col"><div class="d-flex">
                     @if( method_exists($files, 'appends') )
-                      <a href="javascript:sortByColumn('filableid')">ARCHIVABLE ID</a>
-                      @if( Request::input('q.s') == 'filableid_asc' )<i class="material-icons">arrow_drop_up</i>
-                      @elseif( Request::input('q.s') == 'filableid_desc' )<i class="material-icons">arrow_drop_down</i> @endif
+                      <a href="javascript:sortByColumn('fileable_id')">ARCHIVABLE ID</a>
+                      @if( Request::input('q.s') == 'fileable_id_asc' )<i class="material-icons">arrow_drop_up</i>
+                      @elseif( Request::input('q.s') == 'fileable_id_desc' )<i class="material-icons">arrow_drop_down</i> @endif
                     @else
                       ARCHIVABLE ID                    @endif
                   </div></th>
@@ -87,7 +87,7 @@
                       <td>{{$file->extension}}</td>
                       <td>{{$file->mime}}</td>
                       <td>{{$file->url}}</td>
-                      <td>{{$file->filableid}}</td>
+                      <td>{{$file->fileable_id}}</td>
                       <td>{{$file->fileable_type}}</td>
 
 

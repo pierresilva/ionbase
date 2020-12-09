@@ -84,6 +84,8 @@ Route::get("mails/{mail}/duplicate", ['as' => 'mails.duplicate', 'uses' => 'Mail
 Route::resource("mails","MailController");
 Route::get("files/{file}/duplicate", ['as' => 'files.duplicate', 'uses' => 'FileController@duplicate']);
 Route::resource("files","FileController");
+Route::get("corrPackets/{corrPacket}/duplicate", ['as' => 'corrPackets.duplicate', 'uses' => 'CorrPacketController@duplicate']);
+Route::resource("corrPackets","CorrPacketController");
 
 
 // end section

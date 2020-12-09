@@ -53,6 +53,54 @@
 </div>
 
 
+<div class="form-group">
+  <label for="first_name-field">NOMBRE</label>
+
+  <input type="text" class="form-control
+  @if($errors->any()) @if($errors->has("model.first_name")) is-invalid @else is-valid @endif @endif;
+  " id="first_name-field" name="model[first_name]" value="
+@if(isset($user))
+@if($errors->any()){{ old('model.first_name') }}@else{{ $user->first_name ?? '' }}@endif
+@endif" >
+
+  @if($errors->has("model.first_name"))
+    <div class="invalid-feedback">{{ $errors->first("model.first_name") }}</div>
+  @else
+    <div class="invalid-feedback">Invalid!</div>
+  @endif
+</div>
+
+
+<div class="form-group">
+  <label for="last_name-field">APELLIDOS</label>
+
+  <input type="text" class="form-control
+  @if($errors->any()) @if($errors->has("model.last_name")) is-invalid @else is-valid @endif @endif;
+  " id="last_name-field" name="model[last_name]" value="
+@if(isset($user))
+@if($errors->any()){{ old('model.last_name') }}@else{{ $user->last_name ?? '' }}@endif
+@endif" >
+
+  @if($errors->has("model.last_name"))
+    <div class="invalid-feedback">{{ $errors->first("model.last_name") }}</div>
+  @else
+    <div class="invalid-feedback">Invalid!</div>
+  @endif
+</div>
+
+
+<div class="form-group">
+  <label for="accept_terms_condition-field"></label>
+
+
+  @if($errors->has("model.accept_terms_condition"))
+    <div class="invalid-feedback">{{ $errors->first("model.accept_terms_condition") }}</div>
+  @else
+    <div class="invalid-feedback">Invalid!</div>
+  @endif
+</div>
+
+
 
 
 

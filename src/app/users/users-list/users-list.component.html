@@ -24,6 +24,14 @@
                         <div class="wrap-text">{{ user?.email }}</div>
                     </ion-item>
                     <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'NOMBRE' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ user?.first_name }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'APELLIDOS' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ user?.last_name }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
                         <ion-label position="fixed"><b>{{ 'CARGOS' | titlecase }}</b></ion-label>
                         <div class="wrap-text"><a routerLink="/syst-positions/{{ user?.syst_position?.id }}/edit">{{ user?.syst_position?.name }}</a></div>
                     </ion-item>

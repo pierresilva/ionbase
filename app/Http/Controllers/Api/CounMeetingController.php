@@ -84,7 +84,7 @@ class CounMeetingController extends ApiController
 
         $input = $request->input('model');
 
-
+                                                                                                                                                                                                        
         DB::beginTransaction();
         try {
           //create data
@@ -140,7 +140,7 @@ class CounMeetingController extends ApiController
 
                         $counMeeting->coun_meeting_agenda_ids = collect($counMeeting->counMeetingAgendas)->pluck('id');
                                         $counMeeting->coun_meeting_citation_ids = collect($counMeeting->counMeetingCitations)->pluck('id');
-
+                        
         $resource = $counMeeting->toArray();
         $resource['lists'] = CounMeeting::getLists();
 
@@ -165,7 +165,7 @@ class CounMeetingController extends ApiController
         $counMeeting = CounMeeting::with(CounMeeting::getRelationships())->findOrFail($counMeetingId);
                         $counMeeting->coun_meeting_agenda_ids = collect($counMeeting->counMeetingAgendas)->pluck('id');
                                         $counMeeting->coun_meeting_citation_ids = collect($counMeeting->counMeetingCitations)->pluck('id');
-
+                        
         return $this->responseSuccess(
           'Formulario para editar JUNTASDELCONSEJO!',
           [
@@ -189,7 +189,7 @@ class CounMeetingController extends ApiController
         $counMeeting->id = null;
                         $counMeeting->coun_meeting_agenda_ids = collect($counMeeting->counMeetingAgendas)->pluck('id');
                                         $counMeeting->coun_meeting_citation_ids = collect($counMeeting->counMeetingCitations)->pluck('id');
-
+                        
         return $this->responseSuccess(
           'Formulario para duplicar JUNTASDELCONSEJO!',
           [
@@ -217,7 +217,7 @@ class CounMeetingController extends ApiController
 
         $input = $request->input('model');
 
-
+                                                                                                                                                                                                        
         DB::beginTransaction();
         try {
           //update data

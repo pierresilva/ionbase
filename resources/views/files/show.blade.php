@@ -35,7 +35,7 @@
                                                                                                                   <li class="list-group-item d-inline-flex flex-wrap"><div><strong>EXTENSION : </strong></div><div>{{ $file->extension }}</div></li>
                                                                                                                   <li class="list-group-item d-inline-flex flex-wrap"><div><strong>MIME : </strong></div><div>{{ $file->mime }}</div></li>
                                                                                                                   <li class="list-group-item d-inline-flex flex-wrap"><div><strong>URL : </strong></div><div>{{ $file->url }}</div></li>
-                                                                                                                  <li class="list-group-item d-inline-flex flex-wrap"><div><strong>ARCHIVABLE ID : </strong></div><div>{{ $file->filableid }}</div></li>
+                                                                                                                  <li class="list-group-item d-inline-flex flex-wrap"><div><strong>ARCHIVABLE ID : </strong></div><div>{{ $file->fileable_id }}</div></li>
                                                                                                                   <li class="list-group-item d-inline-flex flex-wrap"><div><strong>ARCHIVABLE TIPO : </strong></div><div>{{ $file->fileable_type }}</div></li>
                                                       
                   

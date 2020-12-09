@@ -33,6 +33,9 @@
                                                                                                                   <li class="list-group-item d-inline-flex flex-wrap"><div><strong>NOMBRE : </strong></div><div>{{ $user->name }}</div></li>
                                                                                                                   <li class="list-group-item d-inline-flex flex-wrap"><div><strong>EMAIL : </strong></div><div>{{ $user->email }}</div></li>
                                                                                                                   <li class="list-group-item d-inline-flex flex-wrap"><div><strong>CONTRASEÑA : </strong></div><div>{{ $user->password }}</div></li>
+                                                                                                                  <li class="list-group-item d-inline-flex flex-wrap"><div><strong>NOMBRE : </strong></div><div>{{ $user->first_name }}</div></li>
+                                                                                                                  <li class="list-group-item d-inline-flex flex-wrap"><div><strong>APELLIDOS : </strong></div><div>{{ $user->last_name }}</div></li>
+                                                                                                                  <li class="list-group-item d-inline-flex flex-wrap"><div><strong> : </strong></div><div>{{ $user->accept_terms_condition }}</div></li>
                                                       
                                                             <li class="list-group-item d-inline-flex flex-wrap"><div><strong>CARGOS : </strong></div><div>{{ $user->systPosition->name ?? '' }}</div></li>
                                                                                                                                                 

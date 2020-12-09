@@ -102,6 +102,8 @@ Route::get("mails/{mailId}/duplicate", ['as' => 'api.mails.duplicate', 'uses' =>
 Route::resource("mails","Api\MailController");
 Route::get("files/{fileId}/duplicate", ['as' => 'api.files.duplicate', 'uses' => 'Api\FileController@duplicate']);
 Route::resource("files","Api\FileController");
+Route::get("corr-packets/{corrPacketId}/duplicate", ['as' => 'api.corr-packets.duplicate', 'uses' => 'Api\CorrPacketController@duplicate']);
+Route::resource("corr-packets","Api\CorrPacketController");
 
 
 // end section

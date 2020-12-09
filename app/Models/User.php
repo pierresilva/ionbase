@@ -55,7 +55,7 @@ class User extends Model
 // generated section
 
 	// Mass Assignment
-	protected $fillable = ['syst_position_id','name','email','password',];
+	protected $fillable = ['syst_position_id','name','email','password','first_name','last_name','accept_terms_condition',];
 
 	// Validate Rule
     public static function getValidateRule(User $user=null){
@@ -70,6 +70,9 @@ class User extends Model
             'model.name' => 'required',
             'model.email' => 'required|unique:'.$table_name.',email,'.$ignore_unique.',id',
             'model.password' => 'required',
+            'model.first_name' => 'nullable',
+            'model.last_name' => 'nullable',
+            'model.accept_terms_condition' => 'nullable',
 
 
         ];

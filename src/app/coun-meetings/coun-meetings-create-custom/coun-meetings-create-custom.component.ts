@@ -16,6 +16,7 @@ import {IonicSelectableComponent} from "ionic-selectable";
 
 import * as moment from 'moment';
 import {GetParameterPipe} from "../../@shared/pipes/get-parameter.pipe";
+import {SplitPanelService} from "../../@shared/services/split-panel.service";
 
 @Component({
     selector: 'app-coun-meetings-create-custom',
@@ -101,6 +102,7 @@ export class CounMeetingsCreateCustomComponent implements OnInit {
         public route: ActivatedRoute,
         public router: Router,
         private getParameter: GetParameterPipe,
+        public splitPanel: SplitPanelService
     ) {
     }
 
@@ -113,6 +115,11 @@ export class CounMeetingsCreateCustomComponent implements OnInit {
         this.getMeeting();
 
         console.log(this.getParameter.transform('juntas.plantilla.final'));
+    }
+
+    ionViewWillEnter() {
+        this.splitPanel.show.next(true);
+
     }
 
     toggleMenu() {

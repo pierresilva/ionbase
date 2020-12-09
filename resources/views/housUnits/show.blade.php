@@ -30,18 +30,22 @@
                       <ul class="list-group list-group-flush mt-4">
                         <li class="list-group-item d-inline-flex flex-wrap"><div><strong>ID ： </strong></div><div>{{$housUnit->id}}</div></li>
 
-                                                                              <li class="list-group-item d-inline-flex flex-wrap"><div><strong>NOMBRE : </strong></div><div>{{ $housUnit->name }}</div></li>
+                                                                              <li class="list-group-item d-inline-flex flex-wrap"><div><strong>PADRE : </strong></div><div>{{ $housUnit->hous_unit_id }}</div></li>
+                                                                                                                  <li class="list-group-item d-inline-flex flex-wrap"><div><strong>NOMBRE : </strong></div><div>{{ $housUnit->name }}</div></li>
                                                                                                                   <li class="list-group-item d-inline-flex flex-wrap"><div><strong>CÓDIGO : </strong></div><div>{{ $housUnit->code }}</div></li>
                                                       
-                                                                                          
+                                                                                                                              
                                                             <li class="list-group-item"><p><strong>AREAS DE UNIDADES HABITACIONALES : </strong></p><div>
                           @include('housUnitAreas._table', ['housUnitAreas' => $housUnit->housUnitAreas])
                         </div></li>
                                                                               <li class="list-group-item"><p><strong>SECTORES OPERATIVOS : </strong></p><div>
                           @include('operSectors._table', ['operSectors' => $housUnit->operSectors])
                         </div></li>
+                                                                              <li class="list-group-item"><p><strong>CORRESPONDENCIA PAQUETES : </strong></p><div>
+                          @include('corrPackets._table', ['corrPackets' => $housUnit->corrPackets])
+                        </div></li>
                                     
-                                                                                          
+                                                                                                                              
                       </ul>
                       <div class="d-flex justify-content-end mt-3">
                           <a class="btn btn-secondary d-inline-flex mr-3" href="{{ route('housUnits.index') }}"><i class="material-icons">fast_rewind</i> Back</a>

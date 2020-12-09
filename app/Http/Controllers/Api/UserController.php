@@ -78,7 +78,7 @@ class UserController extends ApiController
         $input = $request->input('model');
 
                                                                                 $input['password'] = bcrypt($input['password']);
-                
+                                                                
         DB::beginTransaction();
         try {
           //create data
@@ -224,7 +224,7 @@ class UserController extends ApiController
         } elseif( $input['password'] !== $user->password ){
             $input['password'] = bcrypt($input['password']);
         }
-                
+                                                                
         DB::beginTransaction();
         try {
           //update data

@@ -16,6 +16,9 @@ export class HousUnitsFormComponent implements OnInit, AfterViewInit {
     @ViewChild('housUnitsForm') housUnitsForm: FormGroup;
 
     public validationMessages = {
+        'hous_unit_id': [
+            {type: 'required', message: 'El campo ' + this.toTitlecase.transform('PADRE') + ' es obligatorio.'},
+        ],
         'name': [
             {type: 'required', message: 'El campo ' + this.toTitlecase.transform('NOMBRE') + ' es obligatorio.'},
         ],
@@ -27,6 +30,9 @@ export class HousUnitsFormComponent implements OnInit, AfterViewInit {
         ],
         'oper_sector_ids': [
             {type: 'required', message: 'El campo ' + this.toTitlecase.transform('SECTORES OPERATIVOS') + ' es obligatorio.'},
+        ],
+        'corr_packet_ids': [
+            {type: 'required', message: 'El campo ' + this.toTitlecase.transform('CORRESPONDENCIA PAQUETES') + ' es obligatorio.'},
         ],
     };
 
@@ -70,6 +76,20 @@ export class HousUnitsFormComponent implements OnInit, AfterViewInit {
         this.housUnitsService.housUnit.oper_sector_ids = operSectorIds;
     }
     // end setOperSectorIds
+
+
+    // set setCorrPacketIds
+    setCorrPacketIds(event: any) {
+        let corrPacketIds = null;
+        if (event.value.length) {
+            corrPacketIds = [];
+            for (let i = 0; i < event.value.length; i++) {
+                corrPacketIds.push(event.value[i].id);
+            }
+        }
+        this.housUnitsService.housUnit.corr_packet_ids = corrPacketIds;
+    }
+    // end setCorrPacketIds
 
 
 }

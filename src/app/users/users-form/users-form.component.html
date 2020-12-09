@@ -185,4 +185,42 @@
             <!-- end password -->
 
 
+            <!-- first_name -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'NOMBRE' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.first_name"
+                            type="text"
+                            name="first_name"
+                            id="first_name-field"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.first_name">
+                    <div class="error-message" *ngIf="usersForm.form.controls['first_name']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end first_name -->
+
+
+            <!-- last_name -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'APELLIDOS' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.last_name"
+                            type="text"
+                            name="last_name"
+                            id="last_name-field"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.last_name">
+                    <div class="error-message" *ngIf="usersForm.form.controls['last_name']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end last_name -->
+
+
 </form>

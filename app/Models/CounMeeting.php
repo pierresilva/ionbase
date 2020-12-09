@@ -64,15 +64,14 @@ class CounMeeting extends Model
 
 // generated section
 
-    // Mass Assignment
-    protected $fillable = ['name', 'description', 'date', 'hour', 'place', 'url', 'act', 'status', 'start_content', 'end_content', 'consecutive', 'type',];
+	// Mass Assignment
+	protected $fillable = ['name','description','date','hour','place','url','act','status','start_content','end_content','consecutive','type',];
     protected $dates = ['deleted_at'];
 
-    // Validate Rule
-    public static function getValidateRule(CounMeeting $coun_meeting = null)
-    {
+	// Validate Rule
+    public static function getValidateRule(CounMeeting $coun_meeting=null){
         $ignore_unique = null;
-        if ($coun_meeting) {
+        if($coun_meeting){
             $ignore_unique = $coun_meeting->id;
         }
         $table_name = 'coun_meetings';
@@ -93,21 +92,19 @@ class CounMeeting extends Model
 
 
         ];
-        if ($coun_meeting) {
+        if($coun_meeting){
 
         }
         return $validation_rule;
     }
 
-    public function counMeetingAgendas()
-    {
-        return $this->hasMany('App\Models\CounMeetingAgenda')->orderBy('order');
-    }
+	public function counMeetingAgendas() {
+		return $this->hasMany('App\Models\CounMeetingAgenda');
+	}
+	public function counMeetingCitations() {
+		return $this->hasMany('App\Models\CounMeetingCitation');
+	}
 
-    public function counMeetingCitations()
-    {
-        return $this->hasMany('App\Models\CounMeetingCitation');
-    }
 
 
     public static function getRelationships()
@@ -115,17 +112,16 @@ class CounMeeting extends Model
         return [
             'counMeetingAgendas',
             'counMeetingCitations',
-            'files',
+            'files'
         ];
     }
 
-    public static function getLists()
-    {
-        $lists = [];
-        $lists['CounMeetingAgenda'] = CounMeetingAgenda::all();
-        $lists['CounMeetingCitation'] = CounMeetingCitation::all();
-        return $lists;
-    }
+	public static function getLists() {
+		$lists = [];
+		$lists['CounMeetingAgenda'] = CounMeetingAgenda::all();
+		$lists['CounMeetingCitation'] = CounMeetingCitation::all();
+		return $lists;
+	}
 
     public function scopeCounMeetingAgendasByName(Builder $query, $name)
     {
@@ -140,6 +136,7 @@ class CounMeeting extends Model
             $query->where('name', $name);
         });
     }
+
 
 
 // end section

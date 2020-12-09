@@ -1,0 +1,109 @@
+<app-main-header title="{{'CORRESPONDENCIA PAQUETES' | titlecase}}"
+                 primaryLink="corr-packets/create"
+                 primaryText="Crear {{'CORRESPONDENCIA PAQUETES' | lowercase}}"
+                 primaryIcon="add-circle-outline"></app-main-header>
+
+<ion-content id="pages-content">
+
+    <ion-searchbar showCancelButton="focus"
+                       [cancelButtonText]="'Cancelar'"
+                       [placeholder]="'Buscar ' + ('CORRESPONDENCIA PAQUETES' | lowercase )"
+                       (ionCancel)="this.corrPacketsService.searchValue = ''; corrPacketsService.getCorrPackets()"
+                       (keyup.enter)="corrPacketsService.getCorrPackets()"
+                       [(ngModel)]="corrPacketsService.searchValue"></ion-searchbar>
+
+    <ng-container *ngIf="!(loading.loading | async) && corrPacketsService.corrPackets?.length">
+        <ion-card *ngFor="let corrPacket of corrPacketsService.corrPackets; let index = index">
+            <ion-list>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'NOMBRE' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ corrPacket?.name }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'TRANPORTADOR' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ corrPacket?.conveyor }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'NÚMERO DE GUIA' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ corrPacket?.guide_number }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'RECIBIDO' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ corrPacket?.received_at | dateFormat:'DD/MM/YYYY HH:mm' }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'COMENTARIO RECIBIDO' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ corrPacket?.received_comment }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'ENTREGADO' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ corrPacket?.delivered_at | dateFormat:'DD/MM/YYYY HH:mm' }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'ENTREGADO A' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ corrPacket?.delivered_to }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'COMENTARIO ENTREGADO' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ corrPacket?.delivered_comment }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'ESTADO' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ corrPacket?.status | status }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'UNIDADES HABITACIONALES' | titlecase }}</b></ion-label>
+                        <div class="wrap-text"><a routerLink="/hous-units/{{ corrPacket?.hous_unit?.id }}/edit">{{ corrPacket?.hous_unit?.name }}</a></div>
+                    </ion-item>
+            </ion-list>
+            <ion-footer>
+                <ion-row>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="success" size="small" fill="clear" [routerLink]="'/corr-packets/' + corrPacket?.id + '/edit'">
+                            <ion-icon name="create-outline"></ion-icon>
+                            <div>Editar</div>
+                        </ion-button>
+                    </ion-col>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="danger" size="small" fill="clear" (click)="corrPacketsService.deleteCorrPacket(corrPacket?.id)">
+                            <ion-icon name="trash-outline"></ion-icon>
+                            <div>Eliminar</div>
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-footer>
+        </ion-card>
+    </ng-container>
+
+    <ng-container *ngIf="!(loading.loading | async) && !corrPacketsService.corrPackets?.length">
+        <ion-item>
+            <ion-icon class="text-warning" name="warning-outline" slot="start"></ion-icon>
+            <ion-label><h2>No se encontraron {{'CORRESPONDENCIA PAQUETES' | titlecase}}</h2></ion-label>
+            <ion-button [routerLink]="'/corr-packets/create'" fill="outline" color="success" slot="end">
+                Crear {{'CORRESPONDENCIA PAQUETES' | titlecase}}
+                <ion-icon name="add-circle-outline" slot="end"></ion-icon>
+            </ion-button>
+        </ion-item>
+    </ng-container>
+
+</ion-content>
+
+<ion-footer class="lists-footer">
+    <ion-row *ngIf="corrPacketsService.meta">
+        <ion-col class="ion-text-center" size="12">
+            <ion-button (click)="corrPacketsService.getCorrPackets(corrPacketsService.meta.current_page - 1)"
+                        [disabled]="corrPacketsService.meta.current_page == 1"
+                        fill="clear">
+                <ion-icon slot="end" name="play-outline" style="transform: rotate(180deg);"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear" [disabled]="true"> Pag: {{corrPacketsService.meta.current_page}}
+                /{{corrPacketsService.meta.last_page}} {{corrPacketsService.meta.from}}-{{corrPacketsService.meta.to}}
+                /{{corrPacketsService.meta.total}} </ion-button>
+            <ion-button (click)="corrPacketsService.getCorrPackets(corrPacketsService.meta.current_page + 1)"
+                        [disabled]="corrPacketsService.meta.current_page == corrPacketsService.meta.last_page"
+                        fill="clear">
+                <ion-icon slot="start" name="play-outline"></ion-icon>
+            </ion-button>
+        </ion-col>
+    </ion-row>
+</ion-footer>

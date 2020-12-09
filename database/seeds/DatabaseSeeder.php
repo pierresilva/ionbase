@@ -38,5 +38,6 @@ class DatabaseSeeder extends Seeder
         $this->call(MailTemplatesTableSeeder::class);
         $this->call(MailsTableSeeder::class);
         $this->call(FilesTableSeeder::class);
+        $this->call(CorrPacketsTableSeeder::class);
     }
 }

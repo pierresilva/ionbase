@@ -20,6 +20,7 @@ class HousUnitsTableSeeder extends Seeder
 
             DB::table('hous_units')->insert([
 
+                'hous_unit_id' => $faker->numberBetween(1,30),
                 'name' => $faker->words(3, true),
                 'code' => $faker->words(3, true),
             ]);

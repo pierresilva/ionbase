@@ -36,13 +36,13 @@
                         <div class="wrap-text">{{ file?.url }}</div>
                     </ion-item>
                     <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'ARCHIVABLE ID' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ file?.fileable_id }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
                         <ion-label position="fixed"><b>{{ 'ARCHIVABLE TIPO' | titlecase }}</b></ion-label>
                         <div class="wrap-text">{{ file?.fileable_type }}</div>
                     </ion-item>
-                <ion-item class="item-transparent">
-                    <ion-label position="fixed"><b>{{ 'ARCHIVABLE ID' | titlecase }}</b></ion-label>
-                    <div class="wrap-text">{{ file?.filable_id }}</div>
-                </ion-item>
             </ion-list>
             <ion-footer>
                 <ion-row>

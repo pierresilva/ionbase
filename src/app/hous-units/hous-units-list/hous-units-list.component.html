@@ -16,6 +16,10 @@
         <ion-card *ngFor="let housUnit of housUnitsService.housUnits; let index = index">
             <ion-list>
                     <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'PADRE' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ housUnit?.hous_unit_id | status }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
                         <ion-label position="fixed"><b>{{ 'NOMBRE' | titlecase }}</b></ion-label>
                         <div class="wrap-text">{{ housUnit?.name }}</div>
                     </ion-item>
@@ -39,6 +43,16 @@
                             <ng-container *ngIf="housUnit?.oper_sectors?.length">
                                 <ng-container *ngFor="let operSector of housUnit?.oper_sectors; let last = last">
                                     <a routerLink="/oper-sectors/{{ operSector?.id }}/edit">{{ operSector?.name }}</a><span *ngIf="!last">, </span>
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'CORRESPONDENCIA PAQUETES' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">
+                            <ng-container *ngIf="housUnit?.corr_packets?.length">
+                                <ng-container *ngFor="let corrPacket of housUnit?.corr_packets; let last = last">
+                                    <a routerLink="/corr-packets/{{ corrPacket?.id }}/edit">{{ corrPacket?.name }}</a><span *ngIf="!last">, </span>
                                 </ng-container>
                             </ng-container>
                         </div>

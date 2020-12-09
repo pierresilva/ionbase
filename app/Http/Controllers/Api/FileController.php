@@ -12,6 +12,7 @@ class FileController extends ApiController
 {
 
 // generated section
+
     /**
      * Display a listing of the resource.
      *
@@ -22,7 +23,7 @@ class FileController extends ApiController
         // user_can(['file.index']);
 
 		// $files = new File;
-		$files = File::with(File::getRelationships());
+	    $files = File::with(File::getRelationships());
 
 		// (1)filltering
         $files = $this->filtering($request, $files);
@@ -56,7 +57,7 @@ class FileController extends ApiController
         // user_can(['file.create']);
 
             return response()->json([
-              'message' => 'Formulario para JUNTASARCHIVOSDEAGENDA obtenido!',
+              'message' => 'Formulario para crear JUNTASARCHIVOSDEAGENDA!',
               'data' => null,
               'lists' => File::getLists()
             ]);
@@ -86,7 +87,6 @@ class FileController extends ApiController
           if ($request->input('pivots')) {
             $this->sync($request->input('pivots'), $file);
           }
-
 
         } catch (\Exception $exception) {
           DB::rollBack();
@@ -126,7 +126,7 @@ class FileController extends ApiController
         $resource['lists'] = File::getLists();
 
         return $this->responseSuccess(
-          'JUNTASARCHIVOSDEAGENDA obtenidos!',
+          'JUNTASARCHIVOSDEAGENDA obtenido!',
           $resource,
           false,
           false,
@@ -146,7 +146,7 @@ class FileController extends ApiController
         $file = File::with(File::getRelationships())->findOrFail($fileId);
         
         return $this->responseSuccess(
-          'Formulario para JUNTASARCHIVOSDEAGENDA obtenidos!',
+          'Formulario para editar JUNTASARCHIVOSDEAGENDA!',
           [
             'model' => $file,
             'lists' => File::getLists(),
@@ -168,7 +168,7 @@ class FileController extends ApiController
         $file->id = null;
         
         return $this->responseSuccess(
-          'Formulario para JUNTASARCHIVOSDEAGENDA obtenidos!',
+          'Formulario para duplicar JUNTASARCHIVOSDEAGENDA!',
           [
             'model' => $file,
             'lists' => File::getLists(),
@@ -205,7 +205,7 @@ class FileController extends ApiController
             $this->sync($request->get('pivots'), $file);
           }
 
-          
+
         } catch (Exception $exception) {
           DB::rollBack();
           return $this->responseError(
@@ -282,6 +282,7 @@ class FileController extends ApiController
             $file->$method()->sync($pivotIds);
         }
     }
+
 
 // end section
 

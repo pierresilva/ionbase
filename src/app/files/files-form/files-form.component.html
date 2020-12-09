@@ -98,6 +98,25 @@
             <!-- end url -->
 
 
+            <!-- fileable_id -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'ARCHIVABLE ID' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.fileable_id"
+                            type="number"
+                            name="fileable_id"
+                            id="fileable_id-field"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.fileable_id">
+                    <div class="error-message" *ngIf="filesForm.form.controls['fileable_id']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end fileable_id -->
+
+
             <!-- fileable_type -->
             <ion-item class="item-transparent">
                 <ion-label>{{ 'ARCHIVABLE TIPO' | titlecase }}</ion-label>
@@ -115,25 +134,6 @@
                 </ng-container>
             </div>
             <!-- end fileable_type -->
-
-    <!-- name -->
-    <ion-item class="item-transparent">
-        <ion-label>{{ 'ARCHIVABLE ID' | titlecase }}</ion-label>
-        <ion-input [(ngModel)]="model.filable_id"
-                   type="number"
-                   name="filable_id"
-                   id="filable_id-field"
-                   [required]="true"
-                   placeholder=""></ion-input>
-    </ion-item>
-    <div class="validation-errors">
-        <ng-container *ngFor="let validation of validationMessages.name">
-            <div class="error-message" *ngIf="filesForm.form.controls['name']?.hasError(validation.type)">
-                {{ validation.message }}
-            </div>
-        </ng-container>
-    </div>
-    <!-- end name -->
 
 
 </form>

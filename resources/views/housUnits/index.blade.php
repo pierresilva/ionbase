@@ -44,6 +44,12 @@
                             </div>
 
                                                                                                                 <div class="form-group row">
+                              <label for="q_hous_unit_id_cont" class="col-sm-2 col-form-label col-form-label-sm">PADRE</label>
+                              <div class="col-sm-10">
+                                <input class="form-control form-control-sm" id="q_hous_unit_id_cont" name="q[hous_unit_id:cont]" type="search" value="{{ @(Request::input('q.hous_unit_id:cont')) }}">
+                              </div>
+                            </div>
+                                                                                                                                                                        <div class="form-group row">
                               <label for="q_name_cont" class="col-sm-2 col-form-label col-form-label-sm">NOMBRE</label>
                               <div class="col-sm-10">
                                 <input class="form-control form-control-sm" id="q_name_cont" name="q[name:cont]" type="search" value="{{ @(Request::input('q.name:cont')) }}">
@@ -83,6 +89,22 @@
                                 @foreach( $lists["OperSector"] as $list_key => $list_item )
                                     <option value="{{ $list_key }}"
                                     @if( $list_key == @(Request::input('q.operSectors.id:eq')) )  selected='selected' @endif
+                                    >{{ $list_item }}</option>
+                                @endforeach
+                                </select>
+                              </div>
+                            </div>
+                                                                                                                                                                        <div class="form-group row">
+                              <label for="q_corr_packets_id_eq" class="col-sm-2 col-form-label col-form-label-sm">CORRESPONDENCIA PAQUETES<br>hasMany</label>
+                              <div class="col-sm-10">
+                                {{--<input class="form-control form-control-sm" id="q_corr_packets_id_eq" name="q[corrPackets.id:eq]" type="search" value="{{ @(Request::input('q.corrPackets.id:eq')) }}">--}}
+                                <select class="form-control"
+                                    id="q_corr_packets_id_eq"
+                                    name="q[corrPackets.id:eq]">
+                                <option value=""></option>
+                                @foreach( $lists["CorrPacket"] as $list_key => $list_item )
+                                    <option value="{{ $list_key }}"
+                                    @if( $list_key == @(Request::input('q.corrPackets.id:eq')) )  selected='selected' @endif
                                     >{{ $list_item }}</option>
                                 @endforeach
                                 </select>

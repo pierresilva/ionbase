@@ -1,5 +1,17 @@
 
 <div class="form-group">
+  <label for="hous_unit_id-field">PADRE</label>
+
+
+  @if($errors->has("model.hous_unit_id"))
+    <div class="invalid-feedback">{{ $errors->first("model.hous_unit_id") }}</div>
+  @else
+    <div class="invalid-feedback">Invalid!</div>
+  @endif
+</div>
+
+
+<div class="form-group">
   <label for="name-field">NOMBRE</label>
 
   <input type="text" class="form-control

@@ -31,7 +31,7 @@ export class FilesFormComponent implements OnInit, AfterViewInit {
         'url': [
             {type: 'required', message: 'El campo ' + this.toTitlecase.transform('URL') + ' es obligatorio.'},
         ],
-        'filableid': [
+        'fileable_id': [
             {type: 'required', message: 'El campo ' + this.toTitlecase.transform('ARCHIVABLE ID') + ' es obligatorio.'},
         ],
         'fileable_type': [

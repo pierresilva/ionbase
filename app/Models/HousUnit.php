@@ -43,7 +43,7 @@ class HousUnit extends Model
 // generated section
 
 	// Mass Assignment
-	protected $fillable = ['name','code',];
+	protected $fillable = ['hous_unit_id','name','code',];
     protected $dates = ['deleted_at'];
 
 	// Validate Rule
@@ -55,6 +55,7 @@ class HousUnit extends Model
         $table_name = 'hous_units';
         $validation_rule = [
 
+            'model.hous_unit_id' => 'nullable',
             'model.name' => 'required',
             'model.code' => 'required',
 
@@ -72,6 +73,9 @@ class HousUnit extends Model
 	public function operSectors() {
 		return $this->hasMany('App\Models\OperSector');
 	}
+	public function corrPackets() {
+		return $this->hasMany('App\Models\CorrPacket');
+	}
 
 
 
@@ -80,6 +84,7 @@ class HousUnit extends Model
         return [
             'housUnitAreas',
             'operSectors',
+            'corrPackets',
         ];
     }
 
@@ -87,6 +92,7 @@ class HousUnit extends Model
 		$lists = [];
 		$lists['HousUnitArea'] = HousUnitArea::all();
 		$lists['OperSector'] = OperSector::all();
+		$lists['CorrPacket'] = CorrPacket::all();
 		return $lists;
 	}
 
@@ -100,6 +106,13 @@ class HousUnit extends Model
     public function scopeOperSectorsByName(Builder $query, $name)
     {
         return $query->whereHas('operSectors', function ($query) use ($name) {
+            $query->where('name', $name);
+        });
+    }
+
+    public function scopeCorrPacketsByName(Builder $query, $name)
+    {
+        return $query->whereHas('corrPackets', function ($query) use ($name) {
             $query->where('name', $name);
         });
     }

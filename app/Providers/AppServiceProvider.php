@@ -63,6 +63,7 @@ class AppServiceProvider extends ServiceProvider
             'mailTemplates' => 'CORREOS PLANTILLAS',
             'mails' => 'CORREOS',
             'files' => 'JUNTAS ARCHIVOS DE AGENDAS',
+            'corrPackets' => 'CORRESPONDENCIA PAQUETES',
         ]);
         
         // Add Pagenate to Collectoin

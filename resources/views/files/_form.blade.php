@@ -90,11 +90,11 @@
 
 
 <div class="form-group">
-  <label for="filableid-field">ARCHIVABLE ID</label>
+  <label for="fileable_id-field">ARCHIVABLE ID</label>
 
 
-  @if($errors->has("model.filableid"))
-    <div class="invalid-feedback">{{ $errors->first("model.filableid") }}</div>
+  @if($errors->has("model.fileable_id"))
+    <div class="invalid-feedback">{{ $errors->first("model.fileable_id") }}</div>
   @else
     <div class="invalid-feedback">Invalid!</div>
   @endif

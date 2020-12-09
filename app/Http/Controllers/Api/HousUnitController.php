@@ -77,7 +77,7 @@ class HousUnitController extends ApiController
 
         $input = $request->input('model');
 
-                                        
+                                                        
         DB::beginTransaction();
         try {
           //create data
@@ -95,6 +95,11 @@ class HousUnitController extends ApiController
             if (isset($input['oper_sectors']) && count($input['oper_sectors'])) {
                 foreach ($input['oper_sectors'] as $operSector) {
                   \App\Models\OperSector::find($operSector['id'])->update(['hous_unit_id' => $housUnit->id]);
+                }
+            }
+            if (isset($input['corr_packets']) && count($input['corr_packets'])) {
+                foreach ($input['corr_packets'] as $corrPacket) {
+                  \App\Models\CorrPacket::find($corrPacket['id'])->update(['hous_unit_id' => $housUnit->id]);
                 }
             }
 
@@ -133,6 +138,7 @@ class HousUnitController extends ApiController
 
                         $housUnit->hous_unit_area_ids = collect($housUnit->housUnitAreas)->pluck('id');
                                         $housUnit->oper_sector_ids = collect($housUnit->operSectors)->pluck('id');
+                                        $housUnit->corr_packet_ids = collect($housUnit->corrPackets)->pluck('id');
                         
         $resource = $housUnit->toArray();
         $resource['lists'] = HousUnit::getLists();
@@ -158,6 +164,7 @@ class HousUnitController extends ApiController
         $housUnit = HousUnit::with(HousUnit::getRelationships())->findOrFail($housUnitId);
                         $housUnit->hous_unit_area_ids = collect($housUnit->housUnitAreas)->pluck('id');
                                         $housUnit->oper_sector_ids = collect($housUnit->operSectors)->pluck('id');
+                                        $housUnit->corr_packet_ids = collect($housUnit->corrPackets)->pluck('id');
                         
         return $this->responseSuccess(
           'Formulario para editar UNIDADESHABITACIONALE!',
@@ -182,6 +189,7 @@ class HousUnitController extends ApiController
         $housUnit->id = null;
                         $housUnit->hous_unit_area_ids = collect($housUnit->housUnitAreas)->pluck('id');
                                         $housUnit->oper_sector_ids = collect($housUnit->operSectors)->pluck('id');
+                                        $housUnit->corr_packet_ids = collect($housUnit->corrPackets)->pluck('id');
                         
         return $this->responseSuccess(
           'Formulario para duplicar UNIDADESHABITACIONALE!',
@@ -210,7 +218,7 @@ class HousUnitController extends ApiController
 
         $input = $request->input('model');
 
-                                        
+                                                        
         DB::beginTransaction();
         try {
           //update data
@@ -233,6 +241,13 @@ class HousUnitController extends ApiController
                     ->update(['hous_unit_id' => null]);
                 foreach ($input['oper_sectors'] as $operSector) {
                   \App\Models\OperSector::find($operSector['id'])->update(['hous_unit_id' => $housUnit->id]);
+                }
+            }
+            if (isset($input['corr_packets']) && count($input['corr_packets'])) {
+                \App\Models\CorrPacket::where('hous_unit_id', $housUnitId)
+                    ->update(['hous_unit_id' => null]);
+                foreach ($input['corr_packets'] as $corrPacket) {
+                  \App\Models\CorrPacket::find($corrPacket['id'])->update(['hous_unit_id' => $housUnit->id]);
                 }
             }
 

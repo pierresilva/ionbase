@@ -74,9 +74,9 @@
                               </div>
                             </div>
                                                                                                                                                                         <div class="form-group row">
-                              <label for="q_filableid_cont" class="col-sm-2 col-form-label col-form-label-sm">ARCHIVABLE ID</label>
+                              <label for="q_fileable_id_cont" class="col-sm-2 col-form-label col-form-label-sm">ARCHIVABLE ID</label>
                               <div class="col-sm-10">
-                                <input class="form-control form-control-sm" id="q_filableid_cont" name="q[filableid:cont]" type="search" value="{{ @(Request::input('q.filableid:cont')) }}">
+                                <input class="form-control form-control-sm" id="q_fileable_id_cont" name="q[fileable_id:cont]" type="search" value="{{ @(Request::input('q.fileable_id:cont')) }}">
                               </div>
                             </div>
                                                                                                                                                                         <div class="form-group row">

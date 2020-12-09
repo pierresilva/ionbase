@@ -17,6 +17,14 @@
                   </div></th>
                   <th scope="col"><div class="d-flex">
                     @if( method_exists($housUnits, 'appends') )
+                      <a href="javascript:sortByColumn('hous_unit_id')">PADRE</a>
+                      @if( Request::input('q.s') == 'hous_unit_id_asc' )<i class="material-icons">arrow_drop_up</i>
+                      @elseif( Request::input('q.s') == 'hous_unit_id_desc' )<i class="material-icons">arrow_drop_down</i> @endif
+                    @else
+                      PADRE                    @endif
+                  </div></th>
+                  <th scope="col"><div class="d-flex">
+                    @if( method_exists($housUnits, 'appends') )
                       <a href="javascript:sortByColumn('name')">NOMBRE</a>
                       @if( Request::input('q.s') == 'name_asc' )<i class="material-icons">arrow_drop_up</i>
                       @elseif( Request::input('q.s') == 'name_desc' )<i class="material-icons">arrow_drop_down</i> @endif
@@ -35,6 +43,7 @@
 
                   <th scope="col">AREAS DE UNIDADES HABITACIONALES</th>
                   <th scope="col">SECTORES OPERATIVOS</th>
+                  <th scope="col">CORRESPONDENCIA PAQUETES</th>
 
 
                   <th class="text-right" scope="col">OPTIONS</th>
@@ -44,6 +53,7 @@
                 @foreach($housUnits as $housUnit)
                     <tr>
                       <td scope="row"><a href="{{ route('housUnits.show', $housUnit->id) }}">{{$housUnit->id}}</a></td>
+                      <td>{{$housUnit->hous_unit_id}}</td>
                       <td>{{$housUnit->name}}</td>
                       <td>{{$housUnit->code}}</td>
 
@@ -58,6 +68,12 @@
                           @foreach($housUnit->operSectors as $operSector)
                                         @if (!$loop->first) , @endif
                                         <a href="{{ route('operSectors.show', $operSector->id) }}">{{ $operSector->name }}</a>
+                          @endforeach
+                      </td>
+                      <td>
+                          @foreach($housUnit->corrPackets as $corrPacket)
+                                        @if (!$loop->first) , @endif
+                                        <a href="{{ route('corrPackets.show', $corrPacket->id) }}">{{ $corrPacket->name }}</a>
                           @endforeach
                       </td>
 
