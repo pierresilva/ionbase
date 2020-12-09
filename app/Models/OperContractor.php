@@ -7,6 +7,50 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
+/**
+ * App\Models\OperContractor
+ *
+ * @property int $id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string $name
+ * @property string $document
+ * @property string|null $address
+ * @property string|null $phone
+ * @property string|null $email
+ * @property string|null $phone_support
+ * @property string|null $email_support
+ * @property string|null $contact
+ * @property string|null $business_hour
+ * @property string|null $phone_emergency
+ * @property string|null $email_emergency
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\OperMovement[] $operMovements
+ * @property-read int|null $oper_movements_count
+ * @method static Builder|OperContractor newModelQuery()
+ * @method static Builder|OperContractor newQuery()
+ * @method static \Illuminate\Database\Query\Builder|OperContractor onlyTrashed()
+ * @method static Builder|OperContractor operMovementsByName($name)
+ * @method static Builder|OperContractor query()
+ * @method static Builder|OperContractor whereAddress($value)
+ * @method static Builder|OperContractor whereBusinessHour($value)
+ * @method static Builder|OperContractor whereContact($value)
+ * @method static Builder|OperContractor whereCreatedAt($value)
+ * @method static Builder|OperContractor whereDeletedAt($value)
+ * @method static Builder|OperContractor whereDocument($value)
+ * @method static Builder|OperContractor whereEmail($value)
+ * @method static Builder|OperContractor whereEmailEmergency($value)
+ * @method static Builder|OperContractor whereEmailSupport($value)
+ * @method static Builder|OperContractor whereId($value)
+ * @method static Builder|OperContractor whereName($value)
+ * @method static Builder|OperContractor wherePhone($value)
+ * @method static Builder|OperContractor wherePhoneEmergency($value)
+ * @method static Builder|OperContractor wherePhoneSupport($value)
+ * @method static Builder|OperContractor whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|OperContractor withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|OperContractor withoutTrashed()
+ * @mixin \Eloquent
+ */
 class OperContractor extends Model
 {
     use SoftDeletes;

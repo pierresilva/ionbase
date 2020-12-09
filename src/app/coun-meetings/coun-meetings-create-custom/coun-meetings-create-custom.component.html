@@ -21,7 +21,7 @@
             </ion-button>
         </ion-buttons>
 
-        <ion-title>{{'JUNTA DEL CONSEJO' | titlecase}}</ion-title>
+        <ion-title>{{'CONSEJO DE ADMINISTRACIÓN' | titlecase}}</ion-title>
     </ion-toolbar>
 </ion-header>
 
@@ -78,6 +78,27 @@
                         </ng-container>
                     </div>
                     <!-- end name -->
+                    <!-- type -->
+                    <ion-item class="item-transparent">
+                        <ion-label>{{ 'TIPO' | titlecase }}</ion-label>
+                        <ion-select [(ngModel)]="model.type"
+                                    name="type"
+                                    id="type-field"
+                                    okText="Seleccionar"
+                                    cancelText="Cancelar">
+                            <ion-select-option value="">{{ 'Ninguno' | titlecase }}</ion-select-option>
+                            <ion-select-option value="council">{{ 'Junta del Consejo' | titlecase }}</ion-select-option>
+                            <ion-select-option value="coexistence">{{ 'Junta de Convivencia' | titlecase }}</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                    <div class="validation-errors">
+                        <ng-container *ngFor="let validation of validationMessages.type">
+                            <div class="error-message" *ngIf="counMeetingsForm.form.controls['type']?.hasError(validation.type)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
+                    </div>
+                    <!-- end type -->
                     <!-- description -->
                     <ion-item class="item-transparent">
                         <ion-label position="floating">Descripción</ion-label>
@@ -299,6 +320,15 @@
             <ion-card [ngStyle]="{'display': (type == 'act') ? 'block' : 'none'}">
                 <ion-list-header>Acta</ion-list-header>
 
+                <ion-item class="item-transparent">
+                    <ion-label position="stacked"><b>Inicio</b></ion-label>
+                    <div style="width: 100%;"
+                         [ngxSummernote]="{width: '100%', dialogsInBody: true}"
+                         [name]="'start_content'"
+                         [id]="'start_content-field'"
+                         [(ngModel)]="model.start_content"></div>
+                </ion-item>
+
                 <ng-container *ngIf="model.coun_meeting_agendas.length">
                     <ion-item class="item-transparent"
                               *ngFor="let agenda of model.coun_meeting_agendas; let index = index">
@@ -310,11 +340,35 @@
                              [(ngModel)]="agenda.content"></div>
                     </ion-item>
                 </ng-container>
-                <ng-container *ngIf="!model.coun_meeting_agendas.length">
-                    <ion-item class="item-transparent">
-                        Sin ordenes del día.
+
+                <ion-item class="item-transparent">
+                    <ion-label position="stacked"><b>Finalizacion</b></ion-label>
+                    <div style="width: 100%;"
+                         [ngxSummernote]="{width: '100%', dialogsInBody: true}"
+                         [name]="'end_content'"
+                         [id]="'end_content-field'"
+                         [(ngModel)]="model.end_content"></div>
+                </ion-item>
+
+                <ion-item class="itemtransparent">
+                    <ion-label>Subir archivos adicionales</ion-label>
+                    <ion-button fill="clean" slot="end" class="file-upload-button">
+                        <ion-icon name="cloud-upload-outline" slot="icon-only"></ion-icon>
+                        <input type="file"
+                               #fileInput
+                               (change)="onFileSelect(fileInput)">
+                    </ion-button>
+                </ion-item>
+                <ion-item *ngIf="!model?.files?.length">
+                    <ion-label>Sin archivos</ion-label>
+                </ion-item>
+                <ng-container *ngIf="model?.files?.length">
+                    <ion-item *ngFor="let file of model.files">
+                        <ion-label><a [href]="file.url" target="_blank">{{ file.name }}</a></ion-label>
+                        <ion-icon name="remove-circle-outline" color="danger" slot="end" (click)="removeFile(file)"></ion-icon>
                     </ion-item>
                 </ng-container>
+
                 <div class="ion-text-center ion-margin">
                     <ion-button *ngIf="model.status == 'in_progress'"
                                 color="success"
@@ -326,8 +380,8 @@
         </form>
     </ng-container>
 
-<!--    <pre>
-        {{model | json}}
-    </pre>-->
+    <pre>
+{{model | json}}
+    </pre>
 
 </ion-content>

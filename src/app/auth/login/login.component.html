@@ -1,0 +1,97 @@
+<ion-content no-bounce>
+    <div class="login-background"></div>
+    <ion-grid class="ion-no-padding">
+        <ion-row class="ion-justify-content-center ion-no-padding">
+            <ion-col size-sm="8"
+                     size-lg="6"
+                     size-xl="4"
+                     class="ion-align-self-center ion-no-padding">
+                <div class="login-header ion-text-center">
+                    <h1 [hidden]="true">{{environment.name}}</h1>
+
+                    <img [routerLink]="'/'" src="assets/images/NoahApp/logo-light-square.png"
+                         style="max-height: 120px;">
+
+                    <h6 style="margin-bottom: 0px;">v-{{ version }}</h6>
+                </div>
+                <div class="login-container">
+                    <form #loginForm="ngForm"
+                          (ngSubmit)="login()"
+                          novalidate
+                          autocomplete="off">
+                        <ion-list>
+                            <ion-list-header>Ingresar</ion-list-header>
+                            <ion-item lines="inset">
+                                <ion-label color="medium"
+                                           position="floating">
+                                    Correo electrónico
+                                </ion-label>
+                                <ion-input type="text"
+                                           name="email"
+                                           id="email-field"
+                                           email
+                                           required
+                                           [(ngModel)]="model.email"
+                                           autocomplete="email"></ion-input>
+                            </ion-item>
+                            <ion-text color="danger"
+                                      [hidden]="(loginForm?.form?.controls?.email?.untouched || loginForm?.form?.controls?.email?.valid)">
+                                <span class="ion-padding">Correo electónico no valido</span>
+                            </ion-text>
+                            <ion-item lines="inset">
+                                <ion-label color="medium"
+                                           position="floating">
+                                    Contraseña
+                                </ion-label>
+                                <ion-input type="password"
+                                           name="password"
+                                           id="password-field"
+                                           required
+                                           minlength="6"
+                                           maxlength="16"
+                                           [(ngModel)]="model.password"
+                                           autocomplete="password"></ion-input>
+                            </ion-item>
+                            <ion-text color="danger"
+                                      [hidden]="(loginForm?.form?.controls?.password?.untouched || loginForm?.form?.controls?.password?.valid)">
+                                <span class="ion-padding">Contraseña no valida</span>
+                            </ion-text>
+                            <!--<ion-item class="ion-padding-top"
+                                      lines="none">
+                                <ion-label>Recordarme</ion-label>
+                                <ion-checkbox slot="start"
+                                              id="remember-field"
+                                              name="remember"
+                                              [(ngModel)]="model.remember"></ion-checkbox>
+                            </ion-item>-->
+                            <div style="height: 1rem;"></div>
+                        </ion-list>
+                        <div class="ion-padding-horizontal">
+                            <ion-button
+                                    type="submit"
+                                    [disabled]="loginForm?.form?.invalid || isLoading"
+                                    color="primary"
+                                    expand="block">
+                                Ingresar
+                            </ion-button>
+                        </div>
+                        <div class="ion-padding-vertical ion-text-center">
+                            <ion-button type="button"
+                                        routerLink="/auth/register"
+                                        color="primary"
+                                        fill="clean">
+                                Registrarse
+                            </ion-button>
+                            <ion-button type="button"
+                                        color="primary"
+                                        routerLink="/auth/password-forgot"
+                                        fill="clean">
+                                Olvidaste tu contraseña?
+                            </ion-button>
+                        </div>
+                    </form>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

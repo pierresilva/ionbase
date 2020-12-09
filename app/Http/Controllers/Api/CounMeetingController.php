@@ -84,7 +84,7 @@ class CounMeetingController extends ApiController
 
         $input = $request->input('model');
 
-                                                                                                                                                                                                        
+
         DB::beginTransaction();
         try {
           //create data
@@ -140,7 +140,7 @@ class CounMeetingController extends ApiController
 
                         $counMeeting->coun_meeting_agenda_ids = collect($counMeeting->counMeetingAgendas)->pluck('id');
                                         $counMeeting->coun_meeting_citation_ids = collect($counMeeting->counMeetingCitations)->pluck('id');
-                        
+
         $resource = $counMeeting->toArray();
         $resource['lists'] = CounMeeting::getLists();
 
@@ -165,7 +165,7 @@ class CounMeetingController extends ApiController
         $counMeeting = CounMeeting::with(CounMeeting::getRelationships())->findOrFail($counMeetingId);
                         $counMeeting->coun_meeting_agenda_ids = collect($counMeeting->counMeetingAgendas)->pluck('id');
                                         $counMeeting->coun_meeting_citation_ids = collect($counMeeting->counMeetingCitations)->pluck('id');
-                        
+
         return $this->responseSuccess(
           'Formulario para editar JUNTASDELCONSEJO!',
           [
@@ -189,7 +189,7 @@ class CounMeetingController extends ApiController
         $counMeeting->id = null;
                         $counMeeting->coun_meeting_agenda_ids = collect($counMeeting->counMeetingAgendas)->pluck('id');
                                         $counMeeting->coun_meeting_citation_ids = collect($counMeeting->counMeetingCitations)->pluck('id');
-                        
+
         return $this->responseSuccess(
           'Formulario para duplicar JUNTASDELCONSEJO!',
           [
@@ -217,7 +217,7 @@ class CounMeetingController extends ApiController
 
         $input = $request->input('model');
 
-                                                                                                                                                                                                        
+
         DB::beginTransaction();
         try {
           //update data
@@ -384,6 +384,7 @@ class CounMeetingController extends ApiController
         $meeting->update($request->all());
 
         foreach ($request->get('coun_meeting_agendas') as $agenda) {
+
             if (isset($agenda['id']) && $agenda['id']) {
                 CounMeetingAgenda::find($agenda['id'])->update($agenda);
             } else {
@@ -410,11 +411,20 @@ class CounMeetingController extends ApiController
 
     public function sendCitationMail($user, $meeting)
     {
+        $subject = 'REUNIÓN ORDINARIA';
+
+        if ($meeting['type'] == 'council') {
+            $subject = 'REUNIÓN ORDINARIA CONSEJO DE ADMINISTRACIÓN';
+        }
+
+        if ($meeting['type'] == 'coexistence') {
+            $subject = 'REUNIÓN CONCILIACIÓN COMITÉ DE CONVIVENCIA';
+        }
 
         $data = new \stdClass();
         $data->user = $user;
         $data->email = $user['email'];
-        $data->subject = 'Citación a junta del concejo';
+        $data->subject = 'CITACIÓN A ' . $subject;
         $data->name = $user['name'];
 
         /*$data->anchor = [
@@ -423,7 +433,7 @@ class CounMeetingController extends ApiController
         ];*/
 
         $data->intro_lines = [
-            'Junta del concejo ' . str_pad($meeting['id'], 10, '0', STR_PAD_LEFT),
+            $subject . ' ' . str_pad($meeting['id'], 10, '0', STR_PAD_LEFT),
             'Fecha: ' . date('d/m/Y', strtotime($meeting['date'])),
             'Hora: ' . date('H:i', strtotime($meeting['hour'])),
             'Lugar: ' . $meeting['place'],
@@ -452,7 +462,7 @@ class CounMeetingController extends ApiController
         $data = new \stdClass();
         $data->user = $user;
         $data->email = $user['email'];
-        $data->subject = 'Firma de acta junta del concejo ' . str_pad($meetingCitation['coun_meeting_id'], 10, '0', STR_PAD_LEFT);
+        $data->subject = 'Firma de acta ' . str_pad($meetingCitation['coun_meeting_id'], 10, '0', STR_PAD_LEFT);
         $data->name = $user['name'];
 
         $data->intro_lines = [
@@ -460,8 +470,13 @@ class CounMeetingController extends ApiController
         ];
 
         $data->anchor = [
-            'url' => 'http://localhost:4200/coun-meeting-citations/' . $meetingCitation['id'] . '/sign',
+            'url' => (env('APP_ENV') != 'local' ? config('app.url') : config('app.url_front')) . '/coun-meeting-citations/' . $meetingCitation['id'] . '/sign',
             'text' => 'Firmar Acta'
+        ];
+
+        $data->button = [
+            'url' => config('app.url') . '/api/coun-meeting-pdf/' . $meetingCitation['coun_meeting_id'],
+            'text' => 'Ver Acta'
         ];
 
         $data->outro_lines = [
@@ -491,9 +506,8 @@ class CounMeetingController extends ApiController
         }
 
         try {
-            CounMeeting::find($model['id'])->update([
-                'status' => 'finalized'
-            ]);
+            $model['status'] = 'finalized';
+            CounMeeting::find($model['id'])->update($model);
 
             foreach ($model['coun_meeting_agendas'] as $agenda) {
                 CounMeetingAgenda::find($agenda['id'])->update([

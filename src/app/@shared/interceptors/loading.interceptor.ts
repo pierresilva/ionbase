@@ -58,7 +58,7 @@ export class LoadingInterceptor implements HttpInterceptor {
     }
 
     track(track: boolean): void {
-        console.log(this.pendingRequests);
+        // console.log(this.pendingRequests);
         if (track) {
             this.pendingRequests++;
         } else {

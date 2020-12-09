@@ -67,7 +67,15 @@
 <body>
 <h2 style="margin-top: 20mm;">
     Acta No. {{str_pad($id, 10, '0', STR_PAD_LEFT)}}<br>
-    REUNIÓN ORDINARIA CONSEJO DE ADMINISTRACIÓN
+    @if($type == 'council')
+        REUNIÓN ORDINARIA CONSEJO DE ADMINISTRACIÓN
+    @endif
+    @if($type == 'coexistence')
+        REUNIÓN CONCILIACIÓN COMITÉ DE CONVIVENCIA
+    @endif
+    @if(!$type)
+        REUNIÓN ORDINARIA
+    @endif
 </h2>
 <h3 style="margin-top: 10mm;">Fecha: {{date('d/m/Y', strtotime($date))}} {{date('H:i', strtotime($hour))}}</h3>
 
@@ -92,6 +100,10 @@
     {{$agenda['order'] + 1}}. <b>{{$agenda['name']}}</b><br>
 @endforeach
 
+@if($start_content)
+    <div style="margin-top: 10mm;">{!! $start_content !!}</div>
+@endif
+
 <h3 style="margin-top: 10mm;">DESARROLLO DE LA REUNIÓN</h3>
 
 <div style="margin-top: 10mm;"></div>
@@ -101,6 +113,10 @@
     <div style="margin-top: 10mm;"></div>
     <p>{!! $agenda['content'] !!}</p>
 @endforeach
+
+@if($end_content)
+    <div style="margin-top: 10mm;">{!! $end_content !!}</div>
+@endif
 
 <h3 style="margin-top: 10mm;">FIRMAS:</h3>
 <table style="width: 100%; text-align: center; margin-top: 10mm;">

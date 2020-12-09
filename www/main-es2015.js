@@ -675,7 +675,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-app>\n    <ion-split-pane contentId=\"main-content\">\n        <ion-menu contentId=\"main-content\" type=\"overlay\" *ngIf=\"true\">\n            <ion-content>\n                <ion-list id=\"inbox-list\">\n                    <ion-list-header>{{'INBOX' | lowercase}}</ion-list-header>\n                    <ion-note>hi@ionicframework.com</ion-note>\n\n                    <ion-menu-toggle auto-hide=\"false\"\n                                     *ngFor=\"let p of appPages;\n                                     let i = index\">\n                        <ion-item (click)=\"selectedIndex = i\"\n                                  routerDirection=\"root\"\n                                  [routerLink]=\"[p.url]\"\n                                  lines=\"none\"\n                                  detail=\"false\"\n                                  [class.selected]=\"selectedIndex == i\">\n                            <ion-icon slot=\"start\"\n                                      [ios]=\"p.icon + '-outline'\"\n                                      [md]=\"p.icon + '-sharp'\"></ion-icon>\n                            <ion-label>{{ p.title }}</ion-label>\n                        </ion-item>\n                    </ion-menu-toggle>\n                </ion-list>\n                <ion-list id=\"pages-list\">\n                    <!--                    <ion-list-header>Pages</ion-list-header>-->\n                    <ion-item-divider>\n                        Pages\n                    </ion-item-divider>\n                    <ion-menu-toggle auto-hide=\"false\">\n                        <ion-item [routerLinkActive]=\"'selected'\"\n                                  [routerLinkActiveOptions]=\"{exact: true}\"\n                                  [routerLink]=\"'/barcode-scanner'\"\n                                  lines=\"none\"\n                                  detail=\"false\">\n                            <ion-icon slot=\"start\"\n                                      ios=\"bookmark-outline\"\n                                      md=\"bookmark-sharp\"></ion-icon>\n                            <ion-label>Barcode Scanner</ion-label>\n                        </ion-item>\n                        <ion-item [routerLinkActive]=\"'selected'\"\n                                  [routerLinkActiveOptions]=\"{exact: true}\"\n                                  [routerLink]=\"'/camera'\"\n                                  lines=\"none\"\n                                  detail=\"false\">\n                            <ion-icon slot=\"start\"\n                                      ios=\"bookmark-outline\"\n                                      md=\"bookmark-sharp\"></ion-icon>\n                            <ion-label>Camera</ion-label>\n                        </ion-item>\n                        <ion-item [routerLinkActive]=\"'selected'\"\n                                  [routerLinkActiveOptions]=\"{exact: true}\"\n                                  [routerLink]=\"'/download'\"\n                                  lines=\"none\"\n                                  detail=\"false\">\n                            <ion-icon slot=\"start\"\n                                      ios=\"bookmark-outline\"\n                                      md=\"bookmark-sharp\"></ion-icon>\n                            <ion-label>Download</ion-label>\n                        </ion-item>\n\n                    </ion-menu-toggle>\n\n                </ion-list>\n                <ion-list id=\"admin-pages-list\">\n\n                    <ion-item-divider>\n                        Juntas del consejo\n                    </ion-item-divider>\n                    <ion-menu-toggle auto-hide=\"false\">\n                        <ion-item [routerLinkActive]=\"'selected'\"\n                                  [routerLink]=\"'/coun-meetings/create/custom'\"\n                                  lines=\"none\"\n                                  detail=\"false\">\n                            <ion-icon slot=\"start\"\n                                      ios=\"bookmark-outline\"\n                                      md=\"bookmark-sharp\"></ion-icon>\n                            <ion-label>Crear junta</ion-label>\n                        </ion-item>\n                    </ion-menu-toggle>\n\n                    <ion-item-divider>\n                        Admin\n                    </ion-item-divider>\n                    <ion-menu-toggle auto-hide=\"false\">\n                        <ion-item [routerLinkActive]=\"'selected'\"\n                                  [routerLink]=\"'/users'\"\n                                  lines=\"none\"\n                                  detail=\"false\">\n                            <ion-icon slot=\"start\"\n                                      ios=\"bookmark-outline\"\n                                      md=\"bookmark-sharp\"></ion-icon>\n                            <ion-label>USUARIOS</ion-label>\n                        </ion-item>\n<!-- generated section -->\n\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/user-profiles'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>PERFILES DE USUARIOS</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/syst-cities'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>CIUDADES</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/syst-regions'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>DEPARTAMENTOS</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/syst-countries'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>PAISES</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/companies'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>EMPRESAS</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/comp-phones'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>TELÉFONOS DE EMPRESAS</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/comp-addresses'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>EMPRESAS DIRECCIONES</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/comp-contacts'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>EMPRESAS CONTACTOS</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/syst-positions'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>CARGOS</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/syst-parameters'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>PARAMETROS</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/syst-parameter-groups'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>GRUPOS DE PARAMETROS</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/comp-responsabilities'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>EMPRESAS RESPONSABILIDADES LEGALES</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/hous-units'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>UNIDADES HABITACIONALES</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/hous-unit-areas'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>AREAS DE UNIDADES HABITACIONALES</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/oper-sectors'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>SECTORES OPERATIVOS</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/coun-meetings'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>JUNTAS DEL CONSEJO</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/coun-meeting-agendas'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>JUNTAS AGENDAS</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/coun-meeting-citations'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>JUNTAS CITACIONES</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/oper-schedules'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>AGENDA DE OPERACIONES</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/oper-contractors'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>CONTRATISTAS OPERATIVOS</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/oper-movements'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>MOVIMIENTOS OPERATIVOS</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/coun-members'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>JUNTAS MIEMBROS</ion-label>\n                    </ion-item>\n\n\n<!-- end section -->\n                    </ion-menu-toggle>\n                </ion-list>\n\n                <ion-list id=\"labels-list\">\n                    <ion-item-divider>\n                        Labels\n                    </ion-item-divider>\n\n                    <ion-item *ngFor=\"let label of labels\" lines=\"none\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>{{ label }}</ion-label>\n                    </ion-item>\n                    <ion-item-divider>\n                        Opciones\n                    </ion-item-divider>\n                    <ion-item lines=\"full\">\n                        <ion-icon slot=\"start\" [name]=\"dark ? 'moon-outline' : 'sunny-outline'\"></ion-icon>\n                        <ion-label>\n                            {{ (dark ? 'Tema Oscuro' : 'Trema Claro') }}\n                        </ion-label>\n                        <ion-toggle id=\"themeToggle\" slot=\"end\" [(ngModel)]=\"dark\"\n                                    (ionChange)=\"updateDarkMode()\"></ion-toggle>\n                    </ion-item>\n                </ion-list>\n            </ion-content>\n        </ion-menu>\n        <ion-router-outlet id=\"main-content\"></ion-router-outlet>\n    </ion-split-pane>\n</ion-app>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-app>\n    <ion-split-pane contentId=\"main-content\">\n        <ion-menu contentId=\"main-content\" type=\"overlay\" *ngIf=\"true\">\n            <ion-content>\n                <ion-list id=\"inbox-list\">\n                    <ion-list-header>{{'INBOX' | lowercase}}</ion-list-header>\n                    <ion-note>hi@ionicframework.com</ion-note>\n\n                    <ion-menu-toggle auto-hide=\"false\"\n                                     *ngFor=\"let p of appPages;\n                                     let i = index\">\n                        <ion-item (click)=\"selectedIndex = i\"\n                                  routerDirection=\"root\"\n                                  [routerLink]=\"[p.url]\"\n                                  lines=\"none\"\n                                  detail=\"false\"\n                                  [class.selected]=\"selectedIndex == i\">\n                            <ion-icon slot=\"start\"\n                                      [ios]=\"p.icon + '-outline'\"\n                                      [md]=\"p.icon + '-sharp'\"></ion-icon>\n                            <ion-label>{{ p.title }}</ion-label>\n                        </ion-item>\n                    </ion-menu-toggle>\n                </ion-list>\n                <ion-list id=\"pages-list\">\n                    <!--                    <ion-list-header>Pages</ion-list-header>-->\n                    <ion-item-divider>\n                        Pages\n                    </ion-item-divider>\n                    <ion-menu-toggle auto-hide=\"false\">\n                        <ion-item [routerLinkActive]=\"'selected'\"\n                                  [routerLinkActiveOptions]=\"{exact: true}\"\n                                  [routerLink]=\"'/barcode-scanner'\"\n                                  lines=\"none\"\n                                  detail=\"false\">\n                            <ion-icon slot=\"start\"\n                                      ios=\"bookmark-outline\"\n                                      md=\"bookmark-sharp\"></ion-icon>\n                            <ion-label>Barcode Scanner</ion-label>\n                        </ion-item>\n                        <ion-item [routerLinkActive]=\"'selected'\"\n                                  [routerLinkActiveOptions]=\"{exact: true}\"\n                                  [routerLink]=\"'/camera'\"\n                                  lines=\"none\"\n                                  detail=\"false\">\n                            <ion-icon slot=\"start\"\n                                      ios=\"bookmark-outline\"\n                                      md=\"bookmark-sharp\"></ion-icon>\n                            <ion-label>Camera</ion-label>\n                        </ion-item>\n                        <ion-item [routerLinkActive]=\"'selected'\"\n                                  [routerLinkActiveOptions]=\"{exact: true}\"\n                                  [routerLink]=\"'/download'\"\n                                  lines=\"none\"\n                                  detail=\"false\">\n                            <ion-icon slot=\"start\"\n                                      ios=\"bookmark-outline\"\n                                      md=\"bookmark-sharp\"></ion-icon>\n                            <ion-label>Download</ion-label>\n                        </ion-item>\n\n                    </ion-menu-toggle>\n\n                </ion-list>\n                <ion-list id=\"admin-pages-list\">\n\n                    <ion-item-divider>\n                        Juntas del consejo\n                    </ion-item-divider>\n                    <ion-menu-toggle auto-hide=\"false\">\n                        <ion-item [routerLinkActive]=\"'selected'\"\n                                  [routerLink]=\"'/coun-meetings/create/custom'\"\n                                  lines=\"none\"\n                                  detail=\"false\">\n                            <ion-icon slot=\"start\"\n                                      ios=\"bookmark-outline\"\n                                      md=\"bookmark-sharp\"></ion-icon>\n                            <ion-label>Crear junta</ion-label>\n                        </ion-item>\n                        <ion-item [routerLinkActive]=\"'selected'\"\n                                  [routerLink]=\"'/coun-meetings/list/custom'\"\n                                  lines=\"none\"\n                                  detail=\"false\">\n                            <ion-icon slot=\"start\"\n                                      ios=\"bookmark-outline\"\n                                      md=\"bookmark-sharp\"></ion-icon>\n                            <ion-label>Registrar juntas de consejo</ion-label>\n                        </ion-item>\n                    </ion-menu-toggle>\n\n                    <ion-item-divider>\n                        Admin\n                    </ion-item-divider>\n                    <ion-menu-toggle auto-hide=\"false\">\n                        <ion-item [routerLinkActive]=\"'selected'\"\n                                  [routerLink]=\"'/users'\"\n                                  lines=\"none\"\n                                  detail=\"false\">\n                            <ion-icon slot=\"start\"\n                                      ios=\"bookmark-outline\"\n                                      md=\"bookmark-sharp\"></ion-icon>\n                            <ion-label>USUARIOS</ion-label>\n                        </ion-item>\n<!-- generated section -->\n\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/user-profiles'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>PERFILES DE USUARIOS</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/syst-cities'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>CIUDADES</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/syst-regions'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>DEPARTAMENTOS</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/syst-countries'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>PAISES</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/companies'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>EMPRESAS</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/comp-phones'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>TELÉFONOS DE EMPRESAS</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/comp-addresses'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>EMPRESAS DIRECCIONES</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/comp-contacts'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>EMPRESAS CONTACTOS</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/syst-positions'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>CARGOS</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/syst-parameters'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>PARAMETROS</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/syst-parameter-groups'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>GRUPOS DE PARAMETROS</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/comp-responsabilities'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>EMPRESAS RESPONSABILIDADES LEGALES</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/hous-units'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>UNIDADES HABITACIONALES</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/hous-unit-areas'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>AREAS DE UNIDADES HABITACIONALES</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/oper-sectors'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>SECTORES OPERATIVOS</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/coun-meetings'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>JUNTAS DEL CONSEJO</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/coun-meeting-agendas'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>JUNTAS AGENDAS</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/coun-meeting-citations'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>JUNTAS CITACIONES</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/oper-schedules'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>AGENDA DE OPERACIONES</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/oper-contractors'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>CONTRATISTAS OPERATIVOS</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/oper-movements'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>MOVIMIENTOS OPERATIVOS</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/coun-members'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>JUNTAS MIEMBROS</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/mail-templates'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>CORREOS PLANTILLAS</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/mails'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>CORREOS</ion-label>\n                    </ion-item>\n                    <ion-item [routerLinkActive]=\"'selected'\"\n                              [routerLink]=\"'/files'\"\n                              lines=\"none\"\n                              detail=\"false\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>JUNTAS ARCHIVOS DE AGENDAS</ion-label>\n                    </ion-item>\n\n\n<!-- end section -->\n                    </ion-menu-toggle>\n                </ion-list>\n\n                <ion-list id=\"labels-list\">\n                    <ion-item-divider>\n                        Labels\n                    </ion-item-divider>\n\n                    <ion-item *ngFor=\"let label of labels\" lines=\"none\">\n                        <ion-icon slot=\"start\"\n                                  ios=\"bookmark-outline\"\n                                  md=\"bookmark-sharp\"></ion-icon>\n                        <ion-label>{{ label }}</ion-label>\n                    </ion-item>\n                    <ion-item-divider>\n                        Opciones\n                    </ion-item-divider>\n                    <ion-item lines=\"full\">\n                        <ion-icon slot=\"start\" [name]=\"dark ? 'moon-outline' : 'sunny-outline'\"></ion-icon>\n                        <ion-label>\n                            {{ (dark ? 'Tema Oscuro' : 'Trema Claro') }}\n                        </ion-label>\n                        <ion-toggle id=\"themeToggle\" slot=\"end\" [(ngModel)]=\"dark\"\n                                    (ionChange)=\"updateDarkMode()\"></ion-toggle>\n                    </ion-item>\n                </ion-list>\n            </ion-content>\n        </ion-menu>\n        <ion-router-outlet id=\"main-content\"></ion-router-outlet>\n    </ion-split-pane>\n</ion-app>\n");
 
 /***/ }),
 
@@ -1124,6 +1124,54 @@ DateFormatPipe = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 /***/ }),
 
+/***/ "./src/app/@shared/pipes/get-parameter.pipe.ts":
+/*!*****************************************************!*\
+  !*** ./src/app/@shared/pipes/get-parameter.pipe.ts ***!
+  \*****************************************************/
+/*! exports provided: GetParameterPipe */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GetParameterPipe", function() { return GetParameterPipe; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var _services_storage_local_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/storage-local.service */ "./src/app/@shared/services/storage-local.service.ts");
+
+
+
+let GetParameterPipe = class GetParameterPipe {
+    constructor(storageLocal) {
+        this.storageLocal = storageLocal;
+    }
+    transform(value) {
+        if (value && value != '') {
+            const parameters = this.storageLocal.get('parameters');
+            if (!parameters) {
+                return '';
+            }
+            for (let i = 0; i < parameters.length; i++) {
+                if (parameters[i].code === value) {
+                    return parameters[i].value;
+                }
+            }
+        }
+        return '';
+    }
+};
+GetParameterPipe.ctorParameters = () => [
+    { type: _services_storage_local_service__WEBPACK_IMPORTED_MODULE_2__["StorageLocalService"] }
+];
+GetParameterPipe = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Pipe"])({
+        name: 'getParameter'
+    })
+], GetParameterPipe);
+
+
+
+/***/ }),
+
 /***/ "./src/app/@shared/pipes/status.pipe.ts":
 /*!**********************************************!*\
   !*** ./src/app/@shared/pipes/status.pipe.ts ***!
@@ -1148,6 +1196,8 @@ let StatusPipe = class StatusPipe {
                 active: 'Activo',
                 inactive: 'Inactivo',
                 hold: 'En espera',
+                finalized: 'Finalizado',
+                in_progress: 'En progreso',
                 unknown: 'Desconocido'
             };
             return status[value] ? status[value] : value;
@@ -1193,6 +1243,43 @@ StripHtmlPipe = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
         name: 'stripHtml'
     })
 ], StripHtmlPipe);
+
+
+
+/***/ }),
+
+/***/ "./src/app/@shared/pipes/zero-leading.pipe.ts":
+/*!****************************************************!*\
+  !*** ./src/app/@shared/pipes/zero-leading.pipe.ts ***!
+  \****************************************************/
+/*! exports provided: ZeroLeadingPipe */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ZeroLeadingPipe", function() { return ZeroLeadingPipe; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+
+
+let ZeroLeadingPipe = class ZeroLeadingPipe {
+    transform(value, size = 8) {
+        if ((value === null) || (value === '')) {
+            return '';
+        }
+        else {
+            value = value.toString();
+            while (value.length < size)
+                value = "0" + value;
+            return value;
+        }
+    }
+};
+ZeroLeadingPipe = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Pipe"])({
+        name: 'zeroLeading'
+    })
+], ZeroLeadingPipe);
 
 
 
@@ -2305,6 +2392,65 @@ PwaService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 /***/ }),
 
+/***/ "./src/app/@shared/services/startup.service.ts":
+/*!*****************************************************!*\
+  !*** ./src/app/@shared/services/startup.service.ts ***!
+  \*****************************************************/
+/*! exports provided: StartupService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StartupService", function() { return StartupService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _storage_local_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./storage-local.service */ "./src/app/@shared/services/storage-local.service.ts");
+
+
+
+
+
+
+
+let StartupService = class StartupService {
+    constructor(httpClient, storageLocal) {
+        this.httpClient = httpClient;
+        this.storageLocal = storageLocal;
+    }
+    load() {
+        return new Promise((resolve) => {
+            Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["zip"])(this.httpClient.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].serverUrl}/api/syst-parameters/all`))
+                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])((res) => {
+                console.warn(`StartupService.load: Network request failed`, res);
+                resolve();
+                return [];
+            }))
+                .subscribe(([parameters]) => {
+                this.storageLocal.set('parameters', parameters.data);
+            }, () => { }, () => {
+                resolve();
+            });
+        });
+    }
+};
+StartupService.ctorParameters = () => [
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"] },
+    { type: _storage_local_service__WEBPACK_IMPORTED_MODULE_6__["StorageLocalService"] }
+];
+StartupService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    })
+], StartupService);
+
+
+
+/***/ }),
+
 /***/ "./src/app/@shared/services/storage-local.service.ts":
 /*!***********************************************************!*\
   !*** ./src/app/@shared/services/storage-local.service.ts ***!
@@ -2401,10 +2547,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var crypto_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! crypto-js */ "./node_modules/crypto-js/index.js");
+/* harmony import */ var crypto_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(crypto_js__WEBPACK_IMPORTED_MODULE_4__);
 
 
 
 
+
+// declare var CryptoJS: any;
 /**
  * Storage service
  * used for persist application data in observable key value pair
@@ -2422,12 +2572,12 @@ let StorageService = class StorageService {
         this.subjects = new Map();
     }
     encrypt(data) {
-        return CryptoJS.AES.encrypt(JSON.stringify(data), _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].secretKey).toString();
+        return crypto_js__WEBPACK_IMPORTED_MODULE_4__["AES"].encrypt(JSON.stringify(data), _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].secretKey).toString();
     }
     decrypt(data) {
-        const bytes = CryptoJS.AES.decrypt(data, _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].secretKey);
+        const bytes = crypto_js__WEBPACK_IMPORTED_MODULE_4__["AES"].decrypt(data, _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].secretKey);
         if (bytes.toString()) {
-            return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+            return JSON.parse(bytes.toString(crypto_js__WEBPACK_IMPORTED_MODULE_4__["enc"].Utf8));
         }
         return data;
     }
@@ -2637,6 +2787,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_navigation_service__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./services/navigation.service */ "./src/app/@shared/services/navigation.service.ts");
 /* harmony import */ var _pipes_status_pipe__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./pipes/status.pipe */ "./src/app/@shared/pipes/status.pipe.ts");
 /* harmony import */ var _pipes_date_format_pipe__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./pipes/date-format.pipe */ "./src/app/@shared/pipes/date-format.pipe.ts");
+/* harmony import */ var angular2_signaturepad__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! angular2-signaturepad */ "./node_modules/angular2-signaturepad/__ivy_ngcc__/index.js");
+/* harmony import */ var angular2_signaturepad__WEBPACK_IMPORTED_MODULE_40___default = /*#__PURE__*/__webpack_require__.n(angular2_signaturepad__WEBPACK_IMPORTED_MODULE_40__);
+/* harmony import */ var ionicsignaturepad__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ionicsignaturepad */ "./node_modules/ionicsignaturepad/__ivy_ngcc__/dist/index.js");
+/* harmony import */ var _pipes_zero_leading_pipe__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./pipes/zero-leading.pipe */ "./src/app/@shared/pipes/zero-leading.pipe.ts");
+/* harmony import */ var _pipes_get_parameter_pipe__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./pipes/get-parameter.pipe */ "./src/app/@shared/pipes/get-parameter.pipe.ts");
+/* harmony import */ var _services_startup_service__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ./services/startup.service */ "./src/app/@shared/services/startup.service.ts");
+
+
+
+
+
 
 
 
@@ -2688,6 +2849,8 @@ SharedModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
             _pipes_strip_html_pipe__WEBPACK_IMPORTED_MODULE_32__["StripHtmlPipe"],
             _pipes_status_pipe__WEBPACK_IMPORTED_MODULE_38__["StatusPipe"],
             _pipes_date_format_pipe__WEBPACK_IMPORTED_MODULE_39__["DateFormatPipe"],
+            _pipes_zero_leading_pipe__WEBPACK_IMPORTED_MODULE_42__["ZeroLeadingPipe"],
+            _pipes_get_parameter_pipe__WEBPACK_IMPORTED_MODULE_43__["GetParameterPipe"],
         ],
         entryComponents: [
             _components_main_header_main_header_component__WEBPACK_IMPORTED_MODULE_4__["MainHeaderComponent"],
@@ -2698,6 +2861,8 @@ SharedModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
             ionic_selectable__WEBPACK_IMPORTED_MODULE_6__["IonicSelectableModule"],
             ngx_summernote__WEBPACK_IMPORTED_MODULE_31__["NgxSummernoteModule"],
             _zxing_ngx_scanner__WEBPACK_IMPORTED_MODULE_35__["ZXingScannerModule"],
+            angular2_signaturepad__WEBPACK_IMPORTED_MODULE_40__["SignaturePadModule"],
+            ionicsignaturepad__WEBPACK_IMPORTED_MODULE_41__["IonicSignaturePadModule"],
             _angular_common_http__WEBPACK_IMPORTED_MODULE_11__["HttpClientModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_28__["FormsModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_28__["ReactiveFormsModule"],
@@ -2705,6 +2870,8 @@ SharedModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
             _pipes_strip_html_pipe__WEBPACK_IMPORTED_MODULE_32__["StripHtmlPipe"],
             _pipes_status_pipe__WEBPACK_IMPORTED_MODULE_38__["StatusPipe"],
             _pipes_date_format_pipe__WEBPACK_IMPORTED_MODULE_39__["DateFormatPipe"],
+            _pipes_zero_leading_pipe__WEBPACK_IMPORTED_MODULE_42__["ZeroLeadingPipe"],
+            _pipes_get_parameter_pipe__WEBPACK_IMPORTED_MODULE_43__["GetParameterPipe"],
         ],
         imports: [
             _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
@@ -2720,6 +2887,7 @@ SharedModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
             _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_12__["HTTP"],
             _ionic_native_file_transfer_ngx__WEBPACK_IMPORTED_MODULE_13__["FileTransfer"],
             _ionic_native_file_opener_ngx__WEBPACK_IMPORTED_MODULE_34__["FileOpener"],
+            ionicsignaturepad__WEBPACK_IMPORTED_MODULE_41__["IonicsignaturepadProvider"],
             _services_api_service__WEBPACK_IMPORTED_MODULE_14__["ApiService"],
             _services_auth_service__WEBPACK_IMPORTED_MODULE_15__["AuthService"],
             _services_geo_location_service__WEBPACK_IMPORTED_MODULE_16__["GeoLocationService"],
@@ -2735,6 +2903,7 @@ SharedModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
             _services_file_transfer_service__WEBPACK_IMPORTED_MODULE_33__["FileTransferService"],
             _services_file_upload_service__WEBPACK_IMPORTED_MODULE_36__["FileUploadService"],
             _services_navigation_service__WEBPACK_IMPORTED_MODULE_37__["NavigationService"],
+            _services_startup_service__WEBPACK_IMPORTED_MODULE_44__["StartupService"],
             {
                 provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_11__["HTTP_INTERCEPTORS"],
                 useClass: _interceptors_loading_interceptor__WEBPACK_IMPORTED_MODULE_24__["LoadingInterceptor"],
@@ -2744,6 +2913,8 @@ SharedModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
             _angular_common__WEBPACK_IMPORTED_MODULE_2__["LowerCasePipe"],
             _angular_common__WEBPACK_IMPORTED_MODULE_2__["UpperCasePipe"],
             _angular_common__WEBPACK_IMPORTED_MODULE_2__["JsonPipe"],
+            _pipes_zero_leading_pipe__WEBPACK_IMPORTED_MODULE_42__["ZeroLeadingPipe"],
+            _pipes_get_parameter_pipe__WEBPACK_IMPORTED_MODULE_43__["GetParameterPipe"],
         ]
     })
 ], SharedModule);
@@ -2887,6 +3058,18 @@ const routes = [
         path: 'coun-members',
         loadChildren: () => __webpack_require__.e(/*! import() | coun-members-coun-members-module */ "coun-members-coun-members-module").then(__webpack_require__.bind(null, /*! ./coun-members/coun-members.module */ "./src/app/coun-members/coun-members.module.ts")).then(m => m.CounMembersPageModule)
     },
+    {
+        path: 'mail-templates',
+        loadChildren: () => __webpack_require__.e(/*! import() | mail-templates-mail-templates-module */ "mail-templates-mail-templates-module").then(__webpack_require__.bind(null, /*! ./mail-templates/mail-templates.module */ "./src/app/mail-templates/mail-templates.module.ts")).then(m => m.MailTemplatesPageModule)
+    },
+    {
+        path: 'mails',
+        loadChildren: () => __webpack_require__.e(/*! import() | mails-mails-module */ "mails-mails-module").then(__webpack_require__.bind(null, /*! ./mails/mails.module */ "./src/app/mails/mails.module.ts")).then(m => m.MailsPageModule)
+    },
+    {
+        path: 'files',
+        loadChildren: () => __webpack_require__.e(/*! import() | files-files-module */ "files-files-module").then(__webpack_require__.bind(null, /*! ./files/files.module */ "./src/app/files/files.module.ts")).then(m => m.FilesPageModule)
+    },
 ];
 let AppRoutingModule = class AppRoutingModule {
 };
@@ -2932,12 +3115,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic-native/splash-screen/ngx */ "./node_modules/@ionic-native/splash-screen/__ivy_ngcc__/ngx/index.js");
 /* harmony import */ var _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/status-bar/ngx */ "./node_modules/@ionic-native/status-bar/__ivy_ngcc__/ngx/index.js");
 /* harmony import */ var _shared_services_loading_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./@shared/services/loading.service */ "./src/app/@shared/services/loading.service.ts");
+/* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @capacitor/core */ "./node_modules/@capacitor/core/dist/esm/index.js");
 
 
 
 
 
 
+
+const { PushNotifications } = _capacitor_core__WEBPACK_IMPORTED_MODULE_6__["Plugins"];
 let AppComponent = class AppComponent {
     constructor(platform, splashScreen, statusBar, loading) {
         this.platform = platform;
@@ -2993,6 +3179,34 @@ let AppComponent = class AppComponent {
         if (path !== undefined) {
             this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
         }
+        // Request permission to use push notifications
+        // iOS will prompt user and return if they granted permission or not
+        // Android will just grant without prompting
+        PushNotifications.requestPermission().then(result => {
+            if (result.granted) {
+                // Register with Apple / Google to receive push via APNS/FCM
+                PushNotifications.register();
+            }
+            else {
+                // Show some error
+            }
+        });
+        // On success, we should be able to receive notifications
+        PushNotifications.addListener('registration', (token) => {
+            alert('Push registration success, token: ' + token.value);
+        });
+        // Some issue with our setup and push will not work
+        PushNotifications.addListener('registrationError', (error) => {
+            alert('Error on registration: ' + JSON.stringify(error));
+        });
+        // Show us the notification payload if the app is open on our device
+        PushNotifications.addListener('pushNotificationReceived', (notification) => {
+            alert('Push received: ' + JSON.stringify(notification));
+        });
+        // Method called when tapping on a notification
+        PushNotifications.addListener('pushNotificationActionPerformed', (notification) => {
+            alert('Push action performed: ' + JSON.stringify(notification));
+        });
     }
     toggleMenu() {
         const splitPane = document.querySelector('ion-split-pane');
@@ -3037,11 +3251,12 @@ AppComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 /*!*******************************!*\
   !*** ./src/app/app.module.ts ***!
   \*******************************/
-/*! exports provided: AppModule */
+/*! exports provided: StartupServiceFactory, AppModule */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StartupServiceFactory", function() { return StartupServiceFactory; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppModule", function() { return AppModule; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
@@ -3056,6 +3271,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../environments/environment */ "./src/environments/environment.ts");
 /* harmony import */ var _layouts_layouts_module__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./@layouts/layouts.module */ "./src/app/@layouts/layouts.module.ts");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/__ivy_ngcc__/fesm2015/forms.js");
+/* harmony import */ var _shared_services_startup_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./@shared/services/startup.service */ "./src/app/@shared/services/startup.service.ts");
 
 
 
@@ -3069,6 +3285,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+function StartupServiceFactory(startupService) {
+    return () => startupService.load();
+}
+const APPINIT_PROVIDES = [
+    _shared_services_startup_service__WEBPACK_IMPORTED_MODULE_13__["StartupService"],
+    {
+        provide: _angular_core__WEBPACK_IMPORTED_MODULE_1__["APP_INITIALIZER"],
+        useFactory: StartupServiceFactory,
+        deps: [_shared_services_startup_service__WEBPACK_IMPORTED_MODULE_13__["StartupService"]],
+        multi: true,
+    },
+];
 let AppModule = class AppModule {
 };
 AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
@@ -3093,7 +3322,9 @@ AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
             {
                 provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"],
                 useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"]
-            }
+            },
+            { provide: 'WINDOW', useValue: window },
+            ...APPINIT_PROVIDES,
         ],
         exports: [],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
@@ -3120,7 +3351,7 @@ __webpack_require__.r(__webpack_exports__);
 const environment = {
     production: false,
     version: 'dev',
-    serverUrl: 'http://192.168.0.12/ionbase-be/public',
+    serverUrl: 'http://192.168.0.24/ionbase-be/public',
     secretKey: 'Zcpocr3nMl1lyvnkGT6zMSc'
 };
 /*

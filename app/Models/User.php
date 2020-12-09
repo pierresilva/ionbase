@@ -6,6 +6,49 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 
+/**
+ * App\Models\User
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $email
+ * @property string|null $email_verified_at
+ * @property string $password
+ * @property int|null $syst_position_id
+ * @property string|null $remember_token
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CounMeetingCitation[] $counMeetingCitations
+ * @property-read int|null $coun_meeting_citations_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CounMember[] $counMembers
+ * @property-read int|null $coun_members_count
+ * @property-read \App\Models\SystPosition|null $systPosition
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\UserProfile[] $userProfiles
+ * @property-read int|null $user_profiles_count
+ * @method static Builder|User counMeetingCitationsByName($name)
+ * @method static Builder|User counMembersByName($name)
+ * @method static Builder|User newModelQuery()
+ * @method static Builder|User newQuery()
+ * @method static Builder|User query()
+ * @method static Builder|User systPositionByName($name)
+ * @method static Builder|User userProfilesByName($name)
+ * @method static Builder|User whereCreatedAt($value)
+ * @method static Builder|User whereEmail($value)
+ * @method static Builder|User whereEmailVerifiedAt($value)
+ * @method static Builder|User whereId($value)
+ * @method static Builder|User whereName($value)
+ * @method static Builder|User wherePassword($value)
+ * @method static Builder|User whereRememberToken($value)
+ * @method static Builder|User whereSystPositionId($value)
+ * @method static Builder|User whereUpdatedAt($value)
+ * @mixin \Eloquent
+ * @property int|null $accept_terms_conditions
+ * @property string|null $first_name
+ * @property string|null $last_name
+ * @method static Builder|User whereAcceptTermsConditions($value)
+ * @method static Builder|User whereFirstName($value)
+ * @method static Builder|User whereLastName($value)
+ */
 class User extends Model
 {
 

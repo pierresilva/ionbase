@@ -7,6 +7,39 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
+/**
+ * App\Models\CompAddress
+ *
+ * @property int $id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int|null $company_id
+ * @property string $name
+ * @property int|null $syst_city_id
+ * @property string $address
+ * @property int $main
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \App\Models\Company|null $company
+ * @property-read \App\Models\SystCity|null $systCity
+ * @method static Builder|CompAddress companyByName($name)
+ * @method static Builder|CompAddress newModelQuery()
+ * @method static Builder|CompAddress newQuery()
+ * @method static \Illuminate\Database\Query\Builder|CompAddress onlyTrashed()
+ * @method static Builder|CompAddress query()
+ * @method static Builder|CompAddress systCityByName($name)
+ * @method static Builder|CompAddress whereAddress($value)
+ * @method static Builder|CompAddress whereCompanyId($value)
+ * @method static Builder|CompAddress whereCreatedAt($value)
+ * @method static Builder|CompAddress whereDeletedAt($value)
+ * @method static Builder|CompAddress whereId($value)
+ * @method static Builder|CompAddress whereMain($value)
+ * @method static Builder|CompAddress whereName($value)
+ * @method static Builder|CompAddress whereSystCityId($value)
+ * @method static Builder|CompAddress whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|CompAddress withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|CompAddress withoutTrashed()
+ * @mixin \Eloquent
+ */
 class CompAddress extends Model
 {
     use SoftDeletes;

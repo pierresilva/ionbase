@@ -37,5 +37,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CounMembersTableSeeder::class);
         $this->call(MailTemplatesTableSeeder::class);
         $this->call(MailsTableSeeder::class);
+        $this->call(FilesTableSeeder::class);
     }
 }

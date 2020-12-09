@@ -11,6 +11,7 @@ export interface CounMeetingAgenda {
     created_at?: any;
     updated_at?: any;
     deleted_at?: any;
+    files?: any[];
 }
 
 export interface CounMeetingAgendaLists {

@@ -1,0 +1,187 @@
+<ion-content no-bounce>
+    <div class="login-background"></div>
+    <ion-grid class="ion-no-padding">
+        <ion-row class="ion-justify-content-center ion-no-padding">
+            <ion-col size-sm="8"
+                     size-lg="6"
+                     size-xl="4"
+                     class="ion-align-self-center ion-no-padding">
+                <div class="login-header ion-text-center">
+                    <h1 [hidden]="true">{{environment.name}}</h1>
+
+                        <img [routerLink]="'/'" src="assets/images/NoahApp/logo-light-square.png"
+                             style="max-height: 120px;">
+
+                    <h6 style="margin-bottom: 0px;">v-{{ version }}</h6>
+                </div>
+                <div class="login-container"
+                     *ngIf="registered">
+                    <ion-row class="ion-padding-horizontal">
+                        <ion-col class="ion-text-center">
+                            <ion-icon name="checkmark-circle-outline"
+                                      color="success"
+                                      class="icon-m ion-padding-vertical"></ion-icon>
+                            <h2>Te registraste con éxito!</h2>
+                            <p class="ion-text-justify">Antes de poder continuar, por favor, confirma tu correo electrónico con el enlace que te hemos enviado.</p>
+                            <p class="ion-text-justify">Si en cinco minútos no has recibido el email haz click en el siguiente enlace para que te enviemos otro.</p>
+                            <ion-button fill="clear" (click)="resendVerificationEmail()">Enviar email de verificación</ion-button>
+                        </ion-col>
+                    </ion-row>
+                </div>
+                <div class="login-container"
+                     *ngIf="!registered">
+                    <form #registerForm="ngForm"
+                          (ngSubmit)="register()"
+                          novalidate
+                          autocomplete="off">
+                        <ion-list>
+                            <ion-list-header>Registrarse</ion-list-header>
+                            <ion-item lines="inset">
+                                <ion-label color="medium"
+                                           position="floating">
+                                    Correo electrónico
+                                </ion-label>
+                                <ion-input type="text"
+                                           name="email"
+                                           id="email-field"
+                                           email
+                                           required
+                                           [(ngModel)]="model.email"
+                                           autocomplete="email"></ion-input>
+                            </ion-item>
+                            <ion-text color="danger"
+                                      [hidden]="(registerForm?.form?.controls?.email?.untouched || registerForm?.form?.controls?.email?.valid)">
+                                <span class="ion-padding">Correo electónico no valido</span>
+                            </ion-text>
+
+                            <ion-item lines="inset">
+                                <ion-label color="medium"
+                                           position="floating">
+                                    Nombre
+                                </ion-label>
+                                <ion-input type="text"
+                                           name="first_name"
+                                           id="first_name-field"
+                                           minlength="5"
+                                           required
+                                           [(ngModel)]="model.first_name"
+                                           autocomplete="email"></ion-input>
+                            </ion-item>
+                            <ion-text color="danger"
+                                      [hidden]="(registerForm?.form?.controls?.first_name?.untouched || registerForm?.form?.controls?.first_name?.valid)">
+                                <span class="ion-padding">Nombre no valido</span>
+                            </ion-text>
+
+                            <ion-item lines="inset">
+                                <ion-label color="medium"
+                                           position="floating">
+                                    Apellido
+                                </ion-label>
+                                <ion-input type="text"
+                                           name="last_name"
+                                           id="last_name-field"
+                                           minlength="5"
+                                           required
+                                           [(ngModel)]="model.last_name"
+                                           autocomplete="email"></ion-input>
+                            </ion-item>
+                            <ion-text color="danger"
+                                      [hidden]="(registerForm?.form?.controls?.last_name?.untouched || registerForm?.form?.controls?.last_name?.valid)">
+                                <span class="ion-padding">Apellido no valido</span>
+                            </ion-text>
+
+                            <ion-item lines="inset">
+                                <ion-label color="medium"
+                                           position="floating">
+                                    Contraseña
+                                </ion-label>
+                                <ion-input type="password"
+                                           name="password"
+                                           id="password-field"
+                                           required
+                                           minlength="6"
+                                           maxlength="16"
+                                           [(ngModel)]="model.password"
+                                           #password="ngModel"
+                                           autocomplete="password"></ion-input>
+                                <ion-icon slot="end"
+                                          name="eye-outline"
+                                          id="password-field-show"
+                                          (click)="showPassword('password-field')"></ion-icon>
+                            </ion-item>
+                            <ion-text color="danger"
+                                      [hidden]="(registerForm?.form?.controls?.password?.untouched || registerForm?.form?.controls?.password?.valid)">
+                                <span class="ion-padding">Contraseña no valida</span>
+                            </ion-text>
+
+                            <ion-item lines="inset">
+                                <ion-label color="medium"
+                                           position="floating">
+                                    Confirmar Contraseña
+                                </ion-label>
+                                <ion-input type="password"
+                                           name="password_confirmation"
+                                           id="password_confirmation-field"
+                                           [equalTo]="password"
+                                           required
+                                           minlength="6"
+                                           maxlength="16"
+                                           [(ngModel)]="model.password_confirmation"
+                                           #password_confirmation="ngModel"
+                                           autocomplete="password_confirmation"></ion-input>
+                                <ion-icon slot="end"
+                                          name="eye-outline"
+                                          id="password_confirmation-field-show"
+                                          (click)="showPassword('password_confirmation-field')"></ion-icon>
+                            </ion-item>
+                            <ion-text color="danger"
+                                      [hidden]="(registerForm?.form?.controls?.password_confirmation?.untouched || registerForm?.form?.controls?.password_confirmation?.valid)">
+                                <span class="ion-padding">Confirmación no valida</span>
+                            </ion-text>
+
+                            <ion-item class="ion-padding-top"
+                                      lines="none">
+                                <ion-label>Acepto los <a (click)="null">terminos y condiciones</a></ion-label>
+                                <ion-checkbox slot="start"
+                                              id="accept_terms_conditions-field"
+                                              name="accept_terms_conditions"
+                                              required
+                                              [equal]="true"
+                                              #accept_terms_conditions="ngModel"
+                                              [(ngModel)]="model.accept_terms_conditions"></ion-checkbox>
+                            </ion-item>
+                            <ion-text color="danger"
+                                      [hidden]="(registerForm?.form?.controls?.accept_terms_conditions?.untouched || registerForm?.form?.controls?.accept_terms_conditions?.valid)">
+                                <span class="ion-padding">Debe aceptar los terminos y condiciones</span>
+                            </ion-text>
+
+                            <div style="height: 1rem;"></div>
+
+                        </ion-list>
+                        <div class="ion-padding-horizontal">
+                            <ion-button type="submit"
+                                        color="primary"
+                                        expand="block">
+                                Registrarse
+                            </ion-button>
+                        </div>
+                        <div class="ion-padding-vertical ion-text-center">
+                            <ion-button type="button"
+                                        routerLink="/auth/login"
+                                        color="primary"
+                                        fill="clean">
+                                Ingresar
+                            </ion-button>
+                            <ion-button type="button"
+                                        color="primary"
+                                        routerLink="/auth/password-forgot"
+                                        fill="clean">
+                                Olvidaste tu contraseña?
+                            </ion-button>
+                        </div>
+                    </form>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

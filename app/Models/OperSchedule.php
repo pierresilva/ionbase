@@ -7,6 +7,35 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
+/**
+ * App\Models\OperSchedule
+ *
+ * @property int $id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string $name
+ * @property int|null $hous_unit_area_id
+ * @property int|null $oper_sector_id
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \App\Models\HousUnitArea|null $housUnitArea
+ * @property-read \App\Models\OperSector|null $operSector
+ * @method static Builder|OperSchedule housUnitAreaByName($name)
+ * @method static Builder|OperSchedule newModelQuery()
+ * @method static Builder|OperSchedule newQuery()
+ * @method static \Illuminate\Database\Query\Builder|OperSchedule onlyTrashed()
+ * @method static Builder|OperSchedule operSectorByName($name)
+ * @method static Builder|OperSchedule query()
+ * @method static Builder|OperSchedule whereCreatedAt($value)
+ * @method static Builder|OperSchedule whereDeletedAt($value)
+ * @method static Builder|OperSchedule whereHousUnitAreaId($value)
+ * @method static Builder|OperSchedule whereId($value)
+ * @method static Builder|OperSchedule whereName($value)
+ * @method static Builder|OperSchedule whereOperSectorId($value)
+ * @method static Builder|OperSchedule whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|OperSchedule withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|OperSchedule withoutTrashed()
+ * @mixin \Eloquent
+ */
 class OperSchedule extends Model
 {
     use SoftDeletes;

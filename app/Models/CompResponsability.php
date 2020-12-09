@@ -7,6 +7,35 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
+/**
+ * App\Models\CompResponsability
+ *
+ * @property int $id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string $name
+ * @property int|null $company_id
+ * @property int $syst_parameter_id
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \App\Models\Company|null $company
+ * @property-read \App\Models\SystParameter $systParameter
+ * @method static Builder|CompResponsability companyByName($name)
+ * @method static Builder|CompResponsability newModelQuery()
+ * @method static Builder|CompResponsability newQuery()
+ * @method static \Illuminate\Database\Query\Builder|CompResponsability onlyTrashed()
+ * @method static Builder|CompResponsability query()
+ * @method static Builder|CompResponsability systParameterByName($name)
+ * @method static Builder|CompResponsability whereCompanyId($value)
+ * @method static Builder|CompResponsability whereCreatedAt($value)
+ * @method static Builder|CompResponsability whereDeletedAt($value)
+ * @method static Builder|CompResponsability whereId($value)
+ * @method static Builder|CompResponsability whereName($value)
+ * @method static Builder|CompResponsability whereSystParameterId($value)
+ * @method static Builder|CompResponsability whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|CompResponsability withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|CompResponsability withoutTrashed()
+ * @mixin \Eloquent
+ */
 class CompResponsability extends Model
 {
     use SoftDeletes;

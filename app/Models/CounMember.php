@@ -7,6 +7,34 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
+/**
+ * App\Models\CounMember
+ *
+ * @property int $id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string $name
+ * @property int|null $user_id
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CounMeetingCitation[] $counMeetingCitations
+ * @property-read int|null $coun_meeting_citations_count
+ * @property-read \App\Models\User|null $user
+ * @method static Builder|CounMember counMeetingCitationsByName($name)
+ * @method static Builder|CounMember newModelQuery()
+ * @method static Builder|CounMember newQuery()
+ * @method static \Illuminate\Database\Query\Builder|CounMember onlyTrashed()
+ * @method static Builder|CounMember query()
+ * @method static Builder|CounMember userByName($name)
+ * @method static Builder|CounMember whereCreatedAt($value)
+ * @method static Builder|CounMember whereDeletedAt($value)
+ * @method static Builder|CounMember whereId($value)
+ * @method static Builder|CounMember whereName($value)
+ * @method static Builder|CounMember whereUpdatedAt($value)
+ * @method static Builder|CounMember whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|CounMember withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|CounMember withoutTrashed()
+ * @mixin \Eloquent
+ */
 class CounMember extends Model
 {
     use SoftDeletes;

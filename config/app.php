@@ -53,6 +53,7 @@ return [
     */
 
     'url' => env('APP_URL', 'http://localhost'),
+    'url_front' => env('APP_URL_FRONT', 'http://localhost:4200'),
 
     'asset_url' => env('ASSET_URL', null),
 
@@ -175,6 +176,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\SettingsFacadeServiceProvider::class,
 
     ],
 
@@ -227,6 +229,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        'Settings' => App\Settings\Facades\SettingsFacade::class,
 
     ],
 

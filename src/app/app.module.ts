@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {RouteReuseStrategy} from '@angular/router';
 
@@ -13,6 +13,21 @@ import {environment} from '../environments/environment';
 import {LayoutsModule} from "./@layouts/layouts.module";
 import {FormsModule} from "@angular/forms";
 
+import {StartupService} from "./@shared/services/startup.service";
+import {SplitPanelService} from "./@shared/services/split-panel.service";
+
+export function StartupServiceFactory(startupService: StartupService): () => Promise<void> {
+    return () => startupService.load();
+}
+const APPINIT_PROVIDES = [
+    StartupService,
+    {
+        provide: APP_INITIALIZER,
+        useFactory: StartupServiceFactory,
+        deps: [StartupService],
+        multi: true,
+    },
+];
 
 @NgModule({
     declarations: [
@@ -32,10 +47,13 @@ import {FormsModule} from "@angular/forms";
     providers: [
         StatusBar,
         SplashScreen,
+        SplitPanelService,
         {
             provide: RouteReuseStrategy,
             useClass: IonicRouteStrategy
-        }
+        },
+        { provide: 'WINDOW',  useValue: window },
+        ...APPINIT_PROVIDES,
     ],
     exports: [],
     bootstrap: [AppComponent]

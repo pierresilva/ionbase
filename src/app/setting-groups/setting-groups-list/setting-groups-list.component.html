@@ -1,0 +1,51 @@
+<ion-searchbar placeholder="Buscar grupos de parametros"
+               animated
+               debounce="500"
+               (keyup.enter)="settingGroupsService.getSettingGroups()"
+               (ionCancel)="settingGroupsService.search = ''"
+               (ionChange)="settingGroupsService.getSettingGroups()"
+               [showCancelButton]="'focus'"
+               [cancelButtonText]="'cancelar'"
+               [(ngModel)]="settingGroupsService.search"></ion-searchbar>
+<ion-list>
+    <ion-list-header>
+        Grupos de parametros
+    </ion-list-header>
+    <ng-container *ngIf="settingGroupsService?.settingGroups?.length">
+
+        <ng-container *ngFor="let settingGroup of settingGroupsService?.settingGroups">
+            <ion-item-sliding>
+                <ion-item (click)="settingGroupsService.getSettingGroup(settingGroup.code); openModal('Editar')">
+                    <ion-label>
+                        {{settingGroup.name}}
+                        <h3>{{settingGroup.code}}</h3>
+                    </ion-label>
+                </ion-item>
+                <ion-item-options side="end">
+                    <ion-item-option color="danger"
+                                     (click)="settingGroupsService.deleteSettingGroup(settingGroup)">
+                        <ion-icon name="trash"
+                                  class="icon-s"></ion-icon>
+                    </ion-item-option>
+                </ion-item-options>
+            </ion-item-sliding>
+        </ng-container>
+
+    </ng-container>
+
+    <ng-container *ngIf="!settingGroupsService?.settingGroups?.length">
+        <ion-item>
+            <ion-label>Sin grupos de parametros</ion-label>
+            <ion-button (click)="settingGroupsService.settingGroup = {}; openModal()"
+                        slot="end"
+                        fill="outline"
+                        color="success">
+                Crear grupos de parametros
+                <ion-icon name="add-circle-outline" slot="end"></ion-icon>
+            </ion-button>
+        </ion-item>
+    </ng-container>
+
+</ion-list>
+
+

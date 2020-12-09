@@ -7,6 +7,32 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
+/**
+ * App\Models\SystParameterGroup
+ *
+ * @property int $id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string $name
+ * @property string $code
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\SystParameter[] $systParameters
+ * @property-read int|null $syst_parameters_count
+ * @method static Builder|SystParameterGroup newModelQuery()
+ * @method static Builder|SystParameterGroup newQuery()
+ * @method static \Illuminate\Database\Query\Builder|SystParameterGroup onlyTrashed()
+ * @method static Builder|SystParameterGroup query()
+ * @method static Builder|SystParameterGroup systParametersByName($name)
+ * @method static Builder|SystParameterGroup whereCode($value)
+ * @method static Builder|SystParameterGroup whereCreatedAt($value)
+ * @method static Builder|SystParameterGroup whereDeletedAt($value)
+ * @method static Builder|SystParameterGroup whereId($value)
+ * @method static Builder|SystParameterGroup whereName($value)
+ * @method static Builder|SystParameterGroup whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|SystParameterGroup withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|SystParameterGroup withoutTrashed()
+ * @mixin \Eloquent
+ */
 class SystParameterGroup extends Model
 {
     use SoftDeletes;

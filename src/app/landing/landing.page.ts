@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {SplitPanelService} from "../@shared/services/split-panel.service";
 
 @Component({
   selector: 'app-landing',
@@ -20,9 +21,12 @@ export class LandingPage implements OnInit {
     }
   };
 
-  constructor() { }
+  constructor(
+      public splitPanel: SplitPanelService
+  ) { }
 
   ngOnInit() {
+    this.splitPanel.show.next(false);
   }
 
 }

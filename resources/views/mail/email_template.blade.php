@@ -114,6 +114,20 @@ $style = [
                                             </tr>
                                         </table>
                                     @endif
+                                    @if (isset($data->button) && count($data->button))
+                                        <table style="{{ $style['body_action'] }}" align="center" width="100%"
+                                               cellpadding="0"
+                                               cellspacing="0">
+                                            <tr>
+                                                <td align="center">
+                                                    <a href="@if (isset($data->button['url'])){{ $data->button['url'] }}@endif"
+                                                       style="{{ $fontFamily }} {{ $style['button'] }} {{ $style['button--blue'] }}"
+                                                       class="button"
+                                                       target="_blank">@if (isset($data->button['text'])){{ $data->button['text'] }}@endif</a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    @endif
                                     @if (isset($data->outro_lines))
                                         @foreach ($data->outro_lines as $line)
                                             <p style="{{ $style['paragraph'] }}">

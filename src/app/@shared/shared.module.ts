@@ -35,11 +35,14 @@ import {FileOpener} from "@ionic-native/file-opener/ngx";
 import {ZXingScannerModule} from '@zxing/ngx-scanner';
 import {FileUploadService} from "./services/file-upload.service";
 import {NavigationService} from "./services/navigation.service";
-import { StatusPipe } from './pipes/status.pipe';
-import { DateFormatPipe } from './pipes/date-format.pipe';
-import { SignaturePadModule } from 'angular2-signaturepad';
-import { IonicSignaturePadModule,IonicsignaturepadProvider } from 'ionicsignaturepad';
-import { ZeroLeadingPipe } from './pipes/zero-leading.pipe';
+import {StatusPipe} from './pipes/status.pipe';
+import {DateFormatPipe} from './pipes/date-format.pipe';
+import {SignaturePadModule} from 'angular2-signaturepad';
+import {ZeroLeadingPipe} from './pipes/zero-leading.pipe';
+import {GetParameterPipe} from './pipes/get-parameter.pipe';
+import {StartupService} from "./services/startup.service";
+import {SplitPanelService} from "./services/split-panel.service";
+import {CustomFormsModule} from "ng2-validation";
 
 
 @NgModule({
@@ -51,6 +54,7 @@ import { ZeroLeadingPipe } from './pipes/zero-leading.pipe';
         StatusPipe,
         DateFormatPipe,
         ZeroLeadingPipe,
+        GetParameterPipe,
     ],
     entryComponents: [
         MainHeaderComponent,
@@ -63,16 +67,17 @@ import { ZeroLeadingPipe } from './pipes/zero-leading.pipe';
         NgxSummernoteModule,
         ZXingScannerModule,
         SignaturePadModule,
-        IonicSignaturePadModule,
 
         HttpClientModule,
         FormsModule,
+        CustomFormsModule,
         ReactiveFormsModule,
         SelectInputComponent,
         StripHtmlPipe,
         StatusPipe,
         DateFormatPipe,
         ZeroLeadingPipe,
+        GetParameterPipe,
     ],
     imports: [
         CommonModule,
@@ -88,7 +93,6 @@ import { ZeroLeadingPipe } from './pipes/zero-leading.pipe';
         HTTP,
         FileTransfer,
         FileOpener,
-        IonicsignaturepadProvider,
 
         ApiService,
         AuthService,
@@ -105,6 +109,8 @@ import { ZeroLeadingPipe } from './pipes/zero-leading.pipe';
         FileTransferService,
         FileUploadService,
         NavigationService,
+        // StartupService,
+        // SplitPanelService,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: LoadingInterceptor,
@@ -116,7 +122,9 @@ import { ZeroLeadingPipe } from './pipes/zero-leading.pipe';
         UpperCasePipe,
         JsonPipe,
         ZeroLeadingPipe,
+        GetParameterPipe,
     ]
 })
 export class SharedModule {
+
 }

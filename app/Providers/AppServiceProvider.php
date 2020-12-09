@@ -21,6 +21,9 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+        if ($this->app->isLocal()) {
+            $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
+        }
     }
 
     /**
@@ -59,6 +62,7 @@ class AppServiceProvider extends ServiceProvider
             'counMembers' => 'JUNTAS MIEMBROS',
             'mailTemplates' => 'CORREOS PLANTILLAS',
             'mails' => 'CORREOS',
+            'files' => 'JUNTAS ARCHIVOS DE AGENDAS',
         ]);
         
         // Add Pagenate to Collectoin

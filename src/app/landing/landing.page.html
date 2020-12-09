@@ -69,7 +69,7 @@
                         <img src="https://ionicframework.com/docs/demos/api/slides/slide-4.png"/>
                     </ion-card>
                     <h2>Ready to Play?</h2>
-                    <ion-button [routerLink]="'/folder/Inbox'" fill="clear">Continue
+                    <ion-button [routerLink]="'/folder/Inbox'" (click)="splitPanel.show.next(true)" fill="clear">Continue
                         <ion-icon slot="end" name="arrow-forward"></ion-icon>
                     </ion-button>
                 </ion-col>

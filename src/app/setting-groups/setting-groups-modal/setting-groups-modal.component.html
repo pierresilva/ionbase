@@ -1,0 +1,26 @@
+<!-- my-modal.page.html -->
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button (click)="closeModal()">
+                <ion-icon slot="icon-only"
+                          [name]="'arrow-back-outline'"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="primary">
+            <ion-button color="success"
+                        (click)="settingGroupsService.saveSettingGroup(); closeModal()"
+                        [disabled]="!settingGroupsFormComponent?.settingGroupsForm?.valid">
+                <ion-icon slot="icon-only"
+                          [name]="'save-outline'"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>{{action}} Grupo de parametros</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+    <app-setting-groups-form #settingGroupsFormComponent></app-setting-groups-form>
+
+</ion-content>

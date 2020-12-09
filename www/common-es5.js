@@ -864,6 +864,17 @@
               }, _callee3, this);
             }));
           }
+        }, {
+          key: "getAll",
+          value: function getAll() {
+            var _this7 = this;
+
+            this.api.get(this.usersUrl + '?all=tue').subscribe(function (res) {
+              _this7.users = res.data;
+            }, function (err) {
+              console.error(err);
+            });
+          }
         }]);
 
         return UsersService;

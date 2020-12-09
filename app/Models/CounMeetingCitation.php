@@ -7,6 +7,45 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
+/**
+ * App\Models\CounMeetingCitation
+ *
+ * @property int $id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int|null $coun_meeting_id
+ * @property int|null $coun_member_id
+ * @property string $name
+ * @property int|null $attended
+ * @property int|null $signed
+ * @property string|null $signature
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property int|null $user_id
+ * @property-read \App\Models\CounMeeting|null $counMeeting
+ * @property-read \App\Models\CounMember|null $counMember
+ * @property-read \App\Models\User|null $user
+ * @method static Builder|CounMeetingCitation counMeetingByName($name)
+ * @method static Builder|CounMeetingCitation counMemberByName($name)
+ * @method static Builder|CounMeetingCitation newModelQuery()
+ * @method static Builder|CounMeetingCitation newQuery()
+ * @method static \Illuminate\Database\Query\Builder|CounMeetingCitation onlyTrashed()
+ * @method static Builder|CounMeetingCitation query()
+ * @method static Builder|CounMeetingCitation userByName($name)
+ * @method static Builder|CounMeetingCitation whereAttended($value)
+ * @method static Builder|CounMeetingCitation whereCounMeetingId($value)
+ * @method static Builder|CounMeetingCitation whereCounMemberId($value)
+ * @method static Builder|CounMeetingCitation whereCreatedAt($value)
+ * @method static Builder|CounMeetingCitation whereDeletedAt($value)
+ * @method static Builder|CounMeetingCitation whereId($value)
+ * @method static Builder|CounMeetingCitation whereName($value)
+ * @method static Builder|CounMeetingCitation whereSignature($value)
+ * @method static Builder|CounMeetingCitation whereSigned($value)
+ * @method static Builder|CounMeetingCitation whereUpdatedAt($value)
+ * @method static Builder|CounMeetingCitation whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|CounMeetingCitation withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|CounMeetingCitation withoutTrashed()
+ * @mixin \Eloquent
+ */
 class CounMeetingCitation extends Model
 {
     use SoftDeletes;

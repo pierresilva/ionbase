@@ -17,10 +17,10 @@ export class LoadingService {
 
         this.isLoading.subscribe((data: boolean) => {
             if (data) {
-                console.log('isLoading', data);
+                // console.log('isLoading', data);
                 this.present();
             } else {
-                console.log('isLoading', data);
+                // console.log('isLoading', data);
                 this.hide();
             }
         });

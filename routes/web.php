@@ -13,6 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::any('{path?}', function () {
+    try {
+        $index = \File::get(public_path() . '/index.html');
+    } catch (Exception $e) {
+        return response()->json([
+            'message' => 'No exste la aplicación angular!',
+        ], 404);
+    }
+    return $index;
+})->where("path", ".+");
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -71,6 +82,10 @@ Route::get("mailTemplates/{mailTemplate}/duplicate", ['as' => 'mailTemplates.dup
 Route::resource("mailTemplates","MailTemplateController");
 Route::get("mails/{mail}/duplicate", ['as' => 'mails.duplicate', 'uses' => 'MailController@duplicate']);
 Route::resource("mails","MailController");
+Route::get("files/{file}/duplicate", ['as' => 'files.duplicate', 'uses' => 'FileController@duplicate']);
+Route::resource("files","FileController");
 
 
 // end section
+
+

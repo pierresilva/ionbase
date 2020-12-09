@@ -1,0 +1,139 @@
+<form #filesForm="ngForm" novalidate autocomplete="off">
+
+
+            <!-- name -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'NOMBRE' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.name"
+                            type="text"
+                            name="name"
+                            id="name-field"
+                            [required]="true"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.name">
+                    <div class="error-message" *ngIf="filesForm.form.controls['name']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end name -->
+
+
+            <!-- file -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'ARCHIVO' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.file"
+                            type="text"
+                            name="file"
+                            id="file-field"
+                            [required]="true"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.file">
+                    <div class="error-message" *ngIf="filesForm.form.controls['file']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end file -->
+
+
+            <!-- extension -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'EXTENSION' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.extension"
+                            type="text"
+                            name="extension"
+                            id="extension-field"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.extension">
+                    <div class="error-message" *ngIf="filesForm.form.controls['extension']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end extension -->
+
+
+            <!-- mime -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'MIME' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.mime"
+                            type="text"
+                            name="mime"
+                            id="mime-field"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.mime">
+                    <div class="error-message" *ngIf="filesForm.form.controls['mime']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end mime -->
+
+
+            <!-- url -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'URL' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.url"
+                            type="text"
+                            name="url"
+                            id="url-field"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.url">
+                    <div class="error-message" *ngIf="filesForm.form.controls['url']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end url -->
+
+
+            <!-- fileable_type -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'ARCHIVABLE TIPO' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.fileable_type"
+                            type="text"
+                            name="fileable_type"
+                            id="fileable_type-field"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.fileable_type">
+                    <div class="error-message" *ngIf="filesForm.form.controls['fileable_type']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end fileable_type -->
+
+    <!-- name -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'ARCHIVABLE ID' | titlecase }}</ion-label>
+        <ion-input [(ngModel)]="model.filable_id"
+                   type="number"
+                   name="filable_id"
+                   id="filable_id-field"
+                   [required]="true"
+                   placeholder=""></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.name">
+            <div class="error-message" *ngIf="filesForm.form.controls['name']?.hasError(validation.type)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end name -->
+
+
+</form>

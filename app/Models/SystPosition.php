@@ -7,6 +7,35 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
+/**
+ * App\Models\SystPosition
+ *
+ * @property int $id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string $name
+ * @property string $code
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CompContact[] $compContacts
+ * @property-read int|null $comp_contacts_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $users
+ * @property-read int|null $users_count
+ * @method static Builder|SystPosition compContactsByName($name)
+ * @method static Builder|SystPosition newModelQuery()
+ * @method static Builder|SystPosition newQuery()
+ * @method static \Illuminate\Database\Query\Builder|SystPosition onlyTrashed()
+ * @method static Builder|SystPosition query()
+ * @method static Builder|SystPosition usersByName($name)
+ * @method static Builder|SystPosition whereCode($value)
+ * @method static Builder|SystPosition whereCreatedAt($value)
+ * @method static Builder|SystPosition whereDeletedAt($value)
+ * @method static Builder|SystPosition whereId($value)
+ * @method static Builder|SystPosition whereName($value)
+ * @method static Builder|SystPosition whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|SystPosition withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|SystPosition withoutTrashed()
+ * @mixin \Eloquent
+ */
 class SystPosition extends Model
 {
     use SoftDeletes;

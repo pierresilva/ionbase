@@ -1,9 +1,9 @@
 import { BehaviorSubject, Observable } from 'rxjs';
 import {Injectable} from '@angular/core';
 import {environment} from '../../../environments/environment';
-// import * as CryptoJS from 'crypto-js';
+import * as CryptoJS from 'crypto-js';
 
-declare var CryptoJS: any;
+// declare var CryptoJS: any;
 
 /**
  * Storage service

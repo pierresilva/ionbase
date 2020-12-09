@@ -14,15 +14,39 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('facade', function () {
+    return \Settings::getGroup();
+});
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('drive/upload', 'Api\DriveController@store');
+Route::delete('drive/delete/{id}', 'Api\DriveController@destroy');
+Route::get('syst-parameters/all', 'Api\SystParameterController@getAll');
 
 Route::post('coun-meeting-custom', 'Api\CounMeetingController@saveCustom');
 Route::put('coun-meeting-custom/{id}', 'Api\CounMeetingController@updateCustom');
 Route::get('coun-meeting-pdf/{id}', 'Api\CounMeetingController@generatePdf');
 Route::put('coun-meeting-citations/sign', 'Api\CounMeetingCitationController@sign');
 Route::post('coun-meetings/finalize', 'Api\CounMeetingController@finalize');
+
+Route::resource("setting-groups","Api\SettingGroupController");
+Route::resource("settings","Api\SettingController");
+
+Route::post('auth/register', 'Api\AuthController@register');
+Route::post('auth/login', 'Api\AuthController@login');
+Route::get('auth/logout', 'Api\AuthController@logout');
+Route::get('auth/refresh', 'Api\AuthController@refresh');
+
+Route::get('auth/reset-password/{token}', 'Api\AuthController@passwordFindReset');
+Route::put('auth/reset-password', 'Api\AuthController@passwordReset');
+Route::post('auth/reset-password', 'Api\AuthController@passwordRecover');
+
+Route::get('auth/email/verify/{id}', 'Api\AuthController@verifyEmail')->name('verification.verify');
+Route::post('auth/email/resend', 'Api\AuthController@resendVerifyEmail')->name('verification.send');
+
 
 // generated section
 
@@ -76,6 +100,8 @@ Route::get("mail-templates/{mailTemplateId}/duplicate", ['as' => 'api.mail-templ
 Route::resource("mail-templates","Api\MailTemplateController");
 Route::get("mails/{mailId}/duplicate", ['as' => 'api.mails.duplicate', 'uses' => 'Api\MailController@duplicate']);
 Route::resource("mails","Api\MailController");
+Route::get("files/{fileId}/duplicate", ['as' => 'api.files.duplicate', 'uses' => 'Api\FileController@duplicate']);
+Route::resource("files","Api\FileController");
 
 
 // end section

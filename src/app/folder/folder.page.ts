@@ -1,13 +1,14 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {IonSlides, Platform} from '@ionic/angular';
+import {SplitPanelService} from "../@shared/services/split-panel.service";
 
 @Component({
   selector: 'app-folder',
   templateUrl: './folder.page.html',
   styleUrls: ['./folder.page.scss'],
 })
-export class FolderPage implements OnInit {
+export class FolderPage implements OnInit, OnDestroy {
 
   @ViewChild('slideWithNav', { static: false }) slideWithNav: IonSlides;
 
@@ -23,7 +24,8 @@ export class FolderPage implements OnInit {
 
   constructor(
       private activatedRoute: ActivatedRoute,
-      public platform: Platform
+      public platform: Platform,
+      public splitPanel: SplitPanelService
   ) {
 
     if (this.platform.width() < 1200) {
@@ -63,11 +65,18 @@ export class FolderPage implements OnInit {
   }
 
   ngOnInit() {
+
+  }
+
+  ionViewWillEnter() {
     this.folder = this.activatedRoute.snapshot.paramMap.get('id');
     this.platform.resize.subscribe(async () => {
       console.log(this.platform.width());
     });
+
+    this.splitPanel.show.next(true);
   }
+
 
   // Move to Next slide
   slideNext(object, slideView) {
@@ -106,5 +115,13 @@ export class FolderPage implements OnInit {
     });
   }
 
+  ionViewDidLeave() {
+    // Do actions here
+    this.ngOnDestroy();
+  }
+
+  ngOnDestroy() {
+    console.log('Sestroy folder page')
+  }
 
 }

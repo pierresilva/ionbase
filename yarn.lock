@@ -1175,6 +1175,13 @@
   dependencies:
     "@types/cordova" latest
 
+"@ionic-native/push@^5.30.0":
+  version "5.30.0"
+  resolved "https://registry.yarnpkg.com/@ionic-native/push/-/push-5.30.0.tgz#792fab38b10b3bfb03615ecfcb43d806585d3052"
+  integrity sha512-eil4QC1lJ6d7FXBAVPZxI4ll9itPeUNw5orBRwd7q8OHxCXKJP888FMnmyxoea937v2jCZC7OaxyGbo7Wwhesg==
+  dependencies:
+    "@types/cordova" latest
+
 "@ionic-native/splash-screen@^5.0.0":
   version "5.29.0"
   resolved "https://registry.yarnpkg.com/@ionic-native/splash-screen/-/splash-screen-5.29.0.tgz#961ce354b81c6cde7f33e9f3a45abe14df64dce2"
@@ -1611,6 +1618,11 @@ acorn@^6.4.1:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.4.2.tgz#35866fd710528e92de10cf06016498e47e39e1e6"
   integrity sha512-XtGIhXwF8YM8bJhGxG5kXgjkEuNGLTkoYqVE+KMR+aspr4KGYmKYg7yUe3KghyQ9yheNwLnjmzh/7+gfDBmHCQ==
 
+add@^2.0.6:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/add/-/add-2.0.6.tgz#248f0a9f6e5a528ef2295dbeec30532130ae2235"
+  integrity sha1-JI8Kn25aUo7yKV2+7DBTITCuIjU=
+
 adjust-sourcemap-loader@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/adjust-sourcemap-loader/-/adjust-sourcemap-loader-2.0.0.tgz#6471143af75ec02334b219f54bc7970c52fb29a4"
@@ -2014,6 +2026,14 @@ babel-plugin-dynamic-import-node@^2.3.3:
   dependencies:
     object.assign "^4.1.0"
 
+babel-runtime@^6.6.1:
+  version "6.26.0"
+  resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.26.0.tgz#965c7058668e82b55d7bfe04ff2337bc8b5647fe"
+  integrity sha1-llxwWGaOgrVde/4E/yM3vItWR/4=
+  dependencies:
+    core-js "^2.4.0"
+    regenerator-runtime "^0.11.0"
+
 backo2@1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/backo2/-/backo2-1.0.2.tgz#31ab1ac8b129363463e35b3ebb69f4dfcfba7947"
@@ -2110,7 +2130,7 @@ blocking-proxy@^1.0.0:
   dependencies:
     minimist "^1.2.0"
 
-bluebird@^3.5.1, bluebird@^3.5.3, bluebird@^3.5.5:
+bluebird@^3.4.6, bluebird@^3.5.1, bluebird@^3.5.3, bluebird@^3.5.5:
   version "3.7.2"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.7.2.tgz#9f229c15be272454ffa973ace0dbee79a1b0c36f"
   integrity sha512-XpNj6GDQzdfW+r2Wnn7xiSAd7TM3jzkxGXBGTtWKuSXv1xUV+azxAm8jdWZN06QTQk+2N2XB9jRDkvbmQmcRtg==
@@ -3004,6 +3024,11 @@ core-js@3.6.4:
   version "3.6.4"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.6.4.tgz#440a83536b458114b9cb2ac1580ba377dc470647"
   integrity sha512-4paDGScNgZP2IXXilaffL9X7968RuvwlkK3xWtZRVqgd8SYNiVKRJvkFd1aqqEuPfN7E68ZHEp9hDj6lHj4Hyw==
+
+core-js@^2.4.0:
+  version "2.6.12"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.12.tgz#d9333dfa7b065e347cc5682219d6f690859cc2ec"
+  integrity sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==
 
 core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
@@ -4937,6 +4962,11 @@ inquirer@7.3.3:
     strip-ansi "^6.0.0"
     through "^2.3.6"
 
+install@^0.8.2:
+  version "0.8.9"
+  resolved "https://registry.yarnpkg.com/install/-/install-0.8.9.tgz#9f4b5c0d1851ef872e9df85e4f7162d4e5dcdbed"
+  integrity sha1-n0tcDRhR74cunfheT3Fi1OXc2+0=
+
 internal-ip@^4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/internal-ip/-/internal-ip-4.3.0.tgz#845452baad9d2ca3b69c635a137acb9a0dad0907"
@@ -4966,11 +4996,6 @@ ionicons@^5.1.2:
   version "5.2.3"
   resolved "https://registry.yarnpkg.com/ionicons/-/ionicons-5.2.3.tgz#af4018ea7585b1e9ae11757731c77f2f36e0c7ac"
   integrity sha512-87qtgBkieKVFagwYA9Cf91B3PCahQbEOMwMt8bSvlQSgflZ4eE5qI4MGj2ZlIyadeX0dgo+0CzZsy3ow0CsBAg==
-
-ionicsignaturepad@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/ionicsignaturepad/-/ionicsignaturepad-1.0.1.tgz#426a44bb4805157ca9580357b5be3eeb8fe6cfb1"
-  integrity sha512-RIUslEYlAEvkxeUbtOBFvW9YbBO6VyyrYUVWoZ+j1zu87TX3zKo81BkkXUp66UsTo9mRfuy8HSxdXhSoDzlqBw==
 
 ip-regex@^2.1.0:
   version "2.1.0"
@@ -5677,6 +5702,16 @@ levenary@^1.1.1:
   dependencies:
     leven "^3.1.0"
 
+libphonenumber-js@^0.4.5:
+  version "0.4.52"
+  resolved "https://registry.yarnpkg.com/libphonenumber-js/-/libphonenumber-js-0.4.52.tgz#19aec62488f039faee243df14d68ae56d77780a6"
+  integrity sha512-Ns5FcEp8W/lZd+lKu7OB46RYBKcncN/S3C51OFh7qXbu6kOFAd75A4M0jtasK3MUWMxKsKXII4WL+GbqaLa2DQ==
+  dependencies:
+    babel-runtime "^6.6.1"
+    bluebird "^3.4.6"
+    minimist "^1.2.0"
+    xml2js "^0.4.17"
+
 license-webpack-plugin@2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/license-webpack-plugin/-/license-webpack-plugin-2.2.0.tgz#5c964380d7d0e0c27c349d86a6f856c82924590e"
@@ -6232,6 +6267,13 @@ next-tick@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
   integrity sha1-yobR/ogoFpsBICCOPchCS524NCw=
+
+ng2-validation@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/ng2-validation/-/ng2-validation-4.2.0.tgz#f38d441d3fb7e862155166480045aaff9ad11dbb"
+  integrity sha1-841EHT+36GIVUWZIAEWq/5rRHbs=
+  dependencies:
+    libphonenumber-js "^0.4.5"
 
 ngx-summernote@^0.8.0:
   version "0.8.0"
@@ -6919,6 +6961,18 @@ phonegap-plugin-barcodescanner@^8.1.0:
   dependencies:
     nopt "^4.0.1"
     shelljs "^0.8.3"
+
+phonegap-plugin-multidex@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/phonegap-plugin-multidex/-/phonegap-plugin-multidex-1.0.0.tgz#b0c0ccba04da2c27dd18aeba5cde6be7309594b1"
+  integrity sha512-1wvc3iQOQpEBaQbXgLxA2JUiLSQ2azdF/bF29ghXDiQJWSpQ1BF8gSuqttM8WZoj081Ps8OKL0gYxdDBkFNPqA==
+
+phonegap-plugin-push@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/phonegap-plugin-push/-/phonegap-plugin-push-2.3.0.tgz#2703cbcb139cffa426695ab7f2d5af3011d12578"
+  integrity sha512-0R35BGVvvNzov3fckBspc7snwsIdClIBhI7jUCIa7AgSZy2Lrwm8kPuLTyzMVSNR3MJTxWX6s06aDlVL7EvQ3w==
+  dependencies:
+    install "^0.8.2"
 
 picomatch@^2.0.4, picomatch@^2.0.5, picomatch@^2.2.1:
   version "2.2.2"
@@ -7669,6 +7723,11 @@ regenerator-runtime@0.13.5:
   version "0.13.5"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.5.tgz#d878a1d094b4306d10b9096484b33ebd55e26697"
   integrity sha512-ZS5w8CpKFinUzOwW3c83oPeVXoNsrLsaCoLtJvAClH135j/R77RuymhiSErhm2lKcwSCIpmvIWSbDkIfAqKQlA==
+
+regenerator-runtime@^0.11.0:
+  version "0.11.1"
+  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
+  integrity sha512-MguG95oij0fC3QV3URf4V2SDYGJhJnJGqvIIgdECeODCT98wSWDAJ94SSuVpYQUoTcGUIL6L4yNB7j1DFFHSBg==
 
 regenerator-runtime@^0.13.4:
   version "0.13.7"

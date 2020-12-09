@@ -67,6 +67,10 @@ export class CounMeetingCitationSignComponent implements OnInit, AfterViewInit {
             .subscribe(
                 (res: any) => {
                     this.citation = res.data;
+                    if (res.data.signature) {
+                        this.toast.present('El acta ya esta firmada.', 'toast-info');
+                        this.router.navigateByUrl('/');
+                    }
                 }
             );
     }

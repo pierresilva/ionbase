@@ -7,6 +7,35 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
+/**
+ * App\Models\HousUnit
+ *
+ * @property int $id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string $name
+ * @property string $code
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\HousUnitArea[] $housUnitAreas
+ * @property-read int|null $hous_unit_areas_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\OperSector[] $operSectors
+ * @property-read int|null $oper_sectors_count
+ * @method static Builder|HousUnit housUnitAreasByName($name)
+ * @method static Builder|HousUnit newModelQuery()
+ * @method static Builder|HousUnit newQuery()
+ * @method static \Illuminate\Database\Query\Builder|HousUnit onlyTrashed()
+ * @method static Builder|HousUnit operSectorsByName($name)
+ * @method static Builder|HousUnit query()
+ * @method static Builder|HousUnit whereCode($value)
+ * @method static Builder|HousUnit whereCreatedAt($value)
+ * @method static Builder|HousUnit whereDeletedAt($value)
+ * @method static Builder|HousUnit whereId($value)
+ * @method static Builder|HousUnit whereName($value)
+ * @method static Builder|HousUnit whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|HousUnit withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|HousUnit withoutTrashed()
+ * @mixin \Eloquent
+ */
 class HousUnit extends Model
 {
     use SoftDeletes;

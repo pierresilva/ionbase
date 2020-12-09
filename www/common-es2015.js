@@ -541,6 +541,14 @@ let UsersService = class UsersService {
             }
         });
     }
+    getAll() {
+        this.api.get(this.usersUrl + '?all=tue')
+            .subscribe((res) => {
+            this.users = res.data;
+        }, (err) => {
+            console.error(err);
+        });
+    }
 };
 UsersService.ctorParameters = () => [
     { type: _shared_services_api_service__WEBPACK_IMPORTED_MODULE_3__["ApiService"] },

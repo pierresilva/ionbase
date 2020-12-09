@@ -1,0 +1,25 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button (click)="closeModal()">
+                <ion-icon slot="icon-only"
+                          [name]="'arrow-back-outline'"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="primary">
+            <ion-button color="success"
+                        (click)="settingsService.saveSetting(); closeModal()"
+                        [disabled]="!settingsFormComponent?.settingsForm?.valid">
+                <ion-icon slot="icon-only"
+                          [name]="'save-outline'"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>{{action}} Parametro</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+    <app-settings-form #settingsFormComponent></app-settings-form>
+
+</ion-content>

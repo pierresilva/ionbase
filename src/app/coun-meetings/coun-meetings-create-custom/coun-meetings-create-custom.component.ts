@@ -14,6 +14,9 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {ApiService} from "../../@shared/services/api.service";
 import {IonicSelectableComponent} from "ionic-selectable";
 
+import * as moment from 'moment';
+import {GetParameterPipe} from "../../@shared/pipes/get-parameter.pipe";
+
 @Component({
     selector: 'app-coun-meetings-create-custom',
     templateUrl: './coun-meetings-create-custom.component.html',
@@ -63,6 +66,12 @@ export class CounMeetingsCreateCustomComponent implements OnInit {
                 message: 'El campo ' + this.toTitlecase.transform('JUNTAS CITACIONES') + ' es obligatorio.'
             },
         ],
+        'type': [
+            {
+                type: 'required',
+                message: 'El campo ' + this.toTitlecase.transform('TIPO') + ' es obligatorio.'
+            },
+        ],
     };
 
     modelName = '';
@@ -78,6 +87,8 @@ export class CounMeetingsCreateCustomComponent implements OnInit {
 
     councilStarted = false;
 
+    fileToUpload: any = null;
+
     constructor(
         public counMeetingsService: CounMeetingsService,
         public usersService: UsersService,
@@ -89,6 +100,7 @@ export class CounMeetingsCreateCustomComponent implements OnInit {
         public alert: AlertService,
         public route: ActivatedRoute,
         public router: Router,
+        private getParameter: GetParameterPipe,
     ) {
     }
 
@@ -99,6 +111,8 @@ export class CounMeetingsCreateCustomComponent implements OnInit {
         this.counMeetingId = this.route.snapshot.paramMap.get('id');
 
         this.getMeeting();
+
+        console.log(this.getParameter.transform('juntas.plantilla.final'));
     }
 
     toggleMenu() {
@@ -125,6 +139,15 @@ export class CounMeetingsCreateCustomComponent implements OnInit {
                     (res: any) => {
                         this.counMeetingsService.counMeeting = res.data.model;
                         this.model = res.data.model;
+                        if (!this.model.start_content) {
+                            this.model.start_content = 'Se da inicio al consejo de administración a las ' + moment().format('HH:mm') + ' horas del día ' + moment().format('DD/MM/YYYY');
+                            console.log(this.model);
+                        }
+
+                        if (!this.model.end_content) {
+                            this.model.end_content = 'Se da fin al consejo de administración a las ' + moment().format('HH:mm') + ' horas del día ' + moment().format('DD/MM/YYYY');
+                            console.log(this.model);
+                        }
                         this.counMeetingsService.counMeetingLists = res.lists;
                     },
                     (err: any) => {
@@ -346,6 +369,66 @@ export class CounMeetingsCreateCustomComponent implements OnInit {
         }
 
         return additionalCitations;
+
+    }
+
+    onFileSelect(input: HTMLInputElement): void {
+
+        function formatBytes(bytes: number): string {
+            const UNITS = ['Bytes', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+            const factor = 1024;
+            let index = 0;
+
+            while (bytes >= factor) {
+                bytes /= factor;
+                index++;
+            }
+
+            return `${parseFloat(bytes.toFixed(2))} ${UNITS[index]}`;
+        }
+
+        this.fileToUpload = input.files[0];
+        this.uploadFile()
+            .then((res: any) => {
+                this.model.files.push(res.data);
+                console.log(this.model.files);
+            });
+    }
+
+    uploadFile(): Promise<any> {
+        const endpoint = environment.serverUrl + '/api/drive/upload';
+        const formData: FormData = new FormData();
+        formData.append('file', this.fileToUpload, this.fileToUpload.name);
+        formData.append('fileable_id', this.model.id);
+        formData.append('fileable_type', 'CounMeeting');
+        return this.http.post(endpoint, formData, {}).toPromise();
+    }
+
+    removeFile(file: any) {
+
+        this.alert.confirmation('Eliminar archivo?')
+            .then(res => {
+
+                if (res) {
+                    for (let i = 0; i < this.model.files.length; i++) {
+                        if (file.id == this.model.files[i].id) {
+                            const endpoint = environment.serverUrl + '/api/drive/delete';
+                            this.http.delete(endpoint + '/' + file.id)
+                                .subscribe(
+                                    (res: any) => {
+                                        this.toast.present(res.message, null);
+                                        this.model.files.splice(i, 1);
+                                    }
+                                );
+                            return;
+                        }
+                    }
+                } else {
+                    return;
+                }
+
+            });
+
 
     }
 

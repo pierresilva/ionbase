@@ -160,6 +160,30 @@
             <!-- end {{{ $this.name|name_name }}} -->
 
 {{{ endif; }}}
+{{{ if($this.input_type=='number'): }}}
+
+            <!-- {{{ $this.name|name_name }}} -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ '{{{ $this.display_name }}}' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.{{{ $this.name|name_name }}}"
+                            type="number"
+                            name="{{{ $this.name|name_name }}}"
+                            id="{{{ $this.name|name_name }}}-field"
+{{{ if($this.nullable==false): }}}
+                            [required]="true"
+{{{ endif; }}}
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.{{{ $this.name|name_name }}}">
+                    <div class="error-message" *ngIf="{{{ $name|nameNames }}}Form.form.controls['{{{ $this.name|name_name }}}']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end {{{ $this.name|name_name }}} -->
+
+{{{ endif; }}}
 {{{ if($this.input_type=='textarea'): }}}
 
             <!-- {{{ $this.name|name_name }}} -->

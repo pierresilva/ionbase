@@ -7,6 +7,35 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
+/**
+ * App\Models\SystCountry
+ *
+ * @property int $id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string $name
+ * @property string $code
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\SystRegion[] $systRegions
+ * @property-read int|null $syst_regions_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\UserProfile[] $userProfiles
+ * @property-read int|null $user_profiles_count
+ * @method static Builder|SystCountry newModelQuery()
+ * @method static Builder|SystCountry newQuery()
+ * @method static \Illuminate\Database\Query\Builder|SystCountry onlyTrashed()
+ * @method static Builder|SystCountry query()
+ * @method static Builder|SystCountry systRegionsByName($name)
+ * @method static Builder|SystCountry userProfilesByName($name)
+ * @method static Builder|SystCountry whereCode($value)
+ * @method static Builder|SystCountry whereCreatedAt($value)
+ * @method static Builder|SystCountry whereDeletedAt($value)
+ * @method static Builder|SystCountry whereId($value)
+ * @method static Builder|SystCountry whereName($value)
+ * @method static Builder|SystCountry whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|SystCountry withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|SystCountry withoutTrashed()
+ * @mixin \Eloquent
+ */
 class SystCountry extends Model
 {
     use SoftDeletes;

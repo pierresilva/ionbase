@@ -7,6 +7,51 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
+/**
+ * App\Models\Company
+ *
+ * @property int $id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string $name
+ * @property string $code
+ * @property string $nit
+ * @property string $manager_name
+ * @property string $manager_document
+ * @property string|null $logo
+ * @property int|null $main
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CompAddress[] $compAddresses
+ * @property-read int|null $comp_addresses_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CompContact[] $compContacts
+ * @property-read int|null $comp_contacts_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CompPhone[] $compPhones
+ * @property-read int|null $comp_phones_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CompResponsability[] $compResponsabilities
+ * @property-read int|null $comp_responsabilities_count
+ * @method static Builder|Company compAddressesByName($name)
+ * @method static Builder|Company compContactsByName($name)
+ * @method static Builder|Company compPhonesByName($name)
+ * @method static Builder|Company compResponsabilitiesByName($name)
+ * @method static Builder|Company newModelQuery()
+ * @method static Builder|Company newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Company onlyTrashed()
+ * @method static Builder|Company query()
+ * @method static Builder|Company whereCode($value)
+ * @method static Builder|Company whereCreatedAt($value)
+ * @method static Builder|Company whereDeletedAt($value)
+ * @method static Builder|Company whereId($value)
+ * @method static Builder|Company whereLogo($value)
+ * @method static Builder|Company whereMain($value)
+ * @method static Builder|Company whereManagerDocument($value)
+ * @method static Builder|Company whereManagerName($value)
+ * @method static Builder|Company whereName($value)
+ * @method static Builder|Company whereNit($value)
+ * @method static Builder|Company whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|Company withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Company withoutTrashed()
+ * @mixin \Eloquent
+ */
 class Company extends Model
 {
     use SoftDeletes;
