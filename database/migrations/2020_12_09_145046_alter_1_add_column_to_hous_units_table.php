@@ -17,7 +17,7 @@ class Alter1AddColumnToHousUnitsTable extends Migration
         Schema::disableForeignKeyConstraints();
         Schema::table('hous_units', function (Blueprint $table) {
 
-            $table->bigIncrements('hous_unit_id')->nullable()->comment('');
+            $table->unsignedBigInteger('hous_unit_id')->nullable()->comment('');
         });
         Schema::enableForeignKeyConstraints();
     }

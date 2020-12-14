@@ -1,8 +1,8 @@
 {
     "name": "IonBase",
     "version": "0.0.1",
-    "author": "Ionic Framework",
-    "homepage": "https://ionicframework.com/",
+    "author": "Pierre Silva",
+    "homepage": "https://appscenter.dev/",
     "scripts": {
         "ng": "ng",
         "start": "ionic serve --port 4200",
