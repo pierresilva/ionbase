@@ -14,6 +14,12 @@ import { CorrPacketsCreateComponent} from "./corr-packets-create/corr-packets-cr
 import { CorrPacketsDuplicateComponent} from "./corr-packets-duplicate/corr-packets-duplicate.component";
 import { CorrPacketsEditComponent} from "./corr-packets-edit/corr-packets-edit.component";
 import { CorrPacketsFormComponent} from "./corr-packets-form/corr-packets-form.component";
+import {CorrPostboxComponent} from "./corr-postbox/corr-postbox.component";
+import {CorrPostboxesComponent} from "./corr-postboxes/corr-postboxes.component";
+import {CorrReceiveModalComponent} from "./corr-receive-modal/corr-receive-modal.component";
+import {CorrDeliveryModalComponent} from "./corr-delivery-modal/corr-delivery-modal.component";
+import {CorrPostboxesItemComponent} from "./corr-postboxes-item/corr-postboxes-item.component";
+import {HousUnitsService} from "../hous-units/hous-units.service";
 
 @NgModule({
     imports: [
@@ -30,6 +36,14 @@ import { CorrPacketsFormComponent} from "./corr-packets-form/corr-packets-form.c
         CorrPacketsDuplicateComponent,
         CorrPacketsEditComponent,
         CorrPacketsFormComponent,
+        CorrPostboxComponent,
+        CorrPostboxesComponent,
+        CorrReceiveModalComponent,
+        CorrDeliveryModalComponent,
+        CorrPostboxesItemComponent,
+    ],
+    providers: [
+        HousUnitsService,
     ]
 })
 export class CorrPacketsPageModule {

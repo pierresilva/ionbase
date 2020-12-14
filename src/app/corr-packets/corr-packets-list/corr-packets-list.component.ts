@@ -3,6 +3,7 @@ import { CorrPacketsService} from "../corr-packets.service";
 import {ApiService} from "../../@shared/services/api.service";
 import {LoadingService} from "../../@shared/services/loading.service";
 import {IonContent} from '@ionic/angular';
+import {SplitPanelService} from "../../@shared/services/split-panel.service";
 
 @Component({
     selector: 'app-corr-packets-list',
@@ -19,11 +20,16 @@ export class CorrPacketsListComponent implements OnInit {
         public corrPacketsService: CorrPacketsService,
         public api: ApiService,
         public loading: LoadingService,
+        public splitPanel: SplitPanelService
     ) {
     }
 
     ngOnInit() {
         this.corrPacketsService.getCorrPackets();
+    }
+
+    ionViewWillEnter() {
+        this.splitPanel.show.next(true);
     }
 
     public scrollToTop() {

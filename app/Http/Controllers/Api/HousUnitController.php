@@ -33,9 +33,13 @@ class HousUnitController extends ApiController
         $housUnits = $this->sorting($request, $housUnits);
 
         // (3)paginate
-        $housUnits = $housUnits->paginate($request->get('per_page') ?? 10);
+        if (!$request->get('all')) {
+            $housUnits = $housUnits->paginate($request->get('per_page') ?? 10);
+        }
 
-        $resource = $housUnits->toArray();
+        $resource = [];
+
+        $request->get('all') ? $resource['data'] = $housUnits->toArray() : $resource = $housUnits->toArray();
 
         $resource['lists'] = HousUnit::getLists();
 

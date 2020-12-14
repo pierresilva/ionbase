@@ -1030,8 +1030,8 @@
       ],
       "is_pivot": false,
       "schema_id_for_relation": 1,
-      "pos_x": 1077,
-      "pos_y": 691,
+      "pos_x": 1068,
+      "pos_y": 785,
       "_next_schema_id": 4
     },
     {
@@ -1086,13 +1086,81 @@
           "show_in_detail": true,
           "belongsto": "",
           "parent_id": 17
+        },
+        {
+          "id": 4,
+          "name": "contactFirstName",
+          "display_name": "NOMBRE DEL CONTACTO",
+          "type": "string",
+          "input_type": "text",
+          "varidate": "",
+          "faker_type": "firstName()",
+          "nullable": true,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "",
+          "parent_id": 17,
+          "comment": "",
+          "options": ""
+        },
+        {
+          "id": 5,
+          "name": "contactLastName",
+          "display_name": "APELLIDO DEL CONTACTO",
+          "type": "string",
+          "input_type": "text",
+          "varidate": "",
+          "faker_type": "lastName",
+          "nullable": true,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "",
+          "parent_id": 17,
+          "comment": "",
+          "options": ""
+        },
+        {
+          "id": 6,
+          "name": "contactPhone",
+          "display_name": "TELÉFONO DEL CONTACTO",
+          "type": "string",
+          "input_type": "text",
+          "varidate": "",
+          "faker_type": "phoneNumber",
+          "nullable": true,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "",
+          "parent_id": 17,
+          "comment": "",
+          "options": ""
+        },
+        {
+          "id": 7,
+          "name": "contactEmail",
+          "display_name": "EMAIL DEL CONTACTO",
+          "type": "string",
+          "input_type": "text",
+          "varidate": "",
+          "faker_type": "email",
+          "nullable": true,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "",
+          "parent_id": 17,
+          "comment": "",
+          "options": ""
         }
       ],
       "is_pivot": false,
       "schema_id_for_relation": 1,
       "pos_x": 507,
       "pos_y": 585,
-      "_next_schema_id": 4
+      "_next_schema_id": 8
     },
     {
       "id": 18,
@@ -1150,8 +1218,8 @@
       ],
       "is_pivot": false,
       "schema_id_for_relation": 1,
-      "pos_x": 518,
-      "pos_y": 874,
+      "pos_x": 488,
+      "pos_y": 1060,
       "_next_schema_id": 5
     },
     {
@@ -1210,8 +1278,8 @@
       ],
       "is_pivot": false,
       "schema_id_for_relation": 1,
-      "pos_x": 499,
-      "pos_y": 1131,
+      "pos_x": 473,
+      "pos_y": 1325,
       "_next_schema_id": 5
     },
     {
@@ -1678,8 +1746,8 @@
       ],
       "is_pivot": false,
       "schema_id_for_relation": 1,
-      "pos_x": 499,
-      "pos_y": 1450,
+      "pos_x": 492,
+      "pos_y": 1586,
       "_next_schema_id": 6
     },
     {
@@ -2396,7 +2464,7 @@
         {
           "id": 8,
           "name": "housUnit_id",
-          "display_name": "housUnit - NAME",
+          "display_name": "UNIDAD HABITACIONAL",
           "type": "integer",
           "input_type": "select",
           "varidate": "",
@@ -2568,8 +2636,7 @@
       "schema_id_for_relation": 2,
       "pos_x": 1078,
       "pos_y": 1,
-      "_next_schema_id": 12,
-      "description": "CorrPacket Model"
+      "_next_schema_id": 12
     }
   ],
   "tool": "ER-DIAGRAM-TOOL",

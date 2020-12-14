@@ -5,6 +5,8 @@ import { CorrPacketsPage } from './corr-packets.page';
 import {CorrPacketsEditComponent} from "./corr-packets-edit/corr-packets-edit.component";
 import {CorrPacketsCreateComponent} from "./corr-packets-create/corr-packets-create.component";
 import {CorrPacketsListComponent} from "./corr-packets-list/corr-packets-list.component";
+import {CorrPostboxesComponent} from "./corr-postboxes/corr-postboxes.component";
+import {CorrPostboxComponent} from "./corr-postbox/corr-postbox.component";
 
 const routes: Routes = [
     {
@@ -12,15 +14,27 @@ const routes: Routes = [
         component: CorrPacketsPage
     },
     {
+        path: 'postboxes',
+        component: CorrPostboxesComponent
+    },
+    {
+        path: 'postbox/:id',
+        component: CorrPostboxComponent
+    },
+    {
         path: 'list',
         component: CorrPacketsListComponent
     },
     {
-      path: 'create',
+      path: 'create/:housUnitId',
       component: CorrPacketsCreateComponent
     },
     {
         path: ':id/edit',
+        component: CorrPacketsEditComponent
+    },
+    {
+        path: ':id/edit/:type',
         component: CorrPacketsEditComponent
     },
 ];

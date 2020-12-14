@@ -1,0 +1,16 @@
+
+<ng-container *ngFor="let housUnit of housUnits">
+    <ng-container *ngIf="housUnit.children_units.length">
+        <h4>{{housUnit.name}}</h4>
+        <app-corr-postboxes-item [houseUnits]="housUnit.children_units"></app-corr-postboxes-item>
+    </ng-container>
+    <ng-container *ngIf="!housUnit.children_units.length">
+        <button style="height: 20px; margin: 5px;"
+                [ngStyle]="{'background-color': (housUnit.corr_packets?.length ? (hasReceived(housUnit.corr_packets) ? '#283B50' : '#6A6D71') : '#6A6D71')}"
+                [routerLink]="'/corr-packets/postbox/' + housUnit.id">{{housUnit.name}}</button>
+    </ng-container>
+</ng-container>
+
+
+
+

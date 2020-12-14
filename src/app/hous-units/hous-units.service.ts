@@ -57,6 +57,22 @@ export class HousUnitsService {
             );
     }
 
+    public getAllHousUnits(page: any = this.page, perPage: any = this.perPage) {
+
+        this.api.get(this.housUnitsUrl + '?page=' + page + '&perPage=' + perPage + '&q[name:cont]=' + this.searchValue + '&all=tue')
+            .subscribe(
+                (res: any) => {
+                    // @ts-ignore
+                    // document.getElementById('pages-content').scrollToTop(300);
+                    this.housUnits = res.data;
+                    this.housUnitLists = res.lists;
+                },
+                (err: any) => {
+                    console.error(err);
+                }
+            );
+    }
+
     public editHousUnit(id: any) {
         this.api.get(this.housUnitsUrl + '/' + id + '/edit')
             .subscribe(
@@ -123,6 +139,10 @@ export class HousUnitsService {
         } else {
             return;
         }
+    }
+
+    async getHouseUnit(id: any) {
+        return await this.api.get(this.housUnitsUrl + '/' + id).toPromise();
     }
 
 }

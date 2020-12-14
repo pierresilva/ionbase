@@ -1,12 +1,16 @@
-<form #corrPacketsForm="ngForm" novalidate autocomplete="off">
+<form #corrPacketsForm="ngForm"
+      novalidate
+      autocomplete="off">
 
 
     <!-- hous_unit_id -->
-    <ion-item class="item-transparent">
-        <ion-label>{{ 'UNIDADESHABITACIONALE' | titlecase }}</ion-label>
+    <ion-item class="item-transparent"
+              [hidden]="type">
+        <ion-label>{{ 'UNIDAD HABITACIONAL' | titlecase }}</ion-label>
         <ionic-selectable name="hous_unit_id"
                           id="hous_unit_id-field"
-                          [required]="true"
+                          [disabled]="type == 'Entregar'"
+                          [required]="false"
                           [(ngModel)]="model.hous_unit"
                           [items]="corrPacketsService.corrPacketLists.HousUnit"
                           itemValueField="id"
@@ -24,7 +28,8 @@
     </ion-item>
     <div class="validation-errors">
         <ng-container *ngFor="let validation of validationMessages.hous_unit_id">
-            <div class="error-message" *ngIf="corrPacketsForm.form.controls['hous_unit_id']?.hasError(validation.type)">
+            <div class="error-message"
+                 *ngIf="corrPacketsForm.form.controls['hous_unit_id']?.hasError(validation.type)">
                 {{ validation.message }}
             </div>
         </ng-container>
@@ -32,183 +37,250 @@
     <!-- end hous_unit_id -->
 
 
-            <!-- name -->
-            <ion-item class="item-transparent">
-                <ion-label>{{ 'NOMBRE' | titlecase }}</ion-label>
-                <ion-input [(ngModel)]="model.name"
-                            type="text"
-                            name="name"
-                            id="name-field"
-                            placeholder=""></ion-input>
-            </ion-item>
-            <div class="validation-errors">
-                <ng-container *ngFor="let validation of validationMessages.name">
-                    <div class="error-message" *ngIf="corrPacketsForm.form.controls['name']?.hasError(validation.type)">
-                        {{ validation.message }}
-                    </div>
-                </ng-container>
+    <!-- name -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'NOMBRE' | titlecase }}</ion-label>
+        <ion-input [(ngModel)]="model.name"
+                   type="text"
+                   name="name"
+                   [required]="true"
+                   [readonly]="(type !== 'Recibir')"
+                   id="name-field"
+                   placeholder=""></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.name">
+            <div class="error-message"
+                 *ngIf="corrPacketsForm.form.controls['name']?.hasError(validation.type)">
+                {{ validation.message }}
             </div>
-            <!-- end name -->
+        </ng-container>
+    </div>
+    <!-- end name -->
 
 
-            <!-- conveyor -->
-            <ion-item class="item-transparent">
-                <ion-label>{{ 'TRANPORTADOR' | titlecase }}</ion-label>
-                <ion-input [(ngModel)]="model.conveyor"
-                            type="text"
-                            name="conveyor"
-                            id="conveyor-field"
-                            placeholder=""></ion-input>
-            </ion-item>
-            <div class="validation-errors">
-                <ng-container *ngFor="let validation of validationMessages.conveyor">
-                    <div class="error-message" *ngIf="corrPacketsForm.form.controls['conveyor']?.hasError(validation.type)">
-                        {{ validation.message }}
-                    </div>
-                </ng-container>
+    <!-- conveyor -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'TRANPORTADOR' | titlecase }}</ion-label>
+        <ion-input [(ngModel)]="model.conveyor"
+                   type="text"
+                   name="conveyor"
+                   [readonly]="(type !== 'Recibir')"
+                   id="conveyor-field"
+                   placeholder=""></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.conveyor">
+            <div class="error-message"
+                 *ngIf="corrPacketsForm.form.controls['conveyor']?.hasError(validation.type)">
+                {{ validation.message }}
             </div>
-            <!-- end conveyor -->
+        </ng-container>
+    </div>
+    <!-- end conveyor -->
 
 
-            <!-- guide_number -->
-            <ion-item class="item-transparent">
-                <ion-label>{{ 'NÚMERO DE GUIA' | titlecase }}</ion-label>
-                <ion-input [(ngModel)]="model.guide_number"
-                            type="text"
-                            name="guide_number"
-                            id="guide_number-field"
-                            placeholder=""></ion-input>
-            </ion-item>
-            <div class="validation-errors">
-                <ng-container *ngFor="let validation of validationMessages.guide_number">
-                    <div class="error-message" *ngIf="corrPacketsForm.form.controls['guide_number']?.hasError(validation.type)">
-                        {{ validation.message }}
-                    </div>
-                </ng-container>
+    <!-- guide_number -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'NÚMERO DE GUIA' | titlecase }}</ion-label>
+        <ion-input [(ngModel)]="model.guide_number"
+                   type="text"
+                   name="guide_number"
+                   [readonly]="(type !== 'Recibir')"
+                   id="guide_number-field"
+                   placeholder=""></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.guide_number">
+            <div class="error-message"
+                 *ngIf="corrPacketsForm.form.controls['guide_number']?.hasError(validation.type)">
+                {{ validation.message }}
             </div>
-            <!-- end guide_number -->
+        </ng-container>
+    </div>
+    <!-- end guide_number -->
 
 
-            <!-- received_at -->
-            <ion-item class="item-transparent">
-                <ion-label>{{ 'RECIBIDO' | titlecase }}</ion-label>
-                <ion-datetime name="received_at"
-                              id="received_at-field"
-                              [doneText]="'Seleccionar'"
-                              max="2040-12-31"
-                              [cancelText]="'Cancelar'"
-                              [(ngModel)]="model.received_at"
-                              displayFormat="DD/MM/YYYY HH:mm"></ion-datetime>
-            </ion-item>
-            <div class="validation-errors">
-                <ng-container *ngFor="let validation of validationMessages.received_at">
-                    <div class="error-message" *ngIf="corrPacketsForm.form.controls['received_at']?.hasError(validation.type)">
-                        {{ validation.message }}
-                    </div>
-                </ng-container>
+    <!-- received_at -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'RECIBIDO' | titlecase }}</ion-label>
+        <ion-datetime name="received_at"
+                      id="received_at-field"
+                      [doneText]="'Seleccionar'"
+                      [readonly]="true"
+                      [cancelText]="'Cancelar'"
+                      [(ngModel)]="model.received_at"
+                      displayFormat="DD/MM/YYYY HH:mm"></ion-datetime>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.received_at">
+            <div class="error-message"
+                 *ngIf="corrPacketsForm.form.controls['received_at']?.hasError(validation.type)">
+                {{ validation.message }}
             </div>
-            <!-- end received_at -->
+        </ng-container>
+    </div>
+    <!-- end received_at -->
 
 
-            <!-- received_comment -->
-            <ion-item class="item-transparent">
-                <ion-label>{{ 'COMENTARIO RECIBIDO' | titlecase }}</ion-label>
-                <ion-textarea [(ngModel)]="model.received_comment"
-                              name="received_comment"
-                              id="received_comment-field"
-                              rows="6"
-                              placeholder=""></ion-textarea>
-            </ion-item>
-            <div class="validation-errors">
-                <ng-container *ngFor="let validation of validationMessages.received_comment">
-                    <div class="error-message" *ngIf="corrPacketsForm.form.controls['received_comment']?.hasError(validation.type)">
-                        {{ validation.message }}
-                    </div>
-                </ng-container>
+    <!-- received_comment -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'COMENTARIO RECIBIDO' | titlecase }}</ion-label>
+        <ion-textarea [(ngModel)]="model.received_comment"
+                      name="received_comment"
+                      id="received_comment-field"
+                      [readonly]="(type !== 'Recibir')"
+                      rows="6"
+                      placeholder=""></ion-textarea>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.received_comment">
+            <div class="error-message"
+                 *ngIf="corrPacketsForm.form.controls['received_comment']?.hasError(validation.type)">
+                {{ validation.message }}
             </div>
-            <!-- end received_comment -->
+        </ng-container>
+    </div>
+    <!-- end received_comment -->
 
 
-            <!-- delivered_at -->
-            <ion-item class="item-transparent">
-                <ion-label>{{ 'ENTREGADO' | titlecase }}</ion-label>
-                <ion-datetime name="delivered_at"
-                              id="delivered_at-field"
-                              [doneText]="'Seleccionar'"
-                              max="2040-12-31"
-                              [cancelText]="'Cancelar'"
-                              [(ngModel)]="model.delivered_at"
-                              displayFormat="DD/MM/YYYY HH:mm"></ion-datetime>
-            </ion-item>
-            <div class="validation-errors">
-                <ng-container *ngFor="let validation of validationMessages.delivered_at">
-                    <div class="error-message" *ngIf="corrPacketsForm.form.controls['delivered_at']?.hasError(validation.type)">
-                        {{ validation.message }}
-                    </div>
-                </ng-container>
+    <!-- delivered_at -->
+    <ion-item class="item-transparent"
+              [hidden]="type == 'Recibir'">
+        <ion-label>{{ 'ENTREGADO' | titlecase }}</ion-label>
+        <ion-datetime name="delivered_at"
+                      id="delivered_at-field"
+                      [doneText]="'Seleccionar'"
+                      [readonly]="true"
+                      [cancelText]="'Cancelar'"
+                      [(ngModel)]="model.delivered_at"
+                      displayFormat="DD/MM/YYYY HH:mm"></ion-datetime>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.delivered_at">
+            <div class="error-message"
+                 *ngIf="corrPacketsForm.form.controls['delivered_at']?.hasError(validation.type)">
+                {{ validation.message }}
             </div>
-            <!-- end delivered_at -->
+        </ng-container>
+    </div>
+    <!-- end delivered_at -->
 
 
-            <!-- delivered_to -->
-            <ion-item class="item-transparent">
-                <ion-label>{{ 'ENTREGADO A' | titlecase }}</ion-label>
-                <ion-input [(ngModel)]="model.delivered_to"
-                            type="text"
-                            name="delivered_to"
-                            id="delivered_to-field"
-                            placeholder=""></ion-input>
-            </ion-item>
-            <div class="validation-errors">
-                <ng-container *ngFor="let validation of validationMessages.delivered_to">
-                    <div class="error-message" *ngIf="corrPacketsForm.form.controls['delivered_to']?.hasError(validation.type)">
-                        {{ validation.message }}
-                    </div>
-                </ng-container>
+    <!-- delivered_to -->
+    <ion-item class="item-transparent"
+              [hidden]="type == 'Recibir'">
+        <ion-label>{{ 'ENTREGADO A' | titlecase }}</ion-label>
+        <ion-input [(ngModel)]="model.delivered_to"
+                   [readonly]="(type !== 'Entregar')"
+                   type="text"
+                   name="delivered_to"
+                   id="delivered_to-field"
+                   placeholder=""></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.delivered_to">
+            <div class="error-message"
+                 *ngIf="corrPacketsForm.form.controls['delivered_to']?.hasError(validation.type)">
+                {{ validation.message }}
             </div>
-            <!-- end delivered_to -->
+        </ng-container>
+    </div>
+    <!-- end delivered_to -->
 
 
-            <!-- delivered_comment -->
-            <ion-item class="item-transparent">
-                <ion-label>{{ 'COMENTARIO ENTREGADO' | titlecase }}</ion-label>
-                <ion-textarea [(ngModel)]="model.delivered_comment"
-                              name="delivered_comment"
-                              id="delivered_comment-field"
-                              rows="6"
-                              placeholder=""></ion-textarea>
-            </ion-item>
-            <div class="validation-errors">
-                <ng-container *ngFor="let validation of validationMessages.delivered_comment">
-                    <div class="error-message" *ngIf="corrPacketsForm.form.controls['delivered_comment']?.hasError(validation.type)">
-                        {{ validation.message }}
-                    </div>
-                </ng-container>
+    <!-- delivered_comment -->
+    <ion-item class="item-transparent"
+              [hidden]="type == 'Recibir'">
+        <ion-label>{{ 'COMENTARIO ENTREGADO' | titlecase }}</ion-label>
+        <ion-textarea [(ngModel)]="model.delivered_comment"
+                      [readonly]="(type !== 'Entregar')"
+                      name="delivered_comment"
+                      id="delivered_comment-field"
+                      rows="6"
+                      placeholder=""></ion-textarea>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.delivered_comment">
+            <div class="error-message"
+                 *ngIf="corrPacketsForm.form.controls['delivered_comment']?.hasError(validation.type)">
+                {{ validation.message }}
             </div>
-            <!-- end delivered_comment -->
+        </ng-container>
+    </div>
+    <!-- end delivered_comment -->
 
 
-            <!-- status -->
-            <ion-item class="item-transparent">
-                <ion-label>{{ 'ESTADO' | titlecase }}</ion-label>
-                <ion-select [(ngModel)]="model.status"
-                            name="status"
-                            id="status-field"
-                            okText="Seleccionar"
-                            cancelText="Cancelar">
-                    <ion-select-option value="">{{ 'Ninguno' | titlecase }}</ion-select-option>
-                    <ion-select-option value="received">{{ 'Recibido' | titlecase }}</ion-select-option>
-                    <ion-select-option value="delivered">{{ 'Entregado' | titlecase }}</ion-select-option>
-            </ion-select>
-        </ion-item>
-        <div class="validation-errors">
-            <ng-container *ngFor="let validation of validationMessages.status">
-                <div class="error-message" *ngIf="corrPacketsForm.form.controls['status']?.hasError(validation.type)">
-                    {{ validation.message }}
-                </div>
-            </ng-container>
-        </div>
-        <!-- end status -->
+    <!-- status -->
+    <ion-item class="item-transparent"
+              [hidden]="type">
+        <ion-label>{{ 'ESTADO' | titlecase }}</ion-label>
+        <ion-select [(ngModel)]="model.status"
+                    name="status"
+                    id="status-field"
+                    okText="Seleccionar"
+                    cancelText="Cancelar">
+            <ion-select-option value="">{{ 'Ninguno' | titlecase }}</ion-select-option>
+            <ion-select-option value="received">{{ 'Recibido' | titlecase }}</ion-select-option>
+            <ion-select-option value="delivered">{{ 'Entregado' | titlecase }}</ion-select-option>
+        </ion-select>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.status">
+            <div class="error-message"
+                 *ngIf="corrPacketsForm.form.controls['status']?.hasError(validation.type)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end status -->
 
 
 </form>
+
+
+<ion-item class="item-transparent">
+    <ion-label>
+        Fotos:
+    </ion-label>
+    <ion-button slot="end"
+                [disabled]="(type == 'view')"
+                (click)="uploadPhoto()"
+                color="success"
+                fill="clear">
+        <ion-icon name="camera-outline"
+                  slot="icon-only"></ion-icon>
+    </ion-button>
+
+</ion-item>
+
+<ng-container *ngIf="model?.files && model?.files?.length">
+    <ion-item *ngFor="let file of model.files"
+              (click)="openViewer(file.url)"
+              class="item-transparent">
+        <ion-thumbnail slot="start">
+            <ion-img [src]="file.url"></ion-img>
+        </ion-thumbnail>
+        <ion-label>
+            <h3>{{ (file.type == 'received' ? 'Foto recepción' : 'Foto entrega') }}</h3>
+            {{file.created_at | dateFormat:'DD/MM/YYYY HH:mm'}}
+        </ion-label>
+    </ion-item>
+</ng-container>
+
+<ng-container *ngIf="!model?.files && !model?.files?.length">
+<ion-item class="item-transparent">
+    <ion-label>Sin fotos</ion-label>
+</ion-item>
+</ng-container>
+
+<!--
+<pre>
+    {{corrPacketsForm.valid | json}}
+    {{corrPacketsForm.value | json}}
+</pre>
+
+<pre>
+    {{model | json}}
+</pre>
+-->

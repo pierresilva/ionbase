@@ -1,0 +1,29 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button (click)="closeModal()">
+                <ion-icon slot="icon-only"
+                          [name]="'arrow-back-outline'"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="primary">
+            <ion-button color="primary"
+                        (click)="null"
+                        [disabled]="false">
+                <ion-icon slot="icon-only"
+                          [name]="'camera-outline'"></ion-icon>
+            </ion-button>
+            <ion-button color="success"
+                        (click)="closeModal()"
+                        [disabled]="false">
+                <ion-icon slot="icon-only"
+                          [name]="'save-outline'"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>{{action}} correspondencia</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <app-corr-packets-form [type]="action"></app-corr-packets-form>
+</ion-content>

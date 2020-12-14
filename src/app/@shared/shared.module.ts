@@ -40,9 +40,9 @@ import {DateFormatPipe} from './pipes/date-format.pipe';
 import {SignaturePadModule} from 'angular2-signaturepad';
 import {ZeroLeadingPipe} from './pipes/zero-leading.pipe';
 import {GetParameterPipe} from './pipes/get-parameter.pipe';
-import {StartupService} from "./services/startup.service";
-import {SplitPanelService} from "./services/split-panel.service";
 import {CustomFormsModule} from "ng2-validation";
+import {AutoCompleteModule} from "ionic4-auto-complete";
+import { NgxIonicImageViewerModule } from 'ngx-ionic-image-viewer';
 
 
 @NgModule({
@@ -67,6 +67,8 @@ import {CustomFormsModule} from "ng2-validation";
         NgxSummernoteModule,
         ZXingScannerModule,
         SignaturePadModule,
+        AutoCompleteModule,
+        NgxIonicImageViewerModule,
 
         HttpClientModule,
         FormsModule,
@@ -109,8 +111,7 @@ import {CustomFormsModule} from "ng2-validation";
         FileTransferService,
         FileUploadService,
         NavigationService,
-        // StartupService,
-        // SplitPanelService,
+
         {
             provide: HTTP_INTERCEPTORS,
             useClass: LoadingInterceptor,

@@ -74,7 +74,7 @@ $style = [
                            href="{{config('app.url')}}"
                            target="_blank">
 
-                            <img src="{{config('app.url')}}/logo.png"/>
+                            <img src="{{config('app.url')}}/img/notification-logo.png" style="max-height: 120px;"/>
 
                         </a>
                     </td>

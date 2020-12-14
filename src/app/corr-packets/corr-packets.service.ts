@@ -38,6 +38,10 @@ export class CorrPacketsService {
         public router: Router,
         private navigation: NavigationService,
     ) {
+
+        this.corrPacketsFormValid.subscribe(data => {
+           console.log('formulario', data);
+        });
     }
 
     public getCorrPackets(page: any = this.page, perPage: any = this.perPage) {

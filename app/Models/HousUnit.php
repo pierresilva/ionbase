@@ -42,14 +42,15 @@ class HousUnit extends Model
 
 // generated section
 
-	// Mass Assignment
-	protected $fillable = ['hous_unit_id','name','code',];
+    // Mass Assignment
+    protected $fillable = ['hous_unit_id', 'name', 'code', 'contact_first_name', 'contact_last_name', 'contact_phone', 'contact_email'];
     protected $dates = ['deleted_at'];
 
-	// Validate Rule
-    public static function getValidateRule(HousUnit $hous_unit=null){
+    // Validate Rule
+    public static function getValidateRule(HousUnit $hous_unit = null)
+    {
         $ignore_unique = null;
-        if($hous_unit){
+        if ($hous_unit) {
             $ignore_unique = $hous_unit->id;
         }
         $table_name = 'hous_units';
@@ -61,22 +62,26 @@ class HousUnit extends Model
 
 
         ];
-        if($hous_unit){
+        if ($hous_unit) {
 
         }
         return $validation_rule;
     }
 
-	public function housUnitAreas() {
-		return $this->hasMany('App\Models\HousUnitArea');
-	}
-	public function operSectors() {
-		return $this->hasMany('App\Models\OperSector');
-	}
-	public function corrPackets() {
-		return $this->hasMany('App\Models\CorrPacket');
-	}
+    public function housUnitAreas()
+    {
+        return $this->hasMany('App\Models\HousUnitArea');
+    }
 
+    public function operSectors()
+    {
+        return $this->hasMany('App\Models\OperSector');
+    }
+
+    public function corrPackets()
+    {
+        return $this->hasMany('App\Models\CorrPacket');
+    }
 
 
     public static function getRelationships()
@@ -85,16 +90,20 @@ class HousUnit extends Model
             'housUnitAreas',
             'operSectors',
             'corrPackets',
+            'parent',
+            'childrenUnits'
         ];
     }
 
-	public static function getLists() {
-		$lists = [];
-		$lists['HousUnitArea'] = HousUnitArea::all();
-		$lists['OperSector'] = OperSector::all();
-		$lists['CorrPacket'] = CorrPacket::all();
-		return $lists;
-	}
+    public static function getLists()
+    {
+        $lists = [];
+        $lists['HousUnitArea'] = HousUnitArea::all();
+        $lists['OperSector'] = OperSector::all();
+        $lists['CorrPacket'] = CorrPacket::all();
+        $lists['HousUnit'] = HousUnit::with('parent')->get();
+        return $lists;
+    }
 
     public function scopeHousUnitAreasByName(Builder $query, $name)
     {
@@ -118,8 +127,29 @@ class HousUnit extends Model
     }
 
 
-
 // end section
+
+    public function parent()
+    {
+        return $this->belongsTo(HousUnit::class, 'hous_unit_id')->with('parent');
+    }
+
+    public function parentUnits()
+    {
+        return $this->belongsTo(HousUnit::class, 'hous_unit_id')->with('parentUnits');
+    }
+
+    // this relationship will only return one level of child items
+    public function children()
+    {
+        return $this->hasMany(HousUnit::class, 'hous_unit_id');
+    }
+
+    // This is method where we implement recursive relationship
+    public function childrenUnits()
+    {
+        return $this->hasMany(HousUnit::class, 'hous_unit_id')->with('childrenUnits', 'corrPackets');
+    }
 
     public static function boot()
     {

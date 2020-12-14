@@ -1,0 +1,18 @@
+<app-main-header title="Buzones"></app-main-header>
+<ion-content>
+
+    <ion-searchbar placeholder="Buscar Unidad habitacional"
+                   class="ion-padding"></ion-searchbar>
+
+    <ng-container *ngIf="housUnitsService?.housUnits?.length">
+        <ng-container *ngFor="let housUnit of housUnitsService?.housUnits">
+            <ng-container *ngIf="housUnit.children_units.length && !housUnit.parent">
+                <h3>{{housUnit.name}}</h3>
+                <app-corr-postboxes-item [houseUnits]="housUnit.children_units"></app-corr-postboxes-item>
+            </ng-container>
+        </ng-container>
+    </ng-container>
+
+
+
+</ion-content>

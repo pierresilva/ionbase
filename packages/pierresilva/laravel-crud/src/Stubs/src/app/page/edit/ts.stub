@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {{{{ $name|NameName }}}} from "../{{{ $name|name-name }}}";
 import {{{{ $name|NameNames }}}FormComponent} from "../{{{ $name|name-names }}}-form/{{{ $name|name-names }}}-form.component";
 import { Platform } from '@ionic/angular';
+import {SplitPanelService} from "../../@shared/services/split-panel.service";
 
 @Component({
   selector: 'app-{{{ $name|name-names }}}-edit',
@@ -20,12 +21,17 @@ export class {{{ $name|NameNames }}}EditComponent implements OnInit, AfterViewIn
   constructor(
       public {{{ $name|nameNames }}}Service: {{{ $name|NameNames }}}Service,
       public route: ActivatedRoute,
-      public platform: Platform
+      public platform: Platform,
+      public splitPanel: SplitPanelService,
   ) { }
 
   ngOnInit(): void {
       this.id = this.route.snapshot.paramMap.get('id');
       this.{{{ $name|nameNames }}}Service.edit{{{ $name|NameName }}}(this.id);
+  }
+
+  ionViewWillEnter() {
+    this.splitPanel.show.next(true);
   }
 
   ngAfterViewInit() {

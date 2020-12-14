@@ -1,0 +1,92 @@
+<ion-header>
+    <ion-toolbar>
+
+        <ion-buttons slot="start">
+            <ion-back-button
+                    [text]="''"
+                    [icon]="'arrow-back-outline'">
+            </ion-back-button>
+        </ion-buttons>
+
+        <ion-buttons slot="primary">
+            <ion-button [routerLink]="'/corr-packets/create/' + this.route.snapshot.paramMap.get('id')"
+                        color="success"
+                        fill="clear"
+                        [disabled]="false">
+                <ng-container *ngIf="true">Recibir</ng-container>
+                <ion-icon slot="end"
+                          color="success"
+                          name="share-outline"
+                          style="transform: rotate(180deg);"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+
+        <ion-title>Buzon {{housUnitsService?.housUnit?.name}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+
+    <ion-list>
+        <ion-list-header class="ion-padding">
+
+            <ng-container *ngIf="housUnitsService?.housUnit?.parent?.parent?.parent?.parent">
+                <span>&nbsp;{{housUnitsService?.housUnit?.parent?.parent?.parent?.parent?.name}}&nbsp;:</span>
+            </ng-container>
+
+            <ng-container *ngIf="housUnitsService?.housUnit?.parent?.parent?.parent">
+                <span>&nbsp;{{housUnitsService?.housUnit?.parent?.parent?.parent?.name}}&nbsp;:</span>
+            </ng-container>
+
+            <ng-container *ngIf="housUnitsService?.housUnit?.parent?.parent">
+                <span>&nbsp;{{housUnitsService?.housUnit?.parent?.parent?.name}}&nbsp;:</span>
+            </ng-container>
+
+            <ng-container *ngIf="housUnitsService?.housUnit?.parent">
+                <span>&nbsp;{{housUnitsService?.housUnit?.parent?.name}}&nbsp;:</span>
+            </ng-container>
+
+            &nbsp;{{housUnitsService?.housUnit?.name}}
+
+        </ion-list-header>
+        <ng-container *ngIf="housUnitsService?.housUnit?.corr_packets?.length">
+           <ng-container *ngFor="let corrPacket of housUnitsService.housUnit.corr_packets">
+               <ion-item-sliding *ngIf="corrPacket.status == 'received'">
+                   <ion-item color="primary"
+                             [routerLink]="'/corr-packets/'+corrPacket.id+'/edit/view'">
+                       <ion-label>
+                           {{corrPacket.name}}
+                           <h3>Recibido el {{corrPacket.received_at | dateFormat:'DD/MM/YYYY HH:mm'}}</h3>
+                       </ion-label>
+                       <div>Recibido</div>
+                   </ion-item>
+                   <ion-item-options side="end">
+                       <ion-item-option [routerLink]="'/corr-packets/' + corrPacket.id + '/edit/Entregar'"
+                                        color="success">
+                           Entregar
+                           <ion-icon slot="end"
+                                     class="icon-xs"
+                                     name="share-outline"></ion-icon>
+                       </ion-item-option>
+                   </ion-item-options>
+               </ion-item-sliding>
+
+               <ion-item color="success"
+                         *ngIf="corrPacket.status == 'delivered'"
+                         [routerLink]="'/corr-packets/' + corrPacket.id + '/edit/view'">
+                   <ion-label>
+                       {{corrPacket.name}}
+                       <h3>Entregado el {{corrPacket.delivered_at | dateFormat:'DD/MM/YYYY HH:mm'}}</h3>
+                   </ion-label>
+                   <div>Entregado</div>
+               </ion-item>
+
+           </ng-container>
+        </ng-container>
+        <ng-container *ngIf="!housUnitsService?.housUnit?.corr_packets?.length">
+            <ion-item>
+                <ion-label>Sin correspondencia</ion-label>
+            </ion-item>
+        </ng-container>
+    </ion-list>
+
+</ion-content>

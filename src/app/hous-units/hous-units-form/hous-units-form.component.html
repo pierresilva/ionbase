@@ -1,4 +1,6 @@
-<form #housUnitsForm="ngForm" novalidate autocomplete="off">
+<form #housUnitsForm="ngForm"
+      novalidate
+      autocomplete="off">
 
 
     <!-- hous_unit_area_ids -->
@@ -24,8 +26,9 @@
     </ion-item>
     <div class="validation-errors">
         <ng-container *ngFor="let validation of validationMessages.hous_unit_area_ids">
-            <div class="error-message" *ngIf="housUnitsForm.form.controls['hous_unit_area_ids']?.hasError(validation.type)">
-            {{ validation.message }}
+            <div class="error-message"
+                 *ngIf="housUnitsForm.form.controls['hous_unit_area_ids']?.hasError(validation.type)">
+                {{ validation.message }}
             </div>
         </ng-container>
     </div>
@@ -55,8 +58,9 @@
     </ion-item>
     <div class="validation-errors">
         <ng-container *ngFor="let validation of validationMessages.oper_sector_ids">
-            <div class="error-message" *ngIf="housUnitsForm.form.controls['oper_sector_ids']?.hasError(validation.type)">
-            {{ validation.message }}
+            <div class="error-message"
+                 *ngIf="housUnitsForm.form.controls['oper_sector_ids']?.hasError(validation.type)">
+                {{ validation.message }}
             </div>
         </ng-container>
     </div>
@@ -86,75 +90,173 @@
     </ion-item>
     <div class="validation-errors">
         <ng-container *ngFor="let validation of validationMessages.corr_packet_ids">
-            <div class="error-message" *ngIf="housUnitsForm.form.controls['corr_packet_ids']?.hasError(validation.type)">
-            {{ validation.message }}
+            <div class="error-message"
+                 *ngIf="housUnitsForm.form.controls['corr_packet_ids']?.hasError(validation.type)">
+                {{ validation.message }}
             </div>
         </ng-container>
     </div>
     <!-- end corr_packet_ids -->
 
 
-            <!-- hous_unit_id -->
-            <ion-item class="item-transparent">
-                <ion-label>{{ 'PADRE' | titlecase }}</ion-label>
-                <ion-select [(ngModel)]="model.hous_unit_id"
-                            name="hous_unit_id"
-                            id="hous_unit_id-field"
-                            okText="Seleccionar"
-                            cancelText="Cancelar">
-                    <ion-select-option value="">{{ 'Ninguno' | titlecase }}</ion-select-option>
-                    <ion-select-option value="1">{{ 'Some Place' | titlecase }}</ion-select-option>
-                    <ion-select-option value="1">{{ 'Other place' | titlecase }}</ion-select-option>
-            </ion-select>
-        </ion-item>
-        <div class="validation-errors">
-            <ng-container *ngFor="let validation of validationMessages.hous_unit_id">
-                <div class="error-message" *ngIf="housUnitsForm.form.controls['hous_unit_id']?.hasError(validation.type)">
-                    {{ validation.message }}
-                </div>
-            </ng-container>
-        </div>
-        <!-- end hous_unit_id -->
-
-
-            <!-- name -->
-            <ion-item class="item-transparent">
-                <ion-label>{{ 'NOMBRE' | titlecase }}</ion-label>
-                <ion-input [(ngModel)]="model.name"
-                            type="text"
-                            name="name"
-                            id="name-field"
-                            [required]="true"
-                            placeholder=""></ion-input>
-            </ion-item>
-            <div class="validation-errors">
-                <ng-container *ngFor="let validation of validationMessages.name">
-                    <div class="error-message" *ngIf="housUnitsForm.form.controls['name']?.hasError(validation.type)">
-                        {{ validation.message }}
-                    </div>
-                </ng-container>
+    <!-- hous_unit_id -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'PADRE' | titlecase }}</ion-label>
+        <ionic-selectable item-content
+                          name="hous_unit_id"
+                          id="hous_unit_id-field"
+                          [(ngModel)]="model.parent"
+                          [disabledItems]="[model]"
+                          [items]="housUnitsService.housUnitLists.HousUnit"
+                          itemValueField="id"
+                          itemTextField="name"
+                          [isMultiple]="false"
+                          [canClear]="true"
+                          [hasConfirmButton]="true"
+                          [confirmButtonText]="'Seleccionar'"
+                          [searchPlaceholder]="'Buscar ' + ('UNIDAD HABITACIONAL' | titlecase)"
+                          [searchFailText]="'No se encontro ' + ('UNIDAD HABITACIONAL' | titlecase) + ' que coincida!'"
+                          [closeButtonText]="'Cancelar'"
+                          [clearButtonText]="'Limpiar'"
+                          [canSearch]="true"
+                          (onChange)="setHousUnitId($event)">
+            <ng-template ionicSelectableItemTemplate let-unit="item"
+                         let-isUnitSelected="isItemSelected">
+                <ng-container *ngIf="unit.parent">{{unit.parent.name}}: </ng-container>{{unit.name}}
+            </ng-template>
+        </ionic-selectable>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.hous_unit_id">
+            <div class="error-message" *ngIf="housUnitsForm.form.controls['hous_unit_id']?.hasError(validation.type)">
+                {{ validation.message }}
             </div>
-            <!-- end name -->
+        </ng-container>
+    </div>
+    <!-- end hous_unit_id -->
 
 
-            <!-- code -->
-            <ion-item class="item-transparent">
-                <ion-label>{{ 'CÓDIGO' | titlecase }}</ion-label>
-                <ion-input [(ngModel)]="model.code"
-                            type="text"
-                            name="code"
-                            id="code-field"
-                            [required]="true"
-                            placeholder=""></ion-input>
-            </ion-item>
-            <div class="validation-errors">
-                <ng-container *ngFor="let validation of validationMessages.code">
-                    <div class="error-message" *ngIf="housUnitsForm.form.controls['code']?.hasError(validation.type)">
-                        {{ validation.message }}
-                    </div>
-                </ng-container>
+    <!-- name -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'NOMBRE' | titlecase }}</ion-label>
+        <ion-input [(ngModel)]="model.name"
+                   type="text"
+                   name="name"
+                   id="name-field"
+                   [required]="true"
+                   placeholder=""></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.name">
+            <div class="error-message"
+                 *ngIf="housUnitsForm.form.controls['name']?.hasError(validation.type)">
+                {{ validation.message }}
             </div>
-            <!-- end code -->
+        </ng-container>
+    </div>
+    <!-- end name -->
+
+    <!-- contact_first_name -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'NOMBRE CONTACTO' | titlecase }}</ion-label>
+        <ion-input [(ngModel)]="model.contact_first_name"
+                   type="text"
+                   name="contact_first_name"
+                   id="contact_first_name-field"
+                   [required]="true"
+                   placeholder=""></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.contact_first_name">
+            <div class="error-message"
+                 *ngIf="housUnitsForm.form.controls['contact_first_name']?.hasError(validation.type)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end contact_first_name -->
+
+    <!-- contact_last_name -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'APELLIDO CONTACTO' | titlecase }}</ion-label>
+        <ion-input [(ngModel)]="model.contact_last_name"
+                   type="text"
+                   name="contact_last_name"
+                   id="contact_last_name-field"
+                   [required]="true"
+                   placeholder=""></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.contact_last_name">
+            <div class="error-message"
+                 *ngIf="housUnitsForm.form.controls['contact_last_name']?.hasError(validation.type)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end contact_last_name -->
+
+    <!-- contact_phone -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'TELÉFONO CONTACTO' | titlecase }}</ion-label>
+        <ion-input [(ngModel)]="model.contact_phone"
+                   type="text"
+                   name="contact_phone"
+                   id="contact_phone-field"
+                   [required]="true"
+                   placeholder=""></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.contact_phone">
+            <div class="error-message"
+                 *ngIf="housUnitsForm.form.controls['contact_phone']?.hasError(validation.type)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end contact_phone -->
+
+    <!-- contact_email -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'EMAIL CONTACTO' | titlecase }}</ion-label>
+        <ion-input [(ngModel)]="model.contact_email"
+                   type="text"
+                   name="contact_email"
+                   id="contact_email-field"
+                   [email]
+                   [required]="true"
+                   placeholder=""></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.contact_email">
+            <div class="error-message"
+                 *ngIf="housUnitsForm.form.controls['contact_email']?.hasError(validation.type)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end contact_email -->
+
+
+    <!-- code -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'CÓDIGO' | titlecase }}</ion-label>
+        <ion-input [(ngModel)]="model.code"
+                   type="text"
+                   name="code"
+                   id="code-field"
+                   [required]="true"
+                   placeholder=""></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.code">
+            <div class="error-message"
+                 *ngIf="housUnitsForm.form.controls['code']?.hasError(validation.type)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end code -->
 
 
 </form>

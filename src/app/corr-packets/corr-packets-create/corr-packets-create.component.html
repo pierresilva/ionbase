@@ -26,7 +26,10 @@
 </ion-header>
 <ion-content fullscreen>
     <ion-card>
-        <app-corr-packets-form #corrPacketForm [model]="corrPacketsService.corrPacket"></app-corr-packets-form>
+        <app-corr-packets-form #corrPacketForm
+                               type="Recibir"
+                               [model]="corrPacketsService.corrPacket"
+                               [housUnitId]="this.route.snapshot.paramMap.get('housUnitId')"></app-corr-packets-form>
     </ion-card>
 
 </ion-content>

@@ -32,7 +32,7 @@ class DriveController extends ApiController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
@@ -68,7 +68,8 @@ class DriveController extends ApiController
                 'mime' => $mimeType,
                 'url' => config('app.url') . '/storage/' . $saved,
                 'fileable_id' => $request->get('fileable_id'),
-                'fileable_type' => 'App\Models\\' . $request->get('fileable_type')
+                'fileable_type' => 'App\Models\\' . $request->get('fileable_type'),
+                'type' => $requestData['type']
             ]);
         } catch (\Exception $exception) {
             return $this->responseError($exception->getMessage());
@@ -82,7 +83,7 @@ class DriveController extends ApiController
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -93,7 +94,7 @@ class DriveController extends ApiController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -104,8 +105,8 @@ class DriveController extends ApiController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -116,7 +117,7 @@ class DriveController extends ApiController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)

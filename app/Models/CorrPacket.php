@@ -13,16 +13,29 @@ class CorrPacket extends Model
 
 // generated section
 
-	// Mass Assignment
-	protected $fillable = ['name','hous_unit_id','conveyor','guide_number','received_at','received_comment','delivered_at','delivered_to','delivered_signature','delivered_comment','status',];
+    // Mass Assignment
+    protected $fillable = [
+        'name',
+        'hous_unit_id',
+        'conveyor',
+        'guide_number',
+        'received_at',
+        'received_comment',
+        'delivered_at',
+        'delivered_to',
+        'delivered_signature',
+        'delivered_comment',
+        'status',
+    ];
     protected $dates = ['deleted_at'];
 
 
-	// Validate Rule
-    public static function getValidateRule(CorrPacket $corr_packet=null){
-        if($corr_packet){
+    // Validate Rule
+    public static function getValidateRule(CorrPacket $corr_packet = null)
+    {
+        if ($corr_packet) {
             $ignore_unique = $corr_packet->id;
-        }else{
+        } else {
             $ignore_unique = 'NULL';
         }
         $table_name = 'corr_packets';
@@ -42,32 +55,33 @@ class CorrPacket extends Model
 
 
         ];
-        if($corr_packet){
+        if ($corr_packet) {
 
         }
         return $validation_rule;
     }
 
 
-
-	public function housUnit() {
-		return $this->belongsTo('App\Models\HousUnit');
-	}
-
+    public function housUnit()
+    {
+        return $this->belongsTo('App\Models\HousUnit');
+    }
 
 
     public static function getRelationships()
     {
         return [
             'housUnit',
+            'files'
         ];
     }
 
-	public static function getLists() {
-		$lists = [];
-		$lists['HousUnit'] = HousUnit::all();
-		return $lists;
-	}
+    public static function getLists()
+    {
+        $lists = [];
+        $lists['HousUnit'] = HousUnit::all();
+        return $lists;
+    }
 
     public function scopeHousUnitByName(Builder $query, $name)
     {
@@ -78,6 +92,11 @@ class CorrPacket extends Model
 
 
 // end section
+
+    public function files()
+    {
+        return $this->morphMany('App\Models\File', 'fileable', 'fileable_type', 'fileable_id');
+    }
 
     public static function boot()
     {

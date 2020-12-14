@@ -116,6 +116,8 @@ class HousUnitController extends Controller
 
         $input = $request->input('model');
 
+        $input['hous_unit_id'] = $input['hous_unit_id']['id'];
+
         DB::beginTransaction();
 
 

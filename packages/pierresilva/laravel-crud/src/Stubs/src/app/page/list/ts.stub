@@ -3,6 +3,7 @@ import { {{{ $name|NameNames }}}Service} from "../{{{ $name|name-names }}}.servi
 import {ApiService} from "../../@shared/services/api.service";
 import {LoadingService} from "../../@shared/services/loading.service";
 import {IonContent} from '@ionic/angular';
+import {SplitPanelService} from "../../@shared/services/split-panel.service";
 
 @Component({
     selector: 'app-{{{ $name|name-names }}}-list',
@@ -19,11 +20,16 @@ export class {{{ $name|NameNames }}}ListComponent implements OnInit {
         public {{{ $name|nameNames }}}Service: {{{ $name|NameNames }}}Service,
         public api: ApiService,
         public loading: LoadingService,
+        public splitPanel: SplitPanelService,
     ) {
     }
 
     ngOnInit() {
         this.{{{ $name|nameNames }}}Service.get{{{ $name|NameNames }}}();
+    }
+
+    ionViewWillEnter() {
+     this.splitPanel.show.next(true);
     }
 
     public scrollToTop() {

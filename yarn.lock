@@ -4992,6 +4992,13 @@ ionic-selectable@^4.7.1:
   resolved "https://registry.yarnpkg.com/ionic-selectable/-/ionic-selectable-4.7.1.tgz#5103ea275c87c4ab3478b603d8bdc044d05b0350"
   integrity sha512-kyik9tQWn+SokGMNBks5wjxkW8+oc7Xrjquy9rEpMJpB60YUUYacseFkPRukaY/2DzjPNF1dpPsvrblltGBYuw==
 
+ionic4-auto-complete@^2.9.4:
+  version "2.9.4"
+  resolved "https://registry.yarnpkg.com/ionic4-auto-complete/-/ionic4-auto-complete-2.9.4.tgz#b436e1e88512375aab128c6e74e647086a4473c7"
+  integrity sha512-2Olavskiur4faivOqahbbIvqmavqkuFayYJBM6qImdTYcE7OUlis/V2XTLiR0uYIEL4PkCCm4+RdI3r27KCDIg==
+  dependencies:
+    tslib "^2.0.0"
+
 ionicons@^5.1.2:
   version "5.2.3"
   resolved "https://registry.yarnpkg.com/ionicons/-/ionicons-5.2.3.tgz#af4018ea7585b1e9ae11757731c77f2f36e0c7ac"
@@ -6274,6 +6281,13 @@ ng2-validation@^4.2.0:
   integrity sha1-841EHT+36GIVUWZIAEWq/5rRHbs=
   dependencies:
     libphonenumber-js "^0.4.5"
+
+ngx-ionic-image-viewer@^0.7.4:
+  version "0.7.4"
+  resolved "https://registry.yarnpkg.com/ngx-ionic-image-viewer/-/ngx-ionic-image-viewer-0.7.4.tgz#b054fca96273c6110b9670bb515156698641f1d8"
+  integrity sha512-mix5Jij2RKbYeLbeIW3uzwMnyaRqbMsfsOLa4JMGVcb5pQjidS0ztsf9MnePLqaqYF6XGINDBdDjXI002k7HGw==
+  dependencies:
+    tslib "^1.9.0"
 
 ngx-summernote@^0.8.0:
   version "0.8.0"

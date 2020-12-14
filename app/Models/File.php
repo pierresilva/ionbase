@@ -48,7 +48,7 @@ class File extends Model
 // generated section
 
 	// Mass Assignment
-	protected $fillable = ['name','file','extension','mime','url','fileable_id','fileable_type',];
+	protected $fillable = ['name','file','extension','mime','url','fileable_id','fileable_type','type',];
     protected $dates = ['deleted_at'];
 
 	// Validate Rule

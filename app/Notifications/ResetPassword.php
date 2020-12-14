@@ -62,6 +62,19 @@ class ResetPassword extends Notification implements ShouldQueue
     {
         return [
             //
+            'level' => 'success',
+            'subject' => __('Verify Email Address'),
+            'salutation' => __('Hello') . $notifiable->first_name,
+            'intro_lines' => [
+                __('Please click the button below to verify your email address.')
+            ],
+            'action' => [
+                _('Verify Your Email Address'),
+                $this->verificationUrl
+            ],
+            'outro_lines' => [
+                __('If you did not create an account, no further action is required.')
+            ]
         ];
     }
 }
