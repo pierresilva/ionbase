@@ -5584,7 +5584,8 @@
         production: false,
         version: 'dev',
         name: 'Noah App',
-        serverUrl: 'http://192.168.0.24/ionbase-be/public',
+        // serverUrl: 'http://192.168.0.24/ionbase-be/public',
+        serverUrl: 'http://173.249.26.66/ionbase/public',
         secretKey: 'Zcpocr3nMl1lyvnkGT6zMSc'
       };
       /*
