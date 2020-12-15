@@ -1,46 +1,39 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {SettingGroupsService} from "../setting-groups.service";
-import {SettingGroupsPage} from "../setting-groups.page";
-import {SettingGroupsModalComponent} from "../setting-groups-modal/setting-groups-modal.component";
-import {ModalController} from "@ionic/angular";
-
+import { SettingGroupsService} from "../setting-groups.service";
+import {ApiService} from "../../@shared/services/api.service";
+import {LoadingService} from "../../@shared/services/loading.service";
+import {IonContent} from '@ionic/angular';
+import {SplitPanelService} from "../../@shared/services/split-panel.service";
 
 @Component({
-  selector: 'app-setting-groups-list',
-  templateUrl: './setting-groups-list.component.html',
-  styleUrls: ['./setting-groups-list.component.scss'],
+    selector: 'app-setting-groups-list',
+    templateUrl: './setting-groups-list.component.html',
+    styleUrls: ['./setting-groups-list.component.scss'],
 })
 export class SettingGroupsListComponent implements OnInit {
 
-  @ViewChild('settingGroupsPage') settingGroupsPage: SettingGroupsPage
+    @ViewChild(IonContent, {static: false}) content: IonContent;
 
-  dataReturned: any;
+    popover: any;
 
-  constructor(
-      public settingGroupsService: SettingGroupsService,
-      public modalController: ModalController,
-  ) { }
+    constructor(
+        public settingGroupsService: SettingGroupsService,
+        public api: ApiService,
+        public loading: LoadingService,
+        public splitPanel: SplitPanelService,
+    ) {
+    }
 
-  ngOnInit() {
-    this.settingGroupsService.getSettingGroups();
-  }
+    ngOnInit() {
+        this.settingGroupsService.getSettingGroups();
+    }
 
-  async openModal(action = null) {
-    const modal = await this.modalController.create({
-      component: SettingGroupsModalComponent,
-      componentProps: {
-        action: action ?? ''
-      }
-    });
+    ionViewWillEnter() {
+     this.splitPanel.show.next(true);
+    }
 
-    modal.onDidDismiss().then((dataReturned) => {
-      if (dataReturned !== null) {
-        this.dataReturned = dataReturned.data;
-        console.table(dataReturned);
-      }
-    });
-
-    return await modal.present();
-  }
+    public scrollToTop() {
+        this.content.scrollToTop(300);
+    }
 
 }

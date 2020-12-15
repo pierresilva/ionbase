@@ -33,6 +33,10 @@
                                                                               <li class="list-group-item d-inline-flex flex-wrap"><div><strong>PADRE : </strong></div><div>{{ $housUnit->hous_unit_id }}</div></li>
                                                                                                                   <li class="list-group-item d-inline-flex flex-wrap"><div><strong>NOMBRE : </strong></div><div>{{ $housUnit->name }}</div></li>
                                                                                                                   <li class="list-group-item d-inline-flex flex-wrap"><div><strong>CÓDIGO : </strong></div><div>{{ $housUnit->code }}</div></li>
+                                                                                                                  <li class="list-group-item d-inline-flex flex-wrap"><div><strong>NOMBRE DEL CONTACTO : </strong></div><div>{{ $housUnit->contact_first_name }}</div></li>
+                                                                                                                  <li class="list-group-item d-inline-flex flex-wrap"><div><strong>APELLIDO DEL CONTACTO : </strong></div><div>{{ $housUnit->contact_last_name }}</div></li>
+                                                                                                                  <li class="list-group-item d-inline-flex flex-wrap"><div><strong>TELÉFONO DEL CONTACTO : </strong></div><div>{{ $housUnit->contact_phone }}</div></li>
+                                                                                                                  <li class="list-group-item d-inline-flex flex-wrap"><div><strong>EMAIL DEL CONTACTO : </strong></div><div>{{ $housUnit->contact_email }}</div></li>
                                                       
                                                                                                                               
                                                             <li class="list-group-item"><p><strong>AREAS DE UNIDADES HABITACIONALES : </strong></p><div>

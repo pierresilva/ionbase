@@ -132,3 +132,66 @@
 
 
 
+
+<div class="form-group manytomany">
+    <label for="pivotsuserCheckbox">USUARIOS ROLES</label>
+    <div class="form-check form-check-inline flex-wrap">
+        @foreach($lists['UserRole'] as $list_key => $list_item)
+        <div class="form-group mb-1">
+          <input name="pivots[user_role][{{ $list_key }}][id]" type="checkbox" id="pivotsUserRoleCheckbox{{ $list_key }}" value="{{ $list_key }}" class="form-check-input manytomany-trigger
+              @if($errors->has('pivots.user_role.'.$list_key.'.*')) is-invalid @endif
+              "
+              @if( $errors->any() && old('pivots.user_role.'.$list_key.'.id')) checked
+              @elseif( !$errors->any() && isset($user) && $user->userRoles->find($list_key) ) checked
+              @endif
+          ><label class="form-check-label mr-2" for="pivotsUserRoleCheckbox{{ $list_key }}">{{ $list_item }}</label>
+        </div>
+        @endforeach
+    </div>
+    @if ($errors->has('pivots.user.*.*'))
+    <div><span class="text-danger">There were some problems with your pivot input.</span></div>
+    @endif
+
+    <!-- manytomany Modal -->
+    <div class="modal fade manytomany-modal needs-validation-with-save" id="userRoleModal" tabindex="-1" role="dialog" aria-labelledby="userRoleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">UserRole Option</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-primary save">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    @if( old('pivots.user_role') )
+        @foreach( old('pivots.user_role') as $user_role_id => $user_role )
+            @foreach( $user_role as $pivot_key => $pivot_value )
+                @if( $loop->index > 0 )
+                    <input type="hidden" name="pivots[user_role][{{ $user_role_id }}][{{$pivot_key}}]" value="{{$pivot_value}}" parent_name="pivots[user_role][{{ $user_role_id }}]">
+                @endif
+            @endforeach
+        @endforeach
+    @elseif( isset($user) )
+        @foreach( $user->userRoles as $user_role )
+            @foreach( $user_role->pivot->toArray() as $pivot_key => $pivot_value )
+                @if( $loop->index > 1 && $pivot_key !== 'created_at' && $pivot_key !== 'updated_at')
+                    <input type="hidden" name="pivots[user_role][{{ $user_role->id }}][{{$pivot_key}}]" value="{{$pivot_value}}" parent_name="pivots[user_role][{{ $user_role->id }}]">
+                @endif
+            @endforeach
+        @endforeach
+    @endif
+    @if($errors->has('pivots.user_role.*.*'))
+        @foreach($errors->get('pivots.user_role.*') as $error_key => $error_value)
+                    <input type="hidden" name="errors.{{$error_key}}" value="{{$error_value[0]}}" disabled="disabled">
+        @endforeach
+    @endif
+
+</div>
+

@@ -6,6 +6,7 @@ use App\Http\Controllers\ApiController;
 use App\Notifications\ResetPassword;
 use App\PasswordReset;
 use App\User;
+use App\UserRole;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -67,6 +68,13 @@ class AuthController extends ApiController
                 $validator->validated(),
                 ['password' => bcrypt($request->password)]
             ));
+
+            $userRole = UserRole::whereCode('user')->first();
+
+            if ($userRole) {
+                $user->assignRole($userRole->code);
+            }
+
             $user->sendEmailVerificationNotification();
         } catch (\Exception $exception) {
             DB::rollBack();
@@ -147,7 +155,7 @@ class AuthController extends ApiController
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function logout(): \Illuminate\Http\JsonResponse
+    public function logout(Request $request): \Illuminate\Http\JsonResponse
     {
         auth()->logout();
 

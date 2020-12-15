@@ -74,6 +74,7 @@ export class UsersService {
         this.api.put(this.usersUrl + '/' + this.user.id, {
             model: this.user,
             pivots: {
+                user_role: this.user.user_roles,
             }
         }).subscribe(
             (res: any) => {
@@ -98,6 +99,7 @@ export class UsersService {
         this.api.post(this.usersUrl, {
             model: this.user,
             pivots: {
+                user_role: this.user.user_roles,
             }
         }).subscribe(
             (res: any) => {

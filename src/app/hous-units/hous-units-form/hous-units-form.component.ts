@@ -3,7 +3,6 @@ import {HousUnit} from "../hous-unit";
 import {FormGroup} from "@angular/forms";
 import {HousUnitsService} from "../hous-units.service";
 import {TitleCasePipe} from "@angular/common";
-import {SplitPanelService} from "../../@shared/services/split-panel.service";
 
 @Component({
     selector: 'app-hous-units-form',
@@ -26,6 +25,18 @@ export class HousUnitsFormComponent implements OnInit, AfterViewInit {
         'code': [
             {type: 'required', message: 'El campo ' + this.toTitlecase.transform('CÓDIGO') + ' es obligatorio.'},
         ],
+        'contact_first_name': [
+            {type: 'required', message: 'El campo ' + this.toTitlecase.transform('NOMBRE DEL CONTACTO') + ' es obligatorio.'},
+        ],
+        'contact_last_name': [
+            {type: 'required', message: 'El campo ' + this.toTitlecase.transform('APELLIDO DEL CONTACTO') + ' es obligatorio.'},
+        ],
+        'contact_phone': [
+            {type: 'required', message: 'El campo ' + this.toTitlecase.transform('TELÉFONO DEL CONTACTO') + ' es obligatorio.'},
+        ],
+        'contact_email': [
+            {type: 'required', message: 'El campo ' + this.toTitlecase.transform('EMAIL DEL CONTACTO') + ' es obligatorio.'},
+        ],
         'hous_unit_area_ids': [
             {type: 'required', message: 'El campo ' + this.toTitlecase.transform('AREAS DE UNIDADES HABITACIONALES') + ' es obligatorio.'},
         ],
@@ -35,34 +46,16 @@ export class HousUnitsFormComponent implements OnInit, AfterViewInit {
         'corr_packet_ids': [
             {type: 'required', message: 'El campo ' + this.toTitlecase.transform('CORRESPONDENCIA PAQUETES') + ' es obligatorio.'},
         ],
-        'contact_first_name': [
-            {type: 'required', message: 'El campo nombre del contacto es obligatorio.'},
-        ],
-        'contact_last_name': [
-            {type: 'required', message: 'El campo apellido del contacto es obligatorio.'},
-        ],
-        'contact_phone': [
-            {type: 'required', message: 'El campo teléfono del contacto es obligatorio.'},
-        ],
-        'contact_email': [
-            {type: 'required', message: 'El campo email del contacto es obligatorio.'},
-            {type: 'email', message: 'El campo email del contacto no es valido.'},
-        ],
     };
 
     constructor(
         public housUnitsService: HousUnitsService,
-        private toTitlecase: TitleCasePipe,
-        public splitPanel: SplitPanelService
+        private toTitlecase: TitleCasePipe
     ) {
 
     }
 
     ngOnInit(): void {
-    }
-
-    ionViewWillEnter() {
-        this.splitPanel.show.next(true);
     }
 
     ngAfterViewInit() {
@@ -110,12 +103,5 @@ export class HousUnitsFormComponent implements OnInit, AfterViewInit {
     }
     // end setCorrPacketIds
 
-
-    setHousUnitId(event: any) {
-        if (event.value) {
-            this.housUnitsService.housUnit.hous_unit_id = event.value.id;
-            this.model.hous_unit_id = event.value.id;
-        }
-    }
 
 }

@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {OperMovement} from "../oper-movement";
 import {OperMovementsFormComponent} from "../oper-movements-form/oper-movements-form.component";
 import { Platform } from '@ionic/angular';
+import {SplitPanelService} from "../../@shared/services/split-panel.service";
 
 @Component({
   selector: 'app-oper-movements-edit',
@@ -20,12 +21,17 @@ export class OperMovementsEditComponent implements OnInit, AfterViewInit {
   constructor(
       public operMovementsService: OperMovementsService,
       public route: ActivatedRoute,
-      public platform: Platform
+      public platform: Platform,
+      public splitPanel: SplitPanelService,
   ) { }
 
   ngOnInit(): void {
       this.id = this.route.snapshot.paramMap.get('id');
       this.operMovementsService.editOperMovement(this.id);
+  }
+
+  ionViewWillEnter() {
+    this.splitPanel.show.next(true);
   }
 
   ngAfterViewInit() {

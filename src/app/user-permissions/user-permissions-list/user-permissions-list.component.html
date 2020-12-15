@@ -1,0 +1,87 @@
+<app-main-header title="{{'USUARIOS PERMISOS' | titlecase}}"
+                 primaryLink="user-permissions/create"
+                 primaryText="Crear {{'USUARIOS PERMISOS' | lowercase}}"
+                 primaryIcon="add-circle-outline"></app-main-header>
+
+<ion-content id="pages-content">
+
+    <ion-searchbar showCancelButton="focus"
+                       [cancelButtonText]="'Cancelar'"
+                       [placeholder]="'Buscar ' + ('USUARIOS PERMISOS' | lowercase )"
+                       (ionCancel)="this.userPermissionsService.searchValue = ''; userPermissionsService.getUserPermissions()"
+                       (keyup.enter)="userPermissionsService.getUserPermissions()"
+                       [(ngModel)]="userPermissionsService.searchValue"></ion-searchbar>
+
+    <ng-container *ngIf="!(loading.loading | async) && userPermissionsService.userPermissions?.length">
+        <ion-card *ngFor="let userPermission of userPermissionsService.userPermissions; let index = index">
+            <ion-list>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'NOMBRE' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ userPermission?.name }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'CÓDIGO' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ userPermission?.code }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'USUARIOS ROLES' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">
+                            <ng-container *ngIf="userPermission?.user_roles?.length">
+                                <ng-container *ngFor="let userRole of userPermission?.user_roles; let last = last">
+                                    <a routerLink="/user-roles/{{ userRole?.id }}/edit">{{ userRole?.name }}</a><span *ngIf="!last">, </span>
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                    </ion-item>
+            </ion-list>
+            <ion-footer>
+                <ion-row>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="success" size="small" fill="clear" [routerLink]="'/user-permissions/' + userPermission?.id + '/edit'">
+                            <ion-icon name="create-outline"></ion-icon>
+                            <div>Editar</div>
+                        </ion-button>
+                    </ion-col>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="danger" size="small" fill="clear" (click)="userPermissionsService.deleteUserPermission(userPermission?.id)">
+                            <ion-icon name="trash-outline"></ion-icon>
+                            <div>Eliminar</div>
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-footer>
+        </ion-card>
+    </ng-container>
+
+    <ng-container *ngIf="!(loading.loading | async) && !userPermissionsService.userPermissions?.length">
+        <ion-item>
+            <ion-icon class="text-warning" name="warning-outline" slot="start"></ion-icon>
+            <ion-label><h2>No se encontraron {{'USUARIOS PERMISOS' | titlecase}}</h2></ion-label>
+            <ion-button [routerLink]="'/user-permissions/create'" fill="outline" color="success" slot="end">
+                Crear {{'USUARIOS PERMISOS' | titlecase}}
+                <ion-icon name="add-circle-outline" slot="end"></ion-icon>
+            </ion-button>
+        </ion-item>
+    </ng-container>
+
+</ion-content>
+
+<ion-footer class="lists-footer">
+    <ion-row *ngIf="userPermissionsService.meta">
+        <ion-col class="ion-text-center" size="12">
+            <ion-button (click)="userPermissionsService.getUserPermissions(userPermissionsService.meta.current_page - 1)"
+                        [disabled]="userPermissionsService.meta.current_page == 1"
+                        fill="clear">
+                <ion-icon slot="end" name="play-outline" style="transform: rotate(180deg);"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear" [disabled]="true"> Pag: {{userPermissionsService.meta.current_page}}
+                /{{userPermissionsService.meta.last_page}} {{userPermissionsService.meta.from}}-{{userPermissionsService.meta.to}}
+                /{{userPermissionsService.meta.total}} </ion-button>
+            <ion-button (click)="userPermissionsService.getUserPermissions(userPermissionsService.meta.current_page + 1)"
+                        [disabled]="userPermissionsService.meta.current_page == userPermissionsService.meta.last_page"
+                        fill="clear">
+                <ion-icon slot="start" name="play-outline"></ion-icon>
+            </ion-button>
+        </ion-col>
+    </ion-row>
+</ion-footer>

@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {CompAddress} from "../comp-address";
 import {CompAddressesFormComponent} from "../comp-addresses-form/comp-addresses-form.component";
 import { Platform } from '@ionic/angular';
+import {SplitPanelService} from "../../@shared/services/split-panel.service";
 
 @Component({
   selector: 'app-comp-addresses-edit',
@@ -20,12 +21,17 @@ export class CompAddressesEditComponent implements OnInit, AfterViewInit {
   constructor(
       public compAddressesService: CompAddressesService,
       public route: ActivatedRoute,
-      public platform: Platform
+      public platform: Platform,
+      public splitPanel: SplitPanelService,
   ) { }
 
   ngOnInit(): void {
       this.id = this.route.snapshot.paramMap.get('id');
       this.compAddressesService.editCompAddress(this.id);
+  }
+
+  ionViewWillEnter() {
+    this.splitPanel.show.next(true);
   }
 
   ngAfterViewInit() {

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\ApiController;
 use App\Setting;
-use App\SettingGroup;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -19,17 +18,17 @@ class SettingController extends ApiController
     {
         //
 
-        $settings = Setting::with('group');
+        $settings = Setting::with('settingGroup');
 
         // (1)filltering
         $settings = $this->filtering($request, $settings);
         $settings = $settings->get();
 
-        $resource = $settings->toArray();
+        $resource['data'] = $settings->toArray();
 
-        return $this->responseSuccess('OK', [
-            'data' => $resource
-        ]);
+        $resource['lists'] = Setting::getLists();
+
+        return $this->responseSuccess('OK', $resource);
     }
 
     /**
@@ -43,15 +42,15 @@ class SettingController extends ApiController
     {
         //
         $this->validate($request, [
-            'setting_group_id' => 'required',
-            'name' => 'required',
-            'value' => 'required',
-            'rich_text' => 'nullable|boolean'
+            'model.setting_group_id' => 'required',
+            'model.name' => 'required',
+            'model.value' => 'required',
+            'model.rich_text' => 'nullable|boolean'
         ]);
 
         DB::beginTransaction();
         try {
-            Setting::create($request->all());
+            Setting::create($request->all()['model']);
         } catch (\Exception $exception) {
             DB::rollBack();
             return $this->responseError($exception->getMessage());
@@ -73,7 +72,7 @@ class SettingController extends ApiController
     {
         //
 
-        $thisSetting = Setting::with('group')->whereCode($setting)->first();
+        $thisSetting = Setting::with('settingGroup')->whereCode($setting)->first();
 
         return $this->responseSuccess('OK', $thisSetting);
     }
@@ -89,22 +88,24 @@ class SettingController extends ApiController
     {
         //
         $this->validate($request, [
-            'setting_group_id' => 'required',
-            'name' => 'required',
-            'value' => 'required',
-            'rich_text' => 'nullable|boolean'
+            'model.setting_group_id' => 'required',
+            'model.name' => 'required',
+            'model.value' => 'required',
+            'model.rich_text' => 'nullable|boolean'
         ]);
 
-        $thisSetting = Setting::whereCode($setting)->first();
+        $thisSetting = Setting::whereCode($setting)->orWhere('id', $setting)->first();
 
         DB::beginTransaction();
         try {
-            $thisSetting->update($request->all());
+            $thisSetting->update($request->all()['model']);
         } catch (\Exception $exception) {
             DB::rollBack();
             return $this->responseError($exception->getMessage());
         }
         DB::commit();
+
+        return $this->responseSuccess('OK', $thisSetting);
 
     }
 
@@ -114,14 +115,41 @@ class SettingController extends ApiController
      * @param  \App\Setting  $setting
      * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy(Setting $setting)
+    public function destroy($setting)
     {
         //
 
-        $thisSetting = Setting::whereCode($setting)->first();
+        $thisSetting = Setting::whereCode($setting)->orWhere('id', $setting)->first();
 
         $thisSetting->delete();
 
         return $this->responseSuccess('OK', $thisSetting->toArray());
+    }
+
+    public function create()
+    {
+        // user_can(['syst_city.create']);
+
+        return response()->json([
+            'message' => 'Formulario para crear ajustes!',
+            'data' => null,
+            'lists' => Setting::getLists()
+        ]);
+    }
+
+    public function edit($settingId)
+    {
+        // user_can(['setting_group.edit']);
+
+        $setting = Setting::with(Setting::getRelationships())->findOrFail($settingId);
+
+        return $this->responseSuccess(
+            'Formulario para editar ajustes!',
+            [
+                'model' => $setting,
+                'lists' => Setting::getLists(),
+            ],
+            false
+        );
     }
 }

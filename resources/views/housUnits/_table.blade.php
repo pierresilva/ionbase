@@ -39,6 +39,38 @@
                     @else
                       CÓDIGO                    @endif
                   </div></th>
+                  <th scope="col"><div class="d-flex">
+                    @if( method_exists($housUnits, 'appends') )
+                      <a href="javascript:sortByColumn('contact_first_name')">NOMBRE DEL CONTACTO</a>
+                      @if( Request::input('q.s') == 'contact_first_name_asc' )<i class="material-icons">arrow_drop_up</i>
+                      @elseif( Request::input('q.s') == 'contact_first_name_desc' )<i class="material-icons">arrow_drop_down</i> @endif
+                    @else
+                      NOMBRE DEL CONTACTO                    @endif
+                  </div></th>
+                  <th scope="col"><div class="d-flex">
+                    @if( method_exists($housUnits, 'appends') )
+                      <a href="javascript:sortByColumn('contact_last_name')">APELLIDO DEL CONTACTO</a>
+                      @if( Request::input('q.s') == 'contact_last_name_asc' )<i class="material-icons">arrow_drop_up</i>
+                      @elseif( Request::input('q.s') == 'contact_last_name_desc' )<i class="material-icons">arrow_drop_down</i> @endif
+                    @else
+                      APELLIDO DEL CONTACTO                    @endif
+                  </div></th>
+                  <th scope="col"><div class="d-flex">
+                    @if( method_exists($housUnits, 'appends') )
+                      <a href="javascript:sortByColumn('contact_phone')">TELÉFONO DEL CONTACTO</a>
+                      @if( Request::input('q.s') == 'contact_phone_asc' )<i class="material-icons">arrow_drop_up</i>
+                      @elseif( Request::input('q.s') == 'contact_phone_desc' )<i class="material-icons">arrow_drop_down</i> @endif
+                    @else
+                      TELÉFONO DEL CONTACTO                    @endif
+                  </div></th>
+                  <th scope="col"><div class="d-flex">
+                    @if( method_exists($housUnits, 'appends') )
+                      <a href="javascript:sortByColumn('contact_email')">EMAIL DEL CONTACTO</a>
+                      @if( Request::input('q.s') == 'contact_email_asc' )<i class="material-icons">arrow_drop_up</i>
+                      @elseif( Request::input('q.s') == 'contact_email_desc' )<i class="material-icons">arrow_drop_down</i> @endif
+                    @else
+                      EMAIL DEL CONTACTO                    @endif
+                  </div></th>
 
 
                   <th scope="col">AREAS DE UNIDADES HABITACIONALES</th>
@@ -56,6 +88,10 @@
                       <td>{{$housUnit->hous_unit_id}}</td>
                       <td>{{$housUnit->name}}</td>
                       <td>{{$housUnit->code}}</td>
+                      <td>{{$housUnit->contact_first_name}}</td>
+                      <td>{{$housUnit->contact_last_name}}</td>
+                      <td>{{$housUnit->contact_phone}}</td>
+                      <td>{{$housUnit->contact_email}}</td>
 
 
                       <td>

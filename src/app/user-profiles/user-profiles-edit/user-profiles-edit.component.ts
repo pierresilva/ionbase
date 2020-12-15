@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {UserProfile} from "../user-profile";
 import {UserProfilesFormComponent} from "../user-profiles-form/user-profiles-form.component";
 import { Platform } from '@ionic/angular';
+import {SplitPanelService} from "../../@shared/services/split-panel.service";
 
 @Component({
   selector: 'app-user-profiles-edit',
@@ -20,12 +21,17 @@ export class UserProfilesEditComponent implements OnInit, AfterViewInit {
   constructor(
       public userProfilesService: UserProfilesService,
       public route: ActivatedRoute,
-      public platform: Platform
+      public platform: Platform,
+      public splitPanel: SplitPanelService,
   ) { }
 
   ngOnInit(): void {
       this.id = this.route.snapshot.paramMap.get('id');
       this.userProfilesService.editUserProfile(this.id);
+  }
+
+  ionViewWillEnter() {
+    this.splitPanel.show.next(true);
   }
 
   ngAfterViewInit() {

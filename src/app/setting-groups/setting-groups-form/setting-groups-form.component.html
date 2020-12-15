@@ -1,25 +1,74 @@
-<form #settingGroupsForm="ngForm"
-      novalidate
-      autocomplete="off">
-    <ion-list>
+<form #settingGroupsForm="ngForm" novalidate autocomplete="off">
 
-        <ion-item>
-            <ion-label position="floating">Nombre</ion-label>
-            <ion-input type="text"
-                       [(ngModel)]="settingGroupsService.settingGroup.name"
-                       name="name"
-                       id="name-field"
-                       required></ion-input>
-        </ion-item>
-        <div class="validation-errors">
-            <ng-container *ngFor="let validation of validationMessages.name">
-                <div class="error-message" *ngIf="settingGroupsForm.form.controls['name']?.hasError(validation.type)">
-                    {{ validation.message }}
-                </div>
-            </ng-container>
-        </div>
 
-        <app-settings-list></app-settings-list>
+    <!-- setting_ids -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'AJUSTES' | titlecase }}</ion-label>
+        <ionic-selectable name="setting_ids"
+                          id="setting_ids-field"
+                          [(ngModel)]="model.settings"
+                          [items]="settingGroupsService.settingGroupLists.Setting"
+                          itemValueField="id"
+                          itemTextField="name"
+                          [isMultiple]="true"
+                          [canClear]="true"
+                          [hasConfirmButton]="true"
+                          [confirmButtonText]="'Seleccionar'"
+                          [searchPlaceholder]="'Buscar ' + ('AJUSTES' | titlecase)"
+                          [searchFailText]="'No se encontro ' + ('AJUSTES' | titlecase) + ' que coincida!'"
+                          [closeButtonText]="'Cancelar'"
+                          [clearButtonText]="'Limpiar'"
+                          [canSearch]="true"
+                          (onChange)="setSettingIds($event)">
+        </ionic-selectable>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.setting_ids">
+            <div class="error-message" *ngIf="settingGroupsForm.form.controls['setting_ids']?.hasError(validation.type)">
+            {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end setting_ids -->
 
-    </ion-list>
+
+            <!-- name -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'NOMBRE' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.name"
+                            type="text"
+                            name="name"
+                            id="name-field"
+                            [required]="true"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.name">
+                    <div class="error-message" *ngIf="settingGroupsForm.form.controls['name']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end name -->
+
+
+            <!-- code -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'CÓDIGO' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.code"
+                            type="text"
+                            name="code"
+                            id="code-field"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.code">
+                    <div class="error-message" *ngIf="settingGroupsForm.form.controls['code']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end code -->
+
+
 </form>

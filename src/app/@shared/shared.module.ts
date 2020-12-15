@@ -43,6 +43,7 @@ import {GetParameterPipe} from './pipes/get-parameter.pipe';
 import {CustomFormsModule} from "ng2-validation";
 import {AutoCompleteModule} from "ionic4-auto-complete";
 import { NgxIonicImageViewerModule } from 'ngx-ionic-image-viewer';
+import {SettingsService} from "./services/settings.service";
 
 
 @NgModule({
@@ -111,6 +112,7 @@ import { NgxIonicImageViewerModule } from 'ngx-ionic-image-viewer';
         FileTransferService,
         FileUploadService,
         NavigationService,
+        SettingsService,
 
         {
             provide: HTTP_INTERCEPTORS,

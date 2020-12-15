@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {SystCity} from "../syst-city";
 import {SystCitiesFormComponent} from "../syst-cities-form/syst-cities-form.component";
 import { Platform } from '@ionic/angular';
+import {SplitPanelService} from "../../@shared/services/split-panel.service";
 
 @Component({
     selector: 'app-syst-cities-create',
@@ -20,13 +21,18 @@ export class SystCitiesCreateComponent implements OnInit, AfterViewInit {
     constructor(
         public systCitiesService: SystCitiesService,
         public route: ActivatedRoute,
-        public platform: Platform
+        public platform: Platform,
+        public splitPanel: SplitPanelService
     ) {
 
     }
 
     ngOnInit(): void {
         this.clearPosts();
+    }
+
+    ionViewWillEnter() {
+       this.splitPanel.show.next(true);
     }
 
     ngAfterViewInit() {

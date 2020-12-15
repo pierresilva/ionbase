@@ -3,6 +3,7 @@ import { HousUnitsService} from "../hous-units.service";
 import {ApiService} from "../../@shared/services/api.service";
 import {LoadingService} from "../../@shared/services/loading.service";
 import {IonContent} from '@ionic/angular';
+import {SplitPanelService} from "../../@shared/services/split-panel.service";
 
 @Component({
     selector: 'app-hous-units-list',
@@ -19,11 +20,16 @@ export class HousUnitsListComponent implements OnInit {
         public housUnitsService: HousUnitsService,
         public api: ApiService,
         public loading: LoadingService,
+        public splitPanel: SplitPanelService,
     ) {
     }
 
     ngOnInit() {
         this.housUnitsService.getHousUnits();
+    }
+
+    ionViewWillEnter() {
+     this.splitPanel.show.next(true);
     }
 
     public scrollToTop() {

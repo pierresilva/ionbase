@@ -86,6 +86,14 @@ Route::get("files/{file}/duplicate", ['as' => 'files.duplicate', 'uses' => 'File
 Route::resource("files","FileController");
 Route::get("corrPackets/{corrPacket}/duplicate", ['as' => 'corrPackets.duplicate', 'uses' => 'CorrPacketController@duplicate']);
 Route::resource("corrPackets","CorrPacketController");
+Route::get("settings/{setting}/duplicate", ['as' => 'settings.duplicate', 'uses' => 'SettingController@duplicate']);
+Route::resource("settings","SettingController");
+Route::get("settingGroups/{settingGroup}/duplicate", ['as' => 'settingGroups.duplicate', 'uses' => 'SettingGroupController@duplicate']);
+Route::resource("settingGroups","SettingGroupController");
+Route::get("userRoles/{userRole}/duplicate", ['as' => 'userRoles.duplicate', 'uses' => 'UserRoleController@duplicate']);
+Route::resource("userRoles","UserRoleController");
+Route::get("userPermissions/{userPermission}/duplicate", ['as' => 'userPermissions.duplicate', 'uses' => 'UserPermissionController@duplicate']);
+Route::resource("userPermissions","UserPermissionController");
 
 
 // end section

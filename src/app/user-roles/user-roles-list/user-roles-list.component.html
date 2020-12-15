@@ -1,0 +1,97 @@
+<app-main-header title="{{'USUARIOS ROLES' | titlecase}}"
+                 primaryLink="user-roles/create"
+                 primaryText="Crear {{'USUARIOS ROLES' | lowercase}}"
+                 primaryIcon="add-circle-outline"></app-main-header>
+
+<ion-content id="pages-content">
+
+    <ion-searchbar showCancelButton="focus"
+                       [cancelButtonText]="'Cancelar'"
+                       [placeholder]="'Buscar ' + ('USUARIOS ROLES' | lowercase )"
+                       (ionCancel)="this.userRolesService.searchValue = ''; userRolesService.getUserRoles()"
+                       (keyup.enter)="userRolesService.getUserRoles()"
+                       [(ngModel)]="userRolesService.searchValue"></ion-searchbar>
+
+    <ng-container *ngIf="!(loading.loading | async) && userRolesService.userRoles?.length">
+        <ion-card *ngFor="let userRole of userRolesService.userRoles; let index = index">
+            <ion-list>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'NOMBRE' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ userRole?.name }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'CÓDIGO' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ userRole?.code }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'USUARIOS' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">
+                            <ng-container *ngIf="userRole?.users?.length">
+                                <ng-container *ngFor="let user of userRole?.users; let last = last">
+                                    <a routerLink="/users/{{ user?.id }}/edit">{{ user?.name }}</a><span *ngIf="!last">, </span>
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'USUARIOS PERMISOS' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">
+                            <ng-container *ngIf="userRole?.user_permissions?.length">
+                                <ng-container *ngFor="let userPermission of userRole?.user_permissions; let last = last">
+                                    <a routerLink="/user-permissions/{{ userPermission?.id }}/edit">{{ userPermission?.name }}</a><span *ngIf="!last">, </span>
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                    </ion-item>
+            </ion-list>
+            <ion-footer>
+                <ion-row>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="success" size="small" fill="clear" [routerLink]="'/user-roles/' + userRole?.id + '/edit'">
+                            <ion-icon name="create-outline"></ion-icon>
+                            <div>Editar</div>
+                        </ion-button>
+                    </ion-col>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="danger" size="small" fill="clear" (click)="userRolesService.deleteUserRole(userRole?.id)">
+                            <ion-icon name="trash-outline"></ion-icon>
+                            <div>Eliminar</div>
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-footer>
+        </ion-card>
+    </ng-container>
+
+    <ng-container *ngIf="!(loading.loading | async) && !userRolesService.userRoles?.length">
+        <ion-item>
+            <ion-icon class="text-warning" name="warning-outline" slot="start"></ion-icon>
+            <ion-label><h2>No se encontraron {{'USUARIOS ROLES' | titlecase}}</h2></ion-label>
+            <ion-button [routerLink]="'/user-roles/create'" fill="outline" color="success" slot="end">
+                Crear {{'USUARIOS ROLES' | titlecase}}
+                <ion-icon name="add-circle-outline" slot="end"></ion-icon>
+            </ion-button>
+        </ion-item>
+    </ng-container>
+
+</ion-content>
+
+<ion-footer class="lists-footer">
+    <ion-row *ngIf="userRolesService.meta">
+        <ion-col class="ion-text-center" size="12">
+            <ion-button (click)="userRolesService.getUserRoles(userRolesService.meta.current_page - 1)"
+                        [disabled]="userRolesService.meta.current_page == 1"
+                        fill="clear">
+                <ion-icon slot="end" name="play-outline" style="transform: rotate(180deg);"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear" [disabled]="true"> Pag: {{userRolesService.meta.current_page}}
+                /{{userRolesService.meta.last_page}} {{userRolesService.meta.from}}-{{userRolesService.meta.to}}
+                /{{userRolesService.meta.total}} </ion-button>
+            <ion-button (click)="userRolesService.getUserRoles(userRolesService.meta.current_page + 1)"
+                        [disabled]="userRolesService.meta.current_page == userRolesService.meta.last_page"
+                        fill="clear">
+                <ion-icon slot="start" name="play-outline"></ion-icon>
+            </ion-button>
+        </ion-col>
+    </ion-row>
+</ion-footer>

@@ -3,6 +3,7 @@ import { SystPositionsService} from "../syst-positions.service";
 import {ApiService} from "../../@shared/services/api.service";
 import {LoadingService} from "../../@shared/services/loading.service";
 import {IonContent} from '@ionic/angular';
+import {SplitPanelService} from "../../@shared/services/split-panel.service";
 
 @Component({
     selector: 'app-syst-positions-list',
@@ -19,11 +20,16 @@ export class SystPositionsListComponent implements OnInit {
         public systPositionsService: SystPositionsService,
         public api: ApiService,
         public loading: LoadingService,
+        public splitPanel: SplitPanelService,
     ) {
     }
 
     ngOnInit() {
         this.systPositionsService.getSystPositions();
+    }
+
+    ionViewWillEnter() {
+     this.splitPanel.show.next(true);
     }
 
     public scrollToTop() {

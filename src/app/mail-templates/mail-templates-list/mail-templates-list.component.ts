@@ -3,6 +3,7 @@ import { MailTemplatesService} from "../mail-templates.service";
 import {ApiService} from "../../@shared/services/api.service";
 import {LoadingService} from "../../@shared/services/loading.service";
 import {IonContent} from '@ionic/angular';
+import {SplitPanelService} from "../../@shared/services/split-panel.service";
 
 @Component({
     selector: 'app-mail-templates-list',
@@ -19,11 +20,16 @@ export class MailTemplatesListComponent implements OnInit {
         public mailTemplatesService: MailTemplatesService,
         public api: ApiService,
         public loading: LoadingService,
+        public splitPanel: SplitPanelService,
     ) {
     }
 
     ngOnInit() {
         this.mailTemplatesService.getMailTemplates();
+    }
+
+    ionViewWillEnter() {
+     this.splitPanel.show.next(true);
     }
 
     public scrollToTop() {

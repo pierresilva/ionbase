@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {SplitPanelService} from "../@shared/services/split-panel.service";
 
 @Component({
   selector: 'app-users',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsersPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    public splitPanel: SplitPanelService
+  ) { }
 
   ngOnInit() {
+
+  }
+
+  ionViewWillEnter() {
+    this.splitPanel.show.next(true);
   }
 
 }

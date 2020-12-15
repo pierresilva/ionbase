@@ -1,49 +1,85 @@
-<ion-searchbar placeholder="Buscar parametros"
-               animated
-               debounce="500"
-               (keyup.enter)="settingsService.getSettings()"
-               (ionCancel)="settingsService.search = ''"
-               (ionChange)="settingsService.getSettings()"
-               [showCancelButton]="'focus'"
-               [cancelButtonText]="'cancelar'"
-               [(ngModel)]="settingsService.search"></ion-searchbar>
-<ion-list>
-    <ion-list-header>
-        Parametros
-    </ion-list-header>
-    <ng-container *ngIf="settingsService?.settings?.length">
+<app-main-header title="{{'AJUSTES' | titlecase}}"
+                 primaryLink="settings/create"
+                 primaryText="Crear {{'AJUSTES' | lowercase}}"
+                 primaryIcon="add-circle-outline"></app-main-header>
 
-        <ng-container *ngFor="let setting of settingsService?.settings">
-            <ion-item-sliding>
-                <ion-item (click)="settingsService.getSetting(setting.code); openModal('Editar')">
-                    <ion-label>
-                        {{setting.name}}
-                        <h3>{{setting.code}}</h3>
-                    </ion-label>
-                </ion-item>
-                <ion-item-options side="end">
-                    <ion-item-option color="danger"
-                                     (click)="settingsService.deleteSetting(setting)">
-                        <ion-icon name="trash"
-                                  class="icon-s"></ion-icon>
-                    </ion-item-option>
-                </ion-item-options>
-            </ion-item-sliding>
-        </ng-container>
+<ion-content id="pages-content">
 
+    <ion-searchbar showCancelButton="focus"
+                       [cancelButtonText]="'Cancelar'"
+                       [placeholder]="'Buscar ' + ('AJUSTES' | lowercase )"
+                       (ionCancel)="this.settingsService.searchValue = ''; settingsService.getSettings()"
+                       (keyup.enter)="settingsService.getSettings()"
+                       [(ngModel)]="settingsService.searchValue"></ion-searchbar>
+
+    <ng-container *ngIf="!(loading.loading | async) && settingsService.settings?.length">
+        <ion-card *ngFor="let setting of settingsService.settings; let index = index">
+            <ion-list>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'NOMBRE' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ setting?.name }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'CÓDIGO' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ setting?.code }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'VALOR' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ setting?.value | stripHtml }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'AJUSTES GRUPOS' | titlecase }}</b></ion-label>
+                        <div class="wrap-text"><a routerLink="/setting-groups/{{ setting?.setting_group?.id }}/edit">{{ setting?.setting_group?.name }}</a></div>
+                    </ion-item>
+            </ion-list>
+            <ion-footer>
+                <ion-row>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="success" size="small" fill="clear" [routerLink]="'/settings/' + setting?.id + '/edit'">
+                            <ion-icon name="create-outline"></ion-icon>
+                            <div>Editar</div>
+                        </ion-button>
+                    </ion-col>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="danger" size="small" fill="clear" (click)="settingsService.deleteSetting(setting?.id)">
+                            <ion-icon name="trash-outline"></ion-icon>
+                            <div>Eliminar</div>
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-footer>
+        </ion-card>
     </ng-container>
 
-    <ng-container *ngIf="!settingsService?.settings?.length">
+    <ng-container *ngIf="!(loading.loading | async) && !settingsService.settings?.length">
         <ion-item>
-            <ion-label>Sin parametros</ion-label>
-            <ion-button (click)="settingsService.newSetting(); openModal()"
-                        slot="end"
-                        fill="outline"
-                        color="success">
-                Crear parametros
+            <ion-icon class="text-warning" name="warning-outline" slot="start"></ion-icon>
+            <ion-label><h2>No se encontraron {{'AJUSTES' | titlecase}}</h2></ion-label>
+            <ion-button [routerLink]="'/settings/create'" fill="outline" color="success" slot="end">
+                Crear {{'AJUSTES' | titlecase}}
                 <ion-icon name="add-circle-outline" slot="end"></ion-icon>
             </ion-button>
         </ion-item>
     </ng-container>
 
-</ion-list>
+</ion-content>
+
+<ion-footer class="lists-footer">
+    <ion-row *ngIf="settingsService.meta">
+        <ion-col class="ion-text-center" size="12">
+            <ion-button (click)="settingsService.getSettings(settingsService.meta.current_page - 1)"
+                        [disabled]="settingsService.meta.current_page == 1"
+                        fill="clear">
+                <ion-icon slot="end" name="play-outline" style="transform: rotate(180deg);"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear" [disabled]="true"> Pag: {{settingsService.meta.current_page}}
+                /{{settingsService.meta.last_page}} {{settingsService.meta.from}}-{{settingsService.meta.to}}
+                /{{settingsService.meta.total}} </ion-button>
+            <ion-button (click)="settingsService.getSettings(settingsService.meta.current_page + 1)"
+                        [disabled]="settingsService.meta.current_page == settingsService.meta.last_page"
+                        fill="clear">
+                <ion-icon slot="start" name="play-outline"></ion-icon>
+            </ion-button>
+        </ion-col>
+    </ion-row>
+</ion-footer>

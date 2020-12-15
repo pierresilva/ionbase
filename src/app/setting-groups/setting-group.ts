@@ -1,10 +1,19 @@
-import {Setting} from "../settings/setting";
+import { Setting } from "../settings/setting";
 
 export interface SettingGroup {
-    id?: any,
+
+    id?: any;
     name?: any,
     code?: any,
-    created_at?: any,
-    updated_at?: any,
+    setting_ids?: any[],
     settings?: Setting[],
+    created_at?: any;
+    updated_at?: any;
+    deleted_at?: any;
+}
+
+export interface SettingGroupLists {
+
+    Setting?: Setting[],
+
 }

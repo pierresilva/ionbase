@@ -140,7 +140,8 @@ class UserController extends ApiController
                                                 $user->user_profile_ids = collect($user->userProfiles)->pluck('id');
                                         $user->coun_meeting_citation_ids = collect($user->counMeetingCitations)->pluck('id');
                                         $user->coun_member_ids = collect($user->counMembers)->pluck('id');
-                        
+                                                $user->user_role_ids = collect($user->userRoles)->pluck('id');
+                
         $resource = $user->toArray();
         $resource['lists'] = User::getLists();
 
@@ -166,7 +167,8 @@ class UserController extends ApiController
                                                 $user->user_profile_ids = collect($user->userProfiles)->pluck('id');
                                         $user->coun_meeting_citation_ids = collect($user->counMeetingCitations)->pluck('id');
                                         $user->coun_member_ids = collect($user->counMembers)->pluck('id');
-                        
+                                                $user->user_role_ids = collect($user->userRoles)->pluck('id');
+                
         return $this->responseSuccess(
           'Formulario para editar USUARIO!',
           [
@@ -191,7 +193,8 @@ class UserController extends ApiController
                                                 $user->user_profile_ids = collect($user->userProfiles)->pluck('id');
                                         $user->coun_meeting_citation_ids = collect($user->counMeetingCitations)->pluck('id');
                                         $user->coun_member_ids = collect($user->counMembers)->pluck('id');
-                        
+                                                $user->user_role_ids = collect($user->userRoles)->pluck('id');
+                
         return $this->responseSuccess(
           'Formulario para duplicar USUARIO!',
           [

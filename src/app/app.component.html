@@ -4,32 +4,30 @@
                   type="overlay"
                   [hidden]="!splitPanel.show.value">
             <ion-content>
-                <ion-list id="inbox-list">
-                    <ion-list-header>{{'INBOX' | lowercase}}</ion-list-header>
-                    <ion-note>hi@ionicframework.com {{splitPanel.show.value | json}}</ion-note>
+                <div class="ion-text-center ion-no-padding">
+                    <a [routerLink]="'/'">
+                        <img [src]="darkEnabled() ? '/assets/images/NoahApp/logo-light-square.png' : '/assets/images/NoahApp/logo-dark-square.png'"
+                             style="max-height: 82px;">
+                    </a>
+                </div>
+                <ion-list id="inbox-list" *ngIf="auth.userIsLogged()">
+                    <ion-item lines="none">
+                        <ion-avatar slot="start" style="background-color: #cccccc;">
+                            <img [src]="auth.getUser().profile?.avatar ? auth.getUser().profile?.avatar : '/assets/images/avatar.svg'">
+                        </ion-avatar>
+                        <ion-label>
+                            {{auth.getUser().name}}
+                        <h3>{{auth.getUser().email}}</h3>
+                        </ion-label>
+                    </ion-item>
 
-                    <ion-menu-toggle auto-hide="false"
-                                     *ngFor="let p of appPages;
-                                     let i = index">
-                        <ion-item (click)="selectedIndex = i"
-                                  routerDirection="root"
-                                  [routerLink]="[p.url]"
-                                  lines="none"
-                                  detail="false"
-                                  [class.selected]="selectedIndex == i">
-                            <ion-icon slot="start"
-                                      [ios]="p.icon + '-outline'"
-                                      [md]="p.icon + '-sharp'"></ion-icon>
-                            <ion-label>{{ p.title }}</ion-label>
-                        </ion-item>
-                    </ion-menu-toggle>
                 </ion-list>
                 <ion-list id="pages-list">
                     <!--                    <ion-list-header>Pages</ion-list-header>-->
-                    <ion-item-divider>
+                    <ion-item-divider *ngIf="auth.userIs(['super.admin'])">
                         Pages
                     </ion-item-divider>
-                    <ion-menu-toggle auto-hide="false">
+                    <ion-menu-toggle auto-hide="false" *ngIf="auth.userIs(['super.admin'])">
                         <ion-item [routerLinkActive]="'selected'"
                                   [routerLinkActiveOptions]="{exact: true}"
                                   [routerLink]="'/barcode-scanner'"
@@ -66,11 +64,12 @@
                 </ion-list>
                 <ion-list id="admin-pages-list">
 
-                    <ion-item-divider>
+                    <ion-item-divider *ngIf="auth.userCan(['juntas.listar', 'juntas.crear'])">
                         Juntas del consejo
                     </ion-item-divider>
                     <ion-menu-toggle auto-hide="false">
                         <ion-item [routerLinkActive]="'selected'"
+                                  *ngIf="auth.userCan(['juntas.crear'])"
                                   [routerLink]="'/coun-meetings/create/custom'"
                                   lines="none"
                                   detail="false">
@@ -80,20 +79,21 @@
                             <ion-label>Crear junta</ion-label>
                         </ion-item>
                         <ion-item [routerLinkActive]="'selected'"
+                                  *ngIf="auth.userCan(['juntas.listar'])"
                                   [routerLink]="'/coun-meetings/list/custom'"
                                   lines="none"
                                   detail="false">
                             <ion-icon slot="start"
                                       ios="bookmark-outline"
                                       md="bookmark-sharp"></ion-icon>
-                            <ion-label>Registrar juntas de consejo</ion-label>
+                            <ion-label>Registrar juntas</ion-label>
                         </ion-item>
                     </ion-menu-toggle>
 
-                    <ion-item-divider>
+                    <ion-item-divider *ngIf="auth.userCan(['buzon.listar'])">
                         Correspondencia
                     </ion-item-divider>
-                    <ion-menu-toggle auto-hide="false">
+                    <ion-menu-toggle auto-hide="false" *ngIf="auth.userCan(['buzon.listar'])">
                         <ion-item [routerLinkActive]="'selected'"
                                   [routerLink]="'/corr-packets/postboxes'"
                                   lines="none"
@@ -105,11 +105,12 @@
                         </ion-item>
                     </ion-menu-toggle>
 
-                    <ion-item-divider>
+                    <ion-item-divider *ngIf="auth.userIs(['super.admin', 'admin'])">
                         Admin
                     </ion-item-divider>
-                    <ion-menu-toggle auto-hide="false">
+                    <ion-menu-toggle auto-hide="false" *ngIf="auth.userIs(['super.admin', 'admin'])">
                         <ion-item [routerLinkActive]="'selected'"
+                                  *ngIf="auth.userIs(['super.admin', 'admin'])"
                                   [routerLink]="'/users'"
                                   lines="none"
                                   detail="false">
@@ -122,6 +123,7 @@
 
                         <ion-item [routerLinkActive]="'selected'"
                                   [routerLink]="'/user-profiles'"
+                                  *ngIf="auth.userIs(['super.admin', 'admin'])"
                                   lines="none"
                                   detail="false">
                             <ion-icon slot="start"
@@ -131,6 +133,7 @@
                         </ion-item>
                         <ion-item [routerLinkActive]="'selected'"
                                   [routerLink]="'/syst-cities'"
+                                  *ngIf="auth.userIs(['super.admin', 'admin'])"
                                   lines="none"
                                   detail="false">
                             <ion-icon slot="start"
@@ -140,6 +143,7 @@
                         </ion-item>
                         <ion-item [routerLinkActive]="'selected'"
                                   [routerLink]="'/syst-regions'"
+                                  *ngIf="auth.userIs(['super.admin', 'admin'])"
                                   lines="none"
                                   detail="false">
                             <ion-icon slot="start"
@@ -149,6 +153,7 @@
                         </ion-item>
                         <ion-item [routerLinkActive]="'selected'"
                                   [routerLink]="'/syst-countries'"
+                                  *ngIf="auth.userIs(['super.admin', 'admin'])"
                                   lines="none"
                                   detail="false">
                             <ion-icon slot="start"
@@ -158,6 +163,7 @@
                         </ion-item>
                         <ion-item [routerLinkActive]="'selected'"
                                   [routerLink]="'/companies'"
+                                  *ngIf="auth.userIs(['super.admin', 'admin'])"
                                   lines="none"
                                   detail="false">
                             <ion-icon slot="start"
@@ -167,6 +173,7 @@
                         </ion-item>
                         <ion-item [routerLinkActive]="'selected'"
                                   [routerLink]="'/comp-phones'"
+                                  *ngIf="auth.userIs(['super.admin', 'admin'])"
                                   lines="none"
                                   detail="false">
                             <ion-icon slot="start"
@@ -176,6 +183,7 @@
                         </ion-item>
                         <ion-item [routerLinkActive]="'selected'"
                                   [routerLink]="'/comp-addresses'"
+                                  *ngIf="auth.userIs(['super.admin', 'admin'])"
                                   lines="none"
                                   detail="false">
                             <ion-icon slot="start"
@@ -185,6 +193,7 @@
                         </ion-item>
                         <ion-item [routerLinkActive]="'selected'"
                                   [routerLink]="'/comp-contacts'"
+                                  *ngIf="auth.userIs(['super.admin', 'admin'])"
                                   lines="none"
                                   detail="false">
                             <ion-icon slot="start"
@@ -194,6 +203,7 @@
                         </ion-item>
                         <ion-item [routerLinkActive]="'selected'"
                                   [routerLink]="'/syst-positions'"
+                                  *ngIf="auth.userIs(['super.admin', 'admin'])"
                                   lines="none"
                                   detail="false">
                             <ion-icon slot="start"
@@ -203,6 +213,7 @@
                         </ion-item>
                         <ion-item [routerLinkActive]="'selected'"
                                   [routerLink]="'/syst-parameters'"
+                                  *ngIf="auth.userIs(['super.admin', 'admin'])"
                                   lines="none"
                                   detail="false">
                             <ion-icon slot="start"
@@ -212,6 +223,7 @@
                         </ion-item>
                         <ion-item [routerLinkActive]="'selected'"
                                   [routerLink]="'/syst-parameter-groups'"
+                                  *ngIf="auth.userIs(['super.admin', 'admin'])"
                                   lines="none"
                                   detail="false">
                             <ion-icon slot="start"
@@ -221,6 +233,7 @@
                         </ion-item>
                         <ion-item [routerLinkActive]="'selected'"
                                   [routerLink]="'/comp-responsabilities'"
+                                  *ngIf="auth.userIs(['super.admin', 'admin'])"
                                   lines="none"
                                   detail="false">
                             <ion-icon slot="start"
@@ -230,6 +243,7 @@
                         </ion-item>
                         <ion-item [routerLinkActive]="'selected'"
                                   [routerLink]="'/hous-units'"
+                                  *ngIf="auth.userIs(['super.admin', 'admin'])"
                                   lines="none"
                                   detail="false">
                             <ion-icon slot="start"
@@ -239,6 +253,7 @@
                         </ion-item>
                         <ion-item [routerLinkActive]="'selected'"
                                   [routerLink]="'/hous-unit-areas'"
+                                  *ngIf="auth.userIs(['super.admin', 'admin'])"
                                   lines="none"
                                   detail="false">
                             <ion-icon slot="start"
@@ -248,6 +263,7 @@
                         </ion-item>
                         <ion-item [routerLinkActive]="'selected'"
                                   [routerLink]="'/oper-sectors'"
+                                  *ngIf="auth.userIs(['super.admin', 'admin'])"
                                   lines="none"
                                   detail="false">
                             <ion-icon slot="start"
@@ -257,6 +273,7 @@
                         </ion-item>
                         <ion-item [routerLinkActive]="'selected'"
                                   [routerLink]="'/coun-meetings'"
+                                  *ngIf="auth.userIs(['super.admin', 'admin'])"
                                   lines="none"
                                   detail="false">
                             <ion-icon slot="start"
@@ -266,6 +283,7 @@
                         </ion-item>
                         <ion-item [routerLinkActive]="'selected'"
                                   [routerLink]="'/coun-meeting-agendas'"
+                                  *ngIf="auth.userIs(['super.admin', 'admin'])"
                                   lines="none"
                                   detail="false">
                             <ion-icon slot="start"
@@ -275,6 +293,7 @@
                         </ion-item>
                         <ion-item [routerLinkActive]="'selected'"
                                   [routerLink]="'/coun-meeting-citations'"
+                                  *ngIf="auth.userIs(['super.admin', 'admin'])"
                                   lines="none"
                                   detail="false">
                             <ion-icon slot="start"
@@ -284,6 +303,7 @@
                         </ion-item>
                         <ion-item [routerLinkActive]="'selected'"
                                   [routerLink]="'/oper-schedules'"
+                                  *ngIf="auth.userIs(['super.admin', 'admin'])"
                                   lines="none"
                                   detail="false">
                             <ion-icon slot="start"
@@ -293,6 +313,7 @@
                         </ion-item>
                         <ion-item [routerLinkActive]="'selected'"
                                   [routerLink]="'/oper-contractors'"
+                                  *ngIf="auth.userIs(['super.admin', 'admin'])"
                                   lines="none"
                                   detail="false">
                             <ion-icon slot="start"
@@ -302,6 +323,7 @@
                         </ion-item>
                         <ion-item [routerLinkActive]="'selected'"
                                   [routerLink]="'/oper-movements'"
+                                  *ngIf="auth.userIs(['super.admin', 'admin'])"
                                   lines="none"
                                   detail="false">
                             <ion-icon slot="start"
@@ -311,6 +333,7 @@
                         </ion-item>
                         <ion-item [routerLinkActive]="'selected'"
                                   [routerLink]="'/coun-members'"
+                                  *ngIf="auth.userIs(['super.admin', 'admin'])"
                                   lines="none"
                                   detail="false">
                             <ion-icon slot="start"
@@ -320,6 +343,7 @@
                         </ion-item>
                         <ion-item [routerLinkActive]="'selected'"
                                   [routerLink]="'/mail-templates'"
+                                  *ngIf="auth.userIs(['super.admin', 'admin'])"
                                   lines="none"
                                   detail="false">
                             <ion-icon slot="start"
@@ -329,6 +353,7 @@
                         </ion-item>
                         <ion-item [routerLinkActive]="'selected'"
                                   [routerLink]="'/mails'"
+                                  *ngIf="auth.userIs(['super.admin', 'admin'])"
                                   lines="none"
                                   detail="false">
                             <ion-icon slot="start"
@@ -338,6 +363,7 @@
                         </ion-item>
                         <ion-item [routerLinkActive]="'selected'"
                                   [routerLink]="'/files'"
+                                  *ngIf="auth.userIs(['super.admin', 'admin'])"
                                   lines="none"
                                   detail="false">
                             <ion-icon slot="start"
@@ -347,12 +373,53 @@
                         </ion-item>
                         <ion-item [routerLinkActive]="'selected'"
                                   [routerLink]="'/corr-packets'"
+                                  *ngIf="auth.userIs(['super.admin', 'admin'])"
                                   lines="none"
                                   detail="false">
                             <ion-icon slot="start"
                                       ios="bookmark-outline"
                                       md="bookmark-sharp"></ion-icon>
                             <ion-label>CORRESPONDENCIA PAQUETES</ion-label>
+                        </ion-item>
+                        <ion-item [routerLinkActive]="'selected'"
+                                  [routerLink]="'/settings'"
+                                  *ngIf="auth.userIs(['super.admin', 'admin'])"
+                                  lines="none"
+                                  detail="false">
+                            <ion-icon slot="start"
+                                      ios="bookmark-outline"
+                                      md="bookmark-sharp"></ion-icon>
+                            <ion-label>AJUSTES</ion-label>
+                        </ion-item>
+                        <ion-item [routerLinkActive]="'selected'"
+                                  [routerLink]="'/setting-groups'"
+                                  *ngIf="auth.userIs(['super.admin', 'admin'])"
+                                  lines="none"
+                                  detail="false">
+                            <ion-icon slot="start"
+                                      ios="bookmark-outline"
+                                      md="bookmark-sharp"></ion-icon>
+                            <ion-label>AJUSTES GRUPOS</ion-label>
+                        </ion-item>
+                        <ion-item [routerLinkActive]="'selected'"
+                                  [routerLink]="'/user-roles'"
+                                  *ngIf="auth.userIs(['super.admin', 'admin'])"
+                                  lines="none"
+                                  detail="false">
+                            <ion-icon slot="start"
+                                      ios="bookmark-outline"
+                                      md="bookmark-sharp"></ion-icon>
+                            <ion-label>USUARIOS ROLES</ion-label>
+                        </ion-item>
+                        <ion-item [routerLinkActive]="'selected'"
+                                  [routerLink]="'/user-permissions'"
+                                  *ngIf="auth.userIs(['super.admin', 'admin'])"
+                                  lines="none"
+                                  detail="false">
+                            <ion-icon slot="start"
+                                      ios="bookmark-outline"
+                                      md="bookmark-sharp"></ion-icon>
+                            <ion-label>USUARIOS PERMISOS</ion-label>
                         </ion-item>
 
 
@@ -361,17 +428,6 @@
                 </ion-list>
 
                 <ion-list id="labels-list">
-                    <ion-item-divider>
-                        Labels
-                    </ion-item-divider>
-
-                    <ion-item *ngFor="let label of labels"
-                              lines="none">
-                        <ion-icon slot="start"
-                                  ios="bookmark-outline"
-                                  md="bookmark-sharp"></ion-icon>
-                        <ion-label>{{ label }}</ion-label>
-                    </ion-item>
                     <ion-item-divider>
                         Opciones
                     </ion-item-divider>
@@ -387,9 +443,15 @@
                                     (ionChange)="updateDarkMode()"></ion-toggle>
                     </ion-item>
 
-                    <ion-item [routerLink]="'/auth/login'">
+                    <ion-item *ngIf="!auth.userIsLogged()" [routerLink]="'/auth/login'" lines="none">
                         <ion-label>
                             Login
+                        </ion-label>
+                    </ion-item>
+
+                    <ion-item *ngIf="auth.userIsLogged()" [routerLink]="'/auth/logout'" lines="none">
+                        <ion-label>
+                            Logout
                         </ion-label>
                     </ion-item>
 

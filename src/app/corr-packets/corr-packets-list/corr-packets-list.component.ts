@@ -20,7 +20,7 @@ export class CorrPacketsListComponent implements OnInit {
         public corrPacketsService: CorrPacketsService,
         public api: ApiService,
         public loading: LoadingService,
-        public splitPanel: SplitPanelService
+        public splitPanel: SplitPanelService,
     ) {
     }
 
@@ -29,7 +29,7 @@ export class CorrPacketsListComponent implements OnInit {
     }
 
     ionViewWillEnter() {
-        this.splitPanel.show.next(true);
+     this.splitPanel.show.next(true);
     }
 
     public scrollToTop() {

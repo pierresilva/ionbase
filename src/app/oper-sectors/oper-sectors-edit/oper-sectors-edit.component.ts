@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {OperSector} from "../oper-sector";
 import {OperSectorsFormComponent} from "../oper-sectors-form/oper-sectors-form.component";
 import { Platform } from '@ionic/angular';
+import {SplitPanelService} from "../../@shared/services/split-panel.service";
 
 @Component({
   selector: 'app-oper-sectors-edit',
@@ -20,12 +21,17 @@ export class OperSectorsEditComponent implements OnInit, AfterViewInit {
   constructor(
       public operSectorsService: OperSectorsService,
       public route: ActivatedRoute,
-      public platform: Platform
+      public platform: Platform,
+      public splitPanel: SplitPanelService,
   ) { }
 
   ngOnInit(): void {
       this.id = this.route.snapshot.paramMap.get('id');
       this.operSectorsService.editOperSector(this.id);
+  }
+
+  ionViewWillEnter() {
+    this.splitPanel.show.next(true);
   }
 
   ngAfterViewInit() {

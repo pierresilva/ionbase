@@ -138,6 +138,22 @@ const routes: Routes = [
         path: 'corr-packets',
         loadChildren: () => import('./corr-packets/corr-packets.module').then( m => m.CorrPacketsPageModule)
     },
+    {
+        path: 'settings',
+        loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
+    },
+    {
+        path: 'setting-groups',
+        loadChildren: () => import('./setting-groups/setting-groups.module').then( m => m.SettingGroupsPageModule)
+    },
+    {
+        path: 'user-roles',
+        loadChildren: () => import('./user-roles/user-roles.module').then( m => m.UserRolesPageModule)
+    },
+    {
+        path: 'user-permissions',
+        loadChildren: () => import('./user-permissions/user-permissions.module').then( m => m.UserPermissionsPageModule)
+    },
 
 
 // end section

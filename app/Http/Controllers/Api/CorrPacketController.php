@@ -16,19 +16,20 @@ class CorrPacketController extends ApiController
 {
 
 // generated section
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
         // user_can(['corr_packet.index']);
 
-        // $corrPackets = new CorrPacket;
-        $corrPackets = CorrPacket::with(CorrPacket::getRelationships());
+		// $corrPackets = new CorrPacket;
+	    $corrPackets = CorrPacket::with(CorrPacket::getRelationships());
 
-        // (1)filltering
+		// (1)filltering
         $corrPackets = $this->filtering($request, $corrPackets);
         $corrPackets = $corrPackets->get();
 
@@ -53,7 +54,7 @@ class CorrPacketController extends ApiController
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -69,8 +70,8 @@ class CorrPacketController extends ApiController
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -80,16 +81,16 @@ class CorrPacketController extends ApiController
 
         $input = $request->input('model');
 
-
+                                                                                                                                                                                        
         DB::beginTransaction();
         try {
-            //create data
-            $corrPacket = CorrPacket::create($input);
+          //create data
+          $corrPacket = CorrPacket::create( $input );
 
-            //sync(attach/detach)
-            if ($request->input('pivots')) {
-                $this->sync($request->input('pivots'), $corrPacket);
-            }
+          //sync(attach/detach)
+          if ($request->input('pivots')) {
+            $this->sync($request->input('pivots'), $corrPacket);
+          }
 
             if (isset($input['files']) && count($input['files'])) {
                 foreach ($input['files'] as $file) {
@@ -145,7 +146,7 @@ class CorrPacketController extends ApiController
     /**
      * Display the specified resource.
      *
-     * @param \App\CorrPacket $corrPacket * @return \Illuminate\Http\Response
+     * @param  \App\CorrPacket  $corrPacket     * @return \Illuminate\Http\Response
      */
     public function show($corrPacketId)
     {
@@ -153,7 +154,7 @@ class CorrPacketController extends ApiController
 
         $corrPacket = CorrPacket::with(CorrPacket::getRelationships())->findOrFail($corrPacketId);
 
-
+                                
         $resource = $corrPacket->toArray();
         $resource['lists'] = CorrPacket::getLists();
 
@@ -176,7 +177,7 @@ class CorrPacketController extends ApiController
         // user_can(['corr_packet.edit']);
 
         $corrPacket = CorrPacket::with(CorrPacket::getRelationships())->findOrFail($corrPacketId);
-
+                                
         return $this->responseSuccess(
             'Formulario para CORRESPONDENCIA PAQUETE obtenidos!',
             [
@@ -187,18 +188,18 @@ class CorrPacketController extends ApiController
         );
     }
 
-    /**
-     * Show the form for duplicating the specified resource.
-     *
-     * @param \App\CorrPacket $corrPacket * @return \Illuminate\Http\Response
-     */
-    public function duplicate($corrPacketId)
-    {
+	/**
+	 * Show the form for duplicating the specified resource.
+	 *
+	 * @param \App\CorrPacket  $corrPacket	 * @return \Illuminate\Http\Response
+	 */
+	public function duplicate($corrPacketId)
+	{
         // user_can(['corr_packet.duplicate']);
 
         $corrPacket = CorrPacket::with(CorrPacket::getRelationships())->findOrFail($corrPacketId);
         $corrPacket->id = null;
-
+                                
         return $this->responseSuccess(
             'Formulario para CORRESPONDENCIA PAQUETE obtenidos!',
             [
@@ -207,13 +208,13 @@ class CorrPacketController extends ApiController
             ],
             false
         );
-    }
+	}
 
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\CorrPacket $corrPacket * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\CorrPacket  $corrPacket     * @return \Illuminate\Http\Response
      */
     public function update($corrPacketId, Request $request)
     {
@@ -226,16 +227,16 @@ class CorrPacketController extends ApiController
 
         $input = $request->input('model');
 
-
+                                                                                                                                                                                        
         DB::beginTransaction();
         try {
-            //update data
-            $corrPacket->update($input);
+          //update data
+          $corrPacket->update($input);
 
-            //sync(attach/detach)
-            if ($request->get('pivots')) {
-                $this->sync($request->get('pivots'), $corrPacket);
-            }
+          //sync(attach/detach)
+          if ($request->get('pivots')) {
+            $this->sync($request->get('pivots'), $corrPacket);
+          }
 
             if (isset($input['files']) && count($input['files'])) {
                 foreach ($input['files'] as $file) {
@@ -292,7 +293,7 @@ class CorrPacketController extends ApiController
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\CorrPacket $corrPacket * @return \Illuminate\Http\Response
+     * @param  \App\CorrPacket  $corrPacket     * @return \Illuminate\Http\Response
      */
     public function destroy($corrPacketId)
     {
@@ -327,22 +328,23 @@ class CorrPacketController extends ApiController
      */
     public function sync($pivots_data, CorrPacket $corrPacket)
     {
-        foreach ($pivots_data as $pivot_child_model_name => $pivots) {
+        foreach( $pivots_data as $pivot_child_model_name => $pivots ){
 
             $pivotIds = [];
             // remove 'id'
-            foreach ($pivots as &$value) {
-                if (array_key_exists('id', $value)) {
+            foreach($pivots as &$value){
+                if( array_key_exists('id', $value) ){
                     $pivotIds[] = $value['id'];
                     unset($value['id']);
                 }
             }
             unset($value);
 
-            $method = Str::camel(Str::plural($pivot_child_model_name));
+            $method = Str::camel( Str::plural($pivot_child_model_name) );
             $corrPacket->$method()->sync($pivotIds);
         }
     }
+
 
 // end section
 

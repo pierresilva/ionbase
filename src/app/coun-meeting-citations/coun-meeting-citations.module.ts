@@ -14,7 +14,6 @@ import { CounMeetingCitationsCreateComponent} from "./coun-meeting-citations-cre
 import { CounMeetingCitationsDuplicateComponent} from "./coun-meeting-citations-duplicate/coun-meeting-citations-duplicate.component";
 import { CounMeetingCitationsEditComponent} from "./coun-meeting-citations-edit/coun-meeting-citations-edit.component";
 import { CounMeetingCitationsFormComponent} from "./coun-meeting-citations-form/coun-meeting-citations-form.component";
-import {CounMeetingCitationSignComponent} from "./coun-meeting-citation-sign/coun-meeting-citation-sign.component";
 
 @NgModule({
     imports: [
@@ -31,7 +30,6 @@ import {CounMeetingCitationSignComponent} from "./coun-meeting-citation-sign/cou
         CounMeetingCitationsDuplicateComponent,
         CounMeetingCitationsEditComponent,
         CounMeetingCitationsFormComponent,
-        CounMeetingCitationSignComponent,
     ]
 })
 export class CounMeetingCitationsPageModule {

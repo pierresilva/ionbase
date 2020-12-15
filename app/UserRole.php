@@ -72,9 +72,7 @@ class UserRole extends Model
     {
         $permission = UserPermission::whereCode($permission)->first();
         if ($permission) {
-            return $this->permissions()->attach(
-                $permission->pluck('id')
-            );
+            return $this->permissions()->save();
         }
 
         return null;

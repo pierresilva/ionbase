@@ -44,7 +44,7 @@ class HousUnitController extends ApiController
         $resource['lists'] = HousUnit::getLists();
 
         return $this->responseSuccess(
-          'UNIDADESHABITACIONALE obtenidos!',
+          'UNIDADES HABITACIONALES obtenidos!',
           $resource,
           true,
           false
@@ -61,7 +61,7 @@ class HousUnitController extends ApiController
         // user_can(['hous_unit.create']);
 
             return response()->json([
-              'message' => 'Formulario para crear UNIDADESHABITACIONALE!',
+              'message' => 'Formulario para crear UNIDADES HABITACIONALES!',
               'data' => null,
               'lists' => HousUnit::getLists()
             ]);
@@ -81,7 +81,7 @@ class HousUnitController extends ApiController
 
         $input = $request->input('model');
 
-                                                        
+                                                                                                                        
         DB::beginTransaction();
         try {
           //create data
@@ -222,7 +222,7 @@ class HousUnitController extends ApiController
 
         $input = $request->input('model');
 
-                                                        
+                                                                                                                        
         DB::beginTransaction();
         try {
           //update data

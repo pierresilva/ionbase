@@ -61,6 +61,30 @@
                                 <input class="form-control form-control-sm" id="q_code_cont" name="q[code:cont]" type="search" value="{{ @(Request::input('q.code:cont')) }}">
                               </div>
                             </div>
+                                                                                                                                                                        <div class="form-group row">
+                              <label for="q_contact_first_name_cont" class="col-sm-2 col-form-label col-form-label-sm">NOMBRE DEL CONTACTO</label>
+                              <div class="col-sm-10">
+                                <input class="form-control form-control-sm" id="q_contact_first_name_cont" name="q[contact_first_name:cont]" type="search" value="{{ @(Request::input('q.contact_first_name:cont')) }}">
+                              </div>
+                            </div>
+                                                                                                                                                                        <div class="form-group row">
+                              <label for="q_contact_last_name_cont" class="col-sm-2 col-form-label col-form-label-sm">APELLIDO DEL CONTACTO</label>
+                              <div class="col-sm-10">
+                                <input class="form-control form-control-sm" id="q_contact_last_name_cont" name="q[contact_last_name:cont]" type="search" value="{{ @(Request::input('q.contact_last_name:cont')) }}">
+                              </div>
+                            </div>
+                                                                                                                                                                        <div class="form-group row">
+                              <label for="q_contact_phone_cont" class="col-sm-2 col-form-label col-form-label-sm">TELÉFONO DEL CONTACTO</label>
+                              <div class="col-sm-10">
+                                <input class="form-control form-control-sm" id="q_contact_phone_cont" name="q[contact_phone:cont]" type="search" value="{{ @(Request::input('q.contact_phone:cont')) }}">
+                              </div>
+                            </div>
+                                                                                                                                                                        <div class="form-group row">
+                              <label for="q_contact_email_cont" class="col-sm-2 col-form-label col-form-label-sm">EMAIL DEL CONTACTO</label>
+                              <div class="col-sm-10">
+                                <input class="form-control form-control-sm" id="q_contact_email_cont" name="q[contact_email:cont]" type="search" value="{{ @(Request::input('q.contact_email:cont')) }}">
+                              </div>
+                            </div>
                                                                                     
                                                                                                                 <div class="form-group row">
                               <label for="q_hous_unit_areas_id_eq" class="col-sm-2 col-form-label col-form-label-sm">AREAS DE UNIDADES HABITACIONALES<br>hasMany</label>

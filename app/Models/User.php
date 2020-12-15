@@ -96,6 +96,11 @@ class User extends Model
 		return $this->belongsTo('App\Models\SystPosition');
 	}
 
+	public function userRoles() {
+		return $this->belongsToMany('App\Models\UserRole')
+		->orderBy('id')
+		->withTimestamps();
+	}
 
     public static function getRelationships()
     {
@@ -104,6 +109,7 @@ class User extends Model
             'userProfiles',
             'counMeetingCitations',
             'counMembers',
+            'userRoles',
         ];
     }
 
@@ -113,6 +119,7 @@ class User extends Model
 		$lists['UserProfile'] = UserProfile::all();
 		$lists['CounMeetingCitation'] = CounMeetingCitation::all();
 		$lists['CounMember'] = CounMember::all();
+		$lists['UserRole'] = UserRole::all();
 		return $lists;
 	}
 
@@ -140,6 +147,13 @@ class User extends Model
     public function scopeCounMembersByName(Builder $query, $name)
     {
         return $query->whereHas('counMembers', function ($query) use ($name) {
+            $query->where('name', $name);
+        });
+    }
+
+    public function scopeUserRolesByName(Builder $query, $name)
+    {
+        return $query->whereHas('userRoles', function ($query) use ($name) {
             $query->where('name', $name);
         });
     }

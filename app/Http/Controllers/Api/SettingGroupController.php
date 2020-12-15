@@ -24,11 +24,11 @@ class SettingGroupController extends ApiController
         $settingGroups = $this->filtering($request, $settingGroups);
         $settingGroups = $settingGroups->get();
 
-        $resource = $settingGroups->toArray();
+        $resource['data'] = $settingGroups->toArray();
 
-        return $this->responseSuccess('OK', [
-            'data' => $resource
-        ]);
+        $resource['lists'] = SettingGroup::getLists();
+
+        return $this->responseSuccess('OK', $resource);
     }
 
     /**
@@ -42,12 +42,12 @@ class SettingGroupController extends ApiController
         //
 
         $this->validate($request, [
-            'name' => 'required',
+            'model.name' => 'required',
         ]);
 
         DB::beginTransaction();
         try {
-            SettingGroup::create($request->all());
+            SettingGroup::create($request->all()['model']);
         } catch (\Exception $exception) {
             DB::rollBack();
             return $this->responseError($exception->getMessage());
@@ -85,13 +85,13 @@ class SettingGroupController extends ApiController
     {
         //
         $this->validate($request, [
-            'name' => 'required'
+            'model.name' => 'required'
         ]);
         $thisGroup = SettingGroup::whereCode($settingGroup)->find();
         DB::beginTransaction();
         try {
             // Database action
-            $thisGroup->update($request->all());
+            $thisGroup->update($request->all()['model']);
         } catch (\Exception $exception) {
             DB::rollBack();
             return $this->responseError($exception->getMessage());
@@ -114,5 +114,33 @@ class SettingGroupController extends ApiController
         $thisGroup = SettingGroup::whereCode($settingGroup)->first();
         $thisGroup->delete();
         return $this->responseSuccess('OK', $thisGroup);
+    }
+
+    public function create()
+    {
+        // user_can(['syst_city.create']);
+
+        return response()->json([
+            'message' => 'Formulario para crear ajustes!',
+            'data' => null,
+            'lists' => SettingGroup::getLists()
+        ]);
+    }
+
+    public function edit($settingGroupId)
+    {
+        // user_can(['setting_group.edit']);
+
+        $settingGroup = SettingGroup::with(SettingGroup::getRelationships())->findOrFail($settingGroupId);
+        $settingGroup->setting_ids = collect($settingGroup->settings)->pluck('id');
+
+        return $this->responseSuccess(
+            'Formulario para editar ajustes!',
+            [
+                'model' => $settingGroup,
+                'lists' => SettingGroup::getLists(),
+            ],
+            false
+        );
     }
 }

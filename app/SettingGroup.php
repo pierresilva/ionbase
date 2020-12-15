@@ -47,6 +47,20 @@ class SettingGroup extends Model
         // ->doNotGenerateSlugsOnUpdate();
     }
 
+    public static function getRelationships()
+    {
+        return [
+            'settings'
+        ];
+    }
+
+    public static function getLists()
+    {
+        $lists = [];
+        $lists['Setting'] = Setting::all();
+        return $lists;
+    }
+
     public function settings() {
         return $this->hasMany(Setting::class);
     }

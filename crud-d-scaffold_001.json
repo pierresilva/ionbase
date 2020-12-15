@@ -2076,8 +2076,8 @@
       ],
       "is_pivot": false,
       "schema_id_for_relation": 1,
-      "pos_x": 1011,
-      "pos_y": 1904,
+      "pos_x": 768,
+      "pos_y": 1439,
       "_next_schema_id": 12
     },
     {
@@ -2430,13 +2430,30 @@
           "parent_id": 32,
           "comment": "",
           "options": ""
+        },
+        {
+          "id": 8,
+          "name": "type",
+          "display_name": "TIPO",
+          "type": "string",
+          "input_type": "text",
+          "varidate": "",
+          "faker_type": "word",
+          "nullable": true,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "",
+          "parent_id": 32,
+          "comment": "",
+          "options": ""
         }
       ],
       "is_pivot": false,
       "schema_id_for_relation": 1,
-      "pos_x": 1347,
-      "pos_y": 1635,
-      "_next_schema_id": 8
+      "pos_x": 1720,
+      "pos_y": 1475,
+      "_next_schema_id": 9
     },
     {
       "id": 34,
@@ -2720,7 +2737,7 @@
           "input_type": "select",
           "varidate": "",
           "faker_type": "numberBetween(1,30)",
-          "nullable": false,
+          "nullable": true,
           "unique": false,
           "show_in_list": true,
           "show_in_detail": true,
@@ -2924,8 +2941,8 @@
       ],
       "is_pivot": true,
       "schema_id_for_relation": 0,
-      "pos_x": 424,
-      "pos_y": 18,
+      "pos_x": 417,
+      "pos_y": 55,
       "_next_schema_id": 3
     },
     {
@@ -2971,8 +2988,8 @@
       ],
       "is_pivot": true,
       "schema_id_for_relation": 0,
-      "pos_x": 405,
-      "pos_y": 262,
+      "pos_x": 404,
+      "pos_y": 295,
       "_next_schema_id": 3
     }
   ],

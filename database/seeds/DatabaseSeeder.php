@@ -39,5 +39,11 @@ class DatabaseSeeder extends Seeder
         $this->call(MailsTableSeeder::class);
         $this->call(FilesTableSeeder::class);
         $this->call(CorrPacketsTableSeeder::class);
+        $this->call(SettingsTableSeeder::class);
+        $this->call(SettingGroupsTableSeeder::class);
+        $this->call(UserRolesTableSeeder::class);
+        $this->call(UserPermissionsTableSeeder::class);
+        $this->call(UserUserRoleTableSeeder::class);
+        $this->call(UserPermissionUserRoleTableSeeder::class);
     }
 }

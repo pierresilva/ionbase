@@ -26,15 +26,10 @@ trait UserHasRole
      */
     public function assignRole($role)
     {
-        $role = UserRole::whereCode($role)->first();
 
-        if ($role) {
-            return $this->roles()->attach(
-                $role->pluck('id')
-            );
-        }
-
-        return null;
+        return $this->roles()->save(
+            UserRole::whereCode($role)->firstOrFail()
+        );
 
     }
 

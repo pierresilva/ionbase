@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {CompContact} from "../comp-contact";
 import {CompContactsFormComponent} from "../comp-contacts-form/comp-contacts-form.component";
 import { Platform } from '@ionic/angular';
+import {SplitPanelService} from "../../@shared/services/split-panel.service";
 
 @Component({
   selector: 'app-comp-contacts-edit',
@@ -20,12 +21,17 @@ export class CompContactsEditComponent implements OnInit, AfterViewInit {
   constructor(
       public compContactsService: CompContactsService,
       public route: ActivatedRoute,
-      public platform: Platform
+      public platform: Platform,
+      public splitPanel: SplitPanelService,
   ) { }
 
   ngOnInit(): void {
       this.id = this.route.snapshot.paramMap.get('id');
       this.compContactsService.editCompContact(this.id);
+  }
+
+  ionViewWillEnter() {
+    this.splitPanel.show.next(true);
   }
 
   ngAfterViewInit() {

@@ -4,14 +4,16 @@ import {FormsModule} from '@angular/forms';
 
 import {IonicModule} from '@ionic/angular';
 
+import {SharedModule} from '../@shared/shared.module';
+
 import {SettingsPageRoutingModule} from './settings-routing.module';
 
-import {SettingsPage} from './settings.page';
-import {SharedModule} from "../@shared/shared.module";
-import {SettingsListComponent} from "./settings-list/settings-list.component";
-import {SettingsFormComponent} from "./settings-form/settings-form.component";
-import {SettingsModalComponent} from "./settings-modal/settings-modal.component";
-import {SettingsService} from "./settings.service";
+import { SettingsPage} from './settings.page';
+import { SettingsListComponent} from "./settings-list/settings-list.component";
+import { SettingsCreateComponent} from "./settings-create/settings-create.component";
+import { SettingsDuplicateComponent} from "./settings-duplicate/settings-duplicate.component";
+import { SettingsEditComponent} from "./settings-edit/settings-edit.component";
+import { SettingsFormComponent} from "./settings-form/settings-form.component";
 
 @NgModule({
     imports: [
@@ -19,17 +21,17 @@ import {SettingsService} from "./settings.service";
         FormsModule,
         IonicModule,
         SharedModule,
-        SettingsPageRoutingModule,
+        SettingsPageRoutingModule
     ],
     declarations: [
         SettingsPage,
         SettingsListComponent,
+        SettingsCreateComponent,
+        SettingsDuplicateComponent,
+        SettingsEditComponent,
         SettingsFormComponent,
-        SettingsModalComponent,
-    ],
-    providers: [
-        SettingsService,
     ]
 })
 export class SettingsPageModule {
 }
+

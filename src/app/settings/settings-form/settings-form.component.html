@@ -1,3 +1,132 @@
-<p>
-  settings-form works!
-</p>
+<form #settingsForm="ngForm"
+      novalidate
+      autocomplete="off">
+
+
+    <!-- setting_group_id -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'GRUPO' | titlecase }}</ion-label>
+        <ionic-selectable name="setting_group_id"
+                          id="setting_group_id-field"
+                          [required]="true"
+                          [(ngModel)]="model.setting_group"
+                          [items]="settingsService.settingLists.SettingGroup"
+                          itemValueField="id"
+                          itemTextField="name"
+                          [canClear]="true"
+                          [hasConfirmButton]="true"
+                          [confirmButtonText]="'Seleccionar'"
+                          [searchPlaceholder]="'Buscar ' + ('GRUPOS' | titlecase)"
+                          [searchFailText]="'No se encontro ' + ('GRUPOS' | titlecase) + ' que coincida!'"
+                          [closeButtonText]="'Cancelar'"
+                          [clearButtonText]="'Limpiar'"
+                          [canSearch]="true"
+                          (onChange)="setSettingGroupId($event)">
+        </ionic-selectable>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.setting_group_id">
+            <div class="error-message"
+                 *ngIf="settingsForm.form.controls['setting_group_id']?.hasError(validation.type)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end setting_group_id -->
+
+
+    <!-- name -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'NOMBRE' | titlecase }}</ion-label>
+        <ion-input [(ngModel)]="model.name"
+                   type="text"
+                   name="name"
+                   id="name-field"
+                   [required]="true"
+                   placeholder=""></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.name">
+            <div class="error-message"
+                 *ngIf="settingsForm.form.controls['name']?.hasError(validation.type)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end name -->
+
+
+    <!-- code -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'CÓDIGO' | titlecase }}</ion-label>
+        <ion-input [(ngModel)]="model.code"
+                   type="text"
+                   name="code"
+                   id="code-field"
+                   [readonly]="true"
+                   placeholder=""></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.code">
+            <div class="error-message"
+                 *ngIf="settingsForm.form.controls['code']?.hasError(validation.type)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end code -->
+
+    <!-- rich_text -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'Texto enriquecido' | titlecase }}</ion-label>
+        <ion-toggle name="main"
+                    id="main-field"
+                    slot="end"
+                    [(ngModel)]="model.rich_text"></ion-toggle>
+    </ion-item>
+    <!-- end main -->
+
+
+    <!-- value -->
+    <ion-item class="item-transparent" *ngIf="model.rich_text">
+        <ion-label position="stacked"
+                   style="font-size: 1rem;">{{ 'VALOR' | titlecase }}</ion-label>
+        <input [ngxSummernote]
+               [required]="true"
+               name="value"
+               id="value-field"
+               [(ngModel)]="model.value">
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.value">
+            <div class="error-message"
+                 *ngIf="settingsForm.form.controls['value']?.hasError(validation.type)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end value -->
+
+    <!-- value -->
+    <ion-item class="item-transparent" *ngIf="!model.rich_text">
+        <ion-label position="stacked"
+                   style="font-size: 1rem;">{{ 'VALOR' | titlecase }}</ion-label>
+        <ion-textarea [(ngModel)]="model.value"
+                      name="value"
+                      [required]="true"
+                      id="value-field"
+                      rows="6"
+                      placeholder=""></ion-textarea>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.value">
+            <div class="error-message"
+                 *ngIf="settingsForm.form.controls['value']?.hasError(validation.type)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end value -->
+
+
+</form>

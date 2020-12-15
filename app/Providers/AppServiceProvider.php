@@ -64,6 +64,10 @@ class AppServiceProvider extends ServiceProvider
             'mails' => 'CORREOS',
             'files' => 'JUNTAS ARCHIVOS DE AGENDAS',
             'corrPackets' => 'CORRESPONDENCIA PAQUETES',
+            'settings' => 'AJUSTES',
+            'settingGroups' => 'AJUSTES GRUPOS',
+            'userRoles' => 'USUARIOS ROLES',
+            'userPermissions' => 'USUARIOS PERMISOS',
         ]);
         
         // Add Pagenate to Collectoin

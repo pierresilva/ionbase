@@ -4,16 +4,16 @@ import {FormsModule} from '@angular/forms';
 
 import {IonicModule} from '@ionic/angular';
 
+import {SharedModule} from '../@shared/shared.module';
+
 import {SettingGroupsPageRoutingModule} from './setting-groups-routing.module';
 
-import {SettingGroupsPage} from './setting-groups.page';
-import {SharedModule} from "../@shared/shared.module";
-import {SettingGroupsService} from "./setting-groups.service";
-import {SettingGroupsListComponent} from "./setting-groups-list/setting-groups-list.component";
-import {SettingGroupsFormComponent} from "./setting-groups-form/setting-groups-form.component";
-import {SettingGroupsModalComponent} from "./setting-groups-modal/setting-groups-modal.component";
-import {SettingsListComponent} from "../settings/settings-list/settings-list.component";
-import {SettingsService} from "../settings/settings.service";
+import { SettingGroupsPage} from './setting-groups.page';
+import { SettingGroupsListComponent} from "./setting-groups-list/setting-groups-list.component";
+import { SettingGroupsCreateComponent} from "./setting-groups-create/setting-groups-create.component";
+import { SettingGroupsDuplicateComponent} from "./setting-groups-duplicate/setting-groups-duplicate.component";
+import { SettingGroupsEditComponent} from "./setting-groups-edit/setting-groups-edit.component";
+import { SettingGroupsFormComponent} from "./setting-groups-form/setting-groups-form.component";
 
 @NgModule({
     imports: [
@@ -23,17 +23,15 @@ import {SettingsService} from "../settings/settings.service";
         SharedModule,
         SettingGroupsPageRoutingModule
     ],
-    providers: [
-        SettingGroupsService,
-        SettingsService,
-    ],
     declarations: [
         SettingGroupsPage,
         SettingGroupsListComponent,
+        SettingGroupsCreateComponent,
+        SettingGroupsDuplicateComponent,
+        SettingGroupsEditComponent,
         SettingGroupsFormComponent,
-        SettingGroupsModalComponent,
-        SettingsListComponent,
     ]
 })
 export class SettingGroupsPageModule {
 }
+

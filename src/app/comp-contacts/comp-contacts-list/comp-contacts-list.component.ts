@@ -3,6 +3,7 @@ import { CompContactsService} from "../comp-contacts.service";
 import {ApiService} from "../../@shared/services/api.service";
 import {LoadingService} from "../../@shared/services/loading.service";
 import {IonContent} from '@ionic/angular';
+import {SplitPanelService} from "../../@shared/services/split-panel.service";
 
 @Component({
     selector: 'app-comp-contacts-list',
@@ -19,11 +20,16 @@ export class CompContactsListComponent implements OnInit {
         public compContactsService: CompContactsService,
         public api: ApiService,
         public loading: LoadingService,
+        public splitPanel: SplitPanelService,
     ) {
     }
 
     ngOnInit() {
         this.compContactsService.getCompContacts();
+    }
+
+    ionViewWillEnter() {
+     this.splitPanel.show.next(true);
     }
 
     public scrollToTop() {

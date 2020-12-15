@@ -1,0 +1,75 @@
+<form #userPermissionsForm="ngForm" novalidate autocomplete="off">
+
+
+    <!-- user_role_ids -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'USUARIOS ROLES' | titlecase }}</ion-label>
+        <ionic-selectable name="user_role_ids"
+                          id="user_role_ids-field"
+                          [(ngModel)]="model.user_roles"
+                          [items]="userPermissionsService.userPermissionLists.UserRole"
+                          itemValueField="id"
+                          itemTextField="name"
+                          [isMultiple]="true"
+                          [canClear]="true"
+                          [hasConfirmButton]="true"
+                          [confirmButtonText]="'Seleccionar'"
+                          [searchPlaceholder]="'Buscar ' + ('USUARIOS ROLES' | titlecase)"
+                          [searchFailText]="'No se encontro ' + ('USUARIOS ROLES' | titlecase) + ' que coincida!'"
+                          [closeButtonText]="'Cancelar'"
+                          [clearButtonText]="'Limpiar'"
+                          [canSearch]="true"
+                          (onChange)="setUserRoleIds($event)">
+        </ionic-selectable>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.user_role_ids">
+            <div class="error-message" *ngIf="userPermissionsForm.form.controls['user_role_ids']?.hasError(validation.type)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end user_role_ids -->
+
+
+            <!-- name -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'NOMBRE' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.name"
+                            type="text"
+                            name="name"
+                            id="name-field"
+                            [required]="true"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.name">
+                    <div class="error-message" *ngIf="userPermissionsForm.form.controls['name']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end name -->
+
+
+            <!-- code -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'CÓDIGO' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.code"
+                            type="text"
+                            name="code"
+                            id="code-field"
+                            [required]="true"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.code">
+                    <div class="error-message" *ngIf="userPermissionsForm.form.controls['code']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end code -->
+
+
+</form>

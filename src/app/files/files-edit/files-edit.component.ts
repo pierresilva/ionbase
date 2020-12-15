@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {File} from "../file";
 import {FilesFormComponent} from "../files-form/files-form.component";
 import { Platform } from '@ionic/angular';
+import {SplitPanelService} from "../../@shared/services/split-panel.service";
 
 @Component({
   selector: 'app-files-edit',
@@ -20,12 +21,17 @@ export class FilesEditComponent implements OnInit, AfterViewInit {
   constructor(
       public filesService: FilesService,
       public route: ActivatedRoute,
-      public platform: Platform
+      public platform: Platform,
+      public splitPanel: SplitPanelService,
   ) { }
 
   ngOnInit(): void {
       this.id = this.route.snapshot.paramMap.get('id');
       this.filesService.editFile(this.id);
+  }
+
+  ionViewWillEnter() {
+    this.splitPanel.show.next(true);
   }
 
   ngAfterViewInit() {

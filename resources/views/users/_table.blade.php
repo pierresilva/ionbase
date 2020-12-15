@@ -62,6 +62,7 @@
                   <th scope="col">JUNTAS CITACIONES</th>
                   <th scope="col">JUNTAS MIEMBROS</th>
 
+                  <th scope="col">USUARIOS ROLES</th>
 
                   <th class="text-right" scope="col">OPTIONS</th>
                 </tr>
@@ -97,6 +98,13 @@
                           @endforeach
                       </td>
 
+                      <td>
+                          @foreach($user->userRoles as $userRole)
+                                        @if (!$loop->first) , @endif
+                                        <a href="{{ route('userRoles.show', $userRole->id) }}">{{ $userRole->name }}(
+                                        )</a>
+                          @endforeach
+                      </td>
 
                       <td class="text-right">
                         <div class="btn-group" role="group">

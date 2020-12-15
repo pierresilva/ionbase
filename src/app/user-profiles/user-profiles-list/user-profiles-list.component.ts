@@ -3,6 +3,7 @@ import { UserProfilesService} from "../user-profiles.service";
 import {ApiService} from "../../@shared/services/api.service";
 import {LoadingService} from "../../@shared/services/loading.service";
 import {IonContent} from '@ionic/angular';
+import {SplitPanelService} from "../../@shared/services/split-panel.service";
 
 @Component({
     selector: 'app-user-profiles-list',
@@ -19,11 +20,16 @@ export class UserProfilesListComponent implements OnInit {
         public userProfilesService: UserProfilesService,
         public api: ApiService,
         public loading: LoadingService,
+        public splitPanel: SplitPanelService,
     ) {
     }
 
     ngOnInit() {
         this.userProfilesService.getUserProfiles();
+    }
+
+    ionViewWillEnter() {
+     this.splitPanel.show.next(true);
     }
 
     public scrollToTop() {

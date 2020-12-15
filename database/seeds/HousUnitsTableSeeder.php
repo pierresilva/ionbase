@@ -23,6 +23,10 @@ class HousUnitsTableSeeder extends Seeder
                 'hous_unit_id' => $faker->numberBetween(1,30),
                 'name' => $faker->words(3, true),
                 'code' => $faker->words(3, true),
+                'contact_first_name' => $faker->firstName(),
+                'contact_last_name' => $faker->lastName,
+                'contact_phone' => $faker->phoneNumber,
+                'contact_email' => $faker->email,
             ]);
         }
         Schema::enableForeignKeyConstraints();

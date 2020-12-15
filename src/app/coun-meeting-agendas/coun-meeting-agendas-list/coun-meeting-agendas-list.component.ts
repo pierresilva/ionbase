@@ -3,6 +3,7 @@ import { CounMeetingAgendasService} from "../coun-meeting-agendas.service";
 import {ApiService} from "../../@shared/services/api.service";
 import {LoadingService} from "../../@shared/services/loading.service";
 import {IonContent} from '@ionic/angular';
+import {SplitPanelService} from "../../@shared/services/split-panel.service";
 
 @Component({
     selector: 'app-coun-meeting-agendas-list',
@@ -19,11 +20,16 @@ export class CounMeetingAgendasListComponent implements OnInit {
         public counMeetingAgendasService: CounMeetingAgendasService,
         public api: ApiService,
         public loading: LoadingService,
+        public splitPanel: SplitPanelService,
     ) {
     }
 
     ngOnInit() {
         this.counMeetingAgendasService.getCounMeetingAgendas();
+    }
+
+    ionViewWillEnter() {
+     this.splitPanel.show.next(true);
     }
 
     public scrollToTop() {

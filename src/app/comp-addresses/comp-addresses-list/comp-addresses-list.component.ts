@@ -3,6 +3,7 @@ import { CompAddressesService} from "../comp-addresses.service";
 import {ApiService} from "../../@shared/services/api.service";
 import {LoadingService} from "../../@shared/services/loading.service";
 import {IonContent} from '@ionic/angular';
+import {SplitPanelService} from "../../@shared/services/split-panel.service";
 
 @Component({
     selector: 'app-comp-addresses-list',
@@ -19,11 +20,16 @@ export class CompAddressesListComponent implements OnInit {
         public compAddressesService: CompAddressesService,
         public api: ApiService,
         public loading: LoadingService,
+        public splitPanel: SplitPanelService,
     ) {
     }
 
     ngOnInit() {
         this.compAddressesService.getCompAddresses();
+    }
+
+    ionViewWillEnter() {
+     this.splitPanel.show.next(true);
     }
 
     public scrollToTop() {

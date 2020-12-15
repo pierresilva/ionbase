@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {SystParameterGroup} from "../syst-parameter-group";
 import {SystParameterGroupsFormComponent} from "../syst-parameter-groups-form/syst-parameter-groups-form.component";
 import { Platform } from '@ionic/angular';
+import {SplitPanelService} from "../../@shared/services/split-panel.service";
 
 @Component({
     selector: 'app-syst-parameter-groups-create',
@@ -20,13 +21,18 @@ export class SystParameterGroupsCreateComponent implements OnInit, AfterViewInit
     constructor(
         public systParameterGroupsService: SystParameterGroupsService,
         public route: ActivatedRoute,
-        public platform: Platform
+        public platform: Platform,
+        public splitPanel: SplitPanelService
     ) {
 
     }
 
     ngOnInit(): void {
         this.clearPosts();
+    }
+
+    ionViewWillEnter() {
+       this.splitPanel.show.next(true);
     }
 
     ngAfterViewInit() {

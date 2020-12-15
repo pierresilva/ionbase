@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {MailTemplate} from "../mail-template";
 import {MailTemplatesFormComponent} from "../mail-templates-form/mail-templates-form.component";
 import { Platform } from '@ionic/angular';
+import {SplitPanelService} from "../../@shared/services/split-panel.service";
 
 @Component({
     selector: 'app-mail-templates-create',
@@ -20,13 +21,18 @@ export class MailTemplatesCreateComponent implements OnInit, AfterViewInit {
     constructor(
         public mailTemplatesService: MailTemplatesService,
         public route: ActivatedRoute,
-        public platform: Platform
+        public platform: Platform,
+        public splitPanel: SplitPanelService
     ) {
 
     }
 
     ngOnInit(): void {
         this.clearPosts();
+    }
+
+    ionViewWillEnter() {
+       this.splitPanel.show.next(true);
     }
 
     ngAfterViewInit() {

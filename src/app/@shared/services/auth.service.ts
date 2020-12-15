@@ -4,6 +4,7 @@ import {ApiService} from './api.service';
 import {Router} from '@angular/router';
 
 import {StorageLocalService} from './storage-local.service';
+import {ToastService} from "./toast.service";
 
 @Injectable({
     providedIn: 'root',
@@ -24,7 +25,7 @@ export class AuthService {
         private api: ApiService,
         private router: Router,
         // public loading: LoadingService,
-        // public toastService: ToastService,
+        public toast: ToastService,
         public storage: StorageLocalService
     ) {
         this.userIsLogged();
@@ -41,18 +42,15 @@ export class AuthService {
         }
 
         // this.loading.isLoading.next(true);
-        this.api.syncPost('api/jwt-auth/login', credentials)
+        this.api.syncPost('api/auth/login', credentials)
             .then(
                 async (res: any) => {
                     this.storage.set('token', res.data.access_token);
-                    await this.api.syncGet('api/jwt-auth/profile')
+                    await this.api.syncGet('api/auth/profile')
                         .then(
                             async (res: any) => {
-                                const user = {
-                                    name: res.data.user.name,
-                                    email: res.data.user.email,
-                                };
-                                this.storage.set('user', user);
+
+                                this.storage.set('user', res.data.user);
                                 this.storage.set('acl', res.data.acl);
                                 if (!this.checkToken) {
                                     this.startCheckExpirationToken();
@@ -73,7 +71,7 @@ export class AuthService {
      * @param credentials
      */
     public register(credentials: { name: string; email: string; password: string; password_confirmation: string }) {
-        return this.api.syncPost('api/jwt-auth/register', credentials)
+        return this.api.syncPost('api/auth/register', credentials)
             .then(
                 async (res: any) => {
                     await this.login({email: credentials.email, password: credentials.password, remember_me: null});
@@ -87,10 +85,10 @@ export class AuthService {
      * Logout a user
      */
     public logout(redirect: boolean = true) {
-        this.api.syncPost('api/jwt-auth/logout', {})
+        this.api.syncPost('api/auth/logout', {})
             .then(
                 async (res: any) => {
-                    // this.toastService.showSuccess(null, 'Salio con éxito');
+                    this.toast.present('Salio con éxito!', 'toast-success');
                     this.stopCheckExpirationToken();
                 },
                 (err: any) => {
@@ -101,7 +99,7 @@ export class AuthService {
         this.storage.remove('acl');
         this.isLoggedSubject.next(false);
         if (redirect) {
-            this.router.navigateByUrl('/auth');
+            this.router.navigateByUrl('/auth/login');
         }
 
     }
@@ -110,10 +108,10 @@ export class AuthService {
      * Get the user permissions
      * @private
      */
-    private getPermissions() {
+    public getPermissions() {
         const acl = this.storage.get('acl');
         if (acl) {
-            return JSON.parse(acl).permissions;
+            return acl.permissions;
         }
         return null;
     }
@@ -122,7 +120,7 @@ export class AuthService {
      * Get the user roles
      * @private
      */
-    private getRoles() {
+    public getRoles() {
         const acl = this.storage.get('acl');
         if (acl) {
             return acl.roles;
@@ -208,6 +206,9 @@ export class AuthService {
         return null;
     }
 
+    /**
+     *
+     */
     public getToken() {
         const token = this.storage.get('token');
         if (token) {
@@ -217,8 +218,11 @@ export class AuthService {
         return null;
     }
 
+    /**
+     *
+     */
     public refreshToken() {
-        this.api.syncPost('api/jwt-auth/refresh', {})
+        this.api.syncPost('api/auth/refresh', {})
             .then(async (res: any) => {
                     this.storage.set('token', res.data.access_token);
                     this.stopCheckExpirationToken();
@@ -229,11 +233,14 @@ export class AuthService {
                     this.storage.remove('token');
                     this.storage.remove('user');
                     this.storage.remove('acl');
-                    // this.toastService.showError(null, 'Su sesión expiró!');
-                    await this.router.navigateByUrl('/auth');
+                    this.toast.present('Su sesión expiró!', 'toast-error');
+                    await this.router.navigateByUrl('/auth/login');
                 });
     }
 
+    /**
+     *
+     */
     public startCheckExpirationToken() {
         let token = this.storage.get('token');
         if (token) {
@@ -248,12 +255,35 @@ export class AuthService {
         }
     }
 
+    /**
+     *
+     */
     public stopCheckExpirationToken() {
 
         if (this.checkToken) {
             clearInterval(this.checkToken);
             this.checkToken = null;
         }
+    }
+
+    /**
+     *
+     */
+    public getUser(item: string = null) {
+
+        const user = this.storage.get('user');
+
+        if (!item) {
+            return user;
+        }
+
+        for (const userKey in user) {
+            if (userKey === item) {
+                return user[item];
+            }
+        }
+
+        return null;
     }
 
 }

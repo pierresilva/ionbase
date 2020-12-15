@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {Company} from "../company";
 import {CompaniesFormComponent} from "../companies-form/companies-form.component";
 import { Platform } from '@ionic/angular';
+import {SplitPanelService} from "../../@shared/services/split-panel.service";
 
 @Component({
   selector: 'app-companies-edit',
@@ -20,12 +21,17 @@ export class CompaniesEditComponent implements OnInit, AfterViewInit {
   constructor(
       public companiesService: CompaniesService,
       public route: ActivatedRoute,
-      public platform: Platform
+      public platform: Platform,
+      public splitPanel: SplitPanelService,
   ) { }
 
   ngOnInit(): void {
       this.id = this.route.snapshot.paramMap.get('id');
       this.companiesService.editCompany(this.id);
+  }
+
+  ionViewWillEnter() {
+    this.splitPanel.show.next(true);
   }
 
   ngAfterViewInit() {

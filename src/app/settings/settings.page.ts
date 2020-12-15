@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ModalController} from "@ionic/angular";
-import {SettingsService} from "./settings.service";
-import {SettingsModalComponent} from "./settings-modal/settings-modal.component";
+import {SplitPanelService} from "../@shared/services/split-panel.service";
 
 @Component({
   selector: 'app-settings',
@@ -10,49 +8,16 @@ import {SettingsModalComponent} from "./settings-modal/settings-modal.component"
 })
 export class SettingsPage implements OnInit {
 
-  dataReturned: any;
-
   constructor(
-      public settingsService: SettingsService,
-      public modalController: ModalController,
+    public splitPanel: SplitPanelService
   ) { }
 
   ngOnInit() {
+
   }
 
-  toggleMenu() {
-    const splitPane = document.querySelector('ion-split-pane');
-    const windowWidth = window.innerWidth;
-    const splitPaneShownAt = 992;
-    const when = `(min-width: ${splitPaneShownAt}px)`;
-    if (windowWidth >= splitPaneShownAt) {
-      // split pane view is visible
-      const open = splitPane.when === when;
-      splitPane.when = open ? false : when;
-    } else {
-      // split pane view is not visible
-      // toggle menu open
-      const menu = splitPane.querySelector('ion-menu');
-      return menu.open();
-    }
-  }
-
-  async openModal(action = null) {
-    const modal = await this.modalController.create({
-      component: SettingsModalComponent,
-      componentProps: {
-        action: action ?? ''
-      }
-    });
-
-    modal.onDidDismiss().then((dataReturned) => {
-      if (dataReturned !== null) {
-        this.dataReturned = dataReturned.data;
-        // console.table(dataReturned);
-      }
-    });
-
-    return await modal.present();
+  ionViewWillEnter() {
+    this.splitPanel.show.next(true);
   }
 
 }

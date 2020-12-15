@@ -37,7 +37,7 @@ Route::resource("settings","Api\SettingController");
 
 Route::post('auth/register', 'Api\AuthController@register');
 Route::post('auth/login', 'Api\AuthController@login');
-Route::get('auth/logout', 'Api\AuthController@logout');
+Route::post('auth/logout', 'Api\AuthController@logout');
 Route::get('auth/refresh', 'Api\AuthController@refresh');
 Route::get('auth/profile', 'Api\AuthController@profile');
 
@@ -105,6 +105,14 @@ Route::get("files/{fileId}/duplicate", ['as' => 'api.files.duplicate', 'uses' =>
 Route::resource("files","Api\FileController");
 Route::get("corr-packets/{corrPacketId}/duplicate", ['as' => 'api.corr-packets.duplicate', 'uses' => 'Api\CorrPacketController@duplicate']);
 Route::resource("corr-packets","Api\CorrPacketController");
+Route::get("settings/{settingId}/duplicate", ['as' => 'api.settings.duplicate', 'uses' => 'Api\SettingController@duplicate']);
+Route::resource("settings","Api\SettingController");
+Route::get("setting-groups/{settingGroupId}/duplicate", ['as' => 'api.setting-groups.duplicate', 'uses' => 'Api\SettingGroupController@duplicate']);
+Route::resource("setting-groups","Api\SettingGroupController");
+Route::get("user-roles/{userRoleId}/duplicate", ['as' => 'api.user-roles.duplicate', 'uses' => 'Api\UserRoleController@duplicate']);
+Route::resource("user-roles","Api\UserRoleController");
+Route::get("user-permissions/{userPermissionId}/duplicate", ['as' => 'api.user-permissions.duplicate', 'uses' => 'Api\UserPermissionController@duplicate']);
+Route::resource("user-permissions","Api\UserPermissionController");
 
 
 // end section

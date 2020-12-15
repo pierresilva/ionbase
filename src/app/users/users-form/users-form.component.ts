@@ -46,6 +46,9 @@ export class UsersFormComponent implements OnInit, AfterViewInit {
         'coun_member_ids': [
             {type: 'required', message: 'El campo ' + this.toTitlecase.transform('JUNTAS MIEMBROS') + ' es obligatorio.'},
         ],
+        'user_role_ids': [
+            {type: 'required', message: 'El campo ' + this.toTitlecase.transform('USUARIOS ROLES') + ' es obligatorio.'},
+        ],
     };
 
     constructor(
@@ -110,6 +113,20 @@ export class UsersFormComponent implements OnInit, AfterViewInit {
         this.usersService.user.coun_member_ids = counMemberIds;
     }
     // end setCounMemberIds
+
+
+    // set setUserRoleIds
+    setUserRoleIds(event: any) {
+        let userRoleIds = null;
+        if (event.value.length) {
+            userRoleIds = [];
+            for (let i = 0; i < event.value.length; i++) {
+                userRoleIds.push(event.value[i].id);
+            }
+        }
+        this.usersService.user.user_role_ids = userRoleIds;
+    }
+    // end setUserRoleIds
 
 
 }

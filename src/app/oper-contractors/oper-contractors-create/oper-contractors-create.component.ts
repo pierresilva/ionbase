@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {OperContractor} from "../oper-contractor";
 import {OperContractorsFormComponent} from "../oper-contractors-form/oper-contractors-form.component";
 import { Platform } from '@ionic/angular';
+import {SplitPanelService} from "../../@shared/services/split-panel.service";
 
 @Component({
     selector: 'app-oper-contractors-create',
@@ -20,13 +21,18 @@ export class OperContractorsCreateComponent implements OnInit, AfterViewInit {
     constructor(
         public operContractorsService: OperContractorsService,
         public route: ActivatedRoute,
-        public platform: Platform
+        public platform: Platform,
+        public splitPanel: SplitPanelService
     ) {
 
     }
 
     ngOnInit(): void {
         this.clearPosts();
+    }
+
+    ionViewWillEnter() {
+       this.splitPanel.show.next(true);
     }
 
     ngAfterViewInit() {

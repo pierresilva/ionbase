@@ -1,45 +1,39 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {SettingsService} from "../settings.service";
-import {SettingsPage} from "../settings.page";
-import {ModalController} from "@ionic/angular";
-import {SettingsModalComponent} from "../settings-modal/settings-modal.component";
+import { SettingsService} from "../settings.service";
+import {ApiService} from "../../@shared/services/api.service";
+import {LoadingService} from "../../@shared/services/loading.service";
+import {IonContent} from '@ionic/angular';
+import {SplitPanelService} from "../../@shared/services/split-panel.service";
 
 @Component({
-  selector: 'app-settings-list',
-  templateUrl: './settings-list.component.html',
-  styleUrls: ['./settings-list.component.scss'],
+    selector: 'app-settings-list',
+    templateUrl: './settings-list.component.html',
+    styleUrls: ['./settings-list.component.scss'],
 })
 export class SettingsListComponent implements OnInit {
 
-  @ViewChild('settingsPage') settingsPage: SettingsPage
+    @ViewChild(IonContent, {static: false}) content: IonContent;
 
-  dataReturned: any;
+    popover: any;
 
-  constructor(
-      public settingsService: SettingsService,
-      public modalController: ModalController,
-  ) { }
+    constructor(
+        public settingsService: SettingsService,
+        public api: ApiService,
+        public loading: LoadingService,
+        public splitPanel: SplitPanelService,
+    ) {
+    }
 
-  ngOnInit() {
-    this.settingsService.getSettings();
-  }
+    ngOnInit() {
+        this.settingsService.getSettings();
+    }
 
-  async openModal(action = null) {
-    const modal = await this.modalController.create({
-      component: SettingsModalComponent,
-      componentProps: {
-        action: action ?? ''
-      }
-    });
+    ionViewWillEnter() {
+     this.splitPanel.show.next(true);
+    }
 
-    modal.onDidDismiss().then((dataReturned) => {
-      if (dataReturned !== null) {
-        this.dataReturned = dataReturned.data;
-        console.table(dataReturned);
-      }
-    });
-
-    return await modal.present();
-  }
+    public scrollToTop() {
+        this.content.scrollToTop(300);
+    }
 
 }

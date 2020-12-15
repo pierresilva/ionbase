@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {User} from "../user";
 import {UsersFormComponent} from "../users-form/users-form.component";
 import { Platform } from '@ionic/angular';
+import {SplitPanelService} from "../../@shared/services/split-panel.service";
 
 @Component({
     selector: 'app-users-create',
@@ -20,13 +21,18 @@ export class UsersCreateComponent implements OnInit, AfterViewInit {
     constructor(
         public usersService: UsersService,
         public route: ActivatedRoute,
-        public platform: Platform
+        public platform: Platform,
+        public splitPanel: SplitPanelService
     ) {
 
     }
 
     ngOnInit(): void {
         this.clearPosts();
+    }
+
+    ionViewWillEnter() {
+       this.splitPanel.show.next(true);
     }
 
     ngAfterViewInit() {

@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {CounMeetingCitation} from "../coun-meeting-citation";
 import {CounMeetingCitationsFormComponent} from "../coun-meeting-citations-form/coun-meeting-citations-form.component";
 import { Platform } from '@ionic/angular';
+import {SplitPanelService} from "../../@shared/services/split-panel.service";
 
 @Component({
     selector: 'app-coun-meeting-citations-create',
@@ -20,13 +21,18 @@ export class CounMeetingCitationsCreateComponent implements OnInit, AfterViewIni
     constructor(
         public counMeetingCitationsService: CounMeetingCitationsService,
         public route: ActivatedRoute,
-        public platform: Platform
+        public platform: Platform,
+        public splitPanel: SplitPanelService
     ) {
 
     }
 
     ngOnInit(): void {
         this.clearPosts();
+    }
+
+    ionViewWillEnter() {
+       this.splitPanel.show.next(true);
     }
 
     ngAfterViewInit() {

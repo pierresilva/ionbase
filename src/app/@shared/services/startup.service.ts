@@ -18,7 +18,7 @@ export class StartupService {
     load(): Promise<void> {
         return new Promise((resolve) => {
             zip(
-                this.httpClient.get(`${environment.serverUrl}/api/syst-parameters/all`)
+                this.httpClient.get(`${environment.serverUrl}/api/setting-groups?all=true`)
             )
                 .pipe(
                     catchError((res) => {
@@ -28,8 +28,8 @@ export class StartupService {
                     }),
                 )
                 .subscribe(
-                    ([parameters]) => {
-                        this.storageLocal.set('parameters', parameters.data);
+                    ([settings]) => {
+                        this.storageLocal.set('settings', settings.data);
                     },
                     () => {},
                     () => {

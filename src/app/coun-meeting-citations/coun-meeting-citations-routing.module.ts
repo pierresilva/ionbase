@@ -5,7 +5,6 @@ import { CounMeetingCitationsPage } from './coun-meeting-citations.page';
 import {CounMeetingCitationsEditComponent} from "./coun-meeting-citations-edit/coun-meeting-citations-edit.component";
 import {CounMeetingCitationsCreateComponent} from "./coun-meeting-citations-create/coun-meeting-citations-create.component";
 import {CounMeetingCitationsListComponent} from "./coun-meeting-citations-list/coun-meeting-citations-list.component";
-import {CounMeetingCitationSignComponent} from "./coun-meeting-citation-sign/coun-meeting-citation-sign.component";
 
 const routes: Routes = [
     {
@@ -24,11 +23,6 @@ const routes: Routes = [
         path: ':id/edit',
         component: CounMeetingCitationsEditComponent
     },
-    {
-        path: ':id/sign',
-        component: CounMeetingCitationSignComponent,
-    },
-
 ];
 
 @NgModule({

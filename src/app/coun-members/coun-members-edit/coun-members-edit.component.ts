@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {CounMember} from "../coun-member";
 import {CounMembersFormComponent} from "../coun-members-form/coun-members-form.component";
 import { Platform } from '@ionic/angular';
+import {SplitPanelService} from "../../@shared/services/split-panel.service";
 
 @Component({
   selector: 'app-coun-members-edit',
@@ -20,12 +21,17 @@ export class CounMembersEditComponent implements OnInit, AfterViewInit {
   constructor(
       public counMembersService: CounMembersService,
       public route: ActivatedRoute,
-      public platform: Platform
+      public platform: Platform,
+      public splitPanel: SplitPanelService,
   ) { }
 
   ngOnInit(): void {
       this.id = this.route.snapshot.paramMap.get('id');
       this.counMembersService.editCounMember(this.id);
+  }
+
+  ionViewWillEnter() {
+    this.splitPanel.show.next(true);
   }
 
   ngAfterViewInit() {

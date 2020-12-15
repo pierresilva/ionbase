@@ -1,21 +1,26 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
 
-import { AuthPage } from './auth.page';
+import {AuthPage} from './auth.page';
 import {LoginComponent} from "./login/login.component";
 import {RegisterComponent} from "./register/register.component";
 import {RegisterConfirmComponent} from "./register-confirm/register-confirm.component";
 import {PasswordForgotComponent} from "./password-forgot/password-forgot.component";
 import {PasswordResetComponent} from "./password-reset/password-reset.component";
+import {LogoutComponent} from "./logout/logout.component";
 
 const routes: Routes = [
-  {
-    path: '',
-    component: AuthPage
-  },
+    {
+        path: '',
+        component: AuthPage
+    },
     {
         path: 'login',
         component: LoginComponent
+    },
+    {
+        path: 'logout',
+        component: LogoutComponent
     },
     {
         path: 'login/:token',
@@ -40,7 +45,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule],
 })
-export class AuthPageRoutingModule {}
+export class AuthPageRoutingModule {
+}

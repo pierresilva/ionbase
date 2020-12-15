@@ -138,7 +138,23 @@
                                 </select>
                               </div>
                             </div>
-                                                                                    
+                                                                                                                                                                                                    <div class="form-group row">
+                              <label for="q_user_role_id_cont" class="col-sm-2 col-form-label col-form-label-sm">USUARIOS ROLES<br>belongsToMany</label>
+                              <div class="col-sm-10">
+                                {{--<input class="form-control form-control-sm" id="q_user_role_id_cont" name="q[userRoles.user_role_id:eq]" type="search" value="{{ @(Request::input('q.userRoles.user_role_id:eq')) }}">--}}
+                                <select class="form-control"
+                                    id="q_user_role_id_eq"
+                                    name="q[userRoles.user_role_id:eq]">
+                                <option value=""></option>
+                                @foreach( $lists["UserRole"] as $list_key => $list_item )
+                                    <option value="{{ $list_key }}"
+                                    @if( $list_key == @(Request::input('q.userRoles.user_role_id:eq')) )  selected='selected' @endif
+                                    >{{ $list_item }}</option>
+                                @endforeach
+                                </select>
+                              </div>
+                            </div>
+                                                        
                             <div class="form-group row mb-0">
                                 <div class="col-sm-10 offset-sm-2">
                                     <input type="submit" name="commit" value="Search" class="btn btn-primary btn-sm" />

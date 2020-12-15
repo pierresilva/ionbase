@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {CompResponsability} from "../comp-responsability";
 import {CompResponsabilitiesFormComponent} from "../comp-responsabilities-form/comp-responsabilities-form.component";
 import { Platform } from '@ionic/angular';
+import {SplitPanelService} from "../../@shared/services/split-panel.service";
 
 @Component({
   selector: 'app-comp-responsabilities-edit',
@@ -20,12 +21,17 @@ export class CompResponsabilitiesEditComponent implements OnInit, AfterViewInit 
   constructor(
       public compResponsabilitiesService: CompResponsabilitiesService,
       public route: ActivatedRoute,
-      public platform: Platform
+      public platform: Platform,
+      public splitPanel: SplitPanelService,
   ) { }
 
   ngOnInit(): void {
       this.id = this.route.snapshot.paramMap.get('id');
       this.compResponsabilitiesService.editCompResponsability(this.id);
+  }
+
+  ionViewWillEnter() {
+    this.splitPanel.show.next(true);
   }
 
   ngAfterViewInit() {

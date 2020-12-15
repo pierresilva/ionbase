@@ -4,7 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {CorrPacket} from "../corr-packet";
 import {CorrPacketsFormComponent} from "../corr-packets-form/corr-packets-form.component";
 import { Platform } from '@ionic/angular';
-import {getFormValidationErrors} from "../../@shared/classes/form-validation-errors";
+import {SplitPanelService} from "../../@shared/services/split-panel.service";
 
 @Component({
     selector: 'app-corr-packets-create',
@@ -21,23 +21,28 @@ export class CorrPacketsCreateComponent implements OnInit, AfterViewInit {
     constructor(
         public corrPacketsService: CorrPacketsService,
         public route: ActivatedRoute,
-        public platform: Platform
+        public platform: Platform,
+        public splitPanel: SplitPanelService
     ) {
 
     }
 
     ngOnInit(): void {
-        // this.clearPosts();
+        this.clearPosts();
+    }
+
+    ionViewWillEnter() {
+       this.splitPanel.show.next(true);
     }
 
     ngAfterViewInit() {
         this.corrPacketForm.corrPacketsForm.valueChanges.subscribe((data) => {
-            console.log(getFormValidationErrors(this.corrPacketForm.corrPacketsForm.controls));
             this.corrPacketsService.corrPacketsFormValid.next(this.corrPacketForm.corrPacketsForm.valid);
         });
     }
 
     clearPosts() {
+        console.log('clear');
         this.corrPacketsService.createCorrPacket();
         this.corrPacketsService.corrPacket = <CorrPacket>{};
     }

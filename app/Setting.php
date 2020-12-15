@@ -53,7 +53,21 @@ class Setting extends Model
             // ->doNotGenerateSlugsOnUpdate();
     }
 
-    public function group() {
+    public static function getRelationships()
+    {
+        return [
+            'settingGroup'
+        ];
+    }
+
+    public static function getLists()
+    {
+        $lists = [];
+        $lists['SettingGroup'] = SettingGroup::all();
+        return $lists;
+    }
+
+    public function settingGroup() {
         return $this->belongsTo(SettingGroup::class, 'setting_group_id', 'id');
     }
 

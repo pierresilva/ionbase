@@ -2,6 +2,7 @@ import { SystPosition } from "../syst-positions/syst-position";
 import { UserProfile } from "../user-profiles/user-profile";
 import { CounMeetingCitation } from "../coun-meeting-citations/coun-meeting-citation";
 import { CounMember } from "../coun-members/coun-member";
+import { UserRole } from "../user-roles/user-role";
 
 export interface User {
 
@@ -20,6 +21,8 @@ export interface User {
     coun_meeting_citations?: CounMeetingCitation[],
     coun_member_ids?: any[],
     coun_members?: CounMember[],
+    user_role_ids?: any[],
+    user_roles?: UserRole[],
     created_at?: any;
     updated_at?: any;
     deleted_at?: any;
@@ -31,5 +34,6 @@ export interface UserLists {
     UserProfile?: UserProfile[],
     CounMeetingCitation?: CounMeetingCitation[],
     CounMember?: CounMember[],
+    UserRole?: UserRole[],
 
 }

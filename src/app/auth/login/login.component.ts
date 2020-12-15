@@ -68,14 +68,10 @@ export class LoginComponent implements OnInit {
                 (res: any) => {
                     this.toast.present(res.message, 'toast-success');
                     this.storage.set('token', res.data.access_token);
-                    this.api.syncGet(environment.serverUrl + '/api/jwt-auth/profile?token=' + res.data.access_token)
+                    this.api.syncGet(environment.serverUrl + '/api/auth/profile?token=' + res.data.access_token)
                         .then(
                             async (res: any) => {
-                                const user = {
-                                    name: res.data.user.name,
-                                    email: res.data.user.email,
-                                };
-                                this.storage.set('user', user);
+                                this.storage.set('user', res.data.user);
                                 this.storage.set('acl', res.data.acl);
                                 if (!this.auth.checkToken) {
                                     this.auth.startCheckExpirationToken();

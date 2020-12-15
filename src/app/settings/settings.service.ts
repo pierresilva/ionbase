@@ -1,137 +1,128 @@
 import {Injectable} from '@angular/core';
+import {Router} from "@angular/router";
 import {ApiService} from "../@shared/services/api.service";
-import {ToastService} from "../@shared/services/toast.service";
+import { Setting, SettingLists } from "./setting";
+import {Meta} from "../@shared/interfaces/meta";
 import {AlertService} from "../@shared/services/alert.service";
-import {AuthService} from "../@shared/services/auth.service";
-import {Setting} from "./setting";
+import {ToastService} from "../@shared/services/toast.service";
+import {NavigationService} from '../@shared/services/navigation.service'
+import {BehaviorSubject} from "rxjs";
+
+declare var $: any;
 
 @Injectable({
     providedIn: 'root'
 })
 export class SettingsService {
 
-    public search: string = '';
+    public settingsUrl = 'settings';
+    public settingsFormValid = new BehaviorSubject<boolean>(false);
 
-    public settings: Setting[];
-    public setting: Setting;
+    public settings: Setting[] = [];
+    public setting: Setting = <Setting>{};
+    public settingLists: SettingLists = {};
+
+    public searchValue = '';
+    public perPage = 10;
+
+    public meta: Meta = null;
+
+    public page = 1;
+
+    public pagesContent = document.getElementById('pages-content');
 
     constructor(
         public api: ApiService,
-        public toast: ToastService,
         public alert: AlertService,
-        public auth: AuthService,
+        public toast: ToastService,
+        public router: Router,
+        private navigation: NavigationService,
     ) {
     }
 
-    /**
-     * Get Settings
-     * @param page
-     */
-    public getSettings(page: any = 1) {
-        const searchString = this.search ? `&q[name:cont]=${this.search}&q[code:cont]=${this.search}&q[group.name:cont]=${this.search}&q[group.code:cont]=${this.search}` : '';
-        this.api.get(`settings?page=${page}${searchString}`)
+    public getSettings(page: any = this.page, perPage: any = this.perPage) {
+
+        this.api.get(this.settingsUrl + '?page=' + page + '&perPage=' + perPage + '&q[name:cont]=' + this.searchValue)
             .subscribe(
                 (res: any) => {
+                    // @ts-ignore
+                    document.getElementById('pages-content').scrollToTop(300);
                     this.settings = res.data;
-                }
-            );
-    }
-
-    /**
-     * Get Settings
-     * @param code
-     */
-    public getSetting(code: any) {
-        this.api.get(`settings/${code}`)
-            .subscribe(
-                (res: any) => {
-                    this.setting = res.data;
-                }
-            );
-    }
-
-    /**
-     * Save Settings
-     */
-    public saveSetting() {
-        if (this.setting.id) {
-            this.updateSetting();
-        }
-
-        if (!this.setting.id) {
-            this.storeSetting();
-        }
-    }
-
-    /**
-     * Store Setting
-     */
-    private storeSetting() {
-        this.api.post('settings', this.setting)
-            .subscribe(
-                (res: any) => {
-                    this.toast.present(res.message, 'toast-success');
-                    this.getSettings();
+                    this.settingLists = res.lists;
+                    this.meta = res.meta;
                 },
                 (err: any) => {
-
+                    console.error(err);
                 }
             );
     }
 
-    /**
-     * Update Setting
-     */
-    private updateSetting() {
-        this.api.put(`settings/${this.setting.code}`, this.setting)
+    public editSetting(id: any) {
+        this.api.get(this.settingsUrl + '/' + id + '/edit')
             .subscribe(
                 (res: any) => {
-                    this.toast.present(res.message, 'toast-success');
-                    this.getSettings();
+                    this.setting = res.data.model;
+                    this.settingLists = res.lists;
                 },
                 (err: any) => {
-
+                    console.error(err);
                 }
             );
     }
 
-    /**
-     * Delete Setting
-     * @param setting
-     */
-    public deleteSetting(setting: Setting) {
-        this.alert.confirmation(`Eliminar ${setting.name}?`)
-            .then(res => {
-                if (res) {
-                    this.api.delete(`settings/${setting.code}`, {})
-                        .subscribe(
-                            (res: any) => {
-                                this.toast.present(res.message, 'toast-success');
-                                this.getSettings();
-                            },
-                            (err: any) => {
+    public updateSetting() {
+        this.api.put(this.settingsUrl + '/' + this.setting.id, {
+            model: this.setting,
+            pivots: {
+            }
+        }).subscribe(
+            (res: any) => {
+                this.toast.present(res.message, 'toast-success', 'top');
+                this.navigation.back();
+                this.getSettings(1);
+            }
+        );
+    }
 
-                            }
-                        );
+    public createSetting() {
+        this.api.get(this.settingsUrl + '/create')
+            .subscribe(
+                (res: any) => {
+                    this.setting = <Setting>{};
+                    this.settingLists = res.lists
                 }
-            });
-        return;
+            );
     }
 
-    /**
-     * Create empty Setting
-     */
-    newSetting() {
-        this.setting = {
-            id: null,
-            created_at: null,
-            updated_at: null,
-            setting_group_id: null,
-            name: null,
-            code: null,
-            value: null,
-            rich_text: null,
-            group: {},
-        };
+    public storeSetting() {
+        this.api.post(this.settingsUrl, {
+            model: this.setting,
+            pivots: {
+            }
+        }).subscribe(
+            (res: any) => {
+                this.toast.present(res.message, 'toast-success', 'top');
+                this.navigation.back();
+                this.getSettings(1);
+            }
+        );
     }
+
+    public async deleteSetting(id: any) {
+        const confirm = await this.alert.confirmation(
+            'Desea eliminar el item?'
+        );
+        if (confirm) {
+            this.api.delete(this.settingsUrl + '/' + id, {})
+                .subscribe(
+                    (res: any) => {
+                        this.toast.present(res.message, 'toast-success', 'top');
+                        this.getSettings(1);
+                    }
+                );
+        } else {
+            return;
+        }
+    }
+
 }

@@ -59,6 +59,10 @@ class HousUnit extends Model
             'model.hous_unit_id' => 'nullable',
             'model.name' => 'required',
             'model.code' => 'required',
+            'model.contact_first_name' => 'nullable',
+            'model.contact_last_name' => 'nullable',
+            'model.contact_phone' => 'nullable',
+            'model.contact_email' => 'nullable',
 
 
         ];
@@ -82,6 +86,7 @@ class HousUnit extends Model
     {
         return $this->hasMany('App\Models\CorrPacket');
     }
+
 
 
     public static function getRelationships()
@@ -125,6 +130,7 @@ class HousUnit extends Model
             $query->where('name', $name);
         });
     }
+
 
 
 // end section

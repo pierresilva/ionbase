@@ -38,7 +38,7 @@
                                                                                                                   <li class="list-group-item d-inline-flex flex-wrap"><div><strong> : </strong></div><div>{{ $user->accept_terms_condition }}</div></li>
                                                       
                                                             <li class="list-group-item d-inline-flex flex-wrap"><div><strong>CARGOS : </strong></div><div>{{ $user->systPosition->name ?? '' }}</div></li>
-                                                                                                                                                
+                                                                                                                                                                                    
                                                                                                 <li class="list-group-item"><p><strong>PERFILES DE USUARIOS : </strong></p><div>
                           @include('userProfiles._table', ['userProfiles' => $user->userProfiles])
                         </div></li>
@@ -48,8 +48,14 @@
                                                                               <li class="list-group-item"><p><strong>JUNTAS MIEMBROS : </strong></p><div>
                           @include('counMembers._table', ['counMembers' => $user->counMembers])
                         </div></li>
+                                                                        
+                                                                                                                                                                                                            <li class="list-group-item d-inline-flex flex-wrap"><div><strong>USUARIOS ROLES : </strong></div><div>
+                          @foreach($user->userRoles as $my_child)
+                              @if (!$loop->first) , @endif
+                              {{ $my_child->name }}(
+                                                )
+                          @endforeach </div></li>
                                     
-                                                                                                                                                                  
                       </ul>
                       <div class="d-flex justify-content-end mt-3">
                           <a class="btn btn-secondary d-inline-flex mr-3" href="{{ route('users.index') }}"><i class="material-icons">fast_rewind</i> Back</a>

@@ -65,6 +65,16 @@
                             </ng-container>
                         </div>
                     </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'USUARIOS ROLES' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">
+                            <ng-container *ngIf="user?.user_roles?.length">
+                                <ng-container *ngFor="let userRole of user?.user_roles; let last = last">
+                                    <a routerLink="/user-roles/{{ userRole?.id }}/edit">{{ userRole?.name }}</a><span *ngIf="!last">, </span>
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                    </ion-item>
             </ion-list>
             <ion-footer>
                 <ion-row>

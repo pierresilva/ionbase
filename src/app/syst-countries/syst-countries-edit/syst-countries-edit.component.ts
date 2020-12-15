@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {SystCountry} from "../syst-country";
 import {SystCountriesFormComponent} from "../syst-countries-form/syst-countries-form.component";
 import { Platform } from '@ionic/angular';
+import {SplitPanelService} from "../../@shared/services/split-panel.service";
 
 @Component({
   selector: 'app-syst-countries-edit',
@@ -20,12 +21,17 @@ export class SystCountriesEditComponent implements OnInit, AfterViewInit {
   constructor(
       public systCountriesService: SystCountriesService,
       public route: ActivatedRoute,
-      public platform: Platform
+      public platform: Platform,
+      public splitPanel: SplitPanelService,
   ) { }
 
   ngOnInit(): void {
       this.id = this.route.snapshot.paramMap.get('id');
       this.systCountriesService.editSystCountry(this.id);
+  }
+
+  ionViewWillEnter() {
+    this.splitPanel.show.next(true);
   }
 
   ngAfterViewInit() {
