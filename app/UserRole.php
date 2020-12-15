@@ -30,7 +30,7 @@ class UserRole extends Model
 
     use HasSlug;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'code'];
 
     /**
      * Get the options for generating the slug.
@@ -44,4 +44,41 @@ class UserRole extends Model
             ->usingSeparator('.');
         // ->doNotGenerateSlugsOnUpdate();
     }
+
+
+    /**
+     * A role may be given various permissions.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function permissions()
+    {
+        return $this->belongsToMany(UserPermission::class, 'user_permission_user_role');
+    }
+
+    /**
+     * Grant the given permission to a role.
+     *
+     * @param  UserPermission $permission
+     *
+     * @return mixed
+     */
+    public function givePermissionTo(UserPermission $permission)
+    {
+        return $this->permissions()->save($permission);
+    }
+
+    public function assignPermission($permission)
+    {
+        $permission = UserPermission::whereCode($permission)->first();
+        if ($permission) {
+            return $this->permissions()->attach(
+                $permission->pluck('id')
+            );
+        }
+
+        return null;
+
+    }
+
 }

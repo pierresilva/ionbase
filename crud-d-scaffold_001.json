@@ -313,8 +313,8 @@
       ],
       "is_pivot": false,
       "schema_id_for_relation": 1,
-      "pos_x": 801,
-      "pos_y": 176,
+      "pos_x": 1085,
+      "pos_y": 228,
       "_next_schema_id": 5
     },
     {
@@ -371,8 +371,8 @@
       ],
       "is_pivot": false,
       "schema_id_for_relation": 1,
-      "pos_x": 802,
-      "pos_y": 453,
+      "pos_x": 1086,
+      "pos_y": 539,
       "_next_schema_id": 4
     },
     {
@@ -414,8 +414,8 @@
       ],
       "is_pivot": false,
       "schema_id_for_relation": 1,
-      "pos_x": 803,
-      "pos_y": 737,
+      "pos_x": 804,
+      "pos_y": 1158,
       "_next_schema_id": 3
     },
     {
@@ -532,7 +532,7 @@
       ],
       "is_pivot": false,
       "schema_id_for_relation": 1,
-      "pos_x": 1365,
+      "pos_x": 1559,
       "pos_y": -28,
       "_next_schema_id": 10
     },
@@ -605,8 +605,8 @@
       ],
       "is_pivot": false,
       "schema_id_for_relation": 1,
-      "pos_x": 1359,
-      "pos_y": 461,
+      "pos_x": 1569,
+      "pos_y": 475,
       "_next_schema_id": 8
     },
     {
@@ -693,8 +693,8 @@
       ],
       "is_pivot": false,
       "schema_id_for_relation": 1,
-      "pos_x": 1352,
-      "pos_y": 779,
+      "pos_x": 1565,
+      "pos_y": 799,
       "_next_schema_id": 8
     },
     {
@@ -796,8 +796,8 @@
       ],
       "is_pivot": false,
       "schema_id_for_relation": 1,
-      "pos_x": 1361,
-      "pos_y": 1151,
+      "pos_x": 1349,
+      "pos_y": 1275,
       "_next_schema_id": 7
     },
     {
@@ -839,8 +839,8 @@
       ],
       "is_pivot": false,
       "schema_id_for_relation": 1,
-      "pos_x": 802,
-      "pos_y": -30,
+      "pos_x": 1083,
+      "pos_y": -12,
       "_next_schema_id": 3
     },
     {
@@ -929,8 +929,8 @@
       ],
       "is_pivot": false,
       "schema_id_for_relation": 1,
-      "pos_x": 502,
-      "pos_y": -2,
+      "pos_x": 761,
+      "pos_y": 562,
       "_next_schema_id": 6
     },
     {
@@ -972,8 +972,8 @@
       ],
       "is_pivot": false,
       "schema_id_for_relation": 1,
-      "pos_x": 505,
-      "pos_y": 365,
+      "pos_x": 760,
+      "pos_y": 942,
       "_next_schema_id": 3
     },
     {
@@ -1030,8 +1030,8 @@
       ],
       "is_pivot": false,
       "schema_id_for_relation": 1,
-      "pos_x": 1068,
-      "pos_y": 785,
+      "pos_x": 1088,
+      "pos_y": 867,
       "_next_schema_id": 4
     },
     {
@@ -1924,8 +1924,8 @@
       ],
       "is_pivot": false,
       "schema_id_for_relation": 1,
-      "pos_x": 793,
-      "pos_y": 944,
+      "pos_x": 1056,
+      "pos_y": 1295,
       "_next_schema_id": 13
     },
     {
@@ -2076,8 +2076,8 @@
       ],
       "is_pivot": false,
       "schema_id_for_relation": 1,
-      "pos_x": 783,
-      "pos_y": 1646,
+      "pos_x": 1011,
+      "pos_y": 1904,
       "_next_schema_id": 12
     },
     {
@@ -2634,11 +2634,348 @@
       ],
       "is_pivot": false,
       "schema_id_for_relation": 2,
-      "pos_x": 1078,
-      "pos_y": 1,
+      "pos_x": 1299,
+      "pos_y": -17,
       "_next_schema_id": 12
+    },
+    {
+      "id": 37,
+      "name": "setting",
+      "display_name": "AJUSTES",
+      "use_soft_delete": true,
+      "schemas": [
+        {
+          "id": 1,
+          "name": "name",
+          "display_name": "NOMBRE",
+          "type": "string",
+          "input_type": "text",
+          "varidate": "",
+          "faker_type": "words(3, true)",
+          "nullable": false,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "",
+          "parent_id": 37,
+          "comment": "",
+          "options": ""
+        },
+        {
+          "id": 2,
+          "name": "code",
+          "display_name": "CÓDIGO",
+          "type": "string",
+          "input_type": "text",
+          "varidate": "",
+          "faker_type": "words(3, true)",
+          "nullable": false,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "",
+          "parent_id": 37,
+          "comment": "",
+          "options": ""
+        },
+        {
+          "id": 3,
+          "name": "value",
+          "display_name": "VALOR",
+          "type": "longText",
+          "input_type": "html",
+          "varidate": "",
+          "faker_type": "paragraph(3)",
+          "nullable": true,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "",
+          "parent_id": 37,
+          "comment": "",
+          "options": ""
+        },
+        {
+          "id": 4,
+          "name": "richText",
+          "display_name": "TEXTO ENRIQUECIDO",
+          "type": "boolean",
+          "input_type": "switch",
+          "varidate": "",
+          "faker_type": "boolean()",
+          "nullable": true,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "",
+          "parent_id": 37,
+          "comment": "",
+          "options": ""
+        },
+        {
+          "id": 5,
+          "name": "settingGroup_id",
+          "display_name": "GRUPO",
+          "type": "integer",
+          "input_type": "select",
+          "varidate": "",
+          "faker_type": "numberBetween(1,30)",
+          "nullable": false,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "settingGroup",
+          "parent_id": 37,
+          "comment": "",
+          "options": ""
+        }
+      ],
+      "is_pivot": false,
+      "schema_id_for_relation": 1,
+      "pos_x": 1809,
+      "pos_y": 766,
+      "_next_schema_id": 6,
+      "description": "SettingModel"
+    },
+    {
+      "id": 38,
+      "name": "settingGroup",
+      "display_name": "AJUSTES GRUPOS",
+      "use_soft_delete": true,
+      "schemas": [
+        {
+          "id": 1,
+          "name": "name",
+          "display_name": "NOMBRE",
+          "type": "string",
+          "input_type": "text",
+          "varidate": "",
+          "faker_type": "words(3)",
+          "nullable": false,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "",
+          "parent_id": 38,
+          "comment": "",
+          "options": ""
+        },
+        {
+          "id": 2,
+          "name": "code",
+          "display_name": "CÓDIGO",
+          "type": "string",
+          "input_type": "text",
+          "varidate": "",
+          "faker_type": "words(3)",
+          "nullable": true,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "",
+          "parent_id": 38,
+          "comment": "",
+          "options": ""
+        }
+      ],
+      "is_pivot": false,
+      "schema_id_for_relation": 1,
+      "pos_x": 1811,
+      "pos_y": 1167,
+      "_next_schema_id": 3,
+      "description": "Settin Group"
+    },
+    {
+      "id": 39,
+      "name": "userRole",
+      "display_name": "USUARIOS ROLES",
+      "use_soft_delete": true,
+      "schemas": [
+        {
+          "id": 1,
+          "name": "name",
+          "display_name": "NOMBRE",
+          "type": "string",
+          "input_type": "text",
+          "varidate": "",
+          "faker_type": "words(3, true)",
+          "nullable": false,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "",
+          "parent_id": 39,
+          "comment": "",
+          "options": ""
+        },
+        {
+          "id": 2,
+          "name": "code",
+          "display_name": "CÓDIGO",
+          "type": "string",
+          "input_type": "text",
+          "varidate": "",
+          "faker_type": "words(3, true)",
+          "nullable": false,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "",
+          "parent_id": 39,
+          "comment": "",
+          "options": ""
+        }
+      ],
+      "is_pivot": false,
+      "schema_id_for_relation": 1,
+      "pos_x": 756,
+      "pos_y": 18,
+      "_next_schema_id": 4,
+      "description": "UserRole Model"
+    },
+    {
+      "id": 40,
+      "name": "userPermission",
+      "display_name": "USUARIOS PERMISOS",
+      "use_soft_delete": true,
+      "schemas": [
+        {
+          "id": 1,
+          "name": "name",
+          "display_name": "NOMBRE",
+          "type": "string",
+          "input_type": "text",
+          "varidate": "",
+          "faker_type": "words(3, true)",
+          "nullable": false,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "",
+          "parent_id": 40,
+          "comment": "",
+          "options": ""
+        },
+        {
+          "id": 2,
+          "name": "code",
+          "display_name": "CÓDIGO",
+          "type": "string",
+          "input_type": "text",
+          "varidate": "",
+          "faker_type": "words(3, true)",
+          "nullable": false,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "",
+          "parent_id": 40,
+          "comment": "",
+          "options": ""
+        }
+      ],
+      "is_pivot": false,
+      "schema_id_for_relation": 1,
+      "pos_x": 737,
+      "pos_y": 293,
+      "_next_schema_id": 3,
+      "description": "UserPermission Model"
+    },
+    {
+      "id": 41,
+      "name": "user_userRole",
+      "display_name": "PIVOT",
+      "use_soft_delete": true,
+      "schemas": [
+        {
+          "id": 1,
+          "name": "user_id",
+          "display_name": "user - NAME",
+          "type": "integer",
+          "input_type": "select",
+          "varidate": "",
+          "faker_type": "numberBetween(1,30)",
+          "nullable": true,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "user",
+          "parent_id": 41,
+          "comment": "",
+          "options": ""
+        },
+        {
+          "id": 2,
+          "name": "userRole_id",
+          "display_name": "userRole - NAME",
+          "type": "integer",
+          "input_type": "select",
+          "varidate": "",
+          "faker_type": "numberBetween(1,30)",
+          "nullable": true,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "userRole",
+          "parent_id": 41,
+          "comment": "",
+          "options": ""
+        }
+      ],
+      "is_pivot": true,
+      "schema_id_for_relation": 0,
+      "pos_x": 424,
+      "pos_y": 18,
+      "_next_schema_id": 3
+    },
+    {
+      "id": 42,
+      "name": "userPermission_userRole",
+      "display_name": "PIVOT",
+      "use_soft_delete": true,
+      "schemas": [
+        {
+          "id": 1,
+          "name": "userPermission_id",
+          "display_name": "userPermission - NAME",
+          "type": "integer",
+          "input_type": "select",
+          "varidate": "",
+          "faker_type": "numberBetween(1,30)",
+          "nullable": true,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "userPermission",
+          "parent_id": 42,
+          "comment": "",
+          "options": ""
+        },
+        {
+          "id": 2,
+          "name": "userRole_id",
+          "display_name": "userRole - NAME",
+          "type": "integer",
+          "input_type": "select",
+          "varidate": "",
+          "faker_type": "numberBetween(1,30)",
+          "nullable": true,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "userRole",
+          "parent_id": 42,
+          "comment": "",
+          "options": ""
+        }
+      ],
+      "is_pivot": true,
+      "schema_id_for_relation": 0,
+      "pos_x": 405,
+      "pos_y": 262,
+      "_next_schema_id": 3
     }
   ],
   "tool": "ER-DIAGRAM-TOOL",
-  "_next_model_id": 37
+  "_next_model_id": 43
 }

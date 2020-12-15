@@ -46,7 +46,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  */
 class User extends Authenticatable implements JWTSubject, MustVerifyEmail
 {
-    use Notifiable;
+    use Notifiable, UserHasRole;
 
     /**
      * The attributes that are mass assignable.
@@ -54,7 +54,7 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'first_name', 'last_name', 'accept_terms_conditions', 'sys_position_id'
+        'name', 'email', 'password', 'first_name', 'last_name', 'accept_terms_conditions', 'email_verified_at', 'syst_position_id'
     ];
 
     /**
@@ -116,5 +116,9 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
                 'hash' => sha1($notifiable->getEmailForVerification()),
             ]
         );
+    }
+
+    public function profile() {
+        return $this->hasOne('App\Models\UserProfile');
     }
 }

@@ -39,6 +39,7 @@ Route::post('auth/register', 'Api\AuthController@register');
 Route::post('auth/login', 'Api\AuthController@login');
 Route::get('auth/logout', 'Api\AuthController@logout');
 Route::get('auth/refresh', 'Api\AuthController@refresh');
+Route::get('auth/profile', 'Api\AuthController@profile');
 
 Route::get('auth/reset-password/{token}', 'Api\AuthController@passwordFindReset');
 Route::put('auth/reset-password', 'Api\AuthController@passwordReset');

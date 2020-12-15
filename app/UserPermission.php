@@ -30,7 +30,7 @@ class UserPermission extends Model
 
     use HasSlug;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'code'];
 
     /**
      * Get the options for generating the slug.
@@ -43,5 +43,15 @@ class UserPermission extends Model
             ->slugsShouldBeNoLongerThan(50)
             ->usingSeparator('.');
         // ->doNotGenerateSlugsOnUpdate();
+    }
+
+    /**
+     * A permission can be applied to roles.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function roles()
+    {
+        return $this->belongsToMany(UserRole::class);
     }
 }

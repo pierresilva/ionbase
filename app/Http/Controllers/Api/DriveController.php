@@ -42,7 +42,7 @@ class DriveController extends ApiController
         $request->validate([
             'fileable_type' => 'required',
             'fileable_id' => 'required',
-            'file' => 'required|file|mimes:jpeg,png,pdf,xls,xlsx,doc,docx|max:2048'
+            // 'file' => 'required|file|mimes:jpeg,png,pdf,xls,xlsx,doc,docx|max:2048'
         ]);
 
         $requestData = $request->all();

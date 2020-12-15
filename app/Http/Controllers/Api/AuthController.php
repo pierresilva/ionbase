@@ -131,10 +131,12 @@ class AuthController extends ApiController
             ], 401);
         }
 
+        $user = User::with('profile')->find(auth()->user()->getAuthIdentifier());
+
         return response()->json([
             'message' => __('Profile obtained successfully'),
             'data' => [
-                'user' => auth()->user(),
+                'user' => $user,
                 'acl' => $this->getAccessControlData()
             ]
         ]);
@@ -257,11 +259,24 @@ class AuthController extends ApiController
      */
     private function getAccessControlData(): array
     {
-        $acl = [];
+        $acl = [
+            'roles' => [],
+            'permissions' => []
+        ];
 
-        if (class_exists('\pierresilva\AccessControl\AccessControl')) {
-            $acl['roles'] = \auth()->user()->getRoles();
-            $acl['permissions'] = \auth()->user()->getPermissions();
+        $user = User::with('roles.permissions')->find(auth()->user()->getAuthIdentifier());
+
+        foreach ($user->roles as $role) {
+            $acl['roles'][] = $role->code;
+            foreach ($role->permissions as $permission) {
+                foreach ($acl['permissions'] as $aclPermission) {
+                    if ($aclPermission == $permission->code) {
+                        continue 2;
+                    }
+                }
+
+                $acl['permissions'][] = $permission->code;
+            }
         }
 
         return $acl;
