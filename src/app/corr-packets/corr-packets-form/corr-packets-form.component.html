@@ -61,7 +61,7 @@
 
     <!-- conveyor -->
     <ion-item class="item-transparent">
-        <ion-label>{{ 'TRANPORTADOR' | titlecase }}</ion-label>
+        <ion-label>{{ 'TRANSPORTADOR' | titlecase }}</ion-label>
         <ion-input [(ngModel)]="model.conveyor"
                    type="text"
                    name="conveyor"
@@ -172,7 +172,7 @@
               [hidden]="type == 'Recibir'">
         <ion-label>{{ 'ENTREGADO A' | titlecase }}</ion-label>
         <ion-input [(ngModel)]="model.delivered_to"
-                   [readonly]="(type !== 'Entregar')"
+                   [readonly]="(type == 'view')"
                    type="text"
                    name="delivered_to"
                    id="delivered_to-field"
@@ -194,7 +194,7 @@
               [hidden]="type == 'Recibir'">
         <ion-label>{{ 'COMENTARIO ENTREGADO' | titlecase }}</ion-label>
         <ion-textarea [(ngModel)]="model.delivered_comment"
-                      [readonly]="(type !== 'Entregar')"
+                      [readonly]="(type == 'view')"
                       name="delivered_comment"
                       id="delivered_comment-field"
                       rows="6"

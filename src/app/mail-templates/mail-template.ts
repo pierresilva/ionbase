@@ -3,6 +3,7 @@ import { Mail } from "../mails/mail";
 export interface MailTemplate {
 
     id?: any;
+    name?: any;
     subject?: any,
     mailable?: any,
     html_template?: any,

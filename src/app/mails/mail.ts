@@ -3,6 +3,7 @@ import { MailTemplate } from "../mail-templates/mail-template";
 export interface Mail {
 
     id?: any;
+    name?: any;
     mail_template_id?: any,
     subject?: any,
     receiver?: any,

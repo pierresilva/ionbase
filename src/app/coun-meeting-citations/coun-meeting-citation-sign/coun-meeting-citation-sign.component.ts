@@ -31,7 +31,7 @@ export class CounMeetingCitationSignComponent implements OnInit, AfterViewInit {
         canvasHeight: 250,
     };
 
-    signature = '';
+    signature: any = '';
 
     citation: any = {};
 

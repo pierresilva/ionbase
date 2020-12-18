@@ -26,7 +26,6 @@ import {PopoverComponent} from "./components/popover/popover.component";
 import {AlertService} from "./services/alert.service";
 import {RouterModule} from "@angular/router";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {SelectInputComponent} from "./components/select-input/select-input.component";
 import {ToastService} from "./services/toast.service";
 import {NgxSummernoteModule} from "ngx-summernote";
 import {StripHtmlPipe} from './pipes/strip-html.pipe';
@@ -50,7 +49,6 @@ import {SettingsService} from "./services/settings.service";
     declarations: [
         MainHeaderComponent,
         PopoverComponent,
-        SelectInputComponent,
         StripHtmlPipe,
         StatusPipe,
         DateFormatPipe,
@@ -75,7 +73,6 @@ import {SettingsService} from "./services/settings.service";
         FormsModule,
         CustomFormsModule,
         ReactiveFormsModule,
-        SelectInputComponent,
         StripHtmlPipe,
         StatusPipe,
         DateFormatPipe,

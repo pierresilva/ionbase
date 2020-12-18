@@ -13,7 +13,7 @@ export class CameraPage implements OnInit {
 
 
   constructor(
-      private camera: CameraService
+      public camera: CameraService
   ) { }
 
   ngOnInit() {

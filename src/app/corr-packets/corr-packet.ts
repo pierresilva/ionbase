@@ -1,4 +1,4 @@
-import { HousUnit } from "../hous-units/hous-unit";
+import {HousUnit} from "../hous-units/hous-unit";
 
 export interface CorrPacket {
 

@@ -532,8 +532,8 @@
       ],
       "is_pivot": false,
       "schema_id_for_relation": 1,
-      "pos_x": 1559,
-      "pos_y": -28,
+      "pos_x": 1656,
+      "pos_y": -24,
       "_next_schema_id": 10
     },
     {
@@ -605,8 +605,8 @@
       ],
       "is_pivot": false,
       "schema_id_for_relation": 1,
-      "pos_x": 1569,
-      "pos_y": 475,
+      "pos_x": 1674,
+      "pos_y": 478,
       "_next_schema_id": 8
     },
     {
@@ -693,8 +693,8 @@
       ],
       "is_pivot": false,
       "schema_id_for_relation": 1,
-      "pos_x": 1565,
-      "pos_y": 799,
+      "pos_x": 1632,
+      "pos_y": 881,
       "_next_schema_id": 8
     },
     {
@@ -796,8 +796,8 @@
       ],
       "is_pivot": false,
       "schema_id_for_relation": 1,
-      "pos_x": 1349,
-      "pos_y": 1275,
+      "pos_x": 1576,
+      "pos_y": 1317,
       "_next_schema_id": 7
     },
     {
@@ -2204,8 +2204,8 @@
       ],
       "is_pivot": false,
       "schema_id_for_relation": 1,
-      "pos_x": 1686,
-      "pos_y": 17,
+      "pos_x": 1914,
+      "pos_y": -33,
       "_next_schema_id": 5
     },
     {
@@ -2302,8 +2302,8 @@
       ],
       "is_pivot": false,
       "schema_id_for_relation": 1,
-      "pos_x": 1676,
-      "pos_y": 385,
+      "pos_x": 1882,
+      "pos_y": 380,
       "_next_schema_id": 6
     },
     {
@@ -2451,8 +2451,8 @@
       ],
       "is_pivot": false,
       "schema_id_for_relation": 1,
-      "pos_x": 1720,
-      "pos_y": 1475,
+      "pos_x": 1903,
+      "pos_y": 1463,
       "_next_schema_id": 9
     },
     {
@@ -2651,8 +2651,8 @@
       ],
       "is_pivot": false,
       "schema_id_for_relation": 2,
-      "pos_x": 1299,
-      "pos_y": -17,
+      "pos_x": 1355,
+      "pos_y": -22,
       "_next_schema_id": 12
     },
     {
@@ -2749,10 +2749,9 @@
       ],
       "is_pivot": false,
       "schema_id_for_relation": 1,
-      "pos_x": 1809,
-      "pos_y": 766,
-      "_next_schema_id": 6,
-      "description": "SettingModel"
+      "pos_x": 1936,
+      "pos_y": 777,
+      "_next_schema_id": 6
     },
     {
       "id": 38,
@@ -2797,10 +2796,9 @@
       ],
       "is_pivot": false,
       "schema_id_for_relation": 1,
-      "pos_x": 1811,
-      "pos_y": 1167,
-      "_next_schema_id": 3,
-      "description": "Settin Group"
+      "pos_x": 1926,
+      "pos_y": 1166,
+      "_next_schema_id": 3
     },
     {
       "id": 39,
@@ -2847,8 +2845,7 @@
       "schema_id_for_relation": 1,
       "pos_x": 756,
       "pos_y": 18,
-      "_next_schema_id": 4,
-      "description": "UserRole Model"
+      "_next_schema_id": 4
     },
     {
       "id": 40,
@@ -2895,8 +2892,7 @@
       "schema_id_for_relation": 1,
       "pos_x": 737,
       "pos_y": 293,
-      "_next_schema_id": 3,
-      "description": "UserPermission Model"
+      "_next_schema_id": 3
     },
     {
       "id": 41,

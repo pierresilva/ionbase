@@ -14,6 +14,7 @@ import { SettingsCreateComponent} from "./settings-create/settings-create.compon
 import { SettingsDuplicateComponent} from "./settings-duplicate/settings-duplicate.component";
 import { SettingsEditComponent} from "./settings-edit/settings-edit.component";
 import { SettingsFormComponent} from "./settings-form/settings-form.component";
+import {SettingsModalComponent} from "./settings-modal/settings-modal.component";
 
 @NgModule({
     imports: [
@@ -30,6 +31,7 @@ import { SettingsFormComponent} from "./settings-form/settings-form.component";
         SettingsDuplicateComponent,
         SettingsEditComponent,
         SettingsFormComponent,
+        SettingsModalComponent,
     ]
 })
 export class SettingsPageModule {

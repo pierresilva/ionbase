@@ -31,6 +31,7 @@ export class CorrPacketsFormComponent implements OnInit, AfterViewInit {
                     }
 
                     if (this.type == 'Entregar') {
+                        // this.model.delivered_at = moment().format('YYYY-MM-DD HH:mm');
                         this.corrPacketsService.corrPacket.delivered_at = moment().format('YYYY-MM-DD HH:mm');
                         this.corrPacketsService.corrPacket.status = 'delivered';
                     }
@@ -54,7 +55,7 @@ export class CorrPacketsFormComponent implements OnInit, AfterViewInit {
             },
         ],
         'conveyor': [
-            {type: 'required', message: 'El campo ' + this.toTitlecase.transform('TRANPORTADOR') + ' es obligatorio.'},
+            {type: 'required', message: 'El campo ' + this.toTitlecase.transform('TRANSPORTADOR') + ' es obligatorio.'},
         ],
         'guide_number': [
             {
@@ -112,6 +113,16 @@ export class CorrPacketsFormComponent implements OnInit, AfterViewInit {
 
     ngAfterViewInit() {
 
+    }
+
+    ionViewWillEnter() {
+        // if (this.type && this.type == 'Entregar') {
+        //     this.model.delivered_at = this.now;
+        // }
+        //
+        // if (this.type && this.type == 'Recibir') {
+        //     this.model.received_at = this.now;
+        // }
     }
 
     async openViewer(url) {

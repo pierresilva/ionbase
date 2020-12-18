@@ -17,6 +17,8 @@ import {IonicSelectableComponent} from "ionic-selectable";
 import * as moment from 'moment';
 import {GetParameterPipe} from "../../@shared/pipes/get-parameter.pipe";
 import {SplitPanelService} from "../../@shared/services/split-panel.service";
+import {Subscription} from "rxjs";
+import {getFormValidationErrors} from "../../@shared/classes/form-validation-errors";
 
 @Component({
     selector: 'app-coun-meetings-create-custom',
@@ -29,6 +31,8 @@ export class CounMeetingsCreateCustomComponent implements OnInit {
 
     @ViewChild('counMeetingsForm') counMeetingsForm: FormGroup;
     @ViewChild('userSelect') userSelect: IonicSelectableComponent;
+
+    private formSubscription: Subscription;
 
     public validationMessages = {
         'name': [
@@ -90,6 +94,8 @@ export class CounMeetingsCreateCustomComponent implements OnInit {
 
     fileToUpload: any = null;
 
+    selectYears: any[] = [2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030];
+
     constructor(
         public counMeetingsService: CounMeetingsService,
         public usersService: UsersService,
@@ -113,13 +119,21 @@ export class CounMeetingsCreateCustomComponent implements OnInit {
         this.counMeetingId = this.route.snapshot.paramMap.get('id');
 
         this.getMeeting();
-
-        console.log(this.getParameter.transform('juntas.plantilla.final'));
     }
 
     ionViewWillEnter() {
         this.splitPanel.show.next(true);
+        this.formSubscription = this.counMeetingsForm.valueChanges.subscribe((data) => {
+            console.log(this.counMeetingsForm.value);
 
+            if (this.counMeetingsForm.invalid) {
+                console.log(getFormValidationErrors(this.counMeetingsForm.controls));
+            }
+        });
+    }
+
+    ionViewWillLeave() {
+        this.formSubscription.unsubscribe();
     }
 
     toggleMenu() {

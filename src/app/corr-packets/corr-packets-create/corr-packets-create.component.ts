@@ -5,6 +5,7 @@ import {CorrPacket} from "../corr-packet";
 import {CorrPacketsFormComponent} from "../corr-packets-form/corr-packets-form.component";
 import { Platform } from '@ionic/angular';
 import {SplitPanelService} from "../../@shared/services/split-panel.service";
+import {Subscription} from "rxjs";
 
 @Component({
     selector: 'app-corr-packets-create',
@@ -17,6 +18,7 @@ export class CorrPacketsCreateComponent implements OnInit, AfterViewInit {
 
     id: any = null;
     public formValid = false;
+    private formSubscription: Subscription;
 
     constructor(
         public corrPacketsService: CorrPacketsService,
@@ -33,12 +35,18 @@ export class CorrPacketsCreateComponent implements OnInit, AfterViewInit {
 
     ionViewWillEnter() {
        this.splitPanel.show.next(true);
+       this.formSubscription = this.corrPacketForm.corrPacketsForm.valueChanges.subscribe((data) => {
+           this.corrPacketsService.corrPacketsFormValid.next(this.corrPacketForm.corrPacketsForm.valid);
+       });
+
+    }
+
+    ionViewWillLeave() {
+        this.formSubscription.unsubscribe();
     }
 
     ngAfterViewInit() {
-        this.corrPacketForm.corrPacketsForm.valueChanges.subscribe((data) => {
-            this.corrPacketsService.corrPacketsFormValid.next(this.corrPacketForm.corrPacketsForm.valid);
-        });
+
     }
 
     clearPosts() {

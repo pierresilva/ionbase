@@ -18,6 +18,8 @@ export class CorrPacketsEditComponent implements OnInit, AfterViewInit {
     public id: any = null;
     public model: CorrPacket = null;
 
+    type: string = null;
+
   constructor(
       public corrPacketsService: CorrPacketsService,
       public route: ActivatedRoute,
@@ -28,6 +30,7 @@ export class CorrPacketsEditComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
       this.id = this.route.snapshot.paramMap.get('id');
       this.corrPacketsService.editCorrPacket(this.id);
+      this.type = this.route.snapshot.paramMap.get('type');
   }
 
   ionViewWillEnter() {

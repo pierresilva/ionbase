@@ -14,6 +14,7 @@ import { SettingGroupsCreateComponent} from "./setting-groups-create/setting-gro
 import { SettingGroupsDuplicateComponent} from "./setting-groups-duplicate/setting-groups-duplicate.component";
 import { SettingGroupsEditComponent} from "./setting-groups-edit/setting-groups-edit.component";
 import { SettingGroupsFormComponent} from "./setting-groups-form/setting-groups-form.component";
+import {SettingGroupsModalComponent} from "./setting-groups-modal/setting-groups-modal.component";
 
 @NgModule({
     imports: [
@@ -30,6 +31,7 @@ import { SettingGroupsFormComponent} from "./setting-groups-form/setting-groups-
         SettingGroupsDuplicateComponent,
         SettingGroupsEditComponent,
         SettingGroupsFormComponent,
+        SettingGroupsModalComponent,
     ]
 })
 export class SettingGroupsPageModule {

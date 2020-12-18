@@ -69,11 +69,15 @@
                     <h2>{{settings.getSetting('landing.button.title')}}</h2>
                     <div class="ion-text-center">
                         <ion-button [routerLink]="'/auth/login'"
-                                    fill="clear">Ingresar
-                            <ion-icon slot="end" name="arrow-forward"></ion-icon>
+                                    fill="outline">Ingresar
                         </ion-button>
                         <ion-button [routerLink]="'/auth/register'"
-                                    fill="clear">Registrate
+                                    fill="outline">Regístrate
+                        </ion-button>
+                    </div>
+                    <div class="ion-text-center">
+                        <ion-button [routerLink]="'/folder/Inbox'"
+                                    fill="clear">Continuar
                             <ion-icon slot="end" name="arrow-forward"></ion-icon>
                         </ion-button>
                     </div>

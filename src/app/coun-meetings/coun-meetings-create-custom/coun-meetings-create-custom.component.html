@@ -2,10 +2,13 @@
     <ion-toolbar>
 
         <ion-buttons slot="start">
-            <ion-buttons slot="start" *ngIf="true">
-                <ion-menu-toggle auto-hide="false" menu="main-menu">
+            <ion-buttons slot="start"
+                         *ngIf="true">
+                <ion-menu-toggle auto-hide="false"
+                                 menu="main-menu">
                     <ion-button (click)="toggleMenu()">
-                        <ion-icon slot="icon-only" name="menu"></ion-icon>
+                        <ion-icon slot="icon-only"
+                                  name="menu"></ion-icon>
                     </ion-button>
                 </ion-menu-toggle>
             </ion-buttons>
@@ -17,7 +20,9 @@
                         fill="clear"
                         [disabled]="!counMeetingsForm.valid">
                 <ng-container *ngIf="!platform.is('mobile')">Guardar</ng-container>
-                <ion-icon slot="end" color="success" name="save-outline"></ion-icon>
+                <ion-icon slot="end"
+                          color="success"
+                          name="save-outline"></ion-icon>
             </ion-button>
         </ion-buttons>
 
@@ -43,15 +48,19 @@
                     <ion-segment-button value="citations">
                         <ion-label>CITACIONES</ion-label>
                     </ion-segment-button>
-                    <ion-segment-button *ngIf="counMeetingId" value="assistance">
+                    <ion-segment-button *ngIf="counMeetingId"
+                                        value="assistance">
                         <ion-label>ASISTENCIA</ion-label>
                     </ion-segment-button>
-                    <ion-segment-button *ngIf="counMeetingId && model.status == 'in_progress'" value="act">
+                    <ion-segment-button *ngIf="counMeetingId && model.status == 'in_progress'"
+                                        value="act">
                         <ion-label>ACTA</ion-label>
                     </ion-segment-button>
                 </ion-segment>
                 <ng-container>
-                    <form #counMeetingsForm="ngForm" novalidate autocomplete="off">
+                    <form #counMeetingsForm="ngForm"
+                          novalidate
+                          autocomplete="off">
                         <ion-card [ngStyle]="{'display': (type == 'general') ? 'block' : 'none'}">
                             <ion-list>
                                 <ion-list-header class="item-transparent">Junta</ion-list-header>
@@ -90,7 +99,8 @@
                                 </ion-item>
                                 <div class="validation-errors">
                                     <ng-container *ngFor="let validation of validationMessages.type">
-                                        <div class="error-message" *ngIf="counMeetingsForm.form.controls['type']?.hasError(validation.type)">
+                                        <div class="error-message"
+                                             *ngIf="counMeetingsForm.form.controls['type']?.hasError(validation.type)">
                                             {{ validation.message }}
                                         </div>
                                     </ng-container>
@@ -120,11 +130,12 @@
                                 <ion-item class="item-transparent">
                                     <ion-label position="floating">Fecha</ion-label>
                                     <ion-datetime name="date"
+                                                  type="text"
                                                   id="date-field"
                                                   [required]="true"
                                                   [readonly]="!!counMeetingId"
                                                   [doneText]="'Seleccionar'"
-                                                  max="2040-12-31"
+                                                  [yearValues]="[2030, 2029, 2028, 2027, 2026, 2025, 2024, 2023, 2022, 2021, 2020]"
                                                   [cancelText]="'Cancelar'"
                                                   [(ngModel)]="model.date"
                                                   displayFormat="DD/MM/YYYY"></ion-datetime>
@@ -217,8 +228,10 @@
                                 </ion-item>
                             </ion-list>
                             <ng-container *ngIf="model?.coun_meeting_agendas?.length">
-                                <ion-reorder-group disabled="false" (ionItemReorder)="onRenderItems($event)">
-                                    <ion-item class="item-transparent" *ngFor="let agenda of model.coun_meeting_agendas">
+                                <ion-reorder-group disabled="false"
+                                                   (ionItemReorder)="onRenderItems($event)">
+                                    <ion-item class="item-transparent"
+                                              *ngFor="let agenda of model.coun_meeting_agendas">
                                         <ion-reorder slot="end"></ion-reorder>
                                         <ion-label>{{agenda.name}}</ion-label>
                                         <ion-icon name="remove-circle-outline"
@@ -266,7 +279,8 @@
 
                             <ng-container *ngIf="getAdditionalCitations().length">
                                 <ion-list>
-                                    <ion-item class="item-transparent" *ngFor="let citation of getAdditionalCitations()">
+                                    <ion-item class="item-transparent"
+                                              *ngFor="let citation of getAdditionalCitations()">
                                         <ion-label>{{citation.name}}</ion-label>
                                         <ion-icon name="remove-circle-outline"
                                                   color="danger"
@@ -289,7 +303,8 @@
 
                             <ng-container *ngIf="model.coun_meeting_citations.length">
                                 <ion-list>
-                                    <ion-item class="item-transparent" *ngFor="let citation of model.coun_meeting_citations">
+                                    <ion-item class="item-transparent"
+                                              *ngFor="let citation of model.coun_meeting_citations">
                                         <ion-label>{{citation.name}}</ion-label>
                                         <ion-icon [name]="citation.attended ? 'checkbox-outline' : 'square-outline'"
                                                   [color]="citation.attended ? 'success' : 'danger'"
@@ -318,7 +333,9 @@
                             <ion-list-header>Acta</ion-list-header>
 
                             <ion-item class="item-transparent">
-                                <ion-label position="stacked"><b>Inicio</b></ion-label>
+                                <ion-label position="stacked">
+                                    <b>Inicio</b>
+                                </ion-label>
                                 <div style="width: 100%;"
                                      [ngxSummernote]="{width: '100%', dialogsInBody: true}"
                                      [name]="'start_content'"
@@ -329,7 +346,9 @@
                             <ng-container *ngIf="model.coun_meeting_agendas.length">
                                 <ion-item class="item-transparent"
                                           *ngFor="let agenda of model.coun_meeting_agendas; let index = index">
-                                    <ion-label position="stacked"><b>{{agenda.name}}</b></ion-label>
+                                    <ion-label position="stacked">
+                                        <b>{{agenda.name}}</b>
+                                    </ion-label>
                                     <div style="width: 100%;"
                                          [ngxSummernote]="{width: '100%', dialogsInBody: true}"
                                          [name]="'html' + index"
@@ -339,7 +358,9 @@
                             </ng-container>
 
                             <ion-item class="item-transparent">
-                                <ion-label position="stacked"><b>Finalizacion</b></ion-label>
+                                <ion-label position="stacked">
+                                    <b>Finalizacion</b>
+                                </ion-label>
                                 <div style="width: 100%;"
                                      [ngxSummernote]="{width: '100%', dialogsInBody: true}"
                                      [name]="'end_content'"
@@ -349,8 +370,11 @@
 
                             <ion-item class="itemtransparent">
                                 <ion-label>Subir archivos adicionales</ion-label>
-                                <ion-button fill="clean" slot="end" class="file-upload-button">
-                                    <ion-icon name="cloud-upload-outline" slot="icon-only"></ion-icon>
+                                <ion-button fill="clean"
+                                            slot="end"
+                                            class="file-upload-button">
+                                    <ion-icon name="cloud-upload-outline"
+                                              slot="icon-only"></ion-icon>
                                     <input type="file"
                                            #fileInput
                                            (change)="onFileSelect(fileInput)">
@@ -361,8 +385,14 @@
                             </ion-item>
                             <ng-container *ngIf="model?.files?.length">
                                 <ion-item *ngFor="let file of model.files">
-                                    <ion-label><a [href]="file.url" target="_blank">{{ file.name }}</a></ion-label>
-                                    <ion-icon name="remove-circle-outline" color="danger" slot="end" (click)="removeFile(file)"></ion-icon>
+                                    <ion-label>
+                                        <a [href]="file.url"
+                                           target="_blank">{{ file.name }}</a>
+                                    </ion-label>
+                                    <ion-icon name="remove-circle-outline"
+                                              color="danger"
+                                              slot="end"
+                                              (click)="removeFile(file)"></ion-icon>
                                 </ion-item>
                             </ng-container>
 

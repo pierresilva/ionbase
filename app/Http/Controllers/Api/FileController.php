@@ -102,7 +102,7 @@ class FileController extends ApiController
         DB::commit();
 
         return $this->responseSuccess(
-          'JUNTASARCHIVOSDEAGENDA almacenado!',
+          'JUNTAS ARCHIVOSDEAGENDA almacenado!',
           $file->toArray(),
           false,
           false,

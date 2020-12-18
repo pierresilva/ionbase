@@ -14,6 +14,7 @@ import {RegisterComponent} from "./register/register.component";
 import {RegisterConfirmComponent} from "./register-confirm/register-confirm.component";
 import {SharedModule} from "../@shared/shared.module";
 import {SplitPanelService} from "../@shared/services/split-panel.service";
+import {LogoutComponent} from "./logout/logout.component";
 
 @NgModule({
     imports: [
@@ -30,6 +31,7 @@ import {SplitPanelService} from "../@shared/services/split-panel.service";
         PasswordForgotComponent,
         RegisterComponent,
         RegisterConfirmComponent,
+        LogoutComponent,
     ]
 })
 export class AuthPageModule {

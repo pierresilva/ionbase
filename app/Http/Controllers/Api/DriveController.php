@@ -69,7 +69,7 @@ class DriveController extends ApiController
                 'url' => config('app.url') . '/storage/' . $saved,
                 'fileable_id' => $request->get('fileable_id'),
                 'fileable_type' => 'App\Models\\' . $request->get('fileable_type'),
-                'type' => $requestData['type']
+                'type' => $requestData['type'] ?? ''
             ]);
         } catch (\Exception $exception) {
             return $this->responseError($exception->getMessage());

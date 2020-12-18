@@ -8,6 +8,7 @@ import { BarcodeScannerPageRoutingModule } from './barcode-scanner-routing.modul
 
 import { BarcodeScannerPage } from './barcode-scanner.page';
 import {SharedModule} from '../@shared/shared.module';
+import {BarcodeScannerModalComponent} from "./barcode-scanner-modal/barcode-scanner-modal.component";
 
 @NgModule({
   imports: [
@@ -15,8 +16,11 @@ import {SharedModule} from '../@shared/shared.module';
     FormsModule,
     IonicModule,
     BarcodeScannerPageRoutingModule,
-    SharedModule
+    SharedModule,
   ],
-  declarations: [BarcodeScannerPage]
+  declarations: [
+      BarcodeScannerPage,
+      BarcodeScannerModalComponent,
+  ]
 })
 export class BarcodeScannerPageModule {}
