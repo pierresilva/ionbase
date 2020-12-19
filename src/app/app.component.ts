@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
 
     public isLoading = false;
 
-    public appTitle: string = 'Ion Base';
+    public appTitle: string = 'Noha App';
 
     constructor(
         private platform: Platform,
