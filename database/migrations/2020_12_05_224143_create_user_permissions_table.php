@@ -16,7 +16,7 @@ class CreateUserPermissionsTable extends Migration
         Schema::disableForeignKeyConstraints();
         Schema::create('user_permissions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_permission_group_id');
+            $table->unsignedBigInteger('user_permission_group_id')->nullable();
             $table->foreign('user_permission_group_id')
                 ->references('id')
                 ->on('user_permission_groups')
