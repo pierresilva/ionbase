@@ -1,5 +1,5 @@
 import {APP_INITIALIZER, NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
+import {BrowserModule, Title} from '@angular/platform-browser';
 import {RouteReuseStrategy} from '@angular/router';
 
 import {IonicModule, IonicRouteStrategy} from '@ionic/angular';
@@ -48,6 +48,7 @@ const APPINIT_PROVIDES = [
         StatusBar,
         SplashScreen,
         SplitPanelService,
+        Title,
         {
             provide: RouteReuseStrategy,
             useClass: IonicRouteStrategy

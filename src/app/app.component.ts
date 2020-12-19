@@ -6,6 +6,9 @@ import {StatusBar} from '@ionic-native/status-bar/ngx';
 import {LoadingService} from "./@shared/services/loading.service";
 import {SplitPanelService} from "./@shared/services/split-panel.service";
 import {AuthService} from "./@shared/services/auth.service";
+import {Title} from "@angular/platform-browser";
+import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
+import {filter, map} from "rxjs/operators";
 
 @Component({
     selector: 'app-root',
@@ -20,6 +23,8 @@ export class AppComponent implements OnInit {
 
     public isLoading = false;
 
+    public appTitle: string = 'Ion Base';
+
     constructor(
         private platform: Platform,
         private splashScreen: SplashScreen,
@@ -27,6 +32,9 @@ export class AppComponent implements OnInit {
         public loading: LoadingService,
         public splitPanel: SplitPanelService,
         public auth: AuthService,
+        public title: Title,
+        public router: Router,
+        public route: ActivatedRoute,
     ) {
         this.initializeApp();
         // this.splitPanel.show.next(false);
@@ -45,10 +53,33 @@ export class AppComponent implements OnInit {
 
     ngOnInit() {
 
+
+
         const path = window.location.pathname.split('folder/')[1];
         /*if (path !== undefined) {
             this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
         }*/
+        // this.title.setTitle(this.appTitle);
+        // const appTitle = this.title.getTitle();
+        const appTitle = this.appTitle;
+        this.router
+            .events.pipe(
+            filter(event => event instanceof NavigationEnd),
+            map(() => {
+                let child = this.route.firstChild;
+                while (child.firstChild) {
+                    child = child.firstChild;
+                }
+                if (child.snapshot.data['title']) {
+                    return (appTitle + ' : ' + child.snapshot.data['title']);
+                }
+                return appTitle;
+            })
+        ).subscribe((ttl: string) => {
+
+            this.title.setTitle(ttl);
+        });
+
 
     }
 

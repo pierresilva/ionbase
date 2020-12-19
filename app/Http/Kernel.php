@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\CorsMiddleware;
+use App\Http\Middleware\SubdomainMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -16,6 +17,7 @@ class Kernel extends HttpKernel
      */
     protected $middleware = [
         CorsMiddleware::class,
+        SubdomainMiddleware::class,
         // \App\Http\Middleware\TrustHosts::class,
         \App\Http\Middleware\TrustProxies::class,
         \Fruitcake\Cors\HandleCors::class,

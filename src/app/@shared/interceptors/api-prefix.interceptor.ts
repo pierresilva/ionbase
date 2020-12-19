@@ -1,18 +1,20 @@
 import { Injectable } from '@angular/core';
-import {
-  HttpRequest,
-  HttpHandler,
-  HttpEvent,
-  HttpInterceptor
-} from '@angular/common/http';
+import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import {environment} from "../../../environments/environment";
 
+/**
+ * Prefixes all requests not starting with `http[s]` with `environment.serverUrl`.
+ */
 @Injectable()
 export class ApiPrefixInterceptor implements HttpInterceptor {
-
-  constructor() {}
-
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+  constructor() {
+    console.log('API Prefix interceptor');
+  }
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    if (!/^(http|https):/i.test(request.url)) {
+      request = request.clone({ url: environment.serverUrl + '/' + request.url });
+    }
     return next.handle(request);
   }
 }

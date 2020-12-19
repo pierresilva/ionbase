@@ -6,14 +6,14 @@
             <ion-content>
                 <div class="ion-text-center ion-no-padding">
                     <a [routerLink]="'/'">
-                        <img [src]="darkEnabled() ? '/assets/images/NoahApp/logo-light-square.png' : '/assets/images/NoahApp/logo-dark-square.png'"
+                        <img [src]="darkEnabled() ? 'assets/images/NoahApp/logo-light-square.png' : 'assets/images/NoahApp/logo-dark-square.png'"
                              style="max-height: 82px;">
                     </a>
                 </div>
                 <ion-list id="inbox-list" *ngIf="auth.userIsLogged()">
                     <ion-item lines="none">
                         <ion-avatar slot="start" style="background-color: #cccccc;">
-                            <img [src]="auth.getUser().profile?.avatar ? auth.getUser().profile?.avatar : '/assets/images/avatar.svg'">
+                            <img [src]="auth.getUser().profile?.avatar ? auth.getUser().profile?.avatar : 'assets/images/avatar.svg'">
                         </ion-avatar>
                         <ion-label>
                             {{auth.getUser().name}}

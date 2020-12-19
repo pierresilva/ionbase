@@ -43,6 +43,9 @@ import {CustomFormsModule} from "ng2-validation";
 import {AutoCompleteModule} from "ionic4-auto-complete";
 import { NgxIonicImageViewerModule } from 'ngx-ionic-image-viewer';
 import {SettingsService} from "./services/settings.service";
+import {TokenInterceptor} from "./interceptors/token.interceptor";
+import {ApiPrefixInterceptor} from "./interceptors/api-prefix.interceptor";
+import {SubdomainInterceptor} from "./interceptors/subdomain.interceptor";
 
 
 @NgModule({
@@ -113,9 +116,25 @@ import {SettingsService} from "./services/settings.service";
 
         {
             provide: HTTP_INTERCEPTORS,
+            useClass: SubdomainInterceptor,
+            multi: true,
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: ApiPrefixInterceptor,
+            multi: true,
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: TokenInterceptor,
+            multi: true
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
             useClass: LoadingInterceptor,
             multi: true,
         },
+
 
         TitleCasePipe,
         LowerCasePipe,

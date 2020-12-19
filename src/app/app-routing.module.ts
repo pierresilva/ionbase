@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
+import {AuthGuard} from "./@shared/guards/auth.guard";
 
 const routes: Routes = [
     {
@@ -29,18 +30,34 @@ const routes: Routes = [
     },
     {
         path: 'users',
-        loadChildren: () => import('./users/users.module').then(m => m.UsersPageModule)
+        loadChildren: () => import('./users/users.module').then(m => m.UsersPageModule),
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        data: {
+            logged: true,
+        }
     },
 
 // generated section
 
     {
         path: 'user-profiles',
-        loadChildren: () => import('./user-profiles/user-profiles.module').then( m => m.UserProfilesPageModule)
+        loadChildren: () => import('./user-profiles/user-profiles.module').then( m => m.UserProfilesPageModule),
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        data: {
+            title: 'Perfiles de usuario',
+            roles: ['admin'],
+        }
     },
     {
         path: 'syst-cities',
-        loadChildren: () => import('./syst-cities/syst-cities.module').then( m => m.SystCitiesPageModule)
+        loadChildren: () => import('./syst-cities/syst-cities.module').then( m => m.SystCitiesPageModule),
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        data: {
+            roles: ['admin'],
+        }
     },
     {
         path: 'syst-regions',

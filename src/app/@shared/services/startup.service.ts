@@ -17,8 +17,10 @@ export class StartupService {
 
     load(): Promise<void> {
         return new Promise((resolve) => {
+            this.storageLocal.set('subdomain', '0001');
+            const subdomain = this.storageLocal.get('subdomain');
             zip(
-                this.httpClient.get(`${environment.serverUrl}/api/setting-groups?all=true`)
+                this.httpClient.get(environment.serverUrl + '/api/setting-groups?all=true')
             )
                 .pipe(
                     catchError((res) => {

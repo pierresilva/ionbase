@@ -13,7 +13,9 @@ export class LoadingInterceptor implements HttpInterceptor {
         public loadingService: LoadingService,
         public toast: ToastService,
         // public translate: TranslateService,
-    ) {}
+    ) {
+        console.log('Loading Interceptor');
+    }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const authReq = req.clone();
