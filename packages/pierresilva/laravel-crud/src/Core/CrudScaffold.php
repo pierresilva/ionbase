@@ -168,6 +168,7 @@ class CrudScaffold
                     if (Str::endsWith($file, NameResolver::solveName($model->name, 'name_names') . '_table')) {
                         $tableMigrationFiles[] = $file;
                     }
+
                 }
                 $countMigrations = count($tableMigrationFiles);
 
@@ -246,35 +247,6 @@ class CrudScaffold
                 $output = $stub_obj->compile();
                 $this->files->put($output_path, $output);
             }
-
-            // this case means two state
-            // first state is created migration file and not migrate.
-            // second state is not-created migration.
-            // this program ignore first state.
-
-            // case using laravel auth
-//            if ($this->data->use_laravel_auth === true && $model->name === "user") {
-//
-//                $stub_txt = $this->files->get(__DIR__ . '/../Stubs/database/migrations/Auth/yyyy_mm_dd_hhmmss_add_column_to_users_table.stub');
-//                $output_path = base_path() . '/database/migrations/' . date('Y_m_d_His') . '_add_column_to_users_table.php';
-//                $stub_obj = new StubCompiler($stub_txt, $model);
-//                $output = $stub_obj->compile();
-//                $this->files->put($output_path, $output);
-//
-//            } else {
-//
-//                //create migration file
-//                $stub_txt = $this->files->get(__DIR__ . '/../Stubs/database/migrations/yyyy_mm_dd_hhmmss_create_[model]_table.stub');
-//
-//                if ($model->is_pivot) {
-//                    $output_path = base_path() . '/database/migrations/' . date('Y_m_d_His') . '_create_' . NameResolver::solveName($model->name, 'name_name') . '_table.php';
-//                } else {
-//                    $output_path = base_path() . '/database/migrations/' . date('Y_m_d_His') . '_create_' . NameResolver::solveName($model->name, 'name_names') . '_table.php';
-//                }
-//                $stub_obj = new StubCompiler($stub_txt, $model);
-//                $output = $stub_obj->compile();
-//                $this->files->put($output_path, $output);
-//            }
         }
     }
 
@@ -339,7 +311,7 @@ class CrudScaffold
             //overwrite check
             if (!$this->command->option('force')) {   // no check if force option is selected
                 if ($this->files->exists($output_path)) {
-                    throw new \Exception("Seed File is already exists![" . $output_path . "]");
+                    continue;
                 }
             }
             $this->files->put($output_path, $output);
@@ -418,6 +390,12 @@ class CrudScaffold
 
                 }
 
+                if (!$this->command->option('force')) {   // no check if force option is selected
+                    if ($this->files->exists($output_path)) {
+                        continue;
+                    }
+                }
+
                 $this->files->put($output_path, $output);
 //            }
         }
@@ -443,7 +421,7 @@ class CrudScaffold
             //overwrite check
             if (!$this->command->option('force')) {
                 if ($this->files->exists($output_path)) {
-                    throw new \Exception("Controller File is already exists![" . $output_path . "]");
+                    continue;
                 }
             }
             $this->files->put($output_path, $output);
@@ -479,6 +457,13 @@ class CrudScaffold
                 preg_match($replace_pattern, $original_src, $matches);
 
                 $output = preg_replace($replace_pattern, "$1\n\n" . $add_src . "\n\n$3", $original_src);
+            }
+
+            //overwrite check
+            if (!$this->command->option('force')) {
+                if ($this->files->exists($output_path)) {
+                    continue;
+                }
             }
 
             $this->files->put($output_path, $output);
@@ -632,7 +617,7 @@ class CrudScaffold
                 //overwrite check
                 if (!$this->command->option('force')) {
                     if ($this->files->exists($output_path)) {
-                        throw new \Exception("View File is already exists![" . $output_path . "]");
+                        continue;
                     }
                 }
 
@@ -719,7 +704,6 @@ class CrudScaffold
                 }
 
                 // routing
-
                 $stub_txt = $this->files->get(__DIR__ . '/../Stubs/src/app/page/routing_ts.stub');
                 $output_filename = NameResolver::solveName($model->name, 'name-names') . '-routing.module.ts';
                 $output_path = $output_dir . '/' . $output_filename;
@@ -730,14 +714,26 @@ class CrudScaffold
                 $this->files->put($output_path, $output);
 
                 // component
-
                 $stub_txt = $this->files->get(__DIR__ . '/../Stubs/src/app/page/component_ts.stub');
                 $output_filename = NameResolver::solveName($model->name, 'name-names') . '.page.ts';
                 $output_path = $output_dir . '/' . $output_filename;
                 $stub_obj = new StubCompiler($stub_txt, $model);
                 $output = $stub_obj->compile();
 
-                $this->files->put($output_path, $output);
+                //overwrite check
+                if (!$this->command->option('force')) {
+                    if ($this->files->exists($output_path)) {
+                        continue;
+                    }
+                }
+
+                // overwrite check
+                if (!$this->files->exists($output_path)) {
+                    $this->files->put($output_path, $output);
+                }
+                if ($this->files->exists($output_path) && $this->command->option('force')) {
+                    $this->files->put($output_path, $output);
+                }
 
                 // html
 
@@ -747,7 +743,13 @@ class CrudScaffold
                 $stub_obj = new StubCompiler($stub_txt, $model);
                 $output = $stub_obj->compile();
 
-                $this->files->put($output_path, $output);
+                // overwrite check
+                if (!$this->files->exists($output_path)) {
+                    $this->files->put($output_path, $output);
+                }
+                if ($this->files->exists($output_path) && $this->command->option('force')) {
+                    $this->files->put($output_path, $output);
+                }
 
                 // css
 
@@ -757,7 +759,13 @@ class CrudScaffold
                 $stub_obj = new StubCompiler($stub_txt, $model);
                 $output = $stub_obj->compile();
 
-                $this->files->put($output_path, $output);
+                // overwrite check
+                if (!$this->files->exists($output_path)) {
+                    $this->files->put($output_path, $output);
+                }
+                if ($this->files->exists($output_path) && $this->command->option('force')) {
+                    $this->files->put($output_path, $output);
+                }
 
                 // module
 
@@ -767,7 +775,13 @@ class CrudScaffold
                 $stub_obj = new StubCompiler($stub_txt, $model);
                 $output = $stub_obj->compile();
 
-                $this->files->put($output_path, $output);
+                // overwrite check
+                if (!$this->files->exists($output_path)) {
+                    $this->files->put($output_path, $output);
+                }
+                if ($this->files->exists($output_path) && $this->command->option('force')) {
+                    $this->files->put($output_path, $output);
+                }
 
                 // model
 
@@ -777,7 +791,13 @@ class CrudScaffold
                 $stub_obj = new StubCompiler($stub_txt, $model);
                 $output = $stub_obj->compile();
 
-                $this->files->put($output_path, $output);
+                // overwrite check
+                if (!$this->files->exists($output_path)) {
+                    $this->files->put($output_path, $output);
+                }
+                if ($this->files->exists($output_path) && $this->command->option('force')) {
+                    $this->files->put($output_path, $output);
+                }
 
                 // service
 
@@ -787,7 +807,13 @@ class CrudScaffold
                 $stub_obj = new StubCompiler($stub_txt, $model);
                 $output = $stub_obj->compile();
 
-                $this->files->put($output_path, $output);
+                // overwrite check
+                if (!$this->files->exists($output_path)) {
+                    $this->files->put($output_path, $output);
+                }
+                if ($this->files->exists($output_path) && $this->command->option('force')) {
+                    $this->files->put($output_path, $output);
+                }
 
                 // list
                 // list html
@@ -797,7 +823,13 @@ class CrudScaffold
                 $stub_obj = new StubCompiler($stub_txt, $model);
                 $output = $stub_obj->compile();
 
-                $this->files->put($output_path, $output);
+                // overwrite check
+                if (!$this->files->exists($output_path)) {
+                    $this->files->put($output_path, $output);
+                }
+                if ($this->files->exists($output_path) && $this->command->option('force')) {
+                    $this->files->put($output_path, $output);
+                }
 
                 // list ts
                 $stub_txt = $this->files->get(__DIR__ . '/../Stubs/src/app/page/list/ts.stub');
@@ -806,7 +838,13 @@ class CrudScaffold
                 $stub_obj = new StubCompiler($stub_txt, $model);
                 $output = $stub_obj->compile();
 
-                $this->files->put($output_path, $output);
+                // overwrite check
+                if (!$this->files->exists($output_path)) {
+                    $this->files->put($output_path, $output);
+                }
+                if ($this->files->exists($output_path) && $this->command->option('force')) {
+                    $this->files->put($output_path, $output);
+                }
 
                 // list scss
                 $stub_txt = $this->files->get(__DIR__ . '/../Stubs/src/app/page/list/scss.stub');
@@ -815,7 +853,13 @@ class CrudScaffold
                 $stub_obj = new StubCompiler($stub_txt, $model);
                 $output = $stub_obj->compile();
 
-                $this->files->put($output_path, $output);
+                // overwrite check
+                if (!$this->files->exists($output_path)) {
+                    $this->files->put($output_path, $output);
+                }
+                if ($this->files->exists($output_path) && $this->command->option('force')) {
+                    $this->files->put($output_path, $output);
+                }
 
                 // create
                 if (!$this->files->exists($output_dir . '/' . NameResolver::solveName($model->name, 'name-names') . '-create')) {
@@ -828,7 +872,13 @@ class CrudScaffold
                 $stub_obj = new StubCompiler($stub_txt, $model);
                 $output = $stub_obj->compile();
 
-                $this->files->put($output_path, $output);
+                // overwrite check
+                if (!$this->files->exists($output_path)) {
+                    $this->files->put($output_path, $output);
+                }
+                if ($this->files->exists($output_path) && $this->command->option('force')) {
+                    $this->files->put($output_path, $output);
+                }
 
                 // create ts
                 $stub_txt = $this->files->get(__DIR__ . '/../Stubs/src/app/page/create/ts.stub');
@@ -837,7 +887,13 @@ class CrudScaffold
                 $stub_obj = new StubCompiler($stub_txt, $model);
                 $output = $stub_obj->compile();
 
-                $this->files->put($output_path, $output);
+                // overwrite check
+                if (!$this->files->exists($output_path)) {
+                    $this->files->put($output_path, $output);
+                }
+                if ($this->files->exists($output_path) && $this->command->option('force')) {
+                    $this->files->put($output_path, $output);
+                }
 
                 // create scss
                 $stub_txt = $this->files->get(__DIR__ . '/../Stubs/src/app/page/create/scss.stub');
@@ -846,7 +902,13 @@ class CrudScaffold
                 $stub_obj = new StubCompiler($stub_txt, $model);
                 $output = $stub_obj->compile();
 
-                $this->files->put($output_path, $output);
+                // overwrite check
+                if (!$this->files->exists($output_path)) {
+                    $this->files->put($output_path, $output);
+                }
+                if ($this->files->exists($output_path) && $this->command->option('force')) {
+                    $this->files->put($output_path, $output);
+                }
 
                 // edit
                 if (!$this->files->exists($output_dir . '/' . NameResolver::solveName($model->name, 'name-names') . '-edit')) {
@@ -859,7 +921,13 @@ class CrudScaffold
                 $stub_obj = new StubCompiler($stub_txt, $model);
                 $output = $stub_obj->compile();
 
-                $this->files->put($output_path, $output);
+                // overwrite check
+                if (!$this->files->exists($output_path)) {
+                    $this->files->put($output_path, $output);
+                }
+                if ($this->files->exists($output_path) && $this->command->option('force')) {
+                    $this->files->put($output_path, $output);
+                }
 
                 // edit ts
                 $stub_txt = $this->files->get(__DIR__ . '/../Stubs/src/app/page/edit/ts.stub');
@@ -868,7 +936,13 @@ class CrudScaffold
                 $stub_obj = new StubCompiler($stub_txt, $model);
                 $output = $stub_obj->compile();
 
-                $this->files->put($output_path, $output);
+                // overwrite check
+                if (!$this->files->exists($output_path)) {
+                    $this->files->put($output_path, $output);
+                }
+                if ($this->files->exists($output_path) && $this->command->option('force')) {
+                    $this->files->put($output_path, $output);
+                }
 
                 // edit scss
                 $stub_txt = $this->files->get(__DIR__ . '/../Stubs/src/app/page/edit/scss.stub');
@@ -877,7 +951,13 @@ class CrudScaffold
                 $stub_obj = new StubCompiler($stub_txt, $model);
                 $output = $stub_obj->compile();
 
-                $this->files->put($output_path, $output);
+                // overwrite check
+                if (!$this->files->exists($output_path)) {
+                    $this->files->put($output_path, $output);
+                }
+                if ($this->files->exists($output_path) && $this->command->option('force')) {
+                    $this->files->put($output_path, $output);
+                }
 
                 // form
                 if (!$this->files->exists($output_dir . '/' . NameResolver::solveName($model->name, 'name-names') . '-form')) {
@@ -890,7 +970,13 @@ class CrudScaffold
                 $stub_obj = new StubCompiler($stub_txt, $model);
                 $output = $stub_obj->compile();
 
-                $this->files->put($output_path, $output);
+                // overwrite check
+                if (!$this->files->exists($output_path)) {
+                    $this->files->put($output_path, $output);
+                }
+                if ($this->files->exists($output_path) && $this->command->option('force')) {
+                    $this->files->put($output_path, $output);
+                }
 
                 // form ts
                 $stub_txt = $this->files->get(__DIR__ . '/../Stubs/src/app/page/form/ts.stub');
@@ -899,7 +985,13 @@ class CrudScaffold
                 $stub_obj = new StubCompiler($stub_txt, $model);
                 $output = $stub_obj->compile();
 
-                $this->files->put($output_path, $output);
+                // overwrite check
+                if (!$this->files->exists($output_path)) {
+                    $this->files->put($output_path, $output);
+                }
+                if ($this->files->exists($output_path) && $this->command->option('force')) {
+                    $this->files->put($output_path, $output);
+                }
 
                 // form scss
                 $stub_txt = $this->files->get(__DIR__ . '/../Stubs/src/app/page/form/scss.stub');
@@ -908,7 +1000,13 @@ class CrudScaffold
                 $stub_obj = new StubCompiler($stub_txt, $model);
                 $output = $stub_obj->compile();
 
-                $this->files->put($output_path, $output);
+                // overwrite check
+                if (!$this->files->exists($output_path)) {
+                    $this->files->put($output_path, $output);
+                }
+                if ($this->files->exists($output_path) && $this->command->option('force')) {
+                    $this->files->put($output_path, $output);
+                }
 
                 // duplicate
                 if (!$this->files->exists($output_dir . '/' . NameResolver::solveName($model->name, 'name-names') . '-duplicate')) {
@@ -921,7 +1019,13 @@ class CrudScaffold
                 $stub_obj = new StubCompiler($stub_txt, $model);
                 $output = $stub_obj->compile();
 
-                $this->files->put($output_path, $output);
+                // overwrite check
+                if (!$this->files->exists($output_path)) {
+                    $this->files->put($output_path, $output);
+                }
+                if ($this->files->exists($output_path) && $this->command->option('force')) {
+                    $this->files->put($output_path, $output);
+                }
 
                 // duplicate ts
                 $stub_txt = $this->files->get(__DIR__ . '/../Stubs/src/app/page/duplicate/ts.stub');
@@ -930,7 +1034,13 @@ class CrudScaffold
                 $stub_obj = new StubCompiler($stub_txt, $model);
                 $output = $stub_obj->compile();
 
-                $this->files->put($output_path, $output);
+                // overwrite check
+                if (!$this->files->exists($output_path)) {
+                    $this->files->put($output_path, $output);
+                }
+                if ($this->files->exists($output_path) && $this->command->option('force')) {
+                    $this->files->put($output_path, $output);
+                }
 
                 // duplicate scss
                 $stub_txt = $this->files->get(__DIR__ . '/../Stubs/src/app/page/duplicate/scss.stub');
@@ -939,7 +1049,13 @@ class CrudScaffold
                 $stub_obj = new StubCompiler($stub_txt, $model);
                 $output = $stub_obj->compile();
 
-                $this->files->put($output_path, $output);
+                // overwrite check
+                if (!$this->files->exists($output_path)) {
+                    $this->files->put($output_path, $output);
+                }
+                if ($this->files->exists($output_path) && $this->command->option('force')) {
+                    $this->files->put($output_path, $output);
+                }
             }
 
         }

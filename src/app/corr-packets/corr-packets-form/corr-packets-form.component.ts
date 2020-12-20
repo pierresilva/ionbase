@@ -20,10 +20,13 @@ export class CorrPacketsFormComponent implements OnInit, AfterViewInit {
     @Input('type') type: string = null;
 
     @Input() set housUnitId(data) {
-        if (data) {
 
+        console.log('housunitid ' + data);
+
+        if (data) {
             this.housUnitsService.getHouseUnit(data)
                 .then((res: any) => {
+
                     if (this.type == 'Recibir') {
                         this.clear();
                         this.corrPacketsService.corrPacket.received_at = moment().format('YYYY-MM-DD HH:mm');
@@ -31,9 +34,14 @@ export class CorrPacketsFormComponent implements OnInit, AfterViewInit {
                     }
 
                     if (this.type == 'Entregar') {
+
                         // this.model.delivered_at = moment().format('YYYY-MM-DD HH:mm');
-                        this.corrPacketsService.corrPacket.delivered_at = moment().format('YYYY-MM-DD HH:mm');
-                        this.corrPacketsService.corrPacket.status = 'delivered';
+                        setTimeout(() => {
+                            console.log('entregar ' + moment().format('YYYY-MM-DD HH:mm') + ' delivered');
+                            this.corrPacketsService.corrPacket.delivered_at = moment().format('YYYY-MM-DD HH:mm');
+                            this.corrPacketsService.corrPacket.status = 'delivered';
+                        }, 1000);
+
                     }
                     this.corrPacketsService.corrPacket.hous_unit = res.data;
                     this.corrPacketsService.corrPacket.hous_unit_id = parseInt(data);

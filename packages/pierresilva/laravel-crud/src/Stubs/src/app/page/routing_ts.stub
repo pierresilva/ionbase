@@ -7,6 +7,7 @@ import {{{{ $name|NameNames }}}CreateComponent} from "./{{{ $name|name-names }}}
 import {{{{ $name|NameNames }}}ListComponent} from "./{{{ $name|name-names }}}-list/{{{ $name|name-names }}}-list.component";
 
 const routes: Routes = [
+// generated section
     {
         path: '',
         component: {{{ $name|NameNames }}}Page
@@ -24,6 +25,7 @@ const routes: Routes = [
         component: {{{ $name|NameNames }}}EditComponent
     },
 ];
+// end generated section
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

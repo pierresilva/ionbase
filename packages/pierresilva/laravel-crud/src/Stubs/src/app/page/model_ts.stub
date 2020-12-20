@@ -11,7 +11,7 @@ import { {{{ $this.targetModel.name|NameName }}} } from "../{{{ $this.targetMode
 {{{ endforeach; }}}
 
 export interface {{{ $name|NameName }}} {
-
+// model generated section
     id?: any;
 {{{ foreach($schemas): }}}
     {{{ $this.name|name_name }}}?: any,
@@ -32,10 +32,11 @@ export interface {{{ $name|NameName }}} {
     created_at?: any;
     updated_at?: any;
     deleted_at?: any;
+// end model generated section
 }
 
 export interface {{{ $name|NameName }}}Lists {
-
+// lists generated section
 {{{ foreach($relations): }}}
 {{{ if($this.type=='belongsTo'): }}}
     {{{ $this.targetModel.name|NameName }}}?: {{{ $this.targetModel.name|NameName }}}[],
@@ -47,5 +48,6 @@ export interface {{{ $name|NameName }}}Lists {
     {{{ $this.targetModel.name|NameName }}}?: {{{ $this.targetModel.name|NameName }}}[],
 {{{ endif; }}}
 {{{ endforeach; }}}
+// end lists generated section
 
 }

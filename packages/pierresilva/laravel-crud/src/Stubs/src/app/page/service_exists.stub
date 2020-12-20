@@ -1,44 +1,3 @@
-import {Injectable} from '@angular/core';
-import {Router} from "@angular/router";
-import {ApiService} from "../@shared/services/api.service";
-import { {{{ $name|NameName }}}, {{{ $name|NameName }}}Lists } from "./{{{ $name|name-name }}}";
-import {Meta} from "../@shared/interfaces/meta";
-import {AlertService} from "../@shared/services/alert.service";
-import {ToastService} from "../@shared/services/toast.service";
-import {NavigationService} from '../@shared/services/navigation.service'
-import {BehaviorSubject} from "rxjs";
-
-declare var $: any;
-
-@Injectable({
-    providedIn: 'root'
-})
-export class {{{ $name|NameNames }}}Service {
-
-    public {{{ $name|nameNames }}}Url = '{{{ $name|name-names }}}';
-    public {{{ $name|nameNames }}}FormValid = new BehaviorSubject<boolean>(false);
-
-    public {{{ $name|nameNames }}}: {{{ $name|NameName }}}[] = [];
-    public {{{ $name|nameName }}}: {{{ $name|NameName }}} = <{{{ $name|NameName }}}>{};
-    public {{{ $name|nameName }}}Lists: {{{ $name|NameName }}}Lists = {};
-
-    public searchValue = '';
-    public perPage = 10;
-
-    public meta: Meta = null;
-
-    public page = 1;
-
-    public pagesContent = document.getElementById('pages-content');
-
-    constructor(
-        public api: ApiService,
-        public alert: AlertService,
-        public toast: ToastService,
-        public router: Router,
-        private navigation: NavigationService,
-    ) {
-    }
 // generated section
     public get{{{ $name|NameNames }}}(page: any = this.page, perPage: any = this.perPage) {
 
@@ -135,5 +94,3 @@ export class {{{ $name|NameNames }}}Service {
         }
     }
 // end generated section
-
-}

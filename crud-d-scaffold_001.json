@@ -1165,7 +1165,7 @@
     {
       "id": 18,
       "name": "housUnitArea",
-      "display_name": "AREAS DE UNIDADES HABITACIONALES",
+      "display_name": "UNIDADES HABITACIONALES AREAS",
       "use_soft_delete": true,
       "schemas": [
         {
@@ -1225,7 +1225,7 @@
     {
       "id": 19,
       "name": "operSector",
-      "display_name": "SECTORES OPERATIVOS",
+      "display_name": "OPERATIVIDAD SECTORES",
       "use_soft_delete": true,
       "schemas": [
         {
@@ -1691,7 +1691,7 @@
     {
       "id": 24,
       "name": "operSchedule",
-      "display_name": "AGENDA DE OPERACIONES",
+      "display_name": "OPERATRIVIDAD AJENDAS",
       "use_soft_delete": true,
       "schemas": [
         {
@@ -1742,13 +1742,149 @@
           "parent_id": 24,
           "comment": "",
           "options": ""
+        },
+        {
+          "id": 6,
+          "name": "operContractor_id",
+          "display_name": "operContractor - NAME",
+          "type": "integer",
+          "input_type": "select",
+          "varidate": "",
+          "faker_type": "numberBetween(1,30)",
+          "nullable": true,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "operContractor",
+          "parent_id": 24,
+          "comment": "",
+          "options": ""
+        },
+        {
+          "id": 7,
+          "name": "requiredTime",
+          "display_name": "TIEMPO REQUERIDO",
+          "type": "integer",
+          "input_type": "number",
+          "varidate": "",
+          "faker_type": "randomNumber(1, TRUE)",
+          "nullable": true,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "",
+          "parent_id": 24,
+          "comment": "",
+          "options": ""
+        },
+        {
+          "id": 8,
+          "name": "supervisorEmail",
+          "display_name": "EMAIL DEL SUPOERVISOR",
+          "type": "string",
+          "input_type": "text",
+          "varidate": "email",
+          "faker_type": "email",
+          "nullable": true,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "",
+          "parent_id": 24,
+          "comment": "",
+          "options": ""
+        },
+        {
+          "id": 9,
+          "name": "areaPhone",
+          "display_name": "TELÉFONO DEL AREA",
+          "type": "string",
+          "input_type": "text",
+          "varidate": "",
+          "faker_type": "phoneNumber",
+          "nullable": true,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "",
+          "parent_id": 24,
+          "comment": "",
+          "options": ""
+        },
+        {
+          "id": 10,
+          "name": "timeStart",
+          "display_name": "HORA INICIAL",
+          "type": "time",
+          "input_type": "time",
+          "varidate": "",
+          "faker_type": "time()",
+          "nullable": true,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "",
+          "parent_id": 24,
+          "comment": "",
+          "options": ""
+        },
+        {
+          "id": 11,
+          "name": "timeEnd",
+          "display_name": "HORA FINAL",
+          "type": "time",
+          "input_type": "time",
+          "varidate": "",
+          "faker_type": "time()",
+          "nullable": true,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "",
+          "parent_id": 24,
+          "comment": "",
+          "options": ""
+        },
+        {
+          "id": 12,
+          "name": "periodicity",
+          "display_name": "PERIODICIDAD",
+          "type": "string",
+          "input_type": "select",
+          "varidate": "",
+          "faker_type": "randomElement(['daily','monthly','annual'])",
+          "nullable": true,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "",
+          "parent_id": 24,
+          "comment": "",
+          "options": "daily:Diario|weekly:Semanal|monthly:Mensual|bimonthly:Bimensual|quarterly:Trimestral|biannual:Semestral|annual:Anual"
+        },
+        {
+          "id": 13,
+          "name": "repass",
+          "display_name": "REQUIERE REPASAR",
+          "type": "boolean",
+          "input_type": "checkbox",
+          "varidate": "",
+          "faker_type": "boolean()",
+          "nullable": true,
+          "unique": false,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "",
+          "parent_id": 24,
+          "comment": "",
+          "options": ""
         }
       ],
       "is_pivot": false,
       "schema_id_for_relation": 1,
       "pos_x": 492,
       "pos_y": 1586,
-      "_next_schema_id": 6
+      "_next_schema_id": 14
     },
     {
       "id": 25,
@@ -2123,8 +2259,8 @@
       ],
       "is_pivot": false,
       "schema_id_for_relation": 1,
-      "pos_x": 413,
-      "pos_y": 1985,
+      "pos_x": 500,
+      "pos_y": 2249,
       "_next_schema_id": 5
     },
     {
