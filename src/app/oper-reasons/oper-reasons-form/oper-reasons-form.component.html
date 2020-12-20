@@ -1,0 +1,55 @@
+<form #operReasonsForm="ngForm" novalidate autocomplete="off">
+
+
+    <!-- oper_corrective_maintenance_ids -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'OPERATIVIDAD MTTO CORRECTIVOS' | titlecase }}</ion-label>
+        <ionic-selectable name="oper_corrective_maintenance_ids"
+                          id="oper_corrective_maintenance_ids-field"
+                          [(ngModel)]="model.oper_corrective_maintenances"
+                          [items]="operReasonsService.operReasonLists.OperCorrectiveMaintenance"
+                          itemValueField="id"
+                          itemTextField="name"
+                          [isMultiple]="true"
+                          [canClear]="true"
+                          [hasConfirmButton]="true"
+                          [confirmButtonText]="'Seleccionar'"
+                          [searchPlaceholder]="'Buscar ' + ('OPERATIVIDAD MTTO CORRECTIVOS' | titlecase)"
+                          [searchFailText]="'No se encontro ' + ('OPERATIVIDAD MTTO CORRECTIVOS' | titlecase) + ' que coincida!'"
+                          [closeButtonText]="'Cancelar'"
+                          [clearButtonText]="'Limpiar'"
+                          [canSearch]="true"
+                          (onChange)="setOperCorrectiveMaintenanceIds($event)">
+        </ionic-selectable>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.oper_corrective_maintenance_ids">
+            <div class="error-message" *ngIf="operReasonsForm.form.controls['oper_corrective_maintenance_ids']?.hasError(validation.type)">
+            {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end oper_corrective_maintenance_ids -->
+
+
+            <!-- name -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'NOMBRE' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.name"
+                            type="text"
+                            name="name"
+                            id="name-field"
+                            [required]="true"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.name">
+                    <div class="error-message" *ngIf="operReasonsForm.form.controls['name']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end name -->
+
+
+</form>

@@ -1,0 +1,314 @@
+<form #operSchedulesForm="ngForm" novalidate autocomplete="off">
+
+
+    <!-- hous_unit_area_id -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'UNIDADESHABITACIONALESAREA' | titlecase }}</ion-label>
+        <ionic-selectable name="hous_unit_area_id"
+                          id="hous_unit_area_id-field"
+                          [required]="true"
+                          [(ngModel)]="model.hous_unit_area"
+                          [items]="operSchedulesService.operScheduleLists.HousUnitArea"
+                          itemValueField="id"
+                          itemTextField="name"
+                          [canClear]="true"
+                          [hasConfirmButton]="true"
+                          [confirmButtonText]="'Seleccionar'"
+                          [searchPlaceholder]="'Buscar ' + ('UNIDADES HABITACIONALES AREAS' | titlecase)"
+                          [searchFailText]="'No se encontro ' + ('UNIDADES HABITACIONALES AREAS' | titlecase) + ' que coincida!'"
+                          [closeButtonText]="'Cancelar'"
+                          [clearButtonText]="'Limpiar'"
+                          [canSearch]="true"
+                          (onChange)="setHousUnitAreaId($event)">
+        </ionic-selectable>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.hous_unit_area_id">
+            <div class="error-message" *ngIf="operSchedulesForm.form.controls['hous_unit_area_id']?.hasError(validation.type)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end hous_unit_area_id -->
+
+
+    <!-- oper_sector_id -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'OPERATIVIDADSECTORE' | titlecase }}</ion-label>
+        <ionic-selectable name="oper_sector_id"
+                          id="oper_sector_id-field"
+                          [required]="true"
+                          [(ngModel)]="model.oper_sector"
+                          [items]="operSchedulesService.operScheduleLists.OperSector"
+                          itemValueField="id"
+                          itemTextField="name"
+                          [canClear]="true"
+                          [hasConfirmButton]="true"
+                          [confirmButtonText]="'Seleccionar'"
+                          [searchPlaceholder]="'Buscar ' + ('OPERATIVIDAD SECTORES' | titlecase)"
+                          [searchFailText]="'No se encontro ' + ('OPERATIVIDAD SECTORES' | titlecase) + ' que coincida!'"
+                          [closeButtonText]="'Cancelar'"
+                          [clearButtonText]="'Limpiar'"
+                          [canSearch]="true"
+                          (onChange)="setOperSectorId($event)">
+        </ionic-selectable>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.oper_sector_id">
+            <div class="error-message" *ngIf="operSchedulesForm.form.controls['oper_sector_id']?.hasError(validation.type)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end oper_sector_id -->
+
+
+    <!-- oper_contractor_id -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'CONTRATISTASOPERATIVO' | titlecase }}</ion-label>
+        <ionic-selectable name="oper_contractor_id"
+                          id="oper_contractor_id-field"
+                          [required]="true"
+                          [(ngModel)]="model.oper_contractor"
+                          [items]="operSchedulesService.operScheduleLists.OperContractor"
+                          itemValueField="id"
+                          itemTextField="name"
+                          [canClear]="true"
+                          [hasConfirmButton]="true"
+                          [confirmButtonText]="'Seleccionar'"
+                          [searchPlaceholder]="'Buscar ' + ('CONTRATISTAS OPERATIVOS' | titlecase)"
+                          [searchFailText]="'No se encontro ' + ('CONTRATISTAS OPERATIVOS' | titlecase) + ' que coincida!'"
+                          [closeButtonText]="'Cancelar'"
+                          [clearButtonText]="'Limpiar'"
+                          [canSearch]="true"
+                          (onChange)="setOperContractorId($event)">
+        </ionic-selectable>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.oper_contractor_id">
+            <div class="error-message" *ngIf="operSchedulesForm.form.controls['oper_contractor_id']?.hasError(validation.type)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end oper_contractor_id -->
+
+
+    <!-- oper_movement_ids -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'MOVIMIENTOS OPERATIVOS' | titlecase }}</ion-label>
+        <ionic-selectable name="oper_movement_ids"
+                          id="oper_movement_ids-field"
+                          [(ngModel)]="model.oper_movements"
+                          [items]="operSchedulesService.operScheduleLists.OperMovement"
+                          itemValueField="id"
+                          itemTextField="name"
+                          [isMultiple]="true"
+                          [canClear]="true"
+                          [hasConfirmButton]="true"
+                          [confirmButtonText]="'Seleccionar'"
+                          [searchPlaceholder]="'Buscar ' + ('MOVIMIENTOS OPERATIVOS' | titlecase)"
+                          [searchFailText]="'No se encontro ' + ('MOVIMIENTOS OPERATIVOS' | titlecase) + ' que coincida!'"
+                          [closeButtonText]="'Cancelar'"
+                          [clearButtonText]="'Limpiar'"
+                          [canSearch]="true"
+                          (onChange)="setOperMovementIds($event)">
+        </ionic-selectable>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.oper_movement_ids">
+            <div class="error-message" *ngIf="operSchedulesForm.form.controls['oper_movement_ids']?.hasError(validation.type)">
+            {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end oper_movement_ids -->
+
+
+            <!-- name -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'NOMBRE' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.name"
+                            type="text"
+                            name="name"
+                            id="name-field"
+                            [required]="true"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.name">
+                    <div class="error-message" *ngIf="operSchedulesForm.form.controls['name']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end name -->
+
+
+            <!-- required_time -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'TIEMPO REQUERIDO' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.required_time"
+                            type="number"
+                            name="required_time"
+                            id="required_time-field"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.required_time">
+                    <div class="error-message" *ngIf="operSchedulesForm.form.controls['required_time']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end required_time -->
+
+
+            <!-- supervisor_email -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'EMAIL DEL SUPOERVISOR' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.supervisor_email"
+                            type="text"
+                            name="supervisor_email"
+                            id="supervisor_email-field"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.supervisor_email">
+                    <div class="error-message" *ngIf="operSchedulesForm.form.controls['supervisor_email']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end supervisor_email -->
+
+
+            <!-- area_phone -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'TELÉFONO DEL AREA' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.area_phone"
+                            type="text"
+                            name="area_phone"
+                            id="area_phone-field"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.area_phone">
+                    <div class="error-message" *ngIf="operSchedulesForm.form.controls['area_phone']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end area_phone -->
+
+
+            <!-- time_start -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'HORA INICIAL' | titlecase }}</ion-label>
+                <ion-datetime name="time_start"
+                              id="time_start-field"
+                              [doneText]="'Seleccionar'"
+                              max="2040-12-31 23:59:59"
+                              [cancelText]="'Cancelar'"
+                              [(ngModel)]="model.time_start"
+                              displayFormat="HH:mm"></ion-datetime>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.time_start">
+                    <div class="error-message" *ngIf="operSchedulesForm.form.controls['time_start']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end time_start -->
+
+
+            <!-- time_end -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'HORA FINAL' | titlecase }}</ion-label>
+                <ion-datetime name="time_end"
+                              id="time_end-field"
+                              [doneText]="'Seleccionar'"
+                              max="2040-12-31 23:59:59"
+                              [cancelText]="'Cancelar'"
+                              [(ngModel)]="model.time_end"
+                              displayFormat="HH:mm"></ion-datetime>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.time_end">
+                    <div class="error-message" *ngIf="operSchedulesForm.form.controls['time_end']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end time_end -->
+
+
+            <!-- periodicity -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'PERIODICIDAD' | titlecase }}</ion-label>
+                <ion-select [(ngModel)]="model.periodicity"
+                            name="periodicity"
+                            id="periodicity-field"
+                            okText="Seleccionar"
+                            cancelText="Cancelar">
+                    <ion-select-option value="">{{ 'Ninguno' | titlecase }}</ion-select-option>
+                    <ion-select-option value="daily">{{ 'Diario' | titlecase }}</ion-select-option>
+                    <ion-select-option value="weekly">{{ 'Semanal' | titlecase }}</ion-select-option>
+                    <ion-select-option value="monthly">{{ 'Mensual' | titlecase }}</ion-select-option>
+                    <ion-select-option value="bimonthly">{{ 'Bimensual' | titlecase }}</ion-select-option>
+                    <ion-select-option value="quarterly">{{ 'Trimestral' | titlecase }}</ion-select-option>
+                    <ion-select-option value="biannual">{{ 'Semestral' | titlecase }}</ion-select-option>
+                    <ion-select-option value="annual">{{ 'Anual' | titlecase }}</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <div class="validation-errors">
+            <ng-container *ngFor="let validation of validationMessages.periodicity">
+                <div class="error-message" *ngIf="operSchedulesForm.form.controls['periodicity']?.hasError(validation.type)">
+                    {{ validation.message }}
+                </div>
+            </ng-container>
+        </div>
+        <!-- end periodicity -->
+
+
+            <!-- repass -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'REQUIERE REPASAR' | titlecase }}</ion-label>
+                <ion-toggle name="repass"
+                            id="repass-field"
+                            slot="end"
+                            [(ngModel)]="model.repass"></ion-toggle>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.repass">
+                    <div class="error-message" *ngIf="operSchedulesForm.form.controls['repass']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end repass -->
+
+
+            <!-- next -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'SIGUIENTE EN' | titlecase }}</ion-label>
+                <ion-datetime name="next"
+                              id="next-field"
+                              [doneText]="'Seleccionar'"
+                              max="2040-12-31"
+                              [cancelText]="'Cancelar'"
+                              [(ngModel)]="model.next"
+                              displayFormat="DD/MM/YYYY HH:mm"></ion-datetime>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.next">
+                    <div class="error-message" *ngIf="operSchedulesForm.form.controls['next']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end next -->
+
+
+</form>

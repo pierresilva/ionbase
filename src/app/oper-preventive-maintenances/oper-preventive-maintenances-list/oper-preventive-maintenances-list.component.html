@@ -1,0 +1,89 @@
+<app-main-header title="{{'OPERATIVIDAD MTTO PREVENTIVOS' | titlecase}}"
+                 primaryLink="oper-preventive-maintenances/create"
+                 primaryText="Crear {{'OPERATIVIDAD MTTO PREVENTIVOS' | lowercase}}"
+                 primaryIcon="add-circle-outline"></app-main-header>
+
+<ion-content id="pages-content">
+
+    <ion-searchbar showCancelButton="focus"
+                       [cancelButtonText]="'Cancelar'"
+                       [placeholder]="'Buscar ' + ('OPERATIVIDAD MTTO PREVENTIVOS' | lowercase )"
+                       (ionCancel)="this.operPreventiveMaintenancesService.searchValue = ''; operPreventiveMaintenancesService.getOperPreventiveMaintenances()"
+                       (keyup.enter)="operPreventiveMaintenancesService.getOperPreventiveMaintenances()"
+                       [(ngModel)]="operPreventiveMaintenancesService.searchValue"></ion-searchbar>
+
+    <ng-container *ngIf="!(loading.loading | async) && operPreventiveMaintenancesService.operPreventiveMaintenances?.length">
+        <ion-card *ngFor="let operPreventiveMaintenance of operPreventiveMaintenancesService.operPreventiveMaintenances; let index = index">
+            <ion-list>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'NOMBRE' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ operPreventiveMaintenance?.name }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'FECHA' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ operPreventiveMaintenance?.date | dateFormat:'DD/MM/YYYY' }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'HORA' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ operPreventiveMaintenance?.time | dateFormat:'HH:mm' }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'SIGUIENTE EN' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ operPreventiveMaintenance?.next | dateFormat:'DD/MM/YYYY' }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'OPERATIVIDAD MAQUINARIA' | titlecase }}</b></ion-label>
+                        <div class="wrap-text"><a routerLink="/oper-machines/{{ operPreventiveMaintenance?.oper_machine?.id }}/edit">{{ operPreventiveMaintenance?.oper_machine?.name }}</a></div>
+                    </ion-item>
+            </ion-list>
+            <ion-footer>
+                <ion-row>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="success" size="small" fill="clear" [routerLink]="'/oper-preventive-maintenances/' + operPreventiveMaintenance?.id + '/edit'">
+                            <ion-icon name="create-outline"></ion-icon>
+                            <div>Editar</div>
+                        </ion-button>
+                    </ion-col>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="danger" size="small" fill="clear" (click)="operPreventiveMaintenancesService.deleteOperPreventiveMaintenance(operPreventiveMaintenance?.id)">
+                            <ion-icon name="trash-outline"></ion-icon>
+                            <div>Eliminar</div>
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-footer>
+        </ion-card>
+    </ng-container>
+
+    <ng-container *ngIf="!(loading.loading | async) && !operPreventiveMaintenancesService.operPreventiveMaintenances?.length">
+        <ion-item>
+            <ion-icon class="text-warning" name="warning-outline" slot="start"></ion-icon>
+            <ion-label><h2>No se encontraron {{'OPERATIVIDAD MTTO PREVENTIVOS' | titlecase}}</h2></ion-label>
+            <ion-button [routerLink]="'/oper-preventive-maintenances/create'" fill="outline" color="success" slot="end">
+                Crear {{'OPERATIVIDAD MTTO PREVENTIVOS' | titlecase}}
+                <ion-icon name="add-circle-outline" slot="end"></ion-icon>
+            </ion-button>
+        </ion-item>
+    </ng-container>
+
+</ion-content>
+
+<ion-footer class="lists-footer">
+    <ion-row *ngIf="operPreventiveMaintenancesService.meta">
+        <ion-col class="ion-text-center" size="12">
+            <ion-button (click)="operPreventiveMaintenancesService.getOperPreventiveMaintenances(operPreventiveMaintenancesService.meta.current_page - 1)"
+                        [disabled]="operPreventiveMaintenancesService.meta.current_page == 1"
+                        fill="clear">
+                <ion-icon slot="end" name="play-outline" style="transform: rotate(180deg);"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear" [disabled]="true"> Pag: {{operPreventiveMaintenancesService.meta.current_page}}
+                /{{operPreventiveMaintenancesService.meta.last_page}} {{operPreventiveMaintenancesService.meta.from}}-{{operPreventiveMaintenancesService.meta.to}}
+                /{{operPreventiveMaintenancesService.meta.total}} </ion-button>
+            <ion-button (click)="operPreventiveMaintenancesService.getOperPreventiveMaintenances(operPreventiveMaintenancesService.meta.current_page + 1)"
+                        [disabled]="operPreventiveMaintenancesService.meta.current_page == operPreventiveMaintenancesService.meta.last_page"
+                        fill="clear">
+                <ion-icon slot="start" name="play-outline"></ion-icon>
+            </ion-button>
+        </ion-col>
+    </ion-row>
+</ion-footer>

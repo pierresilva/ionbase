@@ -1,0 +1,83 @@
+<app-main-header title="{{'OPERATIVIDAD MOTIVOS MTTO CORRECTIVO' | titlecase}}"
+                 primaryLink="oper-reasons/create"
+                 primaryText="Crear {{'OPERATIVIDAD MOTIVOS MTTO CORRECTIVO' | lowercase}}"
+                 primaryIcon="add-circle-outline"></app-main-header>
+
+<ion-content id="pages-content">
+
+    <ion-searchbar showCancelButton="focus"
+                       [cancelButtonText]="'Cancelar'"
+                       [placeholder]="'Buscar ' + ('OPERATIVIDAD MOTIVOS MTTO CORRECTIVO' | lowercase )"
+                       (ionCancel)="this.operReasonsService.searchValue = ''; operReasonsService.getOperReasons()"
+                       (keyup.enter)="operReasonsService.getOperReasons()"
+                       [(ngModel)]="operReasonsService.searchValue"></ion-searchbar>
+
+    <ng-container *ngIf="!(loading.loading | async) && operReasonsService.operReasons?.length">
+        <ion-card *ngFor="let operReason of operReasonsService.operReasons; let index = index">
+            <ion-list>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'NOMBRE' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ operReason?.name }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'OPERATIVIDAD MTTO CORRECTIVOS' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">
+                            <ng-container *ngIf="operReason?.oper_corrective_maintenances?.length">
+                                <ng-container *ngFor="let operCorrectiveMaintenance of operReason?.oper_corrective_maintenances; let last = last">
+                                    <a routerLink="/oper-corrective-maintenances/{{ operCorrectiveMaintenance?.id }}/edit">{{ operCorrectiveMaintenance?.name }}</a><span *ngIf="!last">, </span>
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                    </ion-item>
+            </ion-list>
+            <ion-footer>
+                <ion-row>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="success" size="small" fill="clear" [routerLink]="'/oper-reasons/' + operReason?.id + '/edit'">
+                            <ion-icon name="create-outline"></ion-icon>
+                            <div>Editar</div>
+                        </ion-button>
+                    </ion-col>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="danger" size="small" fill="clear" (click)="operReasonsService.deleteOperReason(operReason?.id)">
+                            <ion-icon name="trash-outline"></ion-icon>
+                            <div>Eliminar</div>
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-footer>
+        </ion-card>
+    </ng-container>
+
+    <ng-container *ngIf="!(loading.loading | async) && !operReasonsService.operReasons?.length">
+        <ion-item>
+            <ion-icon class="text-warning" name="warning-outline" slot="start"></ion-icon>
+            <ion-label><h2>No se encontraron {{'OPERATIVIDAD MOTIVOS MTTO CORRECTIVO' | titlecase}}</h2></ion-label>
+            <ion-button [routerLink]="'/oper-reasons/create'" fill="outline" color="success" slot="end">
+                Crear {{'OPERATIVIDAD MOTIVOS MTTO CORRECTIVO' | titlecase}}
+                <ion-icon name="add-circle-outline" slot="end"></ion-icon>
+            </ion-button>
+        </ion-item>
+    </ng-container>
+
+</ion-content>
+
+<ion-footer class="lists-footer">
+    <ion-row *ngIf="operReasonsService.meta">
+        <ion-col class="ion-text-center" size="12">
+            <ion-button (click)="operReasonsService.getOperReasons(operReasonsService.meta.current_page - 1)"
+                        [disabled]="operReasonsService.meta.current_page == 1"
+                        fill="clear">
+                <ion-icon slot="end" name="play-outline" style="transform: rotate(180deg);"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear" [disabled]="true"> Pag: {{operReasonsService.meta.current_page}}
+                /{{operReasonsService.meta.last_page}} {{operReasonsService.meta.from}}-{{operReasonsService.meta.to}}
+                /{{operReasonsService.meta.total}} </ion-button>
+            <ion-button (click)="operReasonsService.getOperReasons(operReasonsService.meta.current_page + 1)"
+                        [disabled]="operReasonsService.meta.current_page == operReasonsService.meta.last_page"
+                        fill="clear">
+                <ion-icon slot="start" name="play-outline"></ion-icon>
+            </ion-button>
+        </ion-col>
+    </ion-row>
+</ion-footer>

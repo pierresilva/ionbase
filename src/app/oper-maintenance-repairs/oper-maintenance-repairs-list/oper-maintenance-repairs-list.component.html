@@ -1,0 +1,89 @@
+<app-main-header title="{{'OPERATIVIDAD REPARACIONES' | titlecase}}"
+                 primaryLink="oper-maintenance-repairs/create"
+                 primaryText="Crear {{'OPERATIVIDAD REPARACIONES' | lowercase}}"
+                 primaryIcon="add-circle-outline"></app-main-header>
+
+<ion-content id="pages-content">
+
+    <ion-searchbar showCancelButton="focus"
+                       [cancelButtonText]="'Cancelar'"
+                       [placeholder]="'Buscar ' + ('OPERATIVIDAD REPARACIONES' | lowercase )"
+                       (ionCancel)="this.operMaintenanceRepairsService.searchValue = ''; operMaintenanceRepairsService.getOperMaintenanceRepairs()"
+                       (keyup.enter)="operMaintenanceRepairsService.getOperMaintenanceRepairs()"
+                       [(ngModel)]="operMaintenanceRepairsService.searchValue"></ion-searchbar>
+
+    <ng-container *ngIf="!(loading.loading | async) && operMaintenanceRepairsService.operMaintenanceRepairs?.length">
+        <ion-card *ngFor="let operMaintenanceRepair of operMaintenanceRepairsService.operMaintenanceRepairs; let index = index">
+            <ion-list>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'NOMBRE' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ operMaintenanceRepair?.name }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'FECHA' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ operMaintenanceRepair?.date | dateFormat:'DD/MM/YYYY' }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'HORA' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ operMaintenanceRepair?.time | dateFormat:'HH:mm' }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'REPORTADO POR' | titlecase }}</b></ion-label>
+                        <div class="wrap-text">{{ operMaintenanceRepair?.completed_by }}</div>
+                    </ion-item>
+                    <ion-item class="item-transparent">
+                        <ion-label position="fixed"><b>{{ 'OPERATIVIDAD MTTO CORRECTIVOS' | titlecase }}</b></ion-label>
+                        <div class="wrap-text"><a routerLink="/oper-corrective-maintenances/{{ operMaintenanceRepair?.oper_corrective_maintenance?.id }}/edit">{{ operMaintenanceRepair?.oper_corrective_maintenance?.name }}</a></div>
+                    </ion-item>
+            </ion-list>
+            <ion-footer>
+                <ion-row>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="success" size="small" fill="clear" [routerLink]="'/oper-maintenance-repairs/' + operMaintenanceRepair?.id + '/edit'">
+                            <ion-icon name="create-outline"></ion-icon>
+                            <div>Editar</div>
+                        </ion-button>
+                    </ion-col>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="danger" size="small" fill="clear" (click)="operMaintenanceRepairsService.deleteOperMaintenanceRepair(operMaintenanceRepair?.id)">
+                            <ion-icon name="trash-outline"></ion-icon>
+                            <div>Eliminar</div>
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-footer>
+        </ion-card>
+    </ng-container>
+
+    <ng-container *ngIf="!(loading.loading | async) && !operMaintenanceRepairsService.operMaintenanceRepairs?.length">
+        <ion-item>
+            <ion-icon class="text-warning" name="warning-outline" slot="start"></ion-icon>
+            <ion-label><h2>No se encontraron {{'OPERATIVIDAD REPARACIONES' | titlecase}}</h2></ion-label>
+            <ion-button [routerLink]="'/oper-maintenance-repairs/create'" fill="outline" color="success" slot="end">
+                Crear {{'OPERATIVIDAD REPARACIONES' | titlecase}}
+                <ion-icon name="add-circle-outline" slot="end"></ion-icon>
+            </ion-button>
+        </ion-item>
+    </ng-container>
+
+</ion-content>
+
+<ion-footer class="lists-footer">
+    <ion-row *ngIf="operMaintenanceRepairsService.meta">
+        <ion-col class="ion-text-center" size="12">
+            <ion-button (click)="operMaintenanceRepairsService.getOperMaintenanceRepairs(operMaintenanceRepairsService.meta.current_page - 1)"
+                        [disabled]="operMaintenanceRepairsService.meta.current_page == 1"
+                        fill="clear">
+                <ion-icon slot="end" name="play-outline" style="transform: rotate(180deg);"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear" [disabled]="true"> Pag: {{operMaintenanceRepairsService.meta.current_page}}
+                /{{operMaintenanceRepairsService.meta.last_page}} {{operMaintenanceRepairsService.meta.from}}-{{operMaintenanceRepairsService.meta.to}}
+                /{{operMaintenanceRepairsService.meta.total}} </ion-button>
+            <ion-button (click)="operMaintenanceRepairsService.getOperMaintenanceRepairs(operMaintenanceRepairsService.meta.current_page + 1)"
+                        [disabled]="operMaintenanceRepairsService.meta.current_page == operMaintenanceRepairsService.meta.last_page"
+                        fill="clear">
+                <ion-icon slot="start" name="play-outline"></ion-icon>
+            </ion-button>
+        </ion-col>
+    </ion-row>
+</ion-footer>

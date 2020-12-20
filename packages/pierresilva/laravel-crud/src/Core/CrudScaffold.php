@@ -711,7 +711,13 @@ class CrudScaffold
                 $stub_obj = new StubCompiler($stub_txt, $model);
                 $output = $stub_obj->compile();
 
-                $this->files->put($output_path, $output);
+                // overwrite check
+                if (!$this->files->exists($output_path)) {
+                    $this->files->put($output_path, $output);
+                }
+                if ($this->files->exists($output_path) && $this->command->option('force')) {
+                    $this->files->put($output_path, $output);
+                }
 
                 // component
                 $stub_txt = $this->files->get(__DIR__ . '/../Stubs/src/app/page/component_ts.stub');
@@ -719,13 +725,6 @@ class CrudScaffold
                 $output_path = $output_dir . '/' . $output_filename;
                 $stub_obj = new StubCompiler($stub_txt, $model);
                 $output = $stub_obj->compile();
-
-                //overwrite check
-                if (!$this->command->option('force')) {
-                    if ($this->files->exists($output_path)) {
-                        continue;
-                    }
-                }
 
                 // overwrite check
                 if (!$this->files->exists($output_path)) {

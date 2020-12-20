@@ -99,7 +99,7 @@ class CounMeeting extends Model
     }
 
 	public function counMeetingAgendas() {
-		return $this->hasMany('App\Models\CounMeetingAgenda');
+		return $this->hasMany('App\Models\CounMeetingAgenda')->orderBy('order');
 	}
 	public function counMeetingCitations() {
 		return $this->hasMany('App\Models\CounMeetingCitation');

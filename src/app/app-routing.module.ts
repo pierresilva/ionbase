@@ -42,134 +42,410 @@ const routes: Routes = [
 
     {
         path: 'user-profiles',
-        loadChildren: () => import('./user-profiles/user-profiles.module').then( m => m.UserProfilesPageModule),
         canActivate: [AuthGuard],
         canActivateChild: [AuthGuard],
         data: {
-            title: 'Perfiles de usuario',
+            title: 'PERFILES DE USUARIOS',
             roles: ['admin'],
-        }
+            // permissions: []
+        },
+        loadChildren: () => import('./user-profiles/user-profiles.module').then(m => m.UserProfilesPageModule)
     },
     {
         path: 'syst-cities',
-        loadChildren: () => import('./syst-cities/syst-cities.module').then( m => m.SystCitiesPageModule),
         canActivate: [AuthGuard],
         canActivateChild: [AuthGuard],
         data: {
+            title: 'CIUDADES',
             roles: ['admin'],
-        }
+            // permissions: []
+        },
+        loadChildren: () => import('./syst-cities/syst-cities.module').then(m => m.SystCitiesPageModule)
     },
     {
         path: 'syst-regions',
-        loadChildren: () => import('./syst-regions/syst-regions.module').then( m => m.SystRegionsPageModule)
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        data: {
+            title: 'DEPARTAMENTOS',
+            roles: ['admin'],
+            // permissions: []
+        },
+        loadChildren: () => import('./syst-regions/syst-regions.module').then(m => m.SystRegionsPageModule)
     },
     {
         path: 'syst-countries',
-        loadChildren: () => import('./syst-countries/syst-countries.module').then( m => m.SystCountriesPageModule)
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        data: {
+            title: 'PAISES',
+            roles: ['admin'],
+            // permissions: []
+        },
+        loadChildren: () => import('./syst-countries/syst-countries.module').then(m => m.SystCountriesPageModule)
     },
     {
         path: 'companies',
-        loadChildren: () => import('./companies/companies.module').then( m => m.CompaniesPageModule)
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        data: {
+            title: 'EMPRESAS',
+            roles: ['admin'],
+            // permissions: []
+        },
+        loadChildren: () => import('./companies/companies.module').then(m => m.CompaniesPageModule)
     },
     {
         path: 'comp-phones',
-        loadChildren: () => import('./comp-phones/comp-phones.module').then( m => m.CompPhonesPageModule)
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        data: {
+            title: 'TELÉFONOS DE EMPRESAS',
+            roles: ['admin'],
+            // permissions: []
+        },
+        loadChildren: () => import('./comp-phones/comp-phones.module').then(m => m.CompPhonesPageModule)
     },
     {
         path: 'comp-addresses',
-        loadChildren: () => import('./comp-addresses/comp-addresses.module').then( m => m.CompAddressesPageModule)
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        data: {
+            title: 'EMPRESAS DIRECCIONES',
+            roles: ['admin'],
+            // permissions: []
+        },
+        loadChildren: () => import('./comp-addresses/comp-addresses.module').then(m => m.CompAddressesPageModule)
     },
     {
         path: 'comp-contacts',
-        loadChildren: () => import('./comp-contacts/comp-contacts.module').then( m => m.CompContactsPageModule)
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        data: {
+            title: 'EMPRESAS CONTACTOS',
+            roles: ['admin'],
+            // permissions: []
+        },
+        loadChildren: () => import('./comp-contacts/comp-contacts.module').then(m => m.CompContactsPageModule)
     },
     {
         path: 'syst-positions',
-        loadChildren: () => import('./syst-positions/syst-positions.module').then( m => m.SystPositionsPageModule)
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        data: {
+            title: 'CARGOS',
+            roles: ['admin'],
+            // permissions: []
+        },
+        loadChildren: () => import('./syst-positions/syst-positions.module').then(m => m.SystPositionsPageModule)
     },
     {
         path: 'syst-parameters',
-        loadChildren: () => import('./syst-parameters/syst-parameters.module').then( m => m.SystParametersPageModule)
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        data: {
+            title: 'PARAMETROS',
+            roles: ['admin'],
+            // permissions: []
+        },
+        loadChildren: () => import('./syst-parameters/syst-parameters.module').then(m => m.SystParametersPageModule)
     },
     {
         path: 'syst-parameter-groups',
-        loadChildren: () => import('./syst-parameter-groups/syst-parameter-groups.module').then( m => m.SystParameterGroupsPageModule)
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        data: {
+            title: 'GRUPOS DE PARAMETROS',
+            roles: ['admin'],
+            // permissions: []
+        },
+        loadChildren: () => import('./syst-parameter-groups/syst-parameter-groups.module').then(m => m.SystParameterGroupsPageModule)
     },
     {
         path: 'comp-responsabilities',
-        loadChildren: () => import('./comp-responsabilities/comp-responsabilities.module').then( m => m.CompResponsabilitiesPageModule)
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        data: {
+            title: 'EMPRESAS RESPONSABILIDADES LEGALES',
+            roles: ['admin'],
+            // permissions: []
+        },
+        loadChildren: () => import('./comp-responsabilities/comp-responsabilities.module').then(m => m.CompResponsabilitiesPageModule)
     },
     {
         path: 'hous-units',
-        loadChildren: () => import('./hous-units/hous-units.module').then( m => m.HousUnitsPageModule)
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        data: {
+            title: 'UNIDADES HABITACIONALES',
+            roles: ['admin'],
+            // permissions: []
+        },
+        loadChildren: () => import('./hous-units/hous-units.module').then(m => m.HousUnitsPageModule)
     },
     {
         path: 'hous-unit-areas',
-        loadChildren: () => import('./hous-unit-areas/hous-unit-areas.module').then( m => m.HousUnitAreasPageModule)
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        data: {
+            title: 'UNIDADES HABITACIONALES AREAS',
+            roles: ['admin'],
+            // permissions: []
+        },
+        loadChildren: () => import('./hous-unit-areas/hous-unit-areas.module').then(m => m.HousUnitAreasPageModule)
     },
     {
         path: 'oper-sectors',
-        loadChildren: () => import('./oper-sectors/oper-sectors.module').then( m => m.OperSectorsPageModule)
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        data: {
+            title: 'OPERATIVIDAD SECTORES',
+            roles: ['admin'],
+            // permissions: []
+        },
+        loadChildren: () => import('./oper-sectors/oper-sectors.module').then(m => m.OperSectorsPageModule)
     },
     {
         path: 'coun-meetings',
-        loadChildren: () => import('./coun-meetings/coun-meetings.module').then( m => m.CounMeetingsPageModule)
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        data: {
+            title: 'JUNTAS DEL CONSEJO',
+            roles: ['admin'],
+            // permissions: []
+        },
+        loadChildren: () => import('./coun-meetings/coun-meetings.module').then(m => m.CounMeetingsPageModule)
     },
     {
         path: 'coun-meeting-agendas',
-        loadChildren: () => import('./coun-meeting-agendas/coun-meeting-agendas.module').then( m => m.CounMeetingAgendasPageModule)
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        data: {
+            title: 'JUNTAS AGENDAS',
+            roles: ['admin'],
+            // permissions: []
+        },
+        loadChildren: () => import('./coun-meeting-agendas/coun-meeting-agendas.module').then(m => m.CounMeetingAgendasPageModule)
     },
     {
         path: 'coun-meeting-citations',
-        loadChildren: () => import('./coun-meeting-citations/coun-meeting-citations.module').then( m => m.CounMeetingCitationsPageModule)
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        data: {
+            title: 'JUNTAS CITACIONES',
+            roles: ['admin'],
+            // permissions: []
+        },
+        loadChildren: () => import('./coun-meeting-citations/coun-meeting-citations.module').then(m => m.CounMeetingCitationsPageModule)
     },
     {
         path: 'oper-schedules',
-        loadChildren: () => import('./oper-schedules/oper-schedules.module').then( m => m.OperSchedulesPageModule)
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        data: {
+            title: 'OPERATRIVIDAD AJENDAS',
+            roles: ['admin'],
+            // permissions: []
+        },
+        loadChildren: () => import('./oper-schedules/oper-schedules.module').then(m => m.OperSchedulesPageModule)
     },
     {
         path: 'oper-contractors',
-        loadChildren: () => import('./oper-contractors/oper-contractors.module').then( m => m.OperContractorsPageModule)
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        data: {
+            title: 'CONTRATISTAS OPERATIVOS',
+            roles: ['admin'],
+            // permissions: []
+        },
+        loadChildren: () => import('./oper-contractors/oper-contractors.module').then(m => m.OperContractorsPageModule)
     },
     {
         path: 'oper-movements',
-        loadChildren: () => import('./oper-movements/oper-movements.module').then( m => m.OperMovementsPageModule)
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        data: {
+            title: 'MOVIMIENTOS OPERATIVOS',
+            roles: ['admin'],
+            // permissions: []
+        },
+        loadChildren: () => import('./oper-movements/oper-movements.module').then(m => m.OperMovementsPageModule)
     },
     {
         path: 'coun-members',
-        loadChildren: () => import('./coun-members/coun-members.module').then( m => m.CounMembersPageModule)
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        data: {
+            title: 'JUNTAS MIEMBROS',
+            roles: ['admin'],
+            // permissions: []
+        },
+        loadChildren: () => import('./coun-members/coun-members.module').then(m => m.CounMembersPageModule)
     },
     {
         path: 'mail-templates',
-        loadChildren: () => import('./mail-templates/mail-templates.module').then( m => m.MailTemplatesPageModule)
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        data: {
+            title: 'CORREOS PLANTILLAS',
+            roles: ['admin'],
+            // permissions: []
+        },
+        loadChildren: () => import('./mail-templates/mail-templates.module').then(m => m.MailTemplatesPageModule)
     },
     {
         path: 'mails',
-        loadChildren: () => import('./mails/mails.module').then( m => m.MailsPageModule)
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        data: {
+            title: 'CORREOS',
+            roles: ['admin'],
+            // permissions: []
+        },
+        loadChildren: () => import('./mails/mails.module').then(m => m.MailsPageModule)
     },
     {
         path: 'files',
-        loadChildren: () => import('./files/files.module').then( m => m.FilesPageModule)
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        data: {
+            title: 'JUNTAS ARCHIVOS DE AGENDAS',
+            roles: ['admin'],
+            // permissions: []
+        },
+        loadChildren: () => import('./files/files.module').then(m => m.FilesPageModule)
     },
     {
         path: 'corr-packets',
-        loadChildren: () => import('./corr-packets/corr-packets.module').then( m => m.CorrPacketsPageModule)
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        data: {
+            title: 'CORRESPONDENCIA PAQUETES',
+            roles: ['admin'],
+            // permissions: []
+        },
+        loadChildren: () => import('./corr-packets/corr-packets.module').then(m => m.CorrPacketsPageModule)
     },
     {
         path: 'settings',
-        loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        data: {
+            title: 'AJUSTES',
+            roles: ['admin'],
+            // permissions: []
+        },
+        loadChildren: () => import('./settings/settings.module').then(m => m.SettingsPageModule)
     },
     {
         path: 'setting-groups',
-        loadChildren: () => import('./setting-groups/setting-groups.module').then( m => m.SettingGroupsPageModule)
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        data: {
+            title: 'AJUSTES GRUPOS',
+            roles: ['admin'],
+            // permissions: []
+        },
+        loadChildren: () => import('./setting-groups/setting-groups.module').then(m => m.SettingGroupsPageModule)
     },
     {
         path: 'user-roles',
-        loadChildren: () => import('./user-roles/user-roles.module').then( m => m.UserRolesPageModule)
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        data: {
+            title: 'USUARIOS ROLES',
+            roles: ['admin'],
+            // permissions: []
+        },
+        loadChildren: () => import('./user-roles/user-roles.module').then(m => m.UserRolesPageModule)
     },
     {
         path: 'user-permissions',
-        loadChildren: () => import('./user-permissions/user-permissions.module').then( m => m.UserPermissionsPageModule)
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        data: {
+            title: 'USUARIOS PERMISOS',
+            roles: ['admin'],
+            // permissions: []
+        },
+        loadChildren: () => import('./user-permissions/user-permissions.module').then(m => m.UserPermissionsPageModule)
+    },
+    {
+        path: 'oper-machines',
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        data: {
+            title: 'OPERATIVIDAD MAQUINARIA',
+            roles: ['admin'],
+            // permissions: []
+        },
+        loadChildren: () => import('./oper-machines/oper-machines.module').then(m => m.OperMachinesPageModule)
+    },
+    {
+        path: 'oper-preventive-maintenances',
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        data: {
+            title: 'OPERATIVIDAD MTTO PREVENTIVOS',
+            roles: ['admin'],
+            // permissions: []
+        },
+        loadChildren: () => import('./oper-preventive-maintenances/oper-preventive-maintenances.module').then(m => m.OperPreventiveMaintenancesPageModule)
+    },
+    {
+        path: 'oper-replacements',
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        data: {
+            title: 'OPERATIVIDAD REPUESTOS',
+            roles: ['admin'],
+            // permissions: []
+        },
+        loadChildren: () => import('./oper-replacements/oper-replacements.module').then(m => m.OperReplacementsPageModule)
+    },
+    {
+        path: 'oper-items',
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        data: {
+            title: 'OPERATIVIDAD ITEMS MTTO CORRECTIVO',
+            roles: ['admin'],
+            // permissions: []
+        },
+        loadChildren: () => import('./oper-items/oper-items.module').then(m => m.OperItemsPageModule)
+    },
+    {
+        path: 'oper-reasons',
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        data: {
+            title: 'OPERATIVIDAD MOTIVOS MTTO CORRECTIVO',
+            roles: ['admin'],
+            // permissions: []
+        },
+        loadChildren: () => import('./oper-reasons/oper-reasons.module').then(m => m.OperReasonsPageModule)
+    },
+    {
+        path: 'oper-corrective-maintenances',
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        data: {
+            title: 'OPERATIVIDAD MTTO CORRECTIVOS',
+            roles: ['admin'],
+            // permissions: []
+        },
+        loadChildren: () => import('./oper-corrective-maintenances/oper-corrective-maintenances.module').then(m => m.OperCorrectiveMaintenancesPageModule)
+    },
+    {
+        path: 'oper-maintenance-repairs',
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        data: {
+            title: 'OPERATIVIDAD REPARACIONES',
+            roles: ['admin'],
+            // permissions: []
+        },
+        loadChildren: () => import('./oper-maintenance-repairs/oper-maintenance-repairs.module').then(m => m.OperMaintenanceRepairsPageModule)
     },
 
 

@@ -94,6 +94,20 @@ Route::get("userRoles/{userRole}/duplicate", ['as' => 'userRoles.duplicate', 'us
 Route::resource("userRoles","UserRoleController");
 Route::get("userPermissions/{userPermission}/duplicate", ['as' => 'userPermissions.duplicate', 'uses' => 'UserPermissionController@duplicate']);
 Route::resource("userPermissions","UserPermissionController");
+Route::get("operMachines/{operMachine}/duplicate", ['as' => 'operMachines.duplicate', 'uses' => 'OperMachineController@duplicate']);
+Route::resource("operMachines","OperMachineController");
+Route::get("operPreventiveMaintenances/{operPreventiveMaintenance}/duplicate", ['as' => 'operPreventiveMaintenances.duplicate', 'uses' => 'OperPreventiveMaintenanceController@duplicate']);
+Route::resource("operPreventiveMaintenances","OperPreventiveMaintenanceController");
+Route::get("operReplacements/{operReplacement}/duplicate", ['as' => 'operReplacements.duplicate', 'uses' => 'OperReplacementController@duplicate']);
+Route::resource("operReplacements","OperReplacementController");
+Route::get("operItems/{operItem}/duplicate", ['as' => 'operItems.duplicate', 'uses' => 'OperItemController@duplicate']);
+Route::resource("operItems","OperItemController");
+Route::get("operReasons/{operReason}/duplicate", ['as' => 'operReasons.duplicate', 'uses' => 'OperReasonController@duplicate']);
+Route::resource("operReasons","OperReasonController");
+Route::get("operCorrectiveMaintenances/{operCorrectiveMaintenance}/duplicate", ['as' => 'operCorrectiveMaintenances.duplicate', 'uses' => 'OperCorrectiveMaintenanceController@duplicate']);
+Route::resource("operCorrectiveMaintenances","OperCorrectiveMaintenanceController");
+Route::get("operMaintenanceRepairs/{operMaintenanceRepair}/duplicate", ['as' => 'operMaintenanceRepairs.duplicate', 'uses' => 'OperMaintenanceRepairController@duplicate']);
+Route::resource("operMaintenanceRepairs","OperMaintenanceRepairController");
 
 
 // end section

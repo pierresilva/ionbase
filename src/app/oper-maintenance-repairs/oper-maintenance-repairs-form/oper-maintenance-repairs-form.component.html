@@ -1,0 +1,114 @@
+<form #operMaintenanceRepairsForm="ngForm" novalidate autocomplete="off">
+
+
+    <!-- oper_corrective_maintenance_id -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'OPERATIVIDADMTTOCORRECTIVO' | titlecase }}</ion-label>
+        <ionic-selectable name="oper_corrective_maintenance_id"
+                          id="oper_corrective_maintenance_id-field"
+                          [(ngModel)]="model.oper_corrective_maintenance"
+                          [items]="operMaintenanceRepairsService.operMaintenanceRepairLists.OperCorrectiveMaintenance"
+                          itemValueField="id"
+                          itemTextField="name"
+                          [canClear]="true"
+                          [hasConfirmButton]="true"
+                          [confirmButtonText]="'Seleccionar'"
+                          [searchPlaceholder]="'Buscar ' + ('OPERATIVIDAD MTTO CORRECTIVOS' | titlecase)"
+                          [searchFailText]="'No se encontro ' + ('OPERATIVIDAD MTTO CORRECTIVOS' | titlecase) + ' que coincida!'"
+                          [closeButtonText]="'Cancelar'"
+                          [clearButtonText]="'Limpiar'"
+                          [canSearch]="true"
+                          (onChange)="setOperCorrectiveMaintenanceId($event)">
+        </ionic-selectable>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.oper_corrective_maintenance_id">
+            <div class="error-message" *ngIf="operMaintenanceRepairsForm.form.controls['oper_corrective_maintenance_id']?.hasError(validation.type)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end oper_corrective_maintenance_id -->
+
+
+            <!-- name -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'NOMBRE' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.name"
+                            type="text"
+                            name="name"
+                            id="name-field"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.name">
+                    <div class="error-message" *ngIf="operMaintenanceRepairsForm.form.controls['name']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end name -->
+
+
+            <!-- date -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'FECHA' | titlecase }}</ion-label>
+                <ion-datetime name="date"
+                              id="date-field"
+                              [doneText]="'Seleccionar'"
+                              max="2040-12-31"
+                              [cancelText]="'Cancelar'"
+                              [(ngModel)]="model.date"
+                              displayFormat="DD/MM/YYYY"></ion-datetime>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.date">
+                    <div class="error-message" *ngIf="operMaintenanceRepairsForm.form.controls['date']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end date -->
+
+
+            <!-- time -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'HORA' | titlecase }}</ion-label>
+                <ion-datetime name="time"
+                              id="time-field"
+                              [doneText]="'Seleccionar'"
+                              max="2040-12-31 23:59:59"
+                              [cancelText]="'Cancelar'"
+                              [(ngModel)]="model.time"
+                              displayFormat="HH:mm"></ion-datetime>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.time">
+                    <div class="error-message" *ngIf="operMaintenanceRepairsForm.form.controls['time']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end time -->
+
+
+            <!-- completed_by -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'REPORTADO POR' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.completed_by"
+                            type="text"
+                            name="completed_by"
+                            id="completed_by-field"
+                            placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.completed_by">
+                    <div class="error-message" *ngIf="operMaintenanceRepairsForm.form.controls['completed_by']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end completed_by -->
+
+
+</form>

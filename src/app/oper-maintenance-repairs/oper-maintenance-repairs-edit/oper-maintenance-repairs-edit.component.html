@@ -1,0 +1,32 @@
+<ion-header>
+    <ion-toolbar>
+
+        <ion-buttons slot="start">
+            <!-- <ion-button [routerLink]="'/oper-maintenance-repairs'">
+                <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+            </ion-button> -->
+            <ion-back-button
+              [text]="''"
+              [icon]="'arrow-back-outline'">
+            </ion-back-button>
+        </ion-buttons>
+
+        <ion-buttons slot="primary">
+            <ion-button (click)="operMaintenanceRepairsService.updateOperMaintenanceRepair()"
+                        color="success"
+                        fill="clear"
+                        [disabled]="!operMaintenanceRepairsService.operMaintenanceRepairsFormValid.value">
+                        <ng-container *ngIf="!platform.is('mobile')">Guardar</ng-container>
+                <ion-icon slot="end" color="success" name="save-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+
+        <ion-title>Editar {{'OPERATIVIDAD REPARACIONES' | titlecase}}: {{ operMaintenanceRepairsService.operMaintenanceRepair?.name }}</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content fullscreen>
+    <ion-card>
+            <app-oper-maintenance-repairs-form #operMaintenanceRepairForm [model]="operMaintenanceRepairsService.operMaintenanceRepair"></app-oper-maintenance-repairs-form>
+    </ion-card>
+
+</ion-content>

@@ -45,5 +45,13 @@ class DatabaseSeeder extends Seeder
         $this->call(UserPermissionsTableSeeder::class);
         $this->call(UserUserRoleTableSeeder::class);
         $this->call(UserPermissionUserRoleTableSeeder::class);
+        $this->call(OperMachinesTableSeeder::class);
+        $this->call(OperPreventiveMaintenancesTableSeeder::class);
+        $this->call(OperReplacementsTableSeeder::class);
+        $this->call(OperItemsTableSeeder::class);
+        $this->call(OperReasonsTableSeeder::class);
+        $this->call(OperCorrectiveMaintenancesTableSeeder::class);
+        $this->call(OperCorrectiveMaintenanceOperItemTableSeeder::class);
+        $this->call(OperMaintenanceRepairsTableSeeder::class);
     }
 }

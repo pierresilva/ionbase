@@ -10,18 +10,38 @@ const routes: Routes = [
 // generated section
     {
         path: '',
+        data: {
+            title: '{{{ $display_name }}}',
+            roles: ['admin'],
+            // permissions: []
+        },
         component: {{{ $name|NameNames }}}Page
     },
     {
         path: 'list',
+        data: {
+            title: '{{{ $display_name }}}',
+            roles: ['admin'],
+            // permissions: []
+        },
         component: {{{ $name|NameNames }}}ListComponent
     },
     {
       path: 'create',
+      data: {
+          title: '{{{ $display_name }}}',
+          roles: ['admin'],
+          // permissions: []
+      },
       component: {{{ $name|NameNames }}}CreateComponent
     },
     {
         path: ':id/edit',
+        data: {
+            title: '{{{ $display_name }}}',
+            roles: ['admin'],
+            // permissions: []
+        },
         component: {{{ $name|NameNames }}}EditComponent
     },
 ];

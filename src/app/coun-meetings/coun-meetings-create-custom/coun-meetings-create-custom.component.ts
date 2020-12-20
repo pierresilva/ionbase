@@ -344,6 +344,9 @@ export class CounMeetingsCreateCustomComponent implements OnInit {
             this.model.coun_meeting_agendas[i].order = i;
         }
         event.detail.complete();
+        if (this.model.id) {
+            this.saveCounMeeting();
+        }
     }
 
     addAgendaItem(event) {

@@ -10,14 +10,16 @@
                              style="max-height: 82px;">
                     </a>
                 </div>
-                <ion-list id="inbox-list" *ngIf="auth.userIsLogged()">
+                <ion-list id="inbox-list"
+                          *ngIf="auth.userIsLogged()">
                     <ion-item lines="none">
-                        <ion-avatar slot="start" style="background-color: #cccccc;">
+                        <ion-avatar slot="start"
+                                    style="background-color: #cccccc;">
                             <img [src]="auth.getUser().profile?.avatar ? auth.getUser().profile?.avatar : 'assets/images/avatar.svg'">
                         </ion-avatar>
                         <ion-label>
                             {{auth.getUser().name}}
-                        <h3>{{auth.getUser().email}}</h3>
+                            <h3>{{auth.getUser().email}}</h3>
                         </ion-label>
                     </ion-item>
 
@@ -27,7 +29,8 @@
                     <ion-item-divider *ngIf="auth.userIs(['super.admin'])">
                         Pages
                     </ion-item-divider>
-                    <ion-menu-toggle auto-hide="false" *ngIf="auth.userIs(['super.admin'])">
+                    <ion-menu-toggle auto-hide="false"
+                                     *ngIf="auth.userIs(['super.admin'])">
                         <ion-item [routerLinkActive]="'selected'"
                                   [routerLinkActiveOptions]="{exact: true}"
                                   [routerLink]="'/barcode-scanner'"
@@ -93,7 +96,8 @@
                     <ion-item-divider *ngIf="auth.userCan(['buzon.listar'])">
                         Correspondencia
                     </ion-item-divider>
-                    <ion-menu-toggle auto-hide="false" *ngIf="auth.userCan(['buzon.listar'])">
+                    <ion-menu-toggle auto-hide="false"
+                                     *ngIf="auth.userCan(['buzon.listar'])">
                         <ion-item [routerLinkActive]="'selected'"
                                   [routerLink]="'/corr-packets/postboxes'"
                                   lines="none"
@@ -108,7 +112,8 @@
                     <ion-item-divider *ngIf="auth.userIs(['super.admin', 'admin'])">
                         Admin
                     </ion-item-divider>
-                    <ion-menu-toggle auto-hide="false" *ngIf="auth.userIs(['super.admin', 'admin'])">
+                    <ion-menu-toggle auto-hide="false"
+                                     *ngIf="auth.userIs(['super.admin', 'admin'])">
                         <ion-item [routerLinkActive]="'selected'"
                                   *ngIf="auth.userIs(['super.admin', 'admin'])"
                                   [routerLink]="'/users'"
@@ -259,7 +264,7 @@
                             <ion-icon slot="start"
                                       ios="bookmark-outline"
                                       md="bookmark-sharp"></ion-icon>
-                            <ion-label>AREAS DE UNIDADES HABITACIONALES</ion-label>
+                            <ion-label>UNIDADES HABITACIONALES AREAS</ion-label>
                         </ion-item>
                         <ion-item [routerLinkActive]="'selected'"
                                   [routerLink]="'/oper-sectors'"
@@ -269,7 +274,7 @@
                             <ion-icon slot="start"
                                       ios="bookmark-outline"
                                       md="bookmark-sharp"></ion-icon>
-                            <ion-label>SECTORES OPERATIVOS</ion-label>
+                            <ion-label>OPERATIVIDAD SECTORES</ion-label>
                         </ion-item>
                         <ion-item [routerLinkActive]="'selected'"
                                   [routerLink]="'/coun-meetings'"
@@ -309,7 +314,7 @@
                             <ion-icon slot="start"
                                       ios="bookmark-outline"
                                       md="bookmark-sharp"></ion-icon>
-                            <ion-label>AGENDA DE OPERACIONES</ion-label>
+                            <ion-label>OPERATRIVIDAD AJENDAS</ion-label>
                         </ion-item>
                         <ion-item [routerLinkActive]="'selected'"
                                   [routerLink]="'/oper-contractors'"
@@ -421,6 +426,76 @@
                                       md="bookmark-sharp"></ion-icon>
                             <ion-label>USUARIOS PERMISOS</ion-label>
                         </ion-item>
+                        <ion-item [routerLinkActive]="'selected'"
+                                  [routerLink]="'/oper-machines'"
+                                  *ngIf="auth.userIs(['super.admin', 'admin'])"
+                                  lines="none"
+                                  detail="false">
+                            <ion-icon slot="start"
+                                      ios="bookmark-outline"
+                                      md="bookmark-sharp"></ion-icon>
+                            <ion-label>OPERATIVIDAD MAQUINARIA</ion-label>
+                        </ion-item>
+                        <ion-item [routerLinkActive]="'selected'"
+                                  [routerLink]="'/oper-preventive-maintenances'"
+                                  *ngIf="auth.userIs(['super.admin', 'admin'])"
+                                  lines="none"
+                                  detail="false">
+                            <ion-icon slot="start"
+                                      ios="bookmark-outline"
+                                      md="bookmark-sharp"></ion-icon>
+                            <ion-label>OPERATIVIDAD MTTO PREVENTIVOS</ion-label>
+                        </ion-item>
+                        <ion-item [routerLinkActive]="'selected'"
+                                  [routerLink]="'/oper-replacements'"
+                                  *ngIf="auth.userIs(['super.admin', 'admin'])"
+                                  lines="none"
+                                  detail="false">
+                            <ion-icon slot="start"
+                                      ios="bookmark-outline"
+                                      md="bookmark-sharp"></ion-icon>
+                            <ion-label>OPERATIVIDAD REPUESTOS</ion-label>
+                        </ion-item>
+                        <ion-item [routerLinkActive]="'selected'"
+                                  [routerLink]="'/oper-items'"
+                                  *ngIf="auth.userIs(['super.admin', 'admin'])"
+                                  lines="none"
+                                  detail="false">
+                            <ion-icon slot="start"
+                                      ios="bookmark-outline"
+                                      md="bookmark-sharp"></ion-icon>
+                            <ion-label>OPERATIVIDAD ITEMS MTTO CORRECTIVO</ion-label>
+                        </ion-item>
+                        <ion-item [routerLinkActive]="'selected'"
+                                  [routerLink]="'/oper-reasons'"
+                                  *ngIf="auth.userIs(['super.admin', 'admin'])"
+                                  lines="none"
+                                  detail="false">
+                            <ion-icon slot="start"
+                                      ios="bookmark-outline"
+                                      md="bookmark-sharp"></ion-icon>
+                            <ion-label>OPERATIVIDAD MOTIVOS MTTO CORRECTIVO</ion-label>
+                        </ion-item>
+                        <ion-item [routerLinkActive]="'selected'"
+                                  [routerLink]="'/oper-corrective-maintenances'"
+                                  *ngIf="auth.userIs(['super.admin', 'admin'])"
+                                  lines="none"
+                                  detail="false">
+                            <ion-icon slot="start"
+                                      ios="bookmark-outline"
+                                      md="bookmark-sharp"></ion-icon>
+                            <ion-label>OPERATIVIDAD MTTO CORRECTIVOS</ion-label>
+                        </ion-item>
+                        <ion-item [routerLinkActive]="'selected'"
+                                  [routerLink]="'/oper-maintenance-repairs'"
+                                  *ngIf="auth.userIs(['super.admin', 'admin'])"
+                                  lines="none"
+                                  detail="false">
+                            <ion-icon slot="start"
+                                      ios="bookmark-outline"
+                                      md="bookmark-sharp"></ion-icon>
+                            <ion-label>OPERATIVIDAD REPARACIONES</ion-label>
+                        </ion-item>
 
 
                         <!-- end section -->
@@ -443,13 +518,17 @@
                                     (ionChange)="updateDarkMode()"></ion-toggle>
                     </ion-item>
 
-                    <ion-item *ngIf="!auth.userIsLogged()" [routerLink]="'/auth/login'" lines="none">
+                    <ion-item *ngIf="!auth.userIsLogged()"
+                              [routerLink]="'/auth/login'"
+                              lines="none">
                         <ion-label>
                             Login
                         </ion-label>
                     </ion-item>
 
-                    <ion-item *ngIf="auth.userIsLogged()" [routerLink]="'/auth/logout'" lines="none">
+                    <ion-item *ngIf="auth.userIsLogged()"
+                              [routerLink]="'/auth/logout'"
+                              lines="none">
                         <ion-label>
                             Logout
                         </ion-label>

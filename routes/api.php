@@ -113,6 +113,20 @@ Route::get("user-roles/{userRoleId}/duplicate", ['as' => 'api.user-roles.duplica
 Route::resource("user-roles","Api\UserRoleController");
 Route::get("user-permissions/{userPermissionId}/duplicate", ['as' => 'api.user-permissions.duplicate', 'uses' => 'Api\UserPermissionController@duplicate']);
 Route::resource("user-permissions","Api\UserPermissionController");
+Route::get("oper-machines/{operMachineId}/duplicate", ['as' => 'api.oper-machines.duplicate', 'uses' => 'Api\OperMachineController@duplicate']);
+Route::resource("oper-machines","Api\OperMachineController");
+Route::get("oper-preventive-maintenances/{operPreventiveMaintenanceId}/duplicate", ['as' => 'api.oper-preventive-maintenances.duplicate', 'uses' => 'Api\OperPreventiveMaintenanceController@duplicate']);
+Route::resource("oper-preventive-maintenances","Api\OperPreventiveMaintenanceController");
+Route::get("oper-replacements/{operReplacementId}/duplicate", ['as' => 'api.oper-replacements.duplicate', 'uses' => 'Api\OperReplacementController@duplicate']);
+Route::resource("oper-replacements","Api\OperReplacementController");
+Route::get("oper-items/{operItemId}/duplicate", ['as' => 'api.oper-items.duplicate', 'uses' => 'Api\OperItemController@duplicate']);
+Route::resource("oper-items","Api\OperItemController");
+Route::get("oper-reasons/{operReasonId}/duplicate", ['as' => 'api.oper-reasons.duplicate', 'uses' => 'Api\OperReasonController@duplicate']);
+Route::resource("oper-reasons","Api\OperReasonController");
+Route::get("oper-corrective-maintenances/{operCorrectiveMaintenanceId}/duplicate", ['as' => 'api.oper-corrective-maintenances.duplicate', 'uses' => 'Api\OperCorrectiveMaintenanceController@duplicate']);
+Route::resource("oper-corrective-maintenances","Api\OperCorrectiveMaintenanceController");
+Route::get("oper-maintenance-repairs/{operMaintenanceRepairId}/duplicate", ['as' => 'api.oper-maintenance-repairs.duplicate', 'uses' => 'Api\OperMaintenanceRepairController@duplicate']);
+Route::resource("oper-maintenance-repairs","Api\OperMaintenanceRepairController");
 
 
 // end section
