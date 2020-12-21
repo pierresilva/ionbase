@@ -33,7 +33,7 @@
 {{{ if($this.input_type=='time'): }}}
                     <ion-item class="item-transparent">
                         <ion-label position="fixed"><b>{{ '{{{ $this.display_name }}}' | titlecase }}</b></ion-label>
-                        <div class="wrap-text">{{ {{{ $name|nameName }}}?.{{{ $this.name|name_name }}} | dateFormat:'HH:mm' }}</div>
+                        <div class="wrap-text">{{ {{{ $name|nameName }}}?.{{{ $this.name|name_name }}} | timeFormat:'HH:mm' }}</div>
                     </ion-item>
 {{{ endif; }}}
 {{{ if($this.input_type=='text'): }}}

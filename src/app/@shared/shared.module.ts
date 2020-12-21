@@ -41,11 +41,12 @@ import {ZeroLeadingPipe} from './pipes/zero-leading.pipe';
 import {GetParameterPipe} from './pipes/get-parameter.pipe';
 import {CustomFormsModule} from "ng2-validation";
 import {AutoCompleteModule} from "ionic4-auto-complete";
-import { NgxIonicImageViewerModule } from 'ngx-ionic-image-viewer';
+import {NgxIonicImageViewerModule} from 'ngx-ionic-image-viewer';
 import {SettingsService} from "./services/settings.service";
 import {TokenInterceptor} from "./interceptors/token.interceptor";
 import {ApiPrefixInterceptor} from "./interceptors/api-prefix.interceptor";
 import {SubdomainInterceptor} from "./interceptors/subdomain.interceptor";
+import {TimeFormatPipe} from "./pipes/time-format.pipe";
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import {SubdomainInterceptor} from "./interceptors/subdomain.interceptor";
         StripHtmlPipe,
         StatusPipe,
         DateFormatPipe,
+        TimeFormatPipe,
         ZeroLeadingPipe,
         GetParameterPipe,
     ],
@@ -79,6 +81,7 @@ import {SubdomainInterceptor} from "./interceptors/subdomain.interceptor";
         StripHtmlPipe,
         StatusPipe,
         DateFormatPipe,
+        TimeFormatPipe,
         ZeroLeadingPipe,
         GetParameterPipe,
     ],
@@ -134,7 +137,6 @@ import {SubdomainInterceptor} from "./interceptors/subdomain.interceptor";
             useClass: LoadingInterceptor,
             multi: true,
         },
-
 
         TitleCasePipe,
         LowerCasePipe,

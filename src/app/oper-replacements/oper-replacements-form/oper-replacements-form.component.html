@@ -3,7 +3,7 @@
 
     <!-- oper_machine_id -->
     <ion-item class="item-transparent">
-        <ion-label>{{ 'OPERATIVIDADMAQUINARIUM' | titlecase }}</ion-label>
+        <ion-label>{{ 'MAQUINARIA' | titlecase }}</ion-label>
         <ionic-selectable name="oper_machine_id"
                           id="oper_machine_id-field"
                           [required]="true"
@@ -14,8 +14,8 @@
                           [canClear]="true"
                           [hasConfirmButton]="true"
                           [confirmButtonText]="'Seleccionar'"
-                          [searchPlaceholder]="'Buscar ' + ('OPERATIVIDAD MAQUINARIA' | titlecase)"
-                          [searchFailText]="'No se encontro ' + ('OPERATIVIDAD MAQUINARIA' | titlecase) + ' que coincida!'"
+                          [searchPlaceholder]="'Buscar ' + ('MAQUINARIA' | titlecase)"
+                          [searchFailText]="'No se encontro ' + ('MAQUINARIA' | titlecase) + ' que coincida!'"
                           [closeButtonText]="'Cancelar'"
                           [clearButtonText]="'Limpiar'"
                           [canSearch]="true"
@@ -34,7 +34,7 @@
 
     <!-- oper_contractor_id -->
     <ion-item class="item-transparent">
-        <ion-label>{{ 'CONTRATISTASOPERATIVO' | titlecase }}</ion-label>
+        <ion-label>{{ 'CONTRATISTA' | titlecase }}</ion-label>
         <ionic-selectable name="oper_contractor_id"
                           id="oper_contractor_id-field"
                           [required]="true"
@@ -45,8 +45,8 @@
                           [canClear]="true"
                           [hasConfirmButton]="true"
                           [confirmButtonText]="'Seleccionar'"
-                          [searchPlaceholder]="'Buscar ' + ('CONTRATISTAS OPERATIVOS' | titlecase)"
-                          [searchFailText]="'No se encontro ' + ('CONTRATISTAS OPERATIVOS' | titlecase) + ' que coincida!'"
+                          [searchPlaceholder]="'Buscar ' + ('CONTRATISTA' | titlecase)"
+                          [searchFailText]="'No se encontro ' + ('CONTRATISTA' | titlecase) + ' que coincida!'"
                           [closeButtonText]="'Cancelar'"
                           [clearButtonText]="'Limpiar'"
                           [canSearch]="true"
@@ -88,7 +88,6 @@
                 <ion-datetime name="date"
                               id="date-field"
                               [doneText]="'Seleccionar'"
-                              max="2040-12-31"
                               [cancelText]="'Cancelar'"
                               [(ngModel)]="model.date"
                               displayFormat="DD/MM/YYYY"></ion-datetime>
@@ -109,7 +108,6 @@
                 <ion-datetime name="time"
                               id="time-field"
                               [doneText]="'Seleccionar'"
-                              max="2040-12-31 23:59:59"
                               [cancelText]="'Cancelar'"
                               [(ngModel)]="model.time"
                               displayFormat="HH:mm"></ion-datetime>

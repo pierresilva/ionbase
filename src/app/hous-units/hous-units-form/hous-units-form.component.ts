@@ -103,5 +103,9 @@ export class HousUnitsFormComponent implements OnInit, AfterViewInit {
     }
     // end setCorrPacketIds
 
+    setHouseUnitId(event: any) {
+        this.housUnitsService.housUnit.hous_unit_id = event.value.id;
+    }
+
 
 }

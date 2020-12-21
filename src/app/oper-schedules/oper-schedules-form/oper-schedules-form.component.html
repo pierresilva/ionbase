@@ -3,7 +3,7 @@
 
     <!-- hous_unit_area_id -->
     <ion-item class="item-transparent">
-        <ion-label>{{ 'UNIDADESHABITACIONALESAREA' | titlecase }}</ion-label>
+        <ion-label>{{ 'UNIDADES HABITACIONALES AREA' | titlecase }}</ion-label>
         <ionic-selectable name="hous_unit_area_id"
                           id="hous_unit_area_id-field"
                           [required]="true"
@@ -34,7 +34,7 @@
 
     <!-- oper_sector_id -->
     <ion-item class="item-transparent">
-        <ion-label>{{ 'OPERATIVIDADSECTORE' | titlecase }}</ion-label>
+        <ion-label>{{ 'SECTOR' | titlecase }}</ion-label>
         <ionic-selectable name="oper_sector_id"
                           id="oper_sector_id-field"
                           [required]="true"
@@ -45,8 +45,8 @@
                           [canClear]="true"
                           [hasConfirmButton]="true"
                           [confirmButtonText]="'Seleccionar'"
-                          [searchPlaceholder]="'Buscar ' + ('OPERATIVIDAD SECTORES' | titlecase)"
-                          [searchFailText]="'No se encontro ' + ('OPERATIVIDAD SECTORES' | titlecase) + ' que coincida!'"
+                          [searchPlaceholder]="'Buscar ' + ('SECTORES' | titlecase)"
+                          [searchFailText]="'No se encontro ' + ('SECTORES' | titlecase) + ' que coincida!'"
                           [closeButtonText]="'Cancelar'"
                           [clearButtonText]="'Limpiar'"
                           [canSearch]="true"
@@ -65,7 +65,7 @@
 
     <!-- oper_contractor_id -->
     <ion-item class="item-transparent">
-        <ion-label>{{ 'CONTRATISTASOPERATIVO' | titlecase }}</ion-label>
+        <ion-label>{{ 'CONTRATISTA' | titlecase }}</ion-label>
         <ionic-selectable name="oper_contractor_id"
                           id="oper_contractor_id-field"
                           [required]="true"
@@ -76,8 +76,8 @@
                           [canClear]="true"
                           [hasConfirmButton]="true"
                           [confirmButtonText]="'Seleccionar'"
-                          [searchPlaceholder]="'Buscar ' + ('CONTRATISTAS OPERATIVOS' | titlecase)"
-                          [searchFailText]="'No se encontro ' + ('CONTRATISTAS OPERATIVOS' | titlecase) + ' que coincida!'"
+                          [searchPlaceholder]="'Buscar ' + ('CONTRATISTA' | titlecase)"
+                          [searchFailText]="'No se encontro ' + ('CONTRATISTA' | titlecase) + ' que coincida!'"
                           [closeButtonText]="'Cancelar'"
                           [clearButtonText]="'Limpiar'"
                           [canSearch]="true"
@@ -96,7 +96,7 @@
 
     <!-- oper_movement_ids -->
     <ion-item class="item-transparent">
-        <ion-label>{{ 'MOVIMIENTOS OPERATIVOS' | titlecase }}</ion-label>
+        <ion-label>{{ 'MOVIMIENTOS' | titlecase }}</ion-label>
         <ionic-selectable name="oper_movement_ids"
                           id="oper_movement_ids-field"
                           [(ngModel)]="model.oper_movements"
@@ -166,7 +166,7 @@
 
             <!-- supervisor_email -->
             <ion-item class="item-transparent">
-                <ion-label>{{ 'EMAIL DEL SUPOERVISOR' | titlecase }}</ion-label>
+                <ion-label>{{ 'EMAIL DEL SUPERVISOR' | titlecase }}</ion-label>
                 <ion-input [(ngModel)]="model.supervisor_email"
                             type="text"
                             name="supervisor_email"
@@ -208,7 +208,6 @@
                 <ion-datetime name="time_start"
                               id="time_start-field"
                               [doneText]="'Seleccionar'"
-                              max="2040-12-31 23:59:59"
                               [cancelText]="'Cancelar'"
                               [(ngModel)]="model.time_start"
                               displayFormat="HH:mm"></ion-datetime>
@@ -229,7 +228,6 @@
                 <ion-datetime name="time_end"
                               id="time_end-field"
                               [doneText]="'Seleccionar'"
-                              max="2040-12-31 23:59:59"
                               [cancelText]="'Cancelar'"
                               [(ngModel)]="model.time_end"
                               displayFormat="HH:mm"></ion-datetime>
@@ -248,6 +246,7 @@
             <ion-item class="item-transparent">
                 <ion-label>{{ 'PERIODICIDAD' | titlecase }}</ion-label>
                 <ion-select [(ngModel)]="model.periodicity"
+                            [required]="true"
                             name="periodicity"
                             id="periodicity-field"
                             okText="Seleccionar"
@@ -296,7 +295,6 @@
                 <ion-datetime name="next"
                               id="next-field"
                               [doneText]="'Seleccionar'"
-                              max="2040-12-31"
                               [cancelText]="'Cancelar'"
                               [(ngModel)]="model.next"
                               displayFormat="DD/MM/YYYY HH:mm"></ion-datetime>

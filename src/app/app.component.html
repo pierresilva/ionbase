@@ -66,6 +66,105 @@
 
                 </ion-list>
                 <ion-list id="admin-pages-list">
+                    <ion-item-divider>
+                        Mantenimiento Preventivo
+                    </ion-item-divider>
+                    <ion-menu-toggle auto-hide="false">
+                        <ion-item [routerLinkActive]="'selected'"
+                                  [routerLink]="'/oper-machines'"
+                                  lines="none"
+                                  detail="false">
+                            <ion-icon slot="start"
+                                      ios="bookmark-outline"
+                                      md="bookmark-sharp"></ion-icon>
+                            <ion-label>Maquinaria</ion-label>
+                        </ion-item>
+                        <ion-item [routerLinkActive]="'selected'"
+                                  [routerLink]="'/oper-replacements'"
+                                  lines="none"
+                                  detail="false">
+                            <ion-icon slot="start"
+                                      ios="bookmark-outline"
+                                      md="bookmark-sharp"></ion-icon>
+                            <ion-label>Repuestos</ion-label>
+                        </ion-item>
+                        <ion-item [routerLinkActive]="'selected'"
+                                  [routerLink]="'/oper-preventive-maintenances'"
+                                  lines="none"
+                                  detail="false">
+                            <ion-icon slot="start"
+                                      ios="bookmark-outline"
+                                      md="bookmark-sharp"></ion-icon>
+                            <ion-label>Registrar mantenimiento</ion-label>
+                        </ion-item>
+                    </ion-menu-toggle>
+
+
+                    <ion-item-divider>
+                        Mantenimiento Correctivo
+                    </ion-item-divider>
+                    <ion-menu-toggle auto-hide="false">
+                        <ion-item [routerLinkActive]="'selected'"
+                                  [routerLink]="'/oper-items'"
+                                  lines="none"
+                                  detail="false">
+                            <ion-icon slot="start"
+                                      ios="bookmark-outline"
+                                      md="bookmark-sharp"></ion-icon>
+                            <ion-label>Items</ion-label>
+                        </ion-item>
+                        <ion-item [routerLinkActive]="'selected'"
+                                  [routerLink]="'/oper-reasons'"
+                                  lines="none"
+                                  detail="false">
+                            <ion-icon slot="start"
+                                      ios="bookmark-outline"
+                                      md="bookmark-sharp"></ion-icon>
+                            <ion-label>Motivos</ion-label>
+                        </ion-item>
+                        <ion-item [routerLinkActive]="'selected'"
+                                  [routerLink]="'/oper-corrective-maintenances'"
+                                  lines="none"
+                                  detail="false">
+                            <ion-icon slot="start"
+                                      ios="bookmark-outline"
+                                      md="bookmark-sharp"></ion-icon>
+                            <ion-label>PQR</ion-label>
+                        </ion-item>
+                        <ion-item [routerLinkActive]="'selected'"
+                                  [routerLink]="'/oper-maintenance-repairs'"
+                                  lines="none"
+                                  detail="false">
+                            <ion-icon slot="start"
+                                      ios="bookmark-outline"
+                                      md="bookmark-sharp"></ion-icon>
+                            <ion-label>Solucionar PQR</ion-label>
+                        </ion-item>
+                    </ion-menu-toggle>
+
+                    <ion-item-divider>
+                        Operatividad
+                    </ion-item-divider>
+                    <ion-menu-toggle auto-hide="false">
+                        <ion-item [routerLinkActive]="'selected'"
+                                  [routerLink]="'/coun-meetings/create/custom'"
+                                  lines="none"
+                                  detail="false">
+                            <ion-icon slot="start"
+                                      ios="bookmark-outline"
+                                      md="bookmark-sharp"></ion-icon>
+                            <ion-label>Crear junta</ion-label>
+                        </ion-item>
+                        <ion-item [routerLinkActive]="'selected'"
+                                  [routerLink]="'/coun-meetings/list/custom'"
+                                  lines="none"
+                                  detail="false">
+                            <ion-icon slot="start"
+                                      ios="bookmark-outline"
+                                      md="bookmark-sharp"></ion-icon>
+                            <ion-label>Registrar juntas</ion-label>
+                        </ion-item>
+                    </ion-menu-toggle>
 
                     <ion-item-divider *ngIf="auth.userCan(['juntas.listar', 'juntas.crear'])">
                         Juntas del consejo

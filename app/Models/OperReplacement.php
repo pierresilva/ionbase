@@ -86,6 +86,11 @@ class OperReplacement extends Model
 
 // end section
 
+    public function setTimeAttribute($value)
+    {
+        $this->attributes['time'] = date('H:i:s', strtotime($value));
+    }
+
     public static function boot()
     {
         parent::boot();

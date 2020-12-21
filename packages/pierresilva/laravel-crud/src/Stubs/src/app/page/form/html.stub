@@ -265,7 +265,7 @@
                               [required]="true"
 {{{ endif; }}}
                               [doneText]="'Seleccionar'"
-                              max="2040-12-31"
+                              max="2040-12-31 23:59:59"
                               [cancelText]="'Cancelar'"
                               [(ngModel)]="model.{{{ $this.name|name_name }}}"
                               displayFormat="DD/MM/YYYY HH:mm"></ion-datetime>
@@ -291,7 +291,7 @@
                               [required]="true"
 {{{ endif; }}}
                               [doneText]="'Seleccionar'"
-                              max="2040-12-31 23:59:59"
+                              max="23:59:59"
                               [cancelText]="'Cancelar'"
                               [(ngModel)]="model.{{{ $this.name|name_name }}}"
                               displayFormat="HH:mm"></ion-datetime>

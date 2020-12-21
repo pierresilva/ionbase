@@ -29,7 +29,7 @@ class OperItem extends Model
         $validation_rule = [
 
             'model.name' => 'required',
-            'model.inventory_code' => 'nullable|unique:'.$table_name.',inventoryCode,'.$ignore_unique.',id,deleted_at,NOT_NULL',
+            'model.inventory_code' => 'nullable|unique:'.$table_name.',inventory_code,'.$ignore_unique.',id,deleted_at,NOT_NULL',
 
 
         ];

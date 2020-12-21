@@ -2,6 +2,8 @@
 
 namespace pierresilva\LaravelCrud\MyClass;
 
+use pierresilva\LaravelCrud\Core\NameResolver;
+
 class Schema
 {
     public function __construct($schema = null)
@@ -58,7 +60,7 @@ class Schema
             $result .= '|nullable';
         }
         if ($this->unique === true) {
-            $result .= '|unique:\'.$table_name.\',' . $this->name . ',\'.$ignore_unique.\',id';  // ,deleted_at,NOT_NULL
+            $result .= '|unique:\'.$table_name.\',' . NameResolver::solveName($this->name, 'name_name') . ',\'.$ignore_unique.\',id';  // ,deleted_at,NOT_NULL
         }
         $result = ltrim($result, '|');
         return $result;
