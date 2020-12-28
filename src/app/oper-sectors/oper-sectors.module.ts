@@ -4,6 +4,8 @@ import {FormsModule} from '@angular/forms';
 
 import {IonicModule} from '@ionic/angular';
 
+import { QRCodeModule } from 'angularx-qrcode';
+
 import {SharedModule} from '../@shared/shared.module';
 
 import {OperSectorsPageRoutingModule} from './oper-sectors-routing.module';
@@ -21,7 +23,8 @@ import { OperSectorsFormComponent} from "./oper-sectors-form/oper-sectors-form.c
         FormsModule,
         IonicModule,
         SharedModule,
-        OperSectorsPageRoutingModule
+        OperSectorsPageRoutingModule,
+        QRCodeModule,
     ],
     declarations: [
         OperSectorsPage,

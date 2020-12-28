@@ -14615,6 +14615,188 @@
      
 }
 
+    namespace Qoraiche\MailEclipse\Facades { 
+            /**
+     * 
+     *
+     */ 
+        class MailEclipse {
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getMailables()
+        {
+                        return \Qoraiche\MailEclipse\MailEclipse::getMailables();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getMailable($key, $name)
+        {
+                        return \Qoraiche\MailEclipse\MailEclipse::getMailable($key, $name);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function deleteTemplate($templateSlug)
+        {
+                        return \Qoraiche\MailEclipse\MailEclipse::deleteTemplate($templateSlug);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getTemplatesFile()
+        {
+                        return \Qoraiche\MailEclipse\MailEclipse::getTemplatesFile();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function saveTemplates($templates)
+        {
+                        return \Qoraiche\MailEclipse\MailEclipse::saveTemplates($templates);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function updateTemplate($request)
+        {
+                        return \Qoraiche\MailEclipse\MailEclipse::updateTemplate($request);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getTemplate($templateSlug)
+        {
+                        return \Qoraiche\MailEclipse\MailEclipse::getTemplate($templateSlug);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getTemplates()
+        {
+                        return \Qoraiche\MailEclipse\MailEclipse::getTemplates();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function createTemplate($request)
+        {
+                        return \Qoraiche\MailEclipse\MailEclipse::createTemplate($request);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getTemplateSkeletons()
+        {
+                        return \Qoraiche\MailEclipse\MailEclipse::getTemplateSkeletons();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getTemplateSkeleton($type, $name, $skeleton)
+        {
+                        return \Qoraiche\MailEclipse\MailEclipse::getTemplateSkeleton($type, $name, $skeleton);
+        }
+                    /**
+         * Markdowned template view.
+         *
+         * @static 
+         */ 
+        public static function markdownedTemplateToView($save = true, $content = '', $viewPath = '', $template = false)
+        {
+                        return \Qoraiche\MailEclipse\MailEclipse::markdownedTemplateToView($save, $content, $viewPath, $template);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function previewMarkdownViewContent($simpleview, $content, $viewName, $template = false, $namespace = null)
+        {
+                        return \Qoraiche\MailEclipse\MailEclipse::previewMarkdownViewContent($simpleview, $content, $viewName, $template, $namespace);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function previewMarkdownHtml($instance, $view)
+        {
+                        return \Qoraiche\MailEclipse\MailEclipse::previewMarkdownHtml($instance, $view);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getMailableTemplateData($mailableName)
+        {
+                        return \Qoraiche\MailEclipse\MailEclipse::getMailableTemplateData($mailableName);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function generateMailable($request = null)
+        {
+                        return \Qoraiche\MailEclipse\MailEclipse::generateMailable($request);
+        }
+                    /**
+         * Handle Mailable Constructor arguments and pass the fake ones.
+         *
+         * @static 
+         */ 
+        public static function handleMailableViewDataArgs($mailable)
+        {
+                        return \Qoraiche\MailEclipse\MailEclipse::handleMailableViewDataArgs($mailable);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function buildMailable($instance, $type = 'call')
+        {
+                        return \Qoraiche\MailEclipse\MailEclipse::buildMailable($instance, $type);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function renderPreview($simpleview, $view, $template = false, $instance = null)
+        {
+                        return \Qoraiche\MailEclipse\MailEclipse::renderPreview($simpleview, $view, $template, $instance);
+        }
+         
+    }
+     
+}
+
     namespace Tymon\JWTAuth\Facades { 
             /**
      * 
@@ -18186,6 +18368,7 @@ namespace  {
             class Settings extends \App\Settings\Facades\SettingsFacade {}
             class PDF extends \Barryvdh\DomPDF\Facade {}
             class Flare extends \Facade\Ignition\Facades\Flare {}
+            class MailEclipse extends \Qoraiche\MailEclipse\Facades\MailEclipse {}
             class JWTAuth extends \Tymon\JWTAuth\Facades\JWTAuth {}
             class JWTFactory extends \Tymon\JWTAuth\Facades\JWTFactory {}
      

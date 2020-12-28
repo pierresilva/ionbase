@@ -54,13 +54,14 @@ class User extends Model
 
 // generated section
 
-	// Mass Assignment
-	protected $fillable = ['syst_position_id','name','email','password','first_name','last_name','accept_terms_condition',];
+    // Mass Assignment
+    protected $fillable = ['syst_position_id', 'name', 'email', 'password', 'first_name', 'last_name', 'accept_terms_condition',];
 
-	// Validate Rule
-    public static function getValidateRule(User $user=null){
+    // Validate Rule
+    public static function getValidateRule(User $user = null)
+    {
         $ignore_unique = null;
-        if($user){
+        if ($user) {
             $ignore_unique = $user->id;
         }
         $table_name = 'users';
@@ -68,7 +69,7 @@ class User extends Model
 
             'model.syst_position_id' => 'integer|nullable',
             'model.name' => 'required',
-            'model.email' => 'required|unique:'.$table_name.',email,'.$ignore_unique.',id',
+            'model.email' => 'required|unique:' . $table_name . ',email,' . $ignore_unique . ',id',
             'model.password' => 'required',
             'model.first_name' => 'nullable',
             'model.last_name' => 'nullable',
@@ -76,31 +77,43 @@ class User extends Model
 
 
         ];
-        if($user){
+        if ($user) {
 
         }
         return $validation_rule;
     }
 
-	public function userProfiles() {
-		return $this->hasMany('App\Models\UserProfile');
-	}
-	public function counMeetingCitations() {
-		return $this->hasMany('App\Models\CounMeetingCitation');
-	}
-	public function counMembers() {
-		return $this->hasMany('App\Models\CounMember');
-	}
+    public function userProfiles()
+    {
+        return $this->hasMany('App\Models\UserProfile');
+    }
 
-	public function systPosition() {
-		return $this->belongsTo('App\Models\SystPosition');
-	}
+    public function counMeetingCitations()
+    {
+        return $this->hasMany('App\Models\CounMeetingCitation');
+    }
 
-	public function userRoles() {
-		return $this->belongsToMany('App\Models\UserRole')
-		->orderBy('id')
-		->withTimestamps();
-	}
+    public function counMembers()
+    {
+        return $this->hasMany('App\Models\CounMember');
+    }
+
+    public function systPosition()
+    {
+        return $this->belongsTo('App\Models\SystPosition');
+    }
+
+    public function userRoles()
+    {
+        return $this->belongsToMany('App\Models\UserRole')
+            ->orderBy('id')
+            ->withTimestamps();
+    }
+
+    public function operContractor()
+    {
+        return $this->belongsTo('App\Models\OperContractor');
+    }
 
     public static function getRelationships()
     {
@@ -110,18 +123,21 @@ class User extends Model
             'counMeetingCitations',
             'counMembers',
             'userRoles',
+            'operContractor'
         ];
     }
 
-	public static function getLists() {
-		$lists = [];
-		$lists['SystPosition'] = SystPosition::all();
-		$lists['UserProfile'] = UserProfile::all();
-		$lists['CounMeetingCitation'] = CounMeetingCitation::all();
-		$lists['CounMember'] = CounMember::all();
-		$lists['UserRole'] = UserRole::all();
-		return $lists;
-	}
+    public static function getLists()
+    {
+        $lists = [];
+        $lists['SystPosition'] = SystPosition::all();
+        $lists['UserProfile'] = UserProfile::all();
+        $lists['CounMeetingCitation'] = CounMeetingCitation::all();
+        $lists['CounMember'] = CounMember::all();
+        $lists['UserRole'] = UserRole::all();
+        $lists['OperContractor'] = OperContractor::all();
+        return $lists;
+    }
 
     public function scopeSystPositionByName(Builder $query, $name)
     {
@@ -157,7 +173,6 @@ class User extends Model
             $query->where('name', $name);
         });
     }
-
 
 
 // end section

@@ -19,10 +19,13 @@ export interface OperContractor {
     created_at?: any;
     updated_at?: any;
     deleted_at?: any;
+    user_id?: any;
+    user?: any;
 }
 
 export interface OperContractorLists {
 
     OperMovement?: OperMovement[],
+    User?: any[],
 
 }

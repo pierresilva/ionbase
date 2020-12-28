@@ -104,7 +104,7 @@
         <ion-label>{{ 'PADRE' | titlecase }}</ion-label>
         <ionic-selectable name="hous_unit_id"
                           id="hous_unit_id-field"
-                          [(ngModel)]="model.hous_unit_id"
+                          [(ngModel)]="model.parent"
                           [items]="housUnitsService.housUnitLists.HousUnit"
                           itemValueField="id"
                           itemTextField="name"

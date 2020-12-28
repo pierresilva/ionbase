@@ -5,6 +5,7 @@ import { OperSchedulesPage } from './oper-schedules.page';
 import {OperSchedulesEditComponent} from "./oper-schedules-edit/oper-schedules-edit.component";
 import {OperSchedulesCreateComponent} from "./oper-schedules-create/oper-schedules-create.component";
 import {OperSchedulesListComponent} from "./oper-schedules-list/oper-schedules-list.component";
+import {OperScheduleContractorIoComponent} from "./oper-schedule-contractor-io/oper-schedule-contractor-io.component";
 
 const routes: Routes = [
 // generated section
@@ -44,6 +45,13 @@ const routes: Routes = [
         },
         component: OperSchedulesEditComponent
     },
+    {
+        path: 'movement',
+        data: {
+            title: 'Movimientos operativos'
+        },
+        component: OperScheduleContractorIoComponent,
+    }
 ];
 // end generated section
 

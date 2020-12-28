@@ -1,4 +1,6 @@
-<form #usersForm="ngForm" novalidate autocomplete="off">
+<form #usersForm="ngForm"
+      novalidate
+      autocomplete="off">
 
 
     <!-- syst_position_id -->
@@ -6,7 +8,7 @@
         <ion-label>{{ 'CARGO' | titlecase }}</ion-label>
         <ionic-selectable name="syst_position_id"
                           id="syst_position_id-field"
-                          [required]="true"
+                          [required]="false"
                           [(ngModel)]="model.syst_position"
                           [items]="usersService.userLists.SystPosition"
                           itemValueField="id"
@@ -24,7 +26,8 @@
     </ion-item>
     <div class="validation-errors">
         <ng-container *ngFor="let validation of validationMessages.syst_position_id">
-            <div class="error-message" *ngIf="usersForm.form.controls['syst_position_id']?.hasError(validation.type)">
+            <div class="error-message"
+                 *ngIf="usersForm.form.controls['syst_position_id']?.hasError(validation.type)">
                 {{ validation.message }}
             </div>
         </ng-container>
@@ -55,8 +58,9 @@
     </ion-item>
     <div class="validation-errors">
         <ng-container *ngFor="let validation of validationMessages.user_profile_ids">
-            <div class="error-message" *ngIf="usersForm.form.controls['user_profile_ids']?.hasError(validation.type)">
-            {{ validation.message }}
+            <div class="error-message"
+                 *ngIf="usersForm.form.controls['user_profile_ids']?.hasError(validation.type)">
+                {{ validation.message }}
             </div>
         </ng-container>
     </div>
@@ -86,8 +90,9 @@
     </ion-item>
     <div class="validation-errors">
         <ng-container *ngFor="let validation of validationMessages.coun_meeting_citation_ids">
-            <div class="error-message" *ngIf="usersForm.form.controls['coun_meeting_citation_ids']?.hasError(validation.type)">
-            {{ validation.message }}
+            <div class="error-message"
+                 *ngIf="usersForm.form.controls['coun_meeting_citation_ids']?.hasError(validation.type)">
+                {{ validation.message }}
             </div>
         </ng-container>
     </div>
@@ -117,8 +122,9 @@
     </ion-item>
     <div class="validation-errors">
         <ng-container *ngFor="let validation of validationMessages.coun_member_ids">
-            <div class="error-message" *ngIf="usersForm.form.controls['coun_member_ids']?.hasError(validation.type)">
-            {{ validation.message }}
+            <div class="error-message"
+                 *ngIf="usersForm.form.controls['coun_member_ids']?.hasError(validation.type)">
+                {{ validation.message }}
             </div>
         </ng-container>
     </div>
@@ -148,7 +154,8 @@
     </ion-item>
     <div class="validation-errors">
         <ng-container *ngFor="let validation of validationMessages.user_role_ids">
-            <div class="error-message" *ngIf="usersForm.form.controls['user_role_ids']?.hasError(validation.type)">
+            <div class="error-message"
+                 *ngIf="usersForm.form.controls['user_role_ids']?.hasError(validation.type)">
                 {{ validation.message }}
             </div>
         </ng-container>
@@ -156,102 +163,109 @@
     <!-- end user_role_ids -->
 
 
-            <!-- name -->
-            <ion-item class="item-transparent">
-                <ion-label>{{ 'NOMBRE' | titlecase }}</ion-label>
-                <ion-input [(ngModel)]="model.name"
-                            type="text"
-                            name="name"
-                            id="name-field"
-                            [required]="true"
-                            placeholder=""></ion-input>
-            </ion-item>
-            <div class="validation-errors">
-                <ng-container *ngFor="let validation of validationMessages.name">
-                    <div class="error-message" *ngIf="usersForm.form.controls['name']?.hasError(validation.type)">
-                        {{ validation.message }}
-                    </div>
-                </ng-container>
+    <!-- name -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'NOMBRE' | titlecase }}</ion-label>
+        <ion-input [(ngModel)]="model.name"
+                   type="text"
+                   name="name"
+                   id="name-field"
+                   [required]="true"
+                   placeholder=""></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.name">
+            <div class="error-message"
+                 *ngIf="usersForm.form.controls['name']?.hasError(validation.type)">
+                {{ validation.message }}
             </div>
-            <!-- end name -->
+        </ng-container>
+    </div>
+    <!-- end name -->
 
 
-            <!-- email -->
-            <ion-item class="item-transparent">
-                <ion-label>{{ 'EMAIL' | titlecase }}</ion-label>
-                <ion-input [(ngModel)]="model.email"
-                            type="text"
-                            name="email"
-                            id="email-field"
-                            [required]="true"
-                            placeholder=""></ion-input>
-            </ion-item>
-            <div class="validation-errors">
-                <ng-container *ngFor="let validation of validationMessages.email">
-                    <div class="error-message" *ngIf="usersForm.form.controls['email']?.hasError(validation.type)">
-                        {{ validation.message }}
-                    </div>
-                </ng-container>
+    <!-- email -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'EMAIL' | titlecase }}</ion-label>
+        <ion-input [(ngModel)]="model.email"
+                   type="text"
+                   name="email"
+                   id="email-field"
+                   [required]="true"
+                   placeholder=""></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.email">
+            <div class="error-message"
+                 *ngIf="usersForm.form.controls['email']?.hasError(validation.type)">
+                {{ validation.message }}
             </div>
-            <!-- end email -->
+        </ng-container>
+    </div>
+    <!-- end email -->
 
 
-            <!-- password -->
-            <ion-item class="item-transparent">
-                <ion-label>{{ 'CONTRASEÑA' | titlecase }}</ion-label>
-                <ion-input [(ngModel)]="model.password"
-                            type="text"
-                            name="password"
-                            id="password-field"
-                            [required]="true"
-                            placeholder=""></ion-input>
-            </ion-item>
-            <div class="validation-errors">
-                <ng-container *ngFor="let validation of validationMessages.password">
-                    <div class="error-message" *ngIf="usersForm.form.controls['password']?.hasError(validation.type)">
-                        {{ validation.message }}
-                    </div>
-                </ng-container>
+    <!-- password -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'CONTRASEÑA' | titlecase }}</ion-label>
+        <ion-input [(ngModel)]="model.password"
+                   type="text"
+                   name="password"
+                   id="password-field"
+                   [required]="true"
+                   placeholder=""></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.password">
+            <div class="error-message"
+                 *ngIf="usersForm.form.controls['password']?.hasError(validation.type)">
+                {{ validation.message }}
             </div>
-            <!-- end password -->
+        </ng-container>
+    </div>
+    <!-- end password -->
 
 
-            <!-- first_name -->
-            <ion-item class="item-transparent">
-                <ion-label>{{ 'NOMBRE' | titlecase }}</ion-label>
-                <ion-input [(ngModel)]="model.first_name"
-                            type="text"
-                            name="first_name"
-                            id="first_name-field"
-                            placeholder=""></ion-input>
-            </ion-item>
-            <div class="validation-errors">
-                <ng-container *ngFor="let validation of validationMessages.first_name">
-                    <div class="error-message" *ngIf="usersForm.form.controls['first_name']?.hasError(validation.type)">
-                        {{ validation.message }}
-                    </div>
-                </ng-container>
+    <!-- first_name -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'NOMBRE' | titlecase }}</ion-label>
+        <ion-input [(ngModel)]="model.first_name"
+                   [required]="true"
+                   type="text"
+                   name="first_name"
+                   id="first_name-field"
+                   placeholder=""></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.first_name">
+            <div class="error-message"
+                 *ngIf="usersForm.form.controls['first_name']?.hasError(validation.type)">
+                {{ validation.message }}
             </div>
-            <!-- end first_name -->
+        </ng-container>
+    </div>
+    <!-- end first_name -->
 
 
-            <!-- last_name -->
-            <ion-item class="item-transparent">
-                <ion-label>{{ 'APELLIDOS' | titlecase }}</ion-label>
-                <ion-input [(ngModel)]="model.last_name"
-                            type="text"
-                            name="last_name"
-                            id="last_name-field"
-                            placeholder=""></ion-input>
-            </ion-item>
-            <div class="validation-errors">
-                <ng-container *ngFor="let validation of validationMessages.last_name">
-                    <div class="error-message" *ngIf="usersForm.form.controls['last_name']?.hasError(validation.type)">
-                        {{ validation.message }}
-                    </div>
-                </ng-container>
+    <!-- last_name -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'APELLIDOS' | titlecase }}</ion-label>
+        <ion-input [(ngModel)]="model.last_name"
+                   [required]="true"
+                   type="text"
+                   name="last_name"
+                   id="last_name-field"
+                   placeholder=""></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.last_name">
+            <div class="error-message"
+                 *ngIf="usersForm.form.controls['last_name']?.hasError(validation.type)">
+                {{ validation.message }}
             </div>
-            <!-- end last_name -->
+        </ng-container>
+    </div>
+    <!-- end last_name -->
 
 
 </form>

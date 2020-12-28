@@ -135,3 +135,7 @@
 
 
 </form>
+
+<div class="ion-text-center" *ngIf="model.id">
+    <qrcode [qrdata]="'' + model.id" [width]="320" [errorCorrectionLevel]="'S'"></qrcode>
+</div>

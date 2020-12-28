@@ -147,6 +147,40 @@
                     </ion-item-divider>
                     <ion-menu-toggle auto-hide="false">
                         <ion-item [routerLinkActive]="'selected'"
+                                  [routerLink]="'/coun-meetings/list/custom'"
+                                  lines="none"
+                                  detail="false">
+                            <ion-icon slot="start"
+                                      ios="bookmark-outline"
+                                      md="bookmark-sharp"></ion-icon>
+                            <ion-label>Agenda</ion-label>
+                        </ion-item>
+                        <ion-item [routerLinkActive]="'selected'"
+                                  [routerLink]="'/coun-meetings/list/custom'"
+                                  lines="none"
+                                  detail="false">
+                            <ion-icon slot="start"
+                                      ios="bookmark-outline"
+                                      md="bookmark-sharp"></ion-icon>
+                            <ion-label>Mi Agenda</ion-label>
+                        </ion-item>
+                        <ion-item [routerLinkActive]="'selected'"
+                                  [routerLink]="'/oper-schedules/movement'"
+                                  lines="none"
+                                  detail="false">
+                            <ion-icon slot="start"
+                                      ios="bookmark-outline"
+                                      md="bookmark-sharp"></ion-icon>
+                            <ion-label>Movimiento operativo</ion-label>
+                        </ion-item>
+
+                    </ion-menu-toggle>
+
+                    <ion-item-divider>
+                        Juntas
+                    </ion-item-divider>
+                    <ion-menu-toggle auto-hide="false">
+                        <ion-item [routerLinkActive]="'selected'"
                                   [routerLink]="'/coun-meetings/create/custom'"
                                   lines="none"
                                   detail="false">

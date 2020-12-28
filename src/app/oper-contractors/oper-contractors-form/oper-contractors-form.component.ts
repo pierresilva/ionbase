@@ -82,4 +82,9 @@ export class OperContractorsFormComponent implements OnInit, AfterViewInit {
     // end setOperMovementIds
 
 
+    setUserId(event: any) {
+        this.operContractorsService.operContractor.user_id = event.value ? event.value.id : null;
+    }
+
+
 }

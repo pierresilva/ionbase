@@ -31,6 +31,35 @@
     </div>
     <!-- end oper_movement_ids -->
 
+    <!-- user_id -->
+    <ion-item class="item-transparent">
+        <ion-label>Usuario</ion-label>
+        <ionic-selectable name="user_id"
+                          id="user_id-field"
+                          [(ngModel)]="model.user"
+                          [items]="operContractorsService.operContractorLists.User"
+                          itemValueField="id"
+                          itemTextField="name"
+                          [isMultiple]="false"
+                          [canClear]="true"
+                          [hasConfirmButton]="true"
+                          [confirmButtonText]="'Seleccionar'"
+                          [searchPlaceholder]="'Buscar usuarios'"
+                          [searchFailText]="'No se encontraron usuarios  que coincida!'"
+                          [closeButtonText]="'Cancelar'"
+                          [clearButtonText]="'Limpiar'"
+                          [canSearch]="true"
+                          (onChange)="setUserId($event)">
+        </ionic-selectable>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.oper_movement_ids">
+            <div class="error-message" *ngIf="operContractorsForm.form.controls['oper_movement_ids']?.hasError(validation.type)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end oper_movement_ids -->
 
             <!-- name -->
             <ion-item class="item-transparent">

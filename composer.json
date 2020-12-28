@@ -19,6 +19,7 @@
         "laravel/ui": "^2.5",
         "laraveles/spanish": "^1.5",
         "pierresilva/laravel-jwt-auth": "dev-master",
+        "qoraiche/laravel-mail-editor": "^2.2",
         "spatie/laravel-database-mail-templates": "^3.4",
         "spatie/laravel-sluggable": "^2.2"
     },

@@ -15,6 +15,8 @@ export class OperSectorsFormComponent implements OnInit, AfterViewInit {
 
     @ViewChild('operSectorsForm') operSectorsForm: FormGroup;
 
+    public qrCode: string = '';
+
     public validationMessages = {
         'name': [
             {type: 'required', message: 'El campo ' + this.toTitlecase.transform('NAME') + ' es obligatorio.'},
@@ -44,6 +46,9 @@ export class OperSectorsFormComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
+        if (this.model && this.model.id) {
+            this.qrCode = this.model.id;
+        }
     }
 
 

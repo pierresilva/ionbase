@@ -3,6 +3,7 @@ import {BarcodeScanner} from '@ionic-native/barcode-scanner/ngx';
 import {ModalController, Platform} from "@ionic/angular";
 import {BarcodeScannerModalComponent} from "./barcode-scanner-modal/barcode-scanner-modal.component";
 import {BarcodeFormat} from "@zxing/library";
+import {SplitPanelService} from "../@shared/services/split-panel.service";
 
 
 @Component({
@@ -26,12 +27,17 @@ export class BarcodeScannerPage implements OnInit {
     constructor(
         private barcodeScanner: BarcodeScanner,
         public platform: Platform,
-        public modalController: ModalController
+        public modalController: ModalController,
+        public splitPanel: SplitPanelService,
     ) {
 
     }
 
     ngOnInit() {
+    }
+
+    ionViewWillEnter() {
+        this.splitPanel.show.next(true);
     }
 
     scan() {

@@ -58,7 +58,7 @@ class OperContractor extends Model
 // generated section
 
 	// Mass Assignment
-	protected $fillable = ['name','document','address','phone','email','phone_support','email_support','contact','business_hour','phone_emergency','email_emergency',];
+	protected $fillable = ['name','document','address','phone','email','phone_support','email_support','contact','business_hour','phone_emergency','email_emergency','user_id'];
     protected $dates = ['deleted_at'];
 
 	// Validate Rule
@@ -94,18 +94,24 @@ class OperContractor extends Model
 		return $this->hasMany('App\Models\OperMovement');
 	}
 
+	public function user() {
+        return $this->belongsTo('App\Models\User');
+    }
+
 
 
     public static function getRelationships()
     {
         return [
             'operMovements',
+            'user'
         ];
     }
 
 	public static function getLists() {
 		$lists = [];
 		$lists['OperMovement'] = OperMovement::all();
+        $lists['User'] = User::all();
 		return $lists;
 	}
 
@@ -113,6 +119,12 @@ class OperContractor extends Model
     {
         return $query->whereHas('operMovements', function ($query) use ($name) {
             $query->where('name', $name);
+        });
+    }
+
+    public function scopeUserByName(Builder $query, $name) {
+        return $query->whereHas('user', function ($query) use ($name) {
+            $query->where('name', 'like', '%' . $name . '%');
         });
     }
 
