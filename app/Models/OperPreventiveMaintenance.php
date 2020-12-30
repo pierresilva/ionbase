@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -73,9 +74,18 @@ class OperPreventiveMaintenance extends Model
 
 // end section
 
+    public function setDateAttribute( $value ) {
+        $this->attributes['date'] = (new Carbon($value))->format('Y-m-d');
+    }
+
     public function setTimeAttribute($value)
     {
         $this->attributes['time'] = date('H:i:s', strtotime($value));
+    }
+
+    public function setNextAttribute($value)
+    {
+        $this->attributes['next'] = date('Y-m-d', strtotime($value));
     }
 
     public static function boot()

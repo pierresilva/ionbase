@@ -49,6 +49,8 @@ Route::get('auth/email/verify/{id}', 'Api\AuthController@verifyEmail')->name('ve
 Route::post('auth/email/resend', 'Api\AuthController@resendVerifyEmail')->name('verification.send');
 
 
+Route::get('oper-sectors/pdf', 'Api\OperSectorController@generatePdf');
+
 // generated section
 
 Route::get("users/{userId}/duplicate", ['as' => 'api.users.duplicate', 'uses' => 'Api\UserController@duplicate']);

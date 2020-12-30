@@ -169,7 +169,6 @@
                 <ion-datetime name="date"
                               id="date-field"
                               [doneText]="'Seleccionar'"
-                              max="2040-12-31"
                               [cancelText]="'Cancelar'"
                               [(ngModel)]="model.date"
                               displayFormat="DD/MM/YYYY"></ion-datetime>
@@ -190,10 +189,9 @@
                 <ion-datetime name="time"
                               id="time-field"
                               [doneText]="'Seleccionar'"
-                              max="2040-12-31"
                               [cancelText]="'Cancelar'"
                               [(ngModel)]="model.time"
-                              displayFormat="DD/MM/YYYY"></ion-datetime>
+                              displayFormat="HH:mm"></ion-datetime>
             </ion-item>
             <div class="validation-errors">
                 <ng-container *ngFor="let validation of validationMessages.time">

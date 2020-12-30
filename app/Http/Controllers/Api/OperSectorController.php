@@ -316,4 +316,12 @@ class OperSectorController extends ApiController
 
 // end section
 
+    public function generatePdf()
+    {
+
+        $operSectors = OperSector::with(OperSector::getRelationships())->get();
+
+        return view('pdf.hous_units-qrs', ['sectors' => $operSectors]);
+    }
+
 }

@@ -137,6 +137,9 @@
       <excludeFolder url="file://$MODULE_DIR$/www" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/qoraiche/laravel-mail-editor" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/reecem/mocker" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/simplesoftwareio/simple-qrcode" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/dasprid/enum" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/bacon/bacon-qr-code" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
