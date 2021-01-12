@@ -1,9 +1,11 @@
-<form #operMachinesForm="ngForm" novalidate autocomplete="off">
+<form #operMachinesForm="ngForm"
+      novalidate
+      autocomplete="off">
 
 
     <!-- hous_unit_area_id -->
     <ion-item class="item-transparent">
-        <ion-label>{{ 'UNIDADESHABITACIONALESAREA' | titlecase }}</ion-label>
+        <ion-label>{{ 'AREA' | titlecase }}</ion-label>
         <ionic-selectable name="hous_unit_area_id"
                           id="hous_unit_area_id-field"
                           [required]="true"
@@ -24,7 +26,8 @@
     </ion-item>
     <div class="validation-errors">
         <ng-container *ngFor="let validation of validationMessages.hous_unit_area_id">
-            <div class="error-message" *ngIf="operMachinesForm.form.controls['hous_unit_area_id']?.hasError(validation.type)">
+            <div class="error-message"
+                 *ngIf="operMachinesForm.form.controls['hous_unit_area_id']?.hasError(validation.type)">
                 {{ validation.message }}
             </div>
         </ng-container>
@@ -34,7 +37,7 @@
 
     <!-- oper_contractor_id -->
     <ion-item class="item-transparent">
-        <ion-label>{{ 'CONTRATISTASOPERATIVO' | titlecase }}</ion-label>
+        <ion-label>{{ 'CONTRATISTA' | titlecase }}</ion-label>
         <ionic-selectable name="oper_contractor_id"
                           id="oper_contractor_id-field"
                           [required]="true"
@@ -55,7 +58,8 @@
     </ion-item>
     <div class="validation-errors">
         <ng-container *ngFor="let validation of validationMessages.oper_contractor_id">
-            <div class="error-message" *ngIf="operMachinesForm.form.controls['oper_contractor_id']?.hasError(validation.type)">
+            <div class="error-message"
+                 *ngIf="operMachinesForm.form.controls['oper_contractor_id']?.hasError(validation.type)">
                 {{ validation.message }}
             </div>
         </ng-container>
@@ -64,8 +68,8 @@
 
 
     <!-- oper_preventive_maintenance_ids -->
-    <ion-item class="item-transparent">
-        <ion-label>{{ 'OPERATIVIDAD MTTO PREVENTIVOS' | titlecase }}</ion-label>
+    <!--<ion-item class="item-transparent">
+        <ion-label>{{ 'MTTO PREVENTIVOS' | titlecase }}</ion-label>
         <ionic-selectable name="oper_preventive_maintenance_ids"
                           id="oper_preventive_maintenance_ids-field"
                           [(ngModel)]="model.oper_preventive_maintenances"
@@ -86,16 +90,17 @@
     </ion-item>
     <div class="validation-errors">
         <ng-container *ngFor="let validation of validationMessages.oper_preventive_maintenance_ids">
-            <div class="error-message" *ngIf="operMachinesForm.form.controls['oper_preventive_maintenance_ids']?.hasError(validation.type)">
-            {{ validation.message }}
+            <div class="error-message"
+                 *ngIf="operMachinesForm.form.controls['oper_preventive_maintenance_ids']?.hasError(validation.type)">
+                {{ validation.message }}
             </div>
         </ng-container>
-    </div>
+    </div>-->
     <!-- end oper_preventive_maintenance_ids -->
 
 
     <!-- oper_replacement_ids -->
-    <ion-item class="item-transparent">
+    <!--<ion-item class="item-transparent">
         <ion-label>{{ 'OPERATIVIDAD REPUESTOS' | titlecase }}</ion-label>
         <ionic-selectable name="oper_replacement_ids"
                           id="oper_replacement_ids-field"
@@ -117,90 +122,115 @@
     </ion-item>
     <div class="validation-errors">
         <ng-container *ngFor="let validation of validationMessages.oper_replacement_ids">
-            <div class="error-message" *ngIf="operMachinesForm.form.controls['oper_replacement_ids']?.hasError(validation.type)">
-            {{ validation.message }}
+            <div class="error-message"
+                 *ngIf="operMachinesForm.form.controls['oper_replacement_ids']?.hasError(validation.type)">
+                {{ validation.message }}
             </div>
         </ng-container>
-    </div>
+    </div>-->
     <!-- end oper_replacement_ids -->
 
 
-            <!-- name -->
-            <ion-item class="item-transparent">
-                <ion-label>{{ 'NOMBRE' | titlecase }}</ion-label>
-                <ion-input [(ngModel)]="model.name"
-                            type="text"
-                            name="name"
-                            id="name-field"
-                            [required]="true"
-                            placeholder=""></ion-input>
-            </ion-item>
-            <div class="validation-errors">
-                <ng-container *ngFor="let validation of validationMessages.name">
-                    <div class="error-message" *ngIf="operMachinesForm.form.controls['name']?.hasError(validation.type)">
-                        {{ validation.message }}
-                    </div>
-                </ng-container>
+    <!-- name -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'NOMBRE' | titlecase }}</ion-label>
+        <ion-input [(ngModel)]="model.name"
+                   type="text"
+                   name="name"
+                   id="name-field"
+                   [required]="true"
+                   placeholder=""></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.name">
+            <div class="error-message"
+                 *ngIf="operMachinesForm.form.controls['name']?.hasError(validation.type)">
+                {{ validation.message }}
             </div>
-            <!-- end name -->
+        </ng-container>
+    </div>
+    <!-- end name -->
 
 
-            <!-- contract_expiration_date -->
-            <ion-item class="item-transparent">
-                <ion-label>{{ 'FECHA VENCIMIENTO CONTRATO' | titlecase }}</ion-label>
-                <ion-datetime name="contract_expiration_date"
-                              id="contract_expiration_date-field"
-                              [doneText]="'Seleccionar'"
-                              [cancelText]="'Cancelar'"
-                              [(ngModel)]="model.contract_expiration_date"
-                              displayFormat="DD/MM/YYYY"></ion-datetime>
-            </ion-item>
-            <div class="validation-errors">
-                <ng-container *ngFor="let validation of validationMessages.contract_expiration_date">
-                    <div class="error-message" *ngIf="operMachinesForm.form.controls['contract_expiration_date']?.hasError(validation.type)">
-                        {{ validation.message }}
-                    </div>
-                </ng-container>
+    <!-- contract_expiration_date -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'FECHA VENCIMIENTO CONTRATO' | titlecase }}</ion-label>
+        <ion-datetime name="contract_expiration_date"
+                      id="contract_expiration_date-field"
+                      [doneText]="'Seleccionar'"
+                      [cancelText]="'Cancelar'"
+                      [(ngModel)]="model.contract_expiration_date"
+                      displayFormat="DD/MM/YYYY"></ion-datetime>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.contract_expiration_date">
+            <div class="error-message"
+                 *ngIf="operMachinesForm.form.controls['contract_expiration_date']?.hasError(validation.type)">
+                {{ validation.message }}
             </div>
-            <!-- end contract_expiration_date -->
+        </ng-container>
+    </div>
+    <!-- end contract_expiration_date -->
 
 
-            <!-- contract_monthly_price -->
-            <ion-item class="item-transparent">
-                <ion-label>{{ 'VALOR MENSUAL' | titlecase }}</ion-label>
-                <ion-input [(ngModel)]="model.contract_monthly_price"
-                            type="number"
-                            name="contract_monthly_price"
-                            id="contract_monthly_price-field"
-                            placeholder=""></ion-input>
-            </ion-item>
-            <div class="validation-errors">
-                <ng-container *ngFor="let validation of validationMessages.contract_monthly_price">
-                    <div class="error-message" *ngIf="operMachinesForm.form.controls['contract_monthly_price']?.hasError(validation.type)">
-                        {{ validation.message }}
-                    </div>
-                </ng-container>
+    <!-- contract_monthly_price -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'VALOR MENSUAL' | titlecase }}</ion-label>
+        <ion-input [(ngModel)]="model.contract_monthly_price"
+                   type="number"
+                   name="contract_monthly_price"
+                   id="contract_monthly_price-field"
+                   placeholder=""></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.contract_monthly_price">
+            <div class="error-message"
+                 *ngIf="operMachinesForm.form.controls['contract_monthly_price']?.hasError(validation.type)">
+                {{ validation.message }}
             </div>
-            <!-- end contract_monthly_price -->
+        </ng-container>
+    </div>
+    <!-- end contract_monthly_price -->
 
 
-            <!-- monthly_periodicity -->
-            <ion-item class="item-transparent">
-                <ion-label>{{ 'PERIODICIDAD MENSUAL' | titlecase }}</ion-label>
-                <ion-input [(ngModel)]="model.monthly_periodicity"
-                            type="number"
-                            name="monthly_periodicity"
-                            id="monthly_periodicity-field"
-                            placeholder=""></ion-input>
-            </ion-item>
-            <div class="validation-errors">
-                <ng-container *ngFor="let validation of validationMessages.monthly_periodicity">
-                    <div class="error-message" *ngIf="operMachinesForm.form.controls['monthly_periodicity']?.hasError(validation.type)">
-                        {{ validation.message }}
-                    </div>
-                </ng-container>
+    <!-- monthly_periodicity -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'PERIODICIDAD MENSUAL' | titlecase }}</ion-label>
+        <ion-input [(ngModel)]="model.monthly_periodicity"
+                   type="number"
+                   name="monthly_periodicity"
+                   id="monthly_periodicity-field"
+                   placeholder=""></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.monthly_periodicity">
+            <div class="error-message"
+                 *ngIf="operMachinesForm.form.controls['monthly_periodicity']?.hasError(validation.type)">
+                {{ validation.message }}
             </div>
-            <!-- end monthly_periodicity -->
+        </ng-container>
+    </div>
+    <!-- end monthly_periodicity -->
+
+
+    <!-- inventory_code -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'CÓDIGO INVENTARIO' | titlecase }}</ion-label>
+        <ion-input [(ngModel)]="model.inventory_code"
+                   type="text"
+                   name="inventory_code"
+                   id="inventory_code-field"
+                   placeholder=""></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.inventory_code">
+            <div class="error-message"
+                 *ngIf="operMachinesForm.form.controls['inventory_code']?.hasError(validation.type)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end monthly_periodicity -->
 
 
 </form>

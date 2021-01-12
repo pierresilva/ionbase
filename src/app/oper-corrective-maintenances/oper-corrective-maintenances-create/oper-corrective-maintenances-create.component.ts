@@ -33,6 +33,7 @@ export class OperCorrectiveMaintenancesCreateComponent implements OnInit, AfterV
 
     ionViewWillEnter() {
        this.splitPanel.show.next(true);
+        this.operCorrectiveMaintenancesService.createOperCorrectiveMaintenance();
     }
 
     ngAfterViewInit() {

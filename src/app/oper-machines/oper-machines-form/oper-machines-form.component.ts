@@ -40,6 +40,9 @@ export class OperMachinesFormComponent implements OnInit, AfterViewInit {
         'oper_replacement_ids': [
             {type: 'required', message: 'El campo ' + this.toTitlecase.transform('OPERATIVIDAD REPUESTOS') + ' es obligatorio.'},
         ],
+        'inventory_code': [
+            {type: 'required', message: 'El campo ' + this.toTitlecase.transform('CÓDIGO INVENTARIO') + ' es obligatorio.'},
+        ],
     };
 
     constructor(

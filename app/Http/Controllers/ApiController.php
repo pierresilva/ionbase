@@ -146,7 +146,7 @@ class ApiController extends Controller
                     }
 
                     if ($related_column_name !== '') {  // search at related table column
-                        $filterJoin = ($keyCount > 0) ? 'orWhereHas' : 'orWhereHas';
+                        $filterJoin = ($keyCount > 0) ? 'whereHas' : 'whereHas';
                         $keyCount++;
 
                         if ($value) {
@@ -157,7 +157,7 @@ class ApiController extends Controller
 
                     } else {
                         if ($value) {
-                            $query = $query->orWhere($column_name, $operator, $value);
+                            $query = $query->where($column_name, $operator, $value);
                         }
                     }
                 }

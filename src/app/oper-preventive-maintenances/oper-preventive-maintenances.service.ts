@@ -10,6 +10,8 @@ import {BehaviorSubject} from "rxjs";
 
 declare var $: any;
 
+import * as moment from 'moment';
+
 @Injectable({
     providedIn: 'root'
 })
@@ -89,6 +91,8 @@ export class OperPreventiveMaintenancesService {
             .subscribe(
                 (res: any) => {
                     this.operPreventiveMaintenance = <OperPreventiveMaintenance>{};
+                    this.operPreventiveMaintenance.time = moment().format('HH:mm');
+                    this.operPreventiveMaintenance.date = moment().format('YYYY-MM-DD');
                     this.operPreventiveMaintenanceLists = res.lists
                 }
             );

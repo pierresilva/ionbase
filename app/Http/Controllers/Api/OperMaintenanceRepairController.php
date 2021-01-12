@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\ApiController;
+use App\Models\OperCorrectiveMaintenance;
 use App\Models\OperMaintenanceRepair;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -39,7 +40,7 @@ class OperMaintenanceRepairController extends ApiController
         $resource['lists'] = OperMaintenanceRepair::getLists();
 
         return $this->responseSuccess(
-          'OPERATIVIDADREPARACIONE obtenidos!',
+          'Reparaciones obtenidas!',
           $resource,
           true,
           false
@@ -76,7 +77,6 @@ class OperMaintenanceRepairController extends ApiController
 
         $input = $request->input('model');
 
-                                                                                        
         DB::beginTransaction();
         try {
           //create data
@@ -86,6 +86,12 @@ class OperMaintenanceRepairController extends ApiController
           if ($request->input('pivots')) {
             $this->sync($request->input('pivots'), $operMaintenanceRepair);
           }
+
+          $operCorrectiveMaintenance = OperCorrectiveMaintenance::where('id', $input['oper_corrective_maintenance_id'])->first();
+
+          $operCorrectiveMaintenance->update([
+              'status' => 'resolved'
+          ]);
 
 
         } catch (\Exception $exception) {
@@ -194,7 +200,6 @@ class OperMaintenanceRepairController extends ApiController
 
         $input = $request->input('model');
 
-                                                                                        
         DB::beginTransaction();
         try {
           //update data

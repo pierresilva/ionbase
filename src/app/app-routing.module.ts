@@ -233,7 +233,7 @@ const routes: Routes = [
         canActivateChild: [AuthGuard],
         data: {
             title: 'JUNTAS CITACIONES',
-            roles: ['admin'],
+            // roles: ['user'],
             // permissions: []
         },
         loadChildren: () => import('./coun-meeting-citations/coun-meeting-citations.module').then(m => m.CounMeetingCitationsPageModule)
@@ -243,7 +243,7 @@ const routes: Routes = [
         canActivate: [AuthGuard],
         canActivateChild: [AuthGuard],
         data: {
-            title: 'OPERATRIVIDAD AJENDAS',
+            title: 'OPERATRIVIDAD AGENDAS',
             roles: ['admin'],
             // permissions: []
         },

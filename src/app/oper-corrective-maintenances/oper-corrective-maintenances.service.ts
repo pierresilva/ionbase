@@ -10,6 +10,8 @@ import {BehaviorSubject} from "rxjs";
 
 declare var $: any;
 
+import * as moment from 'moment';
+
 @Injectable({
     providedIn: 'root'
 })
@@ -40,9 +42,16 @@ export class OperCorrectiveMaintenancesService {
     ) {
     }
 // generated section
-    public getOperCorrectiveMaintenances(page: any = this.page, perPage: any = this.perPage) {
+    public getOperCorrectiveMaintenances(page: any = this.page, perPage: any = this.perPage, status = null, from = null, to = null) {
 
-        this.api.get(this.operCorrectiveMaintenancesUrl + '?page=' + page + '&perPage=' + perPage + '&q[name:cont]=' + this.searchValue)
+        this.api.get(
+            this.operCorrectiveMaintenancesUrl + '?page=' + page +
+            '&perPage=' + perPage +
+            (status ? '&q[status:eq]=' + status : '') +
+            (from ? '&q[operMaintenanceRepairs.date:gt]=' + from : '') +
+            (to ? '&q[operMaintenanceRepairs.date:lt]=' + to : '') +
+            '&q[name:cont]=' + this.searchValue
+        )
             .subscribe(
                 (res: any) => {
                     // @ts-ignore
@@ -90,6 +99,9 @@ export class OperCorrectiveMaintenancesService {
             .subscribe(
                 (res: any) => {
                     this.operCorrectiveMaintenance = <OperCorrectiveMaintenance>{};
+                    this.operCorrectiveMaintenance.date = moment().format('YYYY-MM-DD');
+                    this.operCorrectiveMaintenance.time = moment().format('HH:mm');
+                    this.operCorrectiveMaintenance.status = 'pending';
                     this.operCorrectiveMaintenanceLists = res.lists
                 }
             );

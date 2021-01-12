@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Router} from "@angular/router";
 import {ApiService} from "../@shared/services/api.service";
-import { OperMachine, OperMachineLists } from "./oper-machine";
+import {OperMachine, OperMachineLists} from "./oper-machine";
 import {Meta} from "../@shared/interfaces/meta";
 import {AlertService} from "../@shared/services/alert.service";
 import {ToastService} from "../@shared/services/toast.service";
@@ -39,10 +39,17 @@ export class OperMachinesService {
         private navigation: NavigationService,
     ) {
     }
+
 // generated section
     public getOperMachines(page: any = this.page, perPage: any = this.perPage) {
 
-        this.api.get(this.operMachinesUrl + '?page=' + page + '&perPage=' + perPage + '&q[name:cont]=' + this.searchValue)
+        this.api.get(
+            this.operMachinesUrl +
+            '?page=' + page +
+            '&perPage=' + perPage +
+            '&q[name:cont]=' + this.searchValue +
+            '&q[inventory_code:cont]=' + this.searchValue
+        )
             .subscribe(
                 (res: any) => {
                     // @ts-ignore
@@ -73,8 +80,7 @@ export class OperMachinesService {
     public updateOperMachine() {
         this.api.put(this.operMachinesUrl + '/' + this.operMachine.id, {
             model: this.operMachine,
-            pivots: {
-            }
+            pivots: {}
         }).subscribe(
             (res: any) => {
                 this.toast.present(res.message, 'toast-success', 'top');
@@ -97,8 +103,7 @@ export class OperMachinesService {
     public storeOperMachine() {
         this.api.post(this.operMachinesUrl, {
             model: this.operMachine,
-            pivots: {
-            }
+            pivots: {}
         }).subscribe(
             (res: any) => {
                 this.toast.present(res.message, 'toast-success', 'top');
@@ -124,6 +129,7 @@ export class OperMachinesService {
             return;
         }
     }
+
 // end generated section
 
 }

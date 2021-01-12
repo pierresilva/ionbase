@@ -6,70 +6,104 @@
 <ion-content id="pages-content">
 
     <ion-searchbar showCancelButton="focus"
-                       [cancelButtonText]="'Cancelar'"
-                       [placeholder]="'Buscar ' + ('OPERATIVIDAD MAQUINARIA' | lowercase )"
-                       (ionCancel)="this.operMachinesService.searchValue = ''; operMachinesService.getOperMachines()"
-                       (keyup.enter)="operMachinesService.getOperMachines()"
-                       [(ngModel)]="operMachinesService.searchValue"></ion-searchbar>
+                   [cancelButtonText]="'Cancelar'"
+                   [placeholder]="'Buscar ' + ('OPERATIVIDAD MAQUINARIA' | lowercase )"
+                   (ionCancel)="this.operMachinesService.searchValue = ''; operMachinesService.getOperMachines()"
+                   (keyup.enter)="operMachinesService.getOperMachines()"
+                   [(ngModel)]="operMachinesService.searchValue"></ion-searchbar>
 
     <ng-container *ngIf="!(loading.loading | async) && operMachinesService.operMachines?.length">
         <ion-card *ngFor="let operMachine of operMachinesService.operMachines; let index = index">
             <ion-list>
-                    <ion-item class="item-transparent">
-                        <ion-label position="fixed"><b>{{ 'NOMBRE' | titlecase }}</b></ion-label>
-                        <div class="wrap-text">{{ operMachine?.name }}</div>
-                    </ion-item>
-                    <ion-item class="item-transparent">
-                        <ion-label position="fixed"><b>{{ 'FECHA VENCIMIENTO CONTRATO' | titlecase }}</b></ion-label>
-                        <div class="wrap-text">{{ operMachine?.contract_expiration_date | dateFormat:'DD/MM/YYYY' }}</div>
-                    </ion-item>
-                    <ion-item class="item-transparent">
-                        <ion-label position="fixed"><b>{{ 'VALOR MENSUAL' | titlecase }}</b></ion-label>
-                        <div class="wrap-text">{{ operMachine?.contract_monthly_price }}</div>
-                    </ion-item>
-                    <ion-item class="item-transparent">
-                        <ion-label position="fixed"><b>{{ 'PERIODICIDAD MENSUAL' | titlecase }}</b></ion-label>
-                        <div class="wrap-text">{{ operMachine?.monthly_periodicity }}</div>
-                    </ion-item>
-                    <ion-item class="item-transparent">
-                        <ion-label position="fixed"><b>{{ 'UNIDADES HABITACIONALES AREAS' | titlecase }}</b></ion-label>
-                        <div class="wrap-text"><a routerLink="/hous-unit-areas/{{ operMachine?.hous_unit_area?.id }}/edit">{{ operMachine?.hous_unit_area?.name }}</a></div>
-                    </ion-item>
-                    <ion-item class="item-transparent">
-                        <ion-label position="fixed"><b>{{ 'CONTRATISTAS OPERATIVOS' | titlecase }}</b></ion-label>
-                        <div class="wrap-text"><a routerLink="/oper-contractors/{{ operMachine?.oper_contractor?.id }}/edit">{{ operMachine?.oper_contractor?.name }}</a></div>
-                    </ion-item>
-                    <ion-item class="item-transparent">
-                        <ion-label position="fixed"><b>{{ 'OPERATIVIDAD MTTO PREVENTIVOS' | titlecase }}</b></ion-label>
-                        <div class="wrap-text">
-                            <ng-container *ngIf="operMachine?.oper_preventive_maintenances?.length">
-                                <ng-container *ngFor="let operPreventiveMaintenance of operMachine?.oper_preventive_maintenances; let last = last">
-                                    <a routerLink="/oper-preventive-maintenances/{{ operPreventiveMaintenance?.id }}/edit">{{ operPreventiveMaintenance?.name }}</a><span *ngIf="!last">, </span>
-                                </ng-container>
+                <ion-item class="item-transparent">
+                    <ion-label position="fixed">
+                        <b>{{ 'NOMBRE' | titlecase }}</b>
+                    </ion-label>
+                    <div class="wrap-text">{{ operMachine?.name }}</div>
+                </ion-item>
+                <ion-item class="item-transparent">
+                    <ion-label position="fixed">
+                        <b>{{ 'FECHA VENCIMIENTO CONTRATO' | titlecase }}</b>
+                    </ion-label>
+                    <div class="wrap-text">{{ operMachine?.contract_expiration_date | dateFormat:'DD/MM/YYYY' }}</div>
+                </ion-item>
+                <ion-item class="item-transparent">
+                    <ion-label position="fixed">
+                        <b>{{ 'VALOR MENSUAL' | titlecase }}</b>
+                    </ion-label>
+                    <div class="wrap-text">{{ operMachine?.contract_monthly_price }}</div>
+                </ion-item>
+                <ion-item class="item-transparent">
+                    <ion-label position="fixed">
+                        <b>{{ 'PERIODICIDAD MENSUAL' | titlecase }}</b>
+                    </ion-label>
+                    <div class="wrap-text">{{ operMachine?.monthly_periodicity }}</div>
+                </ion-item>
+                <ion-item class="item-transparent">
+                    <ion-label position="fixed">
+                        <b>Código Inventario</b>
+                    </ion-label>
+                    <div class="wrap-text">{{ operMachine?.inventory_code }}</div>
+                </ion-item>
+                <ion-item class="item-transparent">
+                    <ion-label position="fixed">
+                        <b>{{ 'UNIDADES HABITACIONALES AREAS' | titlecase }}</b>
+                    </ion-label>
+                    <div class="wrap-text">
+                        <a routerLink="/hous-unit-areas/{{ operMachine?.hous_unit_area?.id }}/edit">{{ operMachine?.hous_unit_area?.name }}</a>
+                    </div>
+                </ion-item>
+                <ion-item class="item-transparent">
+                    <ion-label position="fixed">
+                        <b>{{ 'CONTRATISTAS OPERATIVOS' | titlecase }}</b>
+                    </ion-label>
+                    <div class="wrap-text">
+                        <a routerLink="/oper-contractors/{{ operMachine?.oper_contractor?.id }}/edit">{{ operMachine?.oper_contractor?.name }}</a>
+                    </div>
+                </ion-item>
+                <ion-item class="item-transparent">
+                    <ion-label position="fixed">
+                        <b>{{ 'OPERATIVIDAD MTTO PREVENTIVOS' | titlecase }}</b>
+                    </ion-label>
+                    <div class="wrap-text">
+                        <ng-container *ngIf="operMachine?.oper_preventive_maintenances?.length">
+                            <ng-container *ngFor="let operPreventiveMaintenance of operMachine?.oper_preventive_maintenances; let last = last">
+                                <a routerLink="/oper-preventive-maintenances/{{ operPreventiveMaintenance?.id }}/edit">{{ operPreventiveMaintenance?.name }}</a>
+                                <span *ngIf="!last">, </span>
                             </ng-container>
-                        </div>
-                    </ion-item>
-                    <ion-item class="item-transparent">
-                        <ion-label position="fixed"><b>{{ 'OPERATIVIDAD REPUESTOS' | titlecase }}</b></ion-label>
-                        <div class="wrap-text">
-                            <ng-container *ngIf="operMachine?.oper_replacements?.length">
-                                <ng-container *ngFor="let operReplacement of operMachine?.oper_replacements; let last = last">
-                                    <a routerLink="/oper-replacements/{{ operReplacement?.id }}/edit">{{ operReplacement?.name }}</a><span *ngIf="!last">, </span>
-                                </ng-container>
+                        </ng-container>
+                    </div>
+                </ion-item>
+                <ion-item class="item-transparent">
+                    <ion-label position="fixed">
+                        <b>{{ 'OPERATIVIDAD REPUESTOS' | titlecase }}</b>
+                    </ion-label>
+                    <div class="wrap-text">
+                        <ng-container *ngIf="operMachine?.oper_replacements?.length">
+                            <ng-container *ngFor="let operReplacement of operMachine?.oper_replacements; let last = last">
+                                <a routerLink="/oper-replacements/{{ operReplacement?.id }}/edit">{{ operReplacement?.name }}</a>
+                                <span *ngIf="!last">, </span>
                             </ng-container>
-                        </div>
-                    </ion-item>
+                        </ng-container>
+                    </div>
+                </ion-item>
             </ion-list>
             <ion-footer>
                 <ion-row>
                     <ion-col class="ion-text-center">
-                        <ion-button color="success" size="small" fill="clear" [routerLink]="'/oper-machines/' + operMachine?.id + '/edit'">
+                        <ion-button color="success"
+                                    size="small"
+                                    fill="clear"
+                                    [routerLink]="'/oper-machines/' + operMachine?.id + '/edit'">
                             <ion-icon name="create-outline"></ion-icon>
                             <div>Editar</div>
                         </ion-button>
                     </ion-col>
                     <ion-col class="ion-text-center">
-                        <ion-button color="danger" size="small" fill="clear" (click)="operMachinesService.deleteOperMachine(operMachine?.id)">
+                        <ion-button color="danger"
+                                    size="small"
+                                    fill="clear"
+                                    (click)="operMachinesService.deleteOperMachine(operMachine?.id)">
                             <ion-icon name="trash-outline"></ion-icon>
                             <div>Eliminar</div>
                         </ion-button>
@@ -81,11 +115,17 @@
 
     <ng-container *ngIf="!(loading.loading | async) && !operMachinesService.operMachines?.length">
         <ion-item>
-            <ion-icon class="text-warning" name="warning-outline" slot="start"></ion-icon>
+            <ion-icon class="text-warning"
+                      name="warning-outline"
+                      slot="start"></ion-icon>
             <ion-label><h2>No se encontraron {{'OPERATIVIDAD MAQUINARIA' | titlecase}}</h2></ion-label>
-            <ion-button [routerLink]="'/oper-machines/create'" fill="outline" color="success" slot="end">
+            <ion-button [routerLink]="'/oper-machines/create'"
+                        fill="outline"
+                        color="success"
+                        slot="end">
                 Crear {{'OPERATIVIDAD MAQUINARIA' | titlecase}}
-                <ion-icon name="add-circle-outline" slot="end"></ion-icon>
+                <ion-icon name="add-circle-outline"
+                          slot="end"></ion-icon>
             </ion-button>
         </ion-item>
     </ng-container>
@@ -94,19 +134,25 @@
 
 <ion-footer class="lists-footer">
     <ion-row *ngIf="operMachinesService.meta">
-        <ion-col class="ion-text-center" size="12">
+        <ion-col class="ion-text-center"
+                 size="12">
             <ion-button (click)="operMachinesService.getOperMachines(operMachinesService.meta.current_page - 1)"
                         [disabled]="operMachinesService.meta.current_page == 1"
                         fill="clear">
-                <ion-icon slot="end" name="play-outline" style="transform: rotate(180deg);"></ion-icon>
+                <ion-icon slot="end"
+                          name="play-outline"
+                          style="transform: rotate(180deg);"></ion-icon>
             </ion-button>
-            <ion-button fill="clear" [disabled]="true"> Pag: {{operMachinesService.meta.current_page}}
-                /{{operMachinesService.meta.last_page}} {{operMachinesService.meta.from}}-{{operMachinesService.meta.to}}
-                /{{operMachinesService.meta.total}} </ion-button>
+            <ion-button fill="clear"
+                        [disabled]="true"> Pag: {{operMachinesService.meta.current_page}}
+                                           /{{operMachinesService.meta.last_page}} {{operMachinesService.meta.from}}
+                                           -{{operMachinesService.meta.to}}
+                                           /{{operMachinesService.meta.total}} </ion-button>
             <ion-button (click)="operMachinesService.getOperMachines(operMachinesService.meta.current_page + 1)"
                         [disabled]="operMachinesService.meta.current_page == operMachinesService.meta.last_page"
                         fill="clear">
-                <ion-icon slot="start" name="play-outline"></ion-icon>
+                <ion-icon slot="start"
+                          name="play-outline"></ion-icon>
             </ion-button>
         </ion-col>
     </ion-row>

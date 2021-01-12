@@ -1670,7 +1670,7 @@
           "id": 6,
           "name": "signature",
           "display_name": "FIRMA",
-          "type": "string",
+          "type": "longText",
           "input_type": "text",
           "varidate": "",
           "faker_type": "imageUrl(320, 240)",
@@ -3282,13 +3282,30 @@
           "parent_id": 43,
           "comment": "",
           "options": ""
+        },
+        {
+          "id": 8,
+          "name": "inventoryCode",
+          "display_name": "CODIGO INVENTARIO",
+          "type": "string",
+          "input_type": "text",
+          "varidate": "",
+          "faker_type": "word",
+          "nullable": true,
+          "unique": true,
+          "show_in_list": true,
+          "show_in_detail": true,
+          "belongsto": "",
+          "parent_id": 43,
+          "comment": "Código de inventario",
+          "options": ""
         }
       ],
       "is_pivot": false,
       "schema_id_for_relation": 1,
       "pos_x": 1055,
       "pos_y": 1995,
-      "_next_schema_id": 8
+      "_next_schema_id": 9
     },
     {
       "id": 44,

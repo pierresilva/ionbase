@@ -3,7 +3,7 @@
 
     <!-- oper_reason_id -->
     <ion-item class="item-transparent">
-        <ion-label>{{ 'OPERATIVIDADMOTIVOSMTTOCORRECTIVO' | titlecase }}</ion-label>
+        <ion-label>{{ 'MOTIVO' | titlecase }}</ion-label>
         <ionic-selectable name="oper_reason_id"
                           id="oper_reason_id-field"
                           [required]="true"
@@ -34,7 +34,7 @@
 
     <!-- hous_unit_area_id -->
     <ion-item class="item-transparent">
-        <ion-label>{{ 'UNIDADESHABITACIONALESAREA' | titlecase }}</ion-label>
+        <ion-label>{{ 'AREA' | titlecase }}</ion-label>
         <ionic-selectable name="hous_unit_area_id"
                           id="hous_unit_area_id-field"
                           [required]="true"
@@ -65,7 +65,7 @@
 
     <!-- oper_item_ids -->
     <ion-item class="item-transparent">
-        <ion-label>{{ 'OPERATIVIDAD ITEMS MTTO CORRECTIVO' | titlecase }}</ion-label>
+        <ion-label>{{ 'ITEMS' | titlecase }}</ion-label>
         <ionic-selectable name="oper_item_ids"
                           id="oper_item_ids-field"
                           [(ngModel)]="model.oper_items"
@@ -95,7 +95,7 @@
 
 
     <!-- oper_maintenance_repair_ids -->
-    <ion-item class="item-transparent">
+    <!--<ion-item class="item-transparent">
         <ion-label>{{ 'OPERATIVIDAD REPARACIONES' | titlecase }}</ion-label>
         <ionic-selectable name="oper_maintenance_repair_ids"
                           id="oper_maintenance_repair_ids-field"
@@ -121,7 +121,7 @@
             {{ validation.message }}
             </div>
         </ng-container>
-    </div>
+    </div>-->
     <!-- end oper_maintenance_repair_ids -->
 
 

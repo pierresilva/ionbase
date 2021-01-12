@@ -15,6 +15,7 @@ import { OperSchedulesDuplicateComponent} from "./oper-schedules-duplicate/oper-
 import { OperSchedulesEditComponent} from "./oper-schedules-edit/oper-schedules-edit.component";
 import { OperSchedulesFormComponent} from "./oper-schedules-form/oper-schedules-form.component";
 import {OperScheduleContractorIoComponent} from "./oper-schedule-contractor-io/oper-schedule-contractor-io.component";
+import {OperScheduleContractorListComponent} from "./oper-schedule-contractor-list/oper-schedule-contractor-list.component";
 
 @NgModule({
     imports: [
@@ -36,6 +37,7 @@ import {OperScheduleContractorIoComponent} from "./oper-schedule-contractor-io/o
         OperSchedulesFormComponent,
     // end declarations generated section
         OperScheduleContractorIoComponent,
+        OperScheduleContractorListComponent,
     ]
 })
 export class OperSchedulesPageModule {

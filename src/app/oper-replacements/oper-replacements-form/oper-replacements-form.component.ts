@@ -3,6 +3,7 @@ import {OperReplacement} from "../oper-replacement";
 import {FormGroup} from "@angular/forms";
 import {OperReplacementsService} from "../oper-replacements.service";
 import {TitleCasePipe} from "@angular/common";
+import * as moment from 'moment';
 
 @Component({
     selector: 'app-oper-replacements-form',
@@ -44,6 +45,10 @@ export class OperReplacementsFormComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit(): void {
+    }
+
+    ionViewWillEnter() {
+
     }
 
     ngAfterViewInit() {

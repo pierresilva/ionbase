@@ -36,6 +36,15 @@ const routes: Routes = [
       component: OperMaintenanceRepairsCreateComponent
     },
     {
+        path: 'create/:mttoId',
+        data: {
+            title: 'OPERATIVIDAD REPARACIONES',
+            roles: ['admin'],
+            // permissions: []
+        },
+        component: OperMaintenanceRepairsCreateComponent
+    },
+    {
         path: ':id/edit',
         data: {
             title: 'OPERATIVIDAD REPARACIONES',

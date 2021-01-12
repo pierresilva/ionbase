@@ -5000,6 +5000,11 @@ invariant@^2.2.2:
   dependencies:
     loose-envify "^1.0.0"
 
+ion2-calendar@^3.5.0:
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/ion2-calendar/-/ion2-calendar-3.5.0.tgz#bca1da2cec22a6ad80f1fc9ac7680737865e9531"
+  integrity sha512-LAd+fd+z95Ftvwa899bErre4ld9Cf/eF3iOd0NmLOGTqbdICi65GnyGAtTLQLdxNuj6arizyh8YC6rxt0m1y5Q==
+
 ionic-selectable@^4.7.1:
   version "4.7.1"
   resolved "https://registry.yarnpkg.com/ionic-selectable/-/ionic-selectable-4.7.1.tgz#5103ea275c87c4ab3478b603d8bdc044d05b0350"

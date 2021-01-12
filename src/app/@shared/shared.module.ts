@@ -47,6 +47,7 @@ import {TokenInterceptor} from "./interceptors/token.interceptor";
 import {ApiPrefixInterceptor} from "./interceptors/api-prefix.interceptor";
 import {SubdomainInterceptor} from "./interceptors/subdomain.interceptor";
 import {TimeFormatPipe} from "./pipes/time-format.pipe";
+import {CalendarModule} from "ion2-calendar";
 
 
 @NgModule({
@@ -84,6 +85,7 @@ import {TimeFormatPipe} from "./pipes/time-format.pipe";
         TimeFormatPipe,
         ZeroLeadingPipe,
         GetParameterPipe,
+        CalendarModule
     ],
     imports: [
         CommonModule,

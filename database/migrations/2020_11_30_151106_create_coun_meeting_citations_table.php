@@ -26,7 +26,7 @@ class CreateCounMeetingCitationsTable extends Migration
             $table->string('name')->comment('');
             $table->boolean('attended')->nullable()->comment('');
             $table->boolean('signed')->nullable()->comment('');
-            $table->string('signature')->nullable()->comment('');
+            $table->longText('signature')->nullable()->comment('');
             $table->softDeletes();
         });
         Schema::enableForeignKeyConstraints();

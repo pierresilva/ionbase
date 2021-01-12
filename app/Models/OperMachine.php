@@ -15,7 +15,15 @@ class OperMachine extends Model
 // generated section
 
 	// Mass Assignment
-	protected $fillable = ['name','hous_unit_area_id','oper_contractor_id','contract_expiration_date','contract_monthly_price','monthly_periodicity',];
+	protected $fillable = [
+	    'name',
+        'hous_unit_area_id',
+        'oper_contractor_id',
+        'contract_expiration_date',
+        'contract_monthly_price',
+        'monthly_periodicity',
+        'inventory_code'
+    ];
     protected $dates = ['deleted_at'];
 
 
@@ -24,7 +32,7 @@ class OperMachine extends Model
         if($oper_machine){
             $ignore_unique = $oper_machine->id;
         }else{
-            $ignore_unique = 'NULL';
+            $ignore_unique = null;
         }
         $table_name = 'oper_machines';
         $validation_rule = [
@@ -35,7 +43,7 @@ class OperMachine extends Model
             'model.contract_expiration_date' => 'nullable',
             'model.contract_monthly_price' => 'integer|nullable',
             'model.monthly_periodicity' => 'integer|nullable',
-
+            'model.inventory_code' => 'nullable|unique:oper_machines,inventory_code' . ($ignore_unique ? ',' . $ignore_unique : '')
 
         ];
         if($oper_machine){
@@ -58,8 +66,6 @@ class OperMachine extends Model
 	public function operContractor() {
 		return $this->belongsTo('App\Models\OperContractor');
 	}
-
-
 
     public static function getRelationships()
     {

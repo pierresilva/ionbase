@@ -6,13 +6,14 @@ import {OperSchedulesEditComponent} from "./oper-schedules-edit/oper-schedules-e
 import {OperSchedulesCreateComponent} from "./oper-schedules-create/oper-schedules-create.component";
 import {OperSchedulesListComponent} from "./oper-schedules-list/oper-schedules-list.component";
 import {OperScheduleContractorIoComponent} from "./oper-schedule-contractor-io/oper-schedule-contractor-io.component";
+import {OperScheduleContractorListComponent} from "./oper-schedule-contractor-list/oper-schedule-contractor-list.component";
 
 const routes: Routes = [
 // generated section
     {
         path: '',
         data: {
-            title: 'OPERATRIVIDAD AJENDAS',
+            title: 'OPERATRIVIDAD AGENDAS',
             roles: ['admin'],
             // permissions: []
         },
@@ -21,7 +22,7 @@ const routes: Routes = [
     {
         path: 'list',
         data: {
-            title: 'OPERATRIVIDAD AJENDAS',
+            title: 'OPERATRIVIDAD AGENDAS',
             roles: ['admin'],
             // permissions: []
         },
@@ -30,7 +31,7 @@ const routes: Routes = [
     {
       path: 'create',
       data: {
-          title: 'OPERATRIVIDAD AJENDAS',
+          title: 'OPERATRIVIDAD AGENDAS',
           roles: ['admin'],
           // permissions: []
       },
@@ -39,7 +40,7 @@ const routes: Routes = [
     {
         path: ':id/edit',
         data: {
-            title: 'OPERATRIVIDAD AJENDAS',
+            title: 'OPERATRIVIDAD AGENDAS',
             roles: ['admin'],
             // permissions: []
         },
@@ -51,6 +52,13 @@ const routes: Routes = [
             title: 'Movimientos operativos'
         },
         component: OperScheduleContractorIoComponent,
+    },
+    {
+        path: 'own',
+        data: {
+            title: 'Mi Agenda'
+        },
+        component: OperScheduleContractorListComponent,
     }
 ];
 // end generated section

@@ -9,6 +9,7 @@ import {NavigationService} from '../@shared/services/navigation.service'
 import {BehaviorSubject} from "rxjs";
 
 declare var $: any;
+import * as moment from 'moment';
 
 @Injectable({
     providedIn: 'root'
@@ -89,6 +90,8 @@ export class OperMaintenanceRepairsService {
             .subscribe(
                 (res: any) => {
                     this.operMaintenanceRepair = <OperMaintenanceRepair>{};
+                    this.operMaintenanceRepair.time = moment().format('YYYY-MM-DD HH:mm');
+                    this.operMaintenanceRepair.date = moment().format('YYYY-MM-DD HH:mm');
                     this.operMaintenanceRepairLists = res.lists
                 }
             );

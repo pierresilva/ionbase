@@ -1,13 +1,13 @@
-<app-main-header title="{{'OPERATRIVIDAD AJENDAS' | titlecase}}"
+<app-main-header title="{{'OPERATRIVIDAD AGENDAS' | titlecase}}"
                  primaryLink="oper-schedules/create"
-                 primaryText="Crear {{'OPERATRIVIDAD AJENDAS' | lowercase}}"
+                 primaryText="Crear {{'OPERATRIVIDAD AGENDAS' | lowercase}}"
                  primaryIcon="add-circle-outline"></app-main-header>
 
 <ion-content id="pages-content">
 
     <ion-searchbar showCancelButton="focus"
                        [cancelButtonText]="'Cancelar'"
-                       [placeholder]="'Buscar ' + ('OPERATRIVIDAD AJENDAS' | lowercase )"
+                       [placeholder]="'Buscar ' + ('OPERATRIVIDAD AGENDAS' | lowercase )"
                        (ionCancel)="this.operSchedulesService.searchValue = ''; operSchedulesService.getOperSchedules()"
                        (keyup.enter)="operSchedulesService.getOperSchedules()"
                        [(ngModel)]="operSchedulesService.searchValue"></ion-searchbar>
@@ -96,9 +96,9 @@
     <ng-container *ngIf="!(loading.loading | async) && !operSchedulesService.operSchedules?.length">
         <ion-item>
             <ion-icon class="text-warning" name="warning-outline" slot="start"></ion-icon>
-            <ion-label><h2>No se encontraron {{'OPERATRIVIDAD AJENDAS' | titlecase}}</h2></ion-label>
+            <ion-label><h2>No se encontraron {{'OPERATRIVIDAD EGENDAS' | titlecase}}</h2></ion-label>
             <ion-button [routerLink]="'/oper-schedules/create'" fill="outline" color="success" slot="end">
-                Crear {{'OPERATRIVIDAD AJENDAS' | titlecase}}
+                Crear {{'OPERATRIVIDAD AGENDAS' | titlecase}}
                 <ion-icon name="add-circle-outline" slot="end"></ion-icon>
             </ion-button>
         </ion-item>

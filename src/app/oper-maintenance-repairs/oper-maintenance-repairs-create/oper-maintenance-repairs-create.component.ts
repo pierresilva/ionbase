@@ -3,7 +3,7 @@ import {OperMaintenanceRepairsService} from "../oper-maintenance-repairs.service
 import {ActivatedRoute} from "@angular/router";
 import {OperMaintenanceRepair} from "../oper-maintenance-repair";
 import {OperMaintenanceRepairsFormComponent} from "../oper-maintenance-repairs-form/oper-maintenance-repairs-form.component";
-import { Platform } from '@ionic/angular';
+import {Platform} from '@ionic/angular';
 import {SplitPanelService} from "../../@shared/services/split-panel.service";
 
 @Component({
@@ -32,7 +32,29 @@ export class OperMaintenanceRepairsCreateComponent implements OnInit, AfterViewI
     }
 
     ionViewWillEnter() {
-       this.splitPanel.show.next(true);
+        this.splitPanel.show.next(true);
+
+        this.operMaintenanceRepairsService.operMaintenanceRepair.oper_corrective_maintenance_id = this.route.snapshot.params.mttoId;
+
+        console.log(this.operMaintenanceRepairsService.operMaintenanceRepair.oper_corrective_maintenance_id);
+
+        console.log(this.operMaintenanceRepairsService.operMaintenanceRepairLists.OperCorrectiveMaintenance);
+
+
+        if (this.route.snapshot.params.mttoId) {
+            for (let i = 0; i < this.operMaintenanceRepairsService.operMaintenanceRepairLists.OperCorrectiveMaintenance.length; i++) {
+
+                if (this.operMaintenanceRepairsService.operMaintenanceRepairLists.OperCorrectiveMaintenance[i].id == this.route.snapshot.params.mttoId) {
+                    console.log(this.operMaintenanceRepairsService.operMaintenanceRepairLists.OperCorrectiveMaintenance[i]);
+                    this.operMaintenanceRepairsService.operMaintenanceRepair.oper_corrective_maintenance = this.operMaintenanceRepairsService.operMaintenanceRepairLists.OperCorrectiveMaintenance[i];
+                    this.operMaintenanceRepairForm.model.oper_corrective_maintenance = this.operMaintenanceRepairsService.operMaintenanceRepairLists.OperCorrectiveMaintenance[i];
+                    this.operMaintenanceRepairForm.model.oper_corrective_maintenance_id = this.operMaintenanceRepairsService.operMaintenanceRepair.oper_corrective_maintenance_id;
+                }
+            }
+        }
+
+        console.log(this.operMaintenanceRepairForm.model);
+
     }
 
     ngAfterViewInit() {

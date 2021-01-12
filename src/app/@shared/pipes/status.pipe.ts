@@ -16,7 +16,16 @@ export class StatusPipe implements PipeTransform {
               hold: 'En espera',
               finalized: 'Finalizado',
               in_progress: 'En progreso',
-              unknown: 'Desconocido'
+              pending: 'Pendiente',
+              resolved: 'Resuelto',
+              daily: 'Diario',
+              weekly: 'Semanal',
+              monthly: 'Mensual',
+              bimonthly: 'Bimensual',
+              quarterly: 'Trimestral',
+              biannual: 'Semestral',
+              annual: 'Anual',
+              unknown: 'Desconocido',
           };
 
           return status[value] ? status[value] : value;

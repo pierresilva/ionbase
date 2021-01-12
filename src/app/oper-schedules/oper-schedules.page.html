@@ -1,5 +1,7 @@
-<app-main-header title="OPERATRIVIDAD AJENDAS"></app-main-header>
-
+<app-main-header title="{{'OPERATRIVIDAD AGENDAS' | titlecase}}"
+                 primaryLink="oper-schedules/create"
+                 primaryText="Crear {{'OPERATRIVIDAD AGENDAS' | lowercase}}"
+                 primaryIcon="add-circle-outline"></app-main-header>
 <ion-content>
 
         <ion-row>
@@ -11,7 +13,7 @@
                     </div>
                     <ion-card-header>
                         <ion-card-subtitle class="ion-text-center">
-                            Listar {{ 'OPERATRIVIDAD AJENDAS'  | titlecase }}
+                            Listar {{ 'OPERATRIVIDAD AGENDAS'  | titlecase }}
                         </ion-card-subtitle>
                     </ion-card-header>
 
@@ -25,7 +27,7 @@
                     </div>
                     <ion-card-header>
                         <ion-card-subtitle class="ion-text-center">
-                            Crear {{ 'OPERATRIVIDAD AJENDAS' | titlecase }}
+                            Crear {{ 'OPERATRIVIDAD AGENDAS' | titlecase }}
                         </ion-card-subtitle>
                     </ion-card-header>
 

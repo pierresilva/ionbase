@@ -49,7 +49,20 @@ class OperSchedule extends Model
 // generated section
 
     // Mass Assignment
-    protected $fillable = ['name', 'hous_unit_area_id', 'oper_sector_id', 'oper_contractor_id', 'required_time', 'supervisor_email', 'area_phone', 'time_start', 'time_end', 'periodicity', 'repass'];
+    protected $fillable = [
+        'name',
+        'hous_unit_area_id',
+        'oper_sector_id',
+        'oper_contractor_id',
+        'required_time',
+        'supervisor_email',
+        'area_phone',
+        'time_start',
+        'time_end',
+        'periodicity',
+        'repass',
+        'next'
+    ];
     protected $dates = ['deleted_at'];
 
     // Validate Rule
@@ -65,7 +78,7 @@ class OperSchedule extends Model
             'model.name' => 'required',
             'model.hous_unit_area_id' => 'integer|nullable',
             'model.oper_sector_id' => 'integer|nullable',
-
+            'model.oper_contractor_id' => 'integer|required'
 
         ];
         if ($oper_schedule) {

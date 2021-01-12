@@ -3,6 +3,7 @@ import {OperMaintenanceRepair} from "../oper-maintenance-repair";
 import {FormGroup} from "@angular/forms";
 import {OperMaintenanceRepairsService} from "../oper-maintenance-repairs.service";
 import {TitleCasePipe} from "@angular/common";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
     selector: 'app-oper-maintenance-repairs-form',
@@ -35,12 +36,21 @@ export class OperMaintenanceRepairsFormComponent implements OnInit, AfterViewIni
 
     constructor(
         public operMaintenanceRepairsService: OperMaintenanceRepairsService,
-        private toTitlecase: TitleCasePipe
+        public route: ActivatedRoute,
+        private toTitlecase: TitleCasePipe,
     ) {
 
     }
 
     ngOnInit(): void {
+    }
+
+    ionViewWillEnter() {
+        console.log(this.route.snapshot.params);
+        if (this.route.snapshot.params.mttId) {
+            console.log(this.route.snapshot.params.mttId);
+            this.operMaintenanceRepairsService.operMaintenanceRepair.oper_corrective_maintenance_id = this.route.snapshot.params.mttId;
+        }
     }
 
     ngAfterViewInit() {

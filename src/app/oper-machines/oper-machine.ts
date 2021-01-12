@@ -21,6 +21,7 @@ export interface OperMachine {
     created_at?: any;
     updated_at?: any;
     deleted_at?: any;
+    inventory_code?: any;
 // end model generated section
 }
 
