@@ -35,7 +35,7 @@ export class OperScheduleContractorListComponent implements OnInit {
 
     console.log(this.userId);
 
-    this.operSchedulesService.getOperSchedules(this.operSchedulesService.page, this.operSchedulesService.perPage, this.userId, this.date);
+    this.operSchedulesService.getOperSchedules(this.operSchedulesService.page, this.operSchedulesService.perPage, this.userId, this.date, true);
 
   }
 

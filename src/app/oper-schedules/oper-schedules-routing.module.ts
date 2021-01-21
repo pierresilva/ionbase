@@ -7,6 +7,7 @@ import {OperSchedulesCreateComponent} from "./oper-schedules-create/oper-schedul
 import {OperSchedulesListComponent} from "./oper-schedules-list/oper-schedules-list.component";
 import {OperScheduleContractorIoComponent} from "./oper-schedule-contractor-io/oper-schedule-contractor-io.component";
 import {OperScheduleContractorListComponent} from "./oper-schedule-contractor-list/oper-schedule-contractor-list.component";
+import {AuthGuard} from "../@shared/guards/auth.guard";
 
 const routes: Routes = [
 // generated section
@@ -55,8 +56,10 @@ const routes: Routes = [
     },
     {
         path: 'own',
+        canActivate: [AuthGuard],
         data: {
-            title: 'Mi Agenda'
+            title: 'Mi Agenda',
+            roles: ['admin', 'servicios-generales', 'servicios-seguridad'],
         },
         component: OperScheduleContractorListComponent,
     }

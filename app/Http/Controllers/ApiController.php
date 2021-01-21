@@ -178,6 +178,8 @@ class ApiController extends Controller
     {
         $q_s = $request->input('q.s');
 
+        // dd($q_s);
+
         // ToDo: Revisar performance. sort vs order
         /*$isRelation = strpos($q_s, '.');
         if ($isRelation) {

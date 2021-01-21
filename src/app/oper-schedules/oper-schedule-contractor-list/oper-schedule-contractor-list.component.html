@@ -1,3 +1,12 @@
 <app-main-header title="Mi Agenda"></app-main-header>
 <ion-content id="pages-content">
+    <ion-list *ngIf="operSchedulesService?.operSchedules?.length">
+        <ion-item *ngFor="let operSchedule of operSchedulesService?.operSchedules">
+            <ion-label>
+                <h2>{{operSchedule?.name}}</h2>
+                <h3>{{ (operSchedule?.time_start) | dateFormat:'HH:mm'}} - {{(operSchedule?.time_end) | dateFormat:'HH:mm'}}</h3>
+                <p>{{operSchedule?.oper_sector?.name}}</p>
+            </ion-label>
+        </ion-item>
+    </ion-list>
 </ion-content>

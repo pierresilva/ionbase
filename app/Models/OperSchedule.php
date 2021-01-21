@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -39,12 +40,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class OperSchedule extends Model
 {
     use SoftDeletes;
-
-    protected $casts = [
-        'time_start' => 'datetime:H:i:s',
-        'time_end' => 'datetime:H:i:s',
-    ];
-
 
 // generated section
 
@@ -148,12 +143,17 @@ class OperSchedule extends Model
 
     public function setTimeStartAttribute($value)
     {
-        $this->attributes['time_start'] = date('H:i:s', strtotime($value));
+        $this->attributes['time_start'] = Carbon::parse($value)->format('H:i:s');
     }
 
     public function setTimeEndAttribute($value)
     {
-        $this->attributes['time_end'] = date('H:i:s', strtotime($value));
+        $this->attributes['time_end'] = Carbon::parse($value)->format('H:i:s');
+    }
+
+    public function setNextAttribute($value)
+    {
+        $this->attributes['next'] = Carbon::parse($value)->format('Y-m-d');
     }
 
     public static function boot()

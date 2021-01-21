@@ -2,7 +2,7 @@
 
 
     <!-- oper_movement_ids -->
-    <ion-item class="item-transparent">
+    <!--<ion-item class="item-transparent">
         <ion-label>{{ 'MOVIMIENTOS OPERATIVOS' | titlecase }}</ion-label>
         <ionic-selectable name="oper_movement_ids"
                           id="oper_movement_ids-field"
@@ -28,7 +28,7 @@
             {{ validation.message }}
             </div>
         </ng-container>
-    </div>
+    </div>-->
     <!-- end oper_movement_ids -->
 
     <!-- user_id -->
@@ -42,6 +42,7 @@
                           itemTextField="name"
                           [isMultiple]="false"
                           [canClear]="true"
+                          [required]="true"
                           [hasConfirmButton]="true"
                           [confirmButtonText]="'Seleccionar'"
                           [searchPlaceholder]="'Buscar usuarios'"
@@ -53,8 +54,8 @@
         </ionic-selectable>
     </ion-item>
     <div class="validation-errors">
-        <ng-container *ngFor="let validation of validationMessages.oper_movement_ids">
-            <div class="error-message" *ngIf="operContractorsForm.form.controls['oper_movement_ids']?.hasError(validation.type)">
+        <ng-container *ngFor="let validation of validationMessages.user_id">
+            <div class="error-message" *ngIf="operContractorsForm.form.controls['user_id']?.hasError(validation.type)">
                 {{ validation.message }}
             </div>
         </ng-container>

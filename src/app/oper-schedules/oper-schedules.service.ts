@@ -40,14 +40,15 @@ export class OperSchedulesService {
     ) {
     }
 // generated section
-    public getOperSchedules(page: any = this.page, perPage: any = this.perPage, userId = null, date = null) {
+    public getOperSchedules(page: any = this.page, perPage: any = this.perPage, userId = null, date = null, own = null) {
 
         this.api.get(
             this.operSchedulesUrl + '?page=' +
             page + '&perPage=' + perPage +
             '&q[name:cont]=' + this.searchValue +
             (userId ? '&q[operContractor.user_id:id]=' + userId : '') +
-            (date ? '&q[next:cont]=' + date : '')
+            (date ? '&q[next:cont]=' + date : '') +
+            (own ? '&q[s]=time_start:asc' : '')
         )
             .subscribe(
                 (res: any) => {

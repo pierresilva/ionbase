@@ -20,6 +20,9 @@
                         <ion-label>
                             {{auth.getUser().name}}
                             <h3>{{auth.getUser().email}}</h3>
+                            <pre>
+                                {{auth.getRoles() | json}}
+                            </pre>
                         </ion-label>
                     </ion-item>
 
@@ -148,6 +151,7 @@
                     <ion-menu-toggle auto-hide="false">
                         <ion-item [routerLinkActive]="'selected'"
                                   [routerLink]="'/oper-schedules'"
+                                  *ngIf="auth.userIs(['admin', 'super.admin'])"
                                   lines="none"
                                   detail="false">
                             <ion-icon slot="start"
@@ -157,6 +161,7 @@
                         </ion-item>
                         <ion-item [routerLinkActive]="'selected'"
                                   [routerLink]="'/oper-schedules/own'"
+                                  *ngIf="auth.userIs(['servicios-generales'])"
                                   lines="none"
                                   detail="false">
                             <ion-icon slot="start"

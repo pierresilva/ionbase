@@ -1,3 +1,19 @@
 <app-main-header title="Movimientos Operativos"></app-main-header>
 <ion-content id="pages-content">
+    <zxing-scanner *ngIf="browserScanner"
+                   [(device)]="currentDevice"
+                   [formats]="formatsEnabled"
+                   (scanError)="onCodeError($event)"
+                   (scanSuccess)="onCodeResult($event)"></zxing-scanner>
+
+    <div class="ion-text-center">
+        <ion-button (click)="scan()"
+                    *ngIf="!browserScanner"
+                    fill="clear">Escanear QR
+            <ion-icon slot="end" name="qr-code-outline"></ion-icon>
+        </ion-button>
+    </div>
+    <pre>
+{{barcodeData | json}}
+    </pre>
 </ion-content>

@@ -52,6 +52,9 @@ export class OperContractorsFormComponent implements OnInit, AfterViewInit {
         'oper_movement_ids': [
             {type: 'required', message: 'El campo ' + this.toTitlecase.transform('MOVIMIENTOS OPERATIVOS') + ' es obligatorio.'},
         ],
+        'user_id': [
+            {type: 'required', message: 'El campo ' + this.toTitlecase.transform('usuario') + ' es obligatorio.'},
+        ],
     };
 
     constructor(
