@@ -6,8 +6,7 @@ export const environment = {
     production: false,
     version: 'dev',
     name: 'Noah App',
-    serverUrl: 'http://192.168.20.21/ionbase-be/public',
-    // serverUrl: 'http://173.249.26.66/ionbase/public', // 'https://ionbase-be.test',
+    serverUrl: 'http://192.168.20.39/ionbase/public',
     secretKey: 'Zcpocr3nMl1lyvnkGT6zMSc'
 };
 
