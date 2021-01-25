@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-title>camera</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n  <ion-content>\n    <ion-grid>\n      <ion-row>\n        <ion-col size=\"6\"\n                 *ngFor=\"let photo of camera.photos; index as position\">\n          <ion-img [src]=\"photo.webviewPath\"></ion-img>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n    <ion-fab vertical=\"bottom\" horizontal=\"center\" slot=\"fixed\">\n      <ion-fab-button (click)=\"takePicture()\">\n        <ion-icon name=\"camera\"></ion-icon>\n      </ion-fab-button>\n    </ion-fab>\n  </ion-content>\n\n</ion-content>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\r\n  <ion-toolbar>\r\n    <ion-title>camera</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n\r\n  <ion-content>\r\n    <ion-grid>\r\n      <ion-row>\r\n        <ion-col size=\"6\"\r\n                 *ngFor=\"let photo of camera.photos; index as position\">\r\n          <ion-img [src]=\"photo.webviewPath\"></ion-img>\r\n        </ion-col>\r\n      </ion-row>\r\n    </ion-grid>\r\n    <ion-fab vertical=\"bottom\" horizontal=\"center\" slot=\"fixed\">\r\n      <ion-fab-button (click)=\"takePicture()\">\r\n        <ion-icon name=\"camera\"></ion-icon>\r\n      </ion-fab-button>\r\n    </ion-fab>\r\n  </ion-content>\r\n\r\n</ion-content>\r\n");
 
 /***/ }),
 

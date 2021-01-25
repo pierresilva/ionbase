@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-title>download</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n  <ion-button (click)=\"downloadFileTransfer('http://www.africau.edu/images/default/sample.pdf', 'downloaded.pdf')\"\n              fill=\"clear\">Download File\n    <ion-icon slot=\"end\" name=\"qr-code-outline\"></ion-icon>\n  </ion-button>\n\n</ion-content>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\r\n  <ion-toolbar>\r\n    <ion-title>download</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n\r\n  <ion-button (click)=\"downloadFileTransfer('http://www.africau.edu/images/default/sample.pdf', 'downloaded.pdf')\"\r\n              fill=\"clear\">Download File\r\n    <ion-icon slot=\"end\" name=\"qr-code-outline\"></ion-icon>\r\n  </ion-button>\r\n\r\n</ion-content>\r\n");
 
 /***/ }),
 
