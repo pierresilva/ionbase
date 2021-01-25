@@ -244,7 +244,7 @@ const routes: Routes = [
         canActivateChild: [AuthGuard],
         data: {
             title: 'OPERATRIVIDAD AGENDAS',
-            roles: ['admin'],
+            roles: ['admin', 'servicios-generales', 'servicios-seguridad'],
             // permissions: []
         },
         loadChildren: () => import('./oper-schedules/oper-schedules.module').then(m => m.OperSchedulesPageModule)

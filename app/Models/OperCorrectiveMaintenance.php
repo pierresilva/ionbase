@@ -14,16 +14,17 @@ class OperCorrectiveMaintenance extends Model
 
 // generated section
 
-	// Mass Assignment
-	protected $fillable = ['name','oper_reason_id','hous_unit_area_id','detail','date','time','reported_by','status',];
+    // Mass Assignment
+    protected $fillable = ['name', 'oper_reason_id', 'hous_unit_area_id', 'detail', 'date', 'time', 'reported_by', 'status',];
     protected $dates = ['deleted_at'];
 
 
-	// Validate Rule
-    public static function getValidateRule(OperCorrectiveMaintenance $oper_corrective_maintenance=null){
-        if($oper_corrective_maintenance){
+    // Validate Rule
+    public static function getValidateRule(OperCorrectiveMaintenance $oper_corrective_maintenance = null)
+    {
+        if ($oper_corrective_maintenance) {
             $ignore_unique = $oper_corrective_maintenance->id;
-        }else{
+        } else {
             $ignore_unique = 'NULL';
         }
         $table_name = 'oper_corrective_maintenances';
@@ -40,30 +41,35 @@ class OperCorrectiveMaintenance extends Model
 
 
         ];
-        if($oper_corrective_maintenance){
+        if ($oper_corrective_maintenance) {
 
         }
         return $validation_rule;
     }
 
-	public function operMaintenanceRepairs() {
-		return $this->hasMany('App\Models\OperMaintenanceRepair');
-	}
+    public function operMaintenanceRepairs()
+    {
+        return $this->hasMany('App\Models\OperMaintenanceRepair');
+    }
 
 
-	public function operReason() {
-		return $this->belongsTo('App\Models\OperReason');
-	}
-	public function housUnitArea() {
-		return $this->belongsTo('App\Models\HousUnitArea');
-	}
+    public function operReason()
+    {
+        return $this->belongsTo('App\Models\OperReason');
+    }
+
+    public function housUnitArea()
+    {
+        return $this->belongsTo('App\Models\HousUnitArea');
+    }
 
 
-	public function operItems() {
-		return $this->belongsToMany('App\Models\OperItem')
-		->orderBy('id')
-		->withTimestamps();
-	}
+    public function operItems()
+    {
+        return $this->belongsToMany('App\Models\OperItem')
+            ->orderBy('id')
+            ->withTimestamps();
+    }
 
     public static function getRelationships()
     {
@@ -75,14 +81,15 @@ class OperCorrectiveMaintenance extends Model
         ];
     }
 
-	public static function getLists() {
-		$lists = [];
-		$lists['OperReason'] = OperReason::all();
-		$lists['HousUnitArea'] = HousUnitArea::all();
-		$lists['OperItem'] = OperItem::all();
-		$lists['OperMaintenanceRepair'] = OperMaintenanceRepair::all();
-		return $lists;
-	}
+    public static function getLists()
+    {
+        $lists = [];
+        $lists['OperReason'] = OperReason::all();
+        $lists['HousUnitArea'] = HousUnitArea::all();
+        $lists['OperItem'] = OperItem::all();
+        $lists['OperMaintenanceRepair'] = OperMaintenanceRepair::all();
+        return $lists;
+    }
 
     public function scopeOperReasonByName(Builder $query, $name)
     {
@@ -115,11 +122,13 @@ class OperCorrectiveMaintenance extends Model
 
 // end section
 
-    public function setDateAttribute( $value ) {
+    public function setDateAttribute($value)
+    {
         $this->attributes['date'] = (new Carbon($value))->format('Y-m-d');
     }
 
-    public function setTimeAttribute( $value ) {
+    public function setTimeAttribute($value)
+    {
         $this->attributes['time'] = (new Carbon($value))->format('H:i:s');
     }
 

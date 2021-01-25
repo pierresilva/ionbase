@@ -36,7 +36,7 @@
 
 
     <!-- user_profile_ids -->
-    <ion-item class="item-transparent">
+    <!--<ion-item class="item-transparent">
         <ion-label>{{ 'PERFILES DE USUARIOS' | titlecase }}</ion-label>
         <ionic-selectable name="user_profile_ids"
                           id="user_profile_ids-field"
@@ -63,12 +63,12 @@
                 {{ validation.message }}
             </div>
         </ng-container>
-    </div>
+    </div>-->
     <!-- end user_profile_ids -->
 
 
     <!-- coun_meeting_citation_ids -->
-    <ion-item class="item-transparent">
+    <!--<ion-item class="item-transparent">
         <ion-label>{{ 'JUNTAS CITACIONES' | titlecase }}</ion-label>
         <ionic-selectable name="coun_meeting_citation_ids"
                           id="coun_meeting_citation_ids-field"
@@ -95,12 +95,12 @@
                 {{ validation.message }}
             </div>
         </ng-container>
-    </div>
+    </div>-->
     <!-- end coun_meeting_citation_ids -->
 
 
     <!-- coun_member_ids -->
-    <ion-item class="item-transparent">
+    <!--<ion-item class="item-transparent">
         <ion-label>{{ 'JUNTAS MIEMBROS' | titlecase }}</ion-label>
         <ionic-selectable name="coun_member_ids"
                           id="coun_member_ids-field"
@@ -127,7 +127,7 @@
                 {{ validation.message }}
             </div>
         </ng-container>
-    </div>
+    </div>-->
     <!-- end coun_member_ids -->
 
 
@@ -161,27 +161,6 @@
         </ng-container>
     </div>
     <!-- end user_role_ids -->
-
-
-    <!-- name -->
-    <ion-item class="item-transparent">
-        <ion-label>{{ 'NOMBRE' | titlecase }}</ion-label>
-        <ion-input [(ngModel)]="model.name"
-                   type="text"
-                   name="name"
-                   id="name-field"
-                   [required]="true"
-                   placeholder=""></ion-input>
-    </ion-item>
-    <div class="validation-errors">
-        <ng-container *ngFor="let validation of validationMessages.name">
-            <div class="error-message"
-                 *ngIf="usersForm.form.controls['name']?.hasError(validation.type)">
-                {{ validation.message }}
-            </div>
-        </ng-container>
-    </div>
-    <!-- end name -->
 
 
     <!-- email -->
@@ -224,6 +203,26 @@
         </ng-container>
     </div>
     <!-- end password -->
+
+    <!-- name -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'NOMBRE COMPLETO' | titlecase }}</ion-label>
+        <ion-input [(ngModel)]="model.name"
+                   type="text"
+                   name="name"
+                   id="name-field"
+                   [required]="true"
+                   placeholder=""></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.name">
+            <div class="error-message"
+                 *ngIf="usersForm.form.controls['name']?.hasError(validation.type)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end name -->
 
 
     <!-- first_name -->

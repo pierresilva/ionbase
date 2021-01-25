@@ -36,11 +36,6 @@ export class OperMaintenanceRepairsCreateComponent implements OnInit, AfterViewI
 
         this.operMaintenanceRepairsService.operMaintenanceRepair.oper_corrective_maintenance_id = this.route.snapshot.params.mttoId;
 
-        console.log(this.operMaintenanceRepairsService.operMaintenanceRepair.oper_corrective_maintenance_id);
-
-        console.log(this.operMaintenanceRepairsService.operMaintenanceRepairLists.OperCorrectiveMaintenance);
-
-
         if (this.route.snapshot.params.mttoId) {
             for (let i = 0; i < this.operMaintenanceRepairsService.operMaintenanceRepairLists.OperCorrectiveMaintenance.length; i++) {
 
