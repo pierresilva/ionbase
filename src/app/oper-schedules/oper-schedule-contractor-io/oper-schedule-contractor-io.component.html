@@ -13,7 +13,30 @@
             <ion-icon slot="end" name="qr-code-outline"></ion-icon>
         </ion-button>
     </div>
-    <pre>
-{{barcodeData | json}}
-    </pre>
+
+    <ng-container *ngIf="operSchedules.length">
+        <ion-list>
+            <ion-list-header>
+                <ion-label>Agendas para hoy</ion-label>
+            </ion-list-header>
+            <ion-item-sliding *ngFor="let schedule of operSchedules">
+                <ion-item [color]="schedule.oper_movements.length && schedule.oper_movements[0].completed ? 'success' : schedule.oper_movements.length && !schedule.oper_movements[0].completed ? 'warning' : 'danger'">
+                    <ion-label>
+                        <h2><span>{{schedule.name}}</span></h2>
+                        <h3><span>{{schedule.time_start | dateFormat:'HH:mm'}}</span> -
+                            <span>{{schedule.time_end | dateFormat:'HH:mm'}}</span></h3>
+                    </ion-label>
+                </ion-item>
+                <ion-item-options side="end">
+                    <ng-container *ngIf="schedule.oper_movements.length && !schedule.oper_movements[0].completed">
+                        <ion-item-option [color]="'danger'" (click)="movementEnd(schedule.oper_movements[0].id)">Finalizar</ion-item-option>
+                    </ng-container>
+                    <ng-container *ngIf="!schedule.oper_movements.length || schedule.oper_movements[0].completed == null">
+                        <ion-item-option [color]="'success'" (click)="movementStart(schedule.id)">Iniciar</ion-item-option>
+                    </ng-container>
+                </ion-item-options>
+            </ion-item-sliding>
+        </ion-list>
+    </ng-container>
+
 </ion-content>

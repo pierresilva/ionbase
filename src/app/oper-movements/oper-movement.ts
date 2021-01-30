@@ -18,6 +18,8 @@ export interface OperMovement {
     created_at?: any;
     updated_at?: any;
     deleted_at?: any;
+    oper_schedule_if?: any;
+    completed?: any;
 }
 
 export interface OperMovementLists {

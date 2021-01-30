@@ -100,7 +100,7 @@ class OperSchedule extends Model
 
     public function operMovements()
     {
-        return $this->belongsTo('App\Models\OperMovement');
+        return $this->hasMany('App\Models\OperMovement');
     }
 
 

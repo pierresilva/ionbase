@@ -54,14 +54,15 @@ class OperMovement extends Model
 
 // generated section
 
-	// Mass Assignment
-	protected $fillable = ['name','oper_sector_id','oper_contractor_id','date_statr','date_end','time_start','time_end','time_total','photo',];
+    // Mass Assignment
+    protected $fillable = ['name', 'oper_sector_id', 'oper_contractor_id', 'date_statr', 'date_end', 'time_start', 'time_end', 'time_total', 'photo', 'oper_schedule_id', 'completed'];
     protected $dates = ['deleted_at'];
 
-	// Validate Rule
-    public static function getValidateRule(OperMovement $oper_movement=null){
+    // Validate Rule
+    public static function getValidateRule(OperMovement $oper_movement = null)
+    {
         $ignore_unique = null;
-        if($oper_movement){
+        if ($oper_movement) {
             $ignore_unique = $oper_movement->id;
         }
         $table_name = 'oper_movements';
@@ -76,22 +77,31 @@ class OperMovement extends Model
             'model.time_end' => 'nullable',
             'model.time_total' => 'nullable',
             'model.photo' => 'nullable',
-
+            'model.oper_schedule_id' => 'nullable',
+            'model.completed' => 'nullable',
 
         ];
-        if($oper_movement){
+        if ($oper_movement) {
 
         }
         return $validation_rule;
     }
 
 
-	public function operSector() {
-		return $this->belongsTo('App\Models\OperSector');
-	}
-	public function operContractor() {
-		return $this->belongsTo('App\Models\OperContractor');
-	}
+    public function operSector()
+    {
+        return $this->belongsTo('App\Models\OperSector');
+    }
+
+    public function operContractor()
+    {
+        return $this->belongsTo('App\Models\OperContractor');
+    }
+
+    public function operSchedule()
+    {
+        return $this->belongsTo(OperSchedule::class);
+    }
 
 
     public static function getRelationships()
@@ -99,15 +109,18 @@ class OperMovement extends Model
         return [
             'operSector',
             'operContractor',
+            'operSchedule',
         ];
     }
 
-	public static function getLists() {
-		$lists = [];
-		$lists['OperSector'] = OperSector::all();
-		$lists['OperContractor'] = OperContractor::all();
-		return $lists;
-	}
+    public static function getLists()
+    {
+        $lists = [];
+        $lists['OperSector'] = OperSector::all();
+        $lists['OperContractor'] = OperContractor::all();
+        $lists['OperSchedule'] = OperSchedule::all();
+        return $lists;
+    }
 
     public function scopeOperSectorByName(Builder $query, $name)
     {
@@ -122,7 +135,6 @@ class OperMovement extends Model
             $query->where('name', $name);
         });
     }
-
 
 
 // end section

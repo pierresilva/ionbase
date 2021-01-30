@@ -95,8 +95,13 @@ Route::get("oper-schedules/{operScheduleId}/duplicate", ['as' => 'api.oper-sched
 Route::resource("oper-schedules", "Api\OperScheduleController");
 Route::get("oper-contractors/{operContractorId}/duplicate", ['as' => 'api.oper-contractors.duplicate', 'uses' => 'Api\OperContractorController@duplicate']);
 Route::resource("oper-contractors", "Api\OperContractorController");
+
+Route::post('oper-movements/check', 'Api\OperMovementController@movementCheck');
+Route::post('oper-movements/start', 'Api\OperMovementController@movementStart');
+Route::post('oper-movements/end', 'Api\OperMovementController@movementEnd');
 Route::get("oper-movements/{operMovementId}/duplicate", ['as' => 'api.oper-movements.duplicate', 'uses' => 'Api\OperMovementController@duplicate']);
 Route::resource("oper-movements", "Api\OperMovementController");
+
 Route::get("coun-members/{counMemberId}/duplicate", ['as' => 'api.coun-members.duplicate', 'uses' => 'Api\CounMemberController@duplicate']);
 Route::resource("coun-members", "Api\CounMemberController");
 Route::get("mail-templates/{mailTemplateId}/duplicate", ['as' => 'api.mail-templates.duplicate', 'uses' => 'Api\MailTemplateController@duplicate']);

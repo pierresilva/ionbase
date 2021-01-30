@@ -240,11 +240,11 @@ const routes: Routes = [
     },
     {
         path: 'oper-schedules',
-        canActivate: [AuthGuard],
-        canActivateChild: [AuthGuard],
+        // canActivate: [AuthGuard],
+        // canActivateChild: [AuthGuard],
         data: {
             title: 'OPERATRIVIDAD AGENDAS',
-            roles: ['admin', 'servicios-generales', 'servicios-seguridad'],
+            // roles: ['admin', 'servicios-generales', 'servicios-seguridad'],
             // permissions: []
         },
         loadChildren: () => import('./oper-schedules/oper-schedules.module').then(m => m.OperSchedulesPageModule)
