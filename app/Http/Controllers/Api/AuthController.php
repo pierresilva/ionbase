@@ -31,7 +31,8 @@ class AuthController extends ApiController
                 'resendVerifyEmail',
                 'passwordRecover',
                 'passwordFindReset',
-                'passwordReset'
+                'passwordReset',
+                'refresh'
             ]
         ]);
     }
@@ -169,9 +170,15 @@ class AuthController extends ApiController
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function refresh(): \Illuminate\Http\JsonResponse
+    public function refresh()
     {
-        $data = $this->createNewToken(auth()->refresh());
+        $data = null;
+
+        try {
+            $data = $this->createNewToken(auth()->refresh());
+        } catch (\Exception $exception) {
+            return $this->responseError($exception->getMessage());
+        }
 
         return \response()->json([
             'message' => __('Token refreshed successfully'),

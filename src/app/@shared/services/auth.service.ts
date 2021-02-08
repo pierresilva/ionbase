@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 
 import {StorageLocalService} from './storage-local.service';
 import {ToastService} from "./toast.service";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
     providedIn: 'root',
@@ -85,15 +86,21 @@ export class AuthService {
      * Logout a user
      */
     public logout(redirect: boolean = true) {
-        this.api.syncPost('api/auth/logout', {})
+        this.api.syncPost(environment.serverUrl + '/api/auth/logout', {})
             .then(
                 async (res: any) => {
                     this.toast.present('Salio con éxito!', 'toast-success');
                     this.stopCheckExpirationToken();
+                    this.clearAuth(redirect);
                 },
                 (err: any) => {
+                    this.clearAuth(redirect);
                 }
             );
+
+    }
+
+    public clearAuth(redirect: boolean = true) {
         this.storage.remove('token');
         this.storage.remove('user');
         this.storage.remove('acl');
@@ -101,7 +108,6 @@ export class AuthService {
         if (redirect) {
             this.router.navigateByUrl('/auth/login');
         }
-
     }
 
     /**
@@ -222,8 +228,10 @@ export class AuthService {
      *
      */
     public refreshToken() {
-        this.api.syncPost('api/auth/refresh', {})
-            .then(async (res: any) => {
+
+        this.api.get('auth/refresh')
+            .subscribe(
+                async (res: any) => {
                     this.storage.set('token', res.data.access_token);
                     this.stopCheckExpirationToken();
                     this.startCheckExpirationToken();
@@ -235,7 +243,8 @@ export class AuthService {
                     this.storage.remove('acl');
                     this.toast.present('Su sesión expiró!', 'toast-error');
                     await this.router.navigateByUrl('/auth/login');
-                });
+                }
+            );
     }
 
     /**
@@ -247,10 +256,10 @@ export class AuthService {
             let exp = this.getTokenItem('exp');
             if (exp) {
                 this.checkToken = setInterval(() => {
-                    if ((new Date((exp * 1000) - 20000) < new Date())) {
+                    if ((new Date((exp * 1000) - 30000) < new Date())) {
                         this.refreshToken();
                     }
-                }, 5000);
+                }, 10000);
             }
         }
     }

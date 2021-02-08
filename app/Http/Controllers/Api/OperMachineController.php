@@ -15,7 +15,7 @@ class OperMachineController extends ApiController
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index(Request $request)
     {
@@ -39,7 +39,7 @@ class OperMachineController extends ApiController
         $resource['lists'] = OperMachine::getLists();
 
         return $this->responseSuccess(
-            'OPERATIVIDADMAQUINARIUM obtenidos!',
+            'OPERATIVIDAD MAQUINARIA obtenidos!',
             $resource,
             true,
             false

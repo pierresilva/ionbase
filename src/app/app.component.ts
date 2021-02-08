@@ -9,6 +9,7 @@ import {AuthService} from "./@shared/services/auth.service";
 import {Title} from "@angular/platform-browser";
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {filter, map} from "rxjs/operators";
+import {StorageService} from "./@shared/services/storage.service";
 
 @Component({
     selector: 'app-root',
@@ -53,7 +54,7 @@ export class AppComponent implements OnInit {
 
     ngOnInit() {
 
-
+        this.auth.startCheckExpirationToken();
 
         const path = window.location.pathname.split('folder/')[1];
         /*if (path !== undefined) {

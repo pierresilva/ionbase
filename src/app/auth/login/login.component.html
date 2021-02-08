@@ -9,7 +9,8 @@
                 <div class="login-header ion-text-center">
                     <h1 [hidden]="true">{{environment.name}}</h1>
 
-                    <img [routerLink]="'/'" src="assets/images/NoahApp/logo-light-square.png"
+                    <img [routerLink]="'/'"
+                         src="assets/images/NoahApp/logo-light-square.png"
                          style="max-height: 120px;">
 
                     <h6 style="margin-bottom: 0px;">v-{{ version }}</h6>
@@ -67,11 +68,10 @@
                             <div style="height: 1rem;"></div>
                         </ion-list>
                         <div class="ion-padding-horizontal">
-                            <ion-button
-                                    type="submit"
-                                    [disabled]="loginForm?.form?.invalid || isLoading"
-                                    color="primary"
-                                    expand="block">
+                            <ion-button type="submit"
+                                        [disabled]="loginForm?.form?.invalid || isLoading"
+                                        color="primary"
+                                        expand="block">
                                 Ingresar
                             </ion-button>
                         </div>

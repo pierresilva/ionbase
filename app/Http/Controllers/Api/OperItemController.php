@@ -15,7 +15,7 @@ class OperItemController extends ApiController
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index(Request $request)
     {
@@ -39,7 +39,7 @@ class OperItemController extends ApiController
         $resource['lists'] = OperItem::getLists();
 
         return $this->responseSuccess(
-          'OPERATIVIDADITEMSMTTOCORRECTIVO obtenidos!',
+          'OPERATIVIDAD ITEMS MTTO CORRECTIVO obtenidos!',
           $resource,
           true,
           false
@@ -49,14 +49,14 @@ class OperItemController extends ApiController
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function create()
     {
         // user_can(['oper_item.create']);
 
             return response()->json([
-              'message' => 'Formulario para OPERATIVIDADITEMSMTTOCORRECTIVO obtenido!',
+              'message' => 'Formulario para OPERATIVIDAD ITEMS MTTO CORRECTIVO obtenido!',
               'data' => null,
               'lists' => OperItem::getLists()
             ]);
@@ -66,7 +66,7 @@ class OperItemController extends ApiController
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
@@ -76,7 +76,7 @@ class OperItemController extends ApiController
 
         $input = $request->input('model');
 
-                                        
+
         DB::beginTransaction();
         try {
           //create data
@@ -102,7 +102,7 @@ class OperItemController extends ApiController
         DB::commit();
 
         return $this->responseSuccess(
-          'OPERATIVIDADITEMSMTTOCORRECTIVO almacenado!',
+          'OPERATIVIDAD ITEMS MTTO CORRECTIVO almacenado!',
           $operItem->toArray(),
           false,
           false,
@@ -113,7 +113,8 @@ class OperItemController extends ApiController
     /**
      * Display the specified resource.
      *
-     * @param  \App\OperItem  $operItem     * @return \Illuminate\Http\Response
+     * @param  \App\OperItem  $operItem
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show($operItemId)
     {
@@ -122,12 +123,12 @@ class OperItemController extends ApiController
         $operItem = OperItem::with(OperItem::getRelationships())->findOrFail($operItemId);
 
                                 $operItem->oper_corrective_maintenance_ids = collect($operItem->operCorrectiveMaintenances)->pluck('id');
-                
+
         $resource = $operItem->toArray();
         $resource['lists'] = OperItem::getLists();
 
         return $this->responseSuccess(
-          'OPERATIVIDADITEMSMTTOCORRECTIVO obtenidos!',
+          'OPERATIVIDAD ITEMS MTTO CORRECTIVO obtenidos!',
           $resource,
           false,
           false,
@@ -138,7 +139,8 @@ class OperItemController extends ApiController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\OperItem  $operItem     * @return \Illuminate\Http\Response
+     * @param  \App\OperItem  $operItem
+     * @return \Illuminate\Http\JsonResponse
      */
     public function edit($operItemId)
     {
@@ -146,9 +148,9 @@ class OperItemController extends ApiController
 
         $operItem = OperItem::with(OperItem::getRelationships())->findOrFail($operItemId);
                                 $operItem->oper_corrective_maintenance_ids = collect($operItem->operCorrectiveMaintenances)->pluck('id');
-                
+
         return $this->responseSuccess(
-          'Formulario para OPERATIVIDADITEMSMTTOCORRECTIVO obtenidos!',
+          'Formulario para OPERATIVIDAD ITEMS MTTO CORRECTIVO obtenidos!',
           [
             'model' => $operItem,
             'lists' => OperItem::getLists(),
@@ -160,8 +162,9 @@ class OperItemController extends ApiController
 	/**
 	 * Show the form for duplicating the specified resource.
 	 *
-	 * @param \App\OperItem  $operItem	 * @return \Illuminate\Http\Response
-	 */
+	 * @param \App\OperItem  $operItem
+     * @return \Illuminate\Http\JsonResponse
+     */
 	public function duplicate($operItemId)
 	{
         // user_can(['oper_item.duplicate']);
@@ -169,9 +172,9 @@ class OperItemController extends ApiController
         $operItem = OperItem::with(OperItem::getRelationships())->findOrFail($operItemId);
         $operItem->id = null;
                                 $operItem->oper_corrective_maintenance_ids = collect($operItem->operCorrectiveMaintenances)->pluck('id');
-                
+
         return $this->responseSuccess(
-          'Formulario para OPERATIVIDADITEMSMTTOCORRECTIVO obtenidos!',
+          'Formulario para OPERATIVIDAD ITEMS MTTO CORRECTIVO obtenidos!',
           [
             'model' => $operItem,
             'lists' => OperItem::getLists(),
@@ -184,7 +187,8 @@ class OperItemController extends ApiController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\OperItem  $operItem     * @return \Illuminate\Http\Response
+     * @param  \App\OperItem  $operItem
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update($operItemId, Request $request)
     {
@@ -197,7 +201,7 @@ class OperItemController extends ApiController
 
         $input = $request->input('model');
 
-                                        
+
         DB::beginTransaction();
         try {
           //update data
@@ -208,7 +212,7 @@ class OperItemController extends ApiController
             $this->sync($request->get('pivots'), $operItem);
           }
 
-                              
+
         } catch (Exception $exception) {
           DB::rollBack();
           return $this->responseError(
@@ -223,7 +227,7 @@ class OperItemController extends ApiController
         DB::commit();
 
         return $this->responseSuccess(
-          'OPERATIVIDADITEMSMTTOCORRECTIVO actualizado!',
+          'OPERATIVIDAD ITEMS MTTO CORRECTIVO actualizado!',
           $operItem->toArray(),
           false,
           false,
@@ -234,7 +238,8 @@ class OperItemController extends ApiController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\OperItem  $operItem     * @return \Illuminate\Http\Response
+     * @param  \App\OperItem  $operItem
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($operItemId)
     {
@@ -244,7 +249,7 @@ class OperItemController extends ApiController
         $operItem = OperItem::findOrFail($operItemId);
         $operItem->delete();
         return $this->responseSuccess(
-          'OPERATIVIDADITEMSMTTOCORRECTIVO eliminado!',
+          'OPERATIVIDAD ITEMS MTTO CORRECTIVO eliminado!',
           $operItem->toArray(),
           false,
           false,

@@ -15,6 +15,8 @@ import {FormsModule} from "@angular/forms";
 
 import {StartupService} from "./@shared/services/startup.service";
 import {SplitPanelService} from "./@shared/services/split-panel.service";
+import {StorageService} from "./@shared/services/storage.service";
+import {StorageLocalService} from "./@shared/services/storage-local.service";
 
 export function StartupServiceFactory(startupService: StartupService): () => Promise<void> {
     return () => startupService.load();
