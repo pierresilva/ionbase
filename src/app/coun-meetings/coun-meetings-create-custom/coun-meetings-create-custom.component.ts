@@ -258,6 +258,28 @@ export class CounMeetingsCreateCustomComponent implements OnInit {
 
     }
 
+    cancelCouncil() {
+        this.alert.confirmation('Cancelar la junta?', 'Cancelar', 'Si', 'No')
+            .then(res => {
+                if (res) {
+                    // this.model.status = 'finalized';
+                    console.log(this.model.status);
+                    this.api.post('coun-meetings/cancellation', {model: this.model})
+                        .subscribe(
+                            (res: any) => {
+                                console.log(res);
+                                this.toast.present('Junta cancelada!', 'toast-info');
+                                // this.saveCounMeeting();
+                                this.counMeetingsService.getCounMeetings();
+                                this.router.navigateByUrl('/coun-meetings/list/custom');
+                            }
+                        );
+                } else {
+                    return;
+                }
+            });
+    }
+
     inProgress() {
         this.model.status = 'in_progress';
         this.saveCounMeeting('La Junta esta en progreso!');

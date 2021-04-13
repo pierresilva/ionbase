@@ -558,6 +558,31 @@ class CounMeetingController extends ApiController
     }
 
     /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function cancellation(Request $request)
+    {
+        $model = $request->all()['model'];
+        $citations = CounMeetingCitation::with(CounMeetingCitation::getRelationships())
+            ->where('coun_meeting_id', $model['id'])->get();
+
+        try {
+            $model['status'] = 'canceled';
+            CounMeeting::find($model['id'])->update($model);
+
+        } catch (\Exception $exception) {
+            return $this->responseError($exception->getMessage());
+        }
+
+        foreach ($citations->toArray() as $citation) {
+            $this->sendCouncilCancellationMail($citation);
+        }
+
+        return $this->responseSuccess('Cancelaciones enviadas!');
+    }
+
+    /**
      * @param $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
@@ -623,6 +648,40 @@ class CounMeetingController extends ApiController
             } catch (\Exception $exception) {
                 return $this->responseError($exception->getMessage());
             }
+        }
+
+        $this->responseSuccess('OK');
+
+    }
+
+    /**
+     * @param $user
+     * @param $council
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function sendCouncilCancellationMail($citation)
+    {
+
+        $data = new \stdClass();
+        $data->user = $citation['user'];
+        $data->email = $citation['user']['email'];
+        $data->subject = 'La junta ' . str_pad($citation['coun_meeting_id'], 10, '0', STR_PAD_LEFT) . ' se cancelo';
+        $data->name = $citation['user']['name'];
+
+        $data->intro_lines = [
+            'La junta N0. ' . str_pad($citation['coun_meeting_id'], 10, '0', STR_PAD_LEFT) . ' fue cancelada',
+        ];
+
+        $data->outro_lines = [
+            'Gracias por su atención.'
+        ];
+
+        $data->view = 'mail.email_template';
+
+        try {
+            Mail::to($citation['user']['email'])->queue(new SendEmailMail($data));
+        } catch (\Exception $exception) {
+            return $this->responseError($exception->getMessage());
         }
 
         $this->responseSuccess('OK');

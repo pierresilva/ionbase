@@ -207,6 +207,13 @@
                                 <!-- end url -->
 
                             </ion-list>
+                            <div class="ion-text-center ion-margin"
+                                 *ngIf="!model.status">
+                                <ion-button color="warning"
+                                            (click)="cancelCouncil()">
+                                    Cancelar Junta
+                                </ion-button>
+                            </div>
 
                         </ion-card>
 

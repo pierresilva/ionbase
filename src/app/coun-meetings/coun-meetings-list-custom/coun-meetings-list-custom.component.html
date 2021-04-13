@@ -34,6 +34,9 @@
                                 (click)="openAct(environment.serverUrl + '/api/coun-meeting-pdf/' + meeting.id)"
                                 color="primary">Descargar Acta
                     </ion-button>
+                    <ion-button *ngIf="meeting.status == 'canceled'"
+                                color="warning">Cancelada
+                    </ion-button>
                 </div>
             </ion-item>
         </ng-container>

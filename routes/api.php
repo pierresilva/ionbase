@@ -35,6 +35,7 @@ Route::put('coun-meeting-custom/{id}', 'Api\CounMeetingController@updateCustom')
 Route::get('coun-meeting-pdf/{id}', 'Api\CounMeetingController@generatePdf');
 Route::put('coun-meeting-citations/sign', 'Api\CounMeetingCitationController@sign');
 Route::post('coun-meetings/finalize', 'Api\CounMeetingController@finalize');
+Route::post('coun-meetings/cancellation', 'Api\CounMeetingController@cancellation');
 
 Route::resource("setting-groups", "Api\SettingGroupController");
 Route::resource("settings", "Api\SettingController");
