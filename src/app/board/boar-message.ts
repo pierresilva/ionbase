@@ -9,7 +9,7 @@ export interface BoarMessage {
     notify_to_users?: any;
     notify_to_house_units?: any;
     status?: any;
-    crated_at?: any;
+    created_at?: any;
 }
 
 export interface BoarMessageLists {

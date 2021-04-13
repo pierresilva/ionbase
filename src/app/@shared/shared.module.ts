@@ -53,6 +53,8 @@ import { ValidationNumberMaxDirective } from './directives/validation-number-max
 import { ValidationNumberMinDirective } from './directives/validation-number-min.directive';
 import { ValidationDateMaxDirective } from './directives/validation-date-max.directive';
 import { ValidationDateMinDirective } from './directives/validation-date-min.directive';
+import { ValidationEqualDirective } from './directives/validation-equal.directive';
+import { ValidationEqualToDirective } from './directives/validation-equal-to.directive';
 
 
 @NgModule({
@@ -70,6 +72,8 @@ import { ValidationDateMinDirective } from './directives/validation-date-min.dir
         ValidationNumberMinDirective,
         ValidationDateMaxDirective,
         ValidationDateMinDirective,
+        ValidationEqualDirective,
+        ValidationEqualToDirective,
     ],
     entryComponents: [
         MainHeaderComponent,
@@ -100,6 +104,8 @@ import { ValidationDateMinDirective } from './directives/validation-date-min.dir
         ValidationNumberMinDirective,
         ValidationDateMaxDirective,
         ValidationDateMinDirective,
+        ValidationEqualDirective,
+        ValidationEqualToDirective,
     ],
     imports: [
         CommonModule,
@@ -166,6 +172,8 @@ import { ValidationDateMinDirective } from './directives/validation-date-min.dir
         ValidationNumberMinDirective,
         ValidationDateMaxDirective,
         ValidationDateMinDirective,
+        ValidationEqualDirective,
+        ValidationEqualToDirective,
     ]
 })
 export class SharedModule {
