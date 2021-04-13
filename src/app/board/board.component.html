@@ -1,0 +1,34 @@
+<app-main-header title="CARTELERA"></app-main-header>
+<ion-content>
+    <ion-row>
+
+        <ion-col size-md="3" size-sm="6" size-xs="12">
+            <ion-card routerLink="/board/list">
+                <div style="height: 120px; width: 100%; display: flex; align-items: center; justify-content: center;">
+                    <ion-icon name="list-circle-outline" color="primary" class="icon-m"></ion-icon>
+                </div>
+                <ion-card-header>
+                    <ion-card-subtitle class="ion-text-center">
+                        Listar {{ 'ENTRADAS DE LA CARTELERA'  | titlecase }}
+                    </ion-card-subtitle>
+                </ion-card-header>
+
+            </ion-card>
+        </ion-col>
+
+        <ion-col size-md="3" size-sm="6" size-xs="12">
+            <ion-card routerLink="/board/create">
+                <div style="height: 120px; width: 100%; display: flex; align-items: center; justify-content: center;">
+                    <ion-icon name="add-circle-outline" color="success" class="icon-m"></ion-icon>
+                </div>
+                <ion-card-header>
+                    <ion-card-subtitle class="ion-text-center">
+                        Crear {{ 'ENTRADAS DE LA CARTELERA' | titlecase }}
+                    </ion-card-subtitle>
+                </ion-card-header>
+
+            </ion-card>
+        </ion-col>
+
+    </ion-row>
+</ion-content>

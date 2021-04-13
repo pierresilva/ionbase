@@ -1,0 +1,20 @@
+<ng-container *ngFor="let boarMessage of boarMessagesService.boarMessages">
+
+    <ion-card>
+        <div class="cssreset">
+            <ion-card-header>
+                <ion-card-subtitle>Publicado el {{boarMessage.created_at | dateFormat:'DD/MM/YYYY'}}</ion-card-subtitle>
+                <a [routerLink]="'/board/' + boarMessage.id + '/show'">
+                    <ion-card-title>{{boarMessage.name}}</ion-card-title>
+                </a>
+            </ion-card-header>
+
+            <ion-card-content>
+                {{boarMessage.body | stripHtml | truncate:150}}
+            </ion-card-content>
+        </div>
+
+    </ion-card>
+
+</ng-container>
+

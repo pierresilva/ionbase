@@ -1,0 +1,53 @@
+<app-main-header title="{{'Entradas de la Cartelera'}}"
+                 primaryLink="board/create"
+                 primaryText="Crear {{'Entradas de la Cartelera'}}"
+                 primaryIcon="add-circle-outline"></app-main-header>
+<ion-content id="pages-content">
+    <ion-searchbar showCancelButton="focus"
+                   [cancelButtonText]="'Cancelar'"
+                   [placeholder]="'Buscar Entradas de la Cartelera'"
+                   (ionCancel)="this.boarMessagesService.searchValue = ''; boarMessagesService.getBoarMessages()"
+                   (keyup.enter)="boarMessagesService.getBoarMessages()"
+                   [(ngModel)]="boarMessagesService.searchValue"></ion-searchbar>
+    <ng-container *ngIf="!(loading.loading | async) && boarMessagesService.boarMessages?.length">
+        <ion-card *ngFor="let boarMessage of boarMessagesService.boarMessages; let index = index">
+            <ion-list>
+                <ion-item class="item-transparent">
+                    <ion-label position="fixed"><b>{{ 'NOMBRE' | titlecase }}</b></ion-label>
+                    <div class="wrap-text">{{ boarMessage?.name }}</div>
+                </ion-item>
+                <ion-item class="item-transparent">
+                    <ion-label position="fixed"><b>{{ 'CÓDIGO' | titlecase }}</b></ion-label>
+                    <div class="wrap-text">{{ boarMessage?.code }}</div>
+                </ion-item>
+            </ion-list>
+            <ion-footer>
+                <ion-row>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="success" size="small" fill="clear" [routerLink]="'/board/' + boarMessage?.id + '/edit'">
+                            <ion-icon name="create-outline"></ion-icon>
+                            <div>Editar</div>
+                        </ion-button>
+                    </ion-col>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="danger" size="small" fill="clear" (click)="boarMessagesService.deleteBoardMessage(boarMessage?.id)">
+                            <ion-icon name="trash-outline"></ion-icon>
+                            <div>Eliminar</div>
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-footer>
+        </ion-card>
+    </ng-container>
+
+    <ng-container *ngIf="!(loading.loading | async) && !boarMessagesService.boarMessages?.length">
+        <ion-item>
+            <ion-icon class="text-warning" name="warning-outline" slot="start"></ion-icon>
+            <ion-label><h2>No se encontraron entradas de la cartelera</h2></ion-label>
+            <ion-button [routerLink]="'/board/create'" fill="outline" color="success" slot="end">
+                Crear entradas de la cartelera
+                <ion-icon name="add-circle-outline" slot="end"></ion-icon>
+            </ion-button>
+        </ion-item>
+    </ng-container>
+</ion-content>

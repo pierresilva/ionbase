@@ -6,6 +6,7 @@ import {FormsModule} from '@angular/forms';
 import {IonicModule} from '@ionic/angular';
 import {FolderPageRoutingModule} from './folder-routing.module';
 import {FolderPage} from './folder.page';
+import {BoardModule} from "../board/board.module";
 
 @NgModule({
     imports: [
@@ -13,7 +14,8 @@ import {FolderPage} from './folder.page';
         SharedModule,
         FormsModule,
         IonicModule,
-        FolderPageRoutingModule
+        FolderPageRoutingModule,
+        BoardModule
     ],
     declarations: [FolderPage]
 })

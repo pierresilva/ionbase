@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\OnTheFly;
 use Illuminate\Support\ServiceProvider;
 // header section
 use Illuminate\Database\Eloquent\Collection;
@@ -24,6 +25,8 @@ class AppServiceProvider extends ServiceProvider
         if ($this->app->isLocal()) {
             $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
         }
+
+        $this->app->singleton(OnTheFly::class);
     }
 
     /**
@@ -76,11 +79,11 @@ class AppServiceProvider extends ServiceProvider
             'operCorrectiveMaintenances' => 'OPERATIVIDAD MTTO CORRECTIVOS',
             'operMaintenanceRepairs' => 'OPERATIVIDAD REPARACIONES',
         ]);
-        
+
         // Add Pagenate to Collectoin
         if (!Collection::hasMacro('paginate')) {
-        
-            Collection::macro('paginate', 
+
+            Collection::macro('paginate',
                 function ($perPage = 15, $page = null, $options = []) {
                 $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
                 return (new LengthAwarePaginator(

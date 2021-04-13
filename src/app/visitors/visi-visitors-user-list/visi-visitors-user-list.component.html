@@ -1,0 +1,99 @@
+<app-main-header title="{{'MIS VISITANTES' | titlecase}}"
+                 [primaryLink]="visiVisitorsService.userHousUnit.value.id ? 'visitors/user/send' : null"
+                 [primaryText]="visiVisitorsService.userHousUnit.value.id ? 'Registrar visitante' : null"
+                 [primaryIcon]="visiVisitorsService.userHousUnit.value.id ? 'add-circle-outline' : null"></app-main-header>
+<ion-content id="pages-content"
+             *ngIf="visiVisitorsService.userHousUnit.value.id">
+    <ion-searchbar showCancelButton="focus"
+                   [cancelButtonText]="'Cancelar'"
+                   [placeholder]="'Buscar ' + ('VISITANTE' | lowercase )"
+                   (ionCancel)="this.visiVisitorsService.searchValue = ''; visiVisitorsService.getVisiVisitors()"
+                   (keyup.enter)="visiVisitorsService.getVisiVisitors()"
+                   [(ngModel)]="visiVisitorsService.searchValue"></ion-searchbar>
+    <ng-container *ngIf="!(loading.loading | async) && visiVisitorsService.visiVisitors?.value?.length">
+        <ion-card *ngFor="let visiVisitor of visiVisitorsService.visiVisitors.value; let index = index">
+            <ion-list>
+
+                <ion-item class="item-transparent">
+                    <ion-label position="fixed"><b>{{ 'NOMBRE' | titlecase }}</b></ion-label>
+                    <div class="wrap-text">{{ visiVisitor?.full_name }}</div>
+                </ion-item>
+                <ion-item class="item-transparent">
+                    <ion-label position="fixed"><b>{{ 'IDENTIFICACIÓN' | titlecase }}</b></ion-label>
+                    <div class="wrap-text">{{ visiVisitor?.identification }}</div>
+                </ion-item>
+                <ion-item class="item-transparent">
+                    <ion-label position="fixed"><b>{{ 'EMAIL' | titlecase }}</b></ion-label>
+                    <div class="wrap-text">{{ visiVisitor?.email }}</div>
+                </ion-item>
+                <ion-item class="item-transparent">
+                    <ion-label position="fixed"><b>{{ 'TELÉFONO' | titlecase }}</b></ion-label>
+                    <div class="wrap-text">{{ visiVisitor?.phone }}</div>
+                </ion-item>
+                <ion-item class="item-transparent">
+                    <ion-label position="fixed"><b>{{ 'PERMANENTE' | titlecase }}</b></ion-label>
+                    <div class="wrap-text">{{ visiVisitor?.is_permanent ? 'SI' : 'NO' }}</div>
+                </ion-item>
+            </ion-list>
+            <ion-footer>
+                <ion-row>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="success"
+                                    size="small"
+                                    fill="clear"
+                                    (click)="visiVisitorsService.editVisiVisitors(visiVisitor?.id)"
+                                    [routerLink]="'/visitors/user/' + visiVisitor?.id + '/edit'">
+                            <ion-icon name="create-outline"></ion-icon>
+                            <div>Editar</div>
+                        </ion-button>
+                    </ion-col>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="danger"
+                                    size="small"
+                                    fill="clear"
+                                    (click)="visiVisitorsService.deleteVisiVisitors(visiVisitor?.id)">
+                            <ion-icon name="trash-outline"></ion-icon>
+                            <div>Eliminar</div>
+                        </ion-button>
+                    </ion-col>
+                    <ion-col class="ion-text-center">
+                        <ion-button color="default"
+                                    size="small"
+                                    fill="clear"
+                                    (click)="visiVisitorRegisterService.visiVisitor = visiVisitor"
+                                    [routerLink]="'/visitors/user/' + visiVisitor?.id + '/register'">
+                            <ion-icon name="add-circle-outline"></ion-icon>
+                            <div>Registrar visita</div>
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-footer>
+        </ion-card>
+    </ng-container>
+    <ng-container *ngIf="!(loading.loading | async) && !visiVisitorsService.visiVisitors?.value?.length">
+        <ion-item>
+            <ion-icon class="text-warning"
+                      name="warning-outline"
+                      slot="start"></ion-icon>
+            <ion-label><h2>No se encontraron {{'VISITANTES' | titlecase}}</h2></ion-label>
+            <ion-button [routerLink]="'/visitors/user/send'"
+                        fill="outline"
+                        color="success"
+                        slot="end">
+                Registrar {{'VISITANTES' | titlecase}}
+                <ion-icon name="add-circle-outline"
+                          slot="end"></ion-icon>
+            </ion-button>
+        </ion-item>
+    </ng-container>
+</ion-content>
+
+<ion-content id="pages-content"
+             *ngIf="!visiVisitorsService.userHousUnit.value.id">
+    <ion-item>
+        <ion-icon class="text-warning"
+                  name="warning-outline"
+                  slot="start"></ion-icon>
+        <ion-label><h2>Lo sentimos! Tu email no tiene asociada una unida habitacional</h2></ion-label>
+    </ion-item>
+</ion-content>

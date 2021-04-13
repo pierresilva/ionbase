@@ -37,6 +37,28 @@ const routes: Routes = [
             logged: true,
         }
     },
+    {
+        path: 'board',
+        // canActivate: [AuthGuard],
+        // canActivateChild: [AuthGuard],
+        data: {
+            title: 'CARTELERA',
+            // roles: ['admin'],
+            // permissions: []
+        },
+        loadChildren: () => import('./board/board.module').then(m => m.BoardModule)
+    },
+    {
+        path: 'visitors',
+        // canActivate: [AuthGuard],
+        // canActivateChild: [AuthGuard],
+        data: {
+            title: 'VISITANTES',
+            // roles: ['admin'],
+            // permissions: []
+        },
+        loadChildren: () => import('./visitors/visitors.module').then(m => m.VisitorsModule)
+    },
 
 // generated section
 
@@ -447,7 +469,28 @@ const routes: Routes = [
         },
         loadChildren: () => import('./oper-maintenance-repairs/oper-maintenance-repairs.module').then(m => m.OperMaintenanceRepairsPageModule)
     },
-
+    {
+        path: 'invoicing/invoices',
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        data: {
+            title: 'FACTURAS',
+            roles: ['admin'],
+            // permissions: []
+        },
+        loadChildren: () => import('./invo-invoices/invo-invoices.module').then(m => m.InvoInvoicesModule)
+    },
+    {
+        path: 'invoicing/resolutions',
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        data: {
+            title: 'RESOLUCIONES',
+            roles: ['admin'],
+            // permissions: []
+        },
+        loadChildren: () => import('./invo-resolutions/invo-resolutions.module').then(m => m.InvoResolutionsModule)
+    },
 
 // end section
 

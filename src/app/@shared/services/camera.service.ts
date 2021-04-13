@@ -31,6 +31,7 @@ export class CameraService {
    * @param type
    */
   public async addNewToGallery(fileableId = null, fileableType = null, type = null) {
+      console.log(fileableId);
     const capturedPhoto = await Camera.getPhoto({
       resultType: CameraResultType.Uri,
       source: CameraSource.Camera,
@@ -49,6 +50,7 @@ export class CameraService {
    * @private
    */
   private async savePicture(cameraPhoto: CameraPhoto, fileableId, fileableType, type) {
+      console.log(fileableId);
     const response = await fetch(cameraPhoto.webPath!);
     const blob = await response.blob();
 
@@ -80,6 +82,7 @@ export class CameraService {
    * @private
    */
   private async uploadFile(file, fileName, fileableId, fileableType, type) {
+      console.log(fileableId);
     const endpoint = 'drive/upload';
     const formData: FormData = new FormData();
     formData.append('file', file, fileName);

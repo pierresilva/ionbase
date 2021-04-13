@@ -22,6 +22,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/invoice/{id}', function (Request $request) {
+    return view('invoice.invoice');
+});
+
 Route::post('drive/upload', 'Api\DriveController@store');
 Route::delete('drive/delete/{id}', 'Api\DriveController@destroy');
 Route::get('syst-parameters/all', 'Api\SystParameterController@getAll');
@@ -51,8 +55,34 @@ Route::post('auth/email/resend', 'Api\AuthController@resendVerifyEmail')->name('
 
 Route::get('oper-sectors/pdf', 'Api\OperSectorController@generatePdf');
 
-// generated section
+// Route::get("invo-invoices/{id}/duplicate", ['as' => 'api.invo-invoices.duplicate', 'uses' => 'Api\InvoInvoiceController@duplicate']);
+Route::resource("invo-invoices", "Api\InvoInvoiceController");
 
+Route::resource("invo-resolutions", "Api\InvoResolutionController");
+
+Route::get("boar-messages/{id}/duplicate", ['as' => 'api.boar-message.duplicate', 'uses' => 'Api\BoarMessagesController@duplicate']);
+Route::resource("boar-messages", "Api\BoarMessagesController");
+
+Route::get("visi-parking/{id}/duplicate", ['as' => 'api.visi-parking.duplicate', 'uses' => 'Api\VisiParkingController@duplicate']);
+Route::resource("visi-parking", "Api\VisiParkingController");
+
+Route::get("visi-visitors/{id}/duplicate", ['as' => 'api.visi-visitors.duplicate', 'uses' => 'Api\VisiVisitorController@duplicate']);
+Route::resource("visi-visitors", "Api\VisiVisitorController");
+
+Route::post("visi-visitor-registers/new", ['as' => 'api.visi-visitor-registers.new', 'uses' => 'Api\VisiVisitorRegisterController@new']);
+Route::post("visi-visitor-registers/entry/{id}", ['as' => 'api.visi-visitor-registers.entry', 'uses' => 'Api\VisiVisitorRegisterController@entry']);
+Route::post("visi-visitor-registers/exit/{id}", ['as' => 'api.visi-visitor-registers.exit', 'uses' => 'Api\VisiVisitorRegisterController@exit']);
+Route::get("visi-visitor-registers/{id}/duplicate", ['as' => 'api.visi-visitor-registers.duplicate', 'uses' => 'Api\VisiVisitorRegisterController@duplicate']);
+Route::resource("visi-visitor-registers", "Api\VisiVisitorRegisterController");
+
+Route::get("visi-rates/{id}/duplicate", ['as' => 'api.visi-rates.duplicate', 'uses' => 'Api\VisiRateController@duplicate']);
+Route::resource("visi-rates", "Api\VisiRateController");
+
+Route::get("visi-vehicle-types/{id}/duplicate", ['as' => 'api.visi-vehicle-types.duplicate', 'uses' => 'Api\VisiVehicleTypeController@duplicate']);
+Route::get("visi-vehicle-types/{id}/duplicate", ['as' => 'api.visi-vehicle-types.duplicate', 'uses' => 'Api\VisiVehicleTypeController@duplicate']);
+Route::resource("visi-vehicle-types", "Api\VisiVehicleTypeController");
+
+// generated section
 Route::get("users/{userId}/duplicate", ['as' => 'api.users.duplicate', 'uses' => 'Api\UserController@duplicate']);
 Route::resource("users", "Api\UserController");
 Route::get("user-profiles/{userProfileId}/duplicate", ['as' => 'api.user-profiles.duplicate', 'uses' => 'Api\UserProfileController@duplicate']);
@@ -85,8 +115,11 @@ Route::get("hous-unit-areas/{housUnitAreaId}/duplicate", ['as' => 'api.hous-unit
 Route::resource("hous-unit-areas", "Api\HousUnitAreaController");
 Route::get("oper-sectors/{operSectorId}/duplicate", ['as' => 'api.oper-sectors.duplicate', 'uses' => 'Api\OperSectorController@duplicate']);
 Route::resource("oper-sectors", "Api\OperSectorController");
+
 Route::get("coun-meetings/{counMeetingId}/duplicate", ['as' => 'api.coun-meetings.duplicate', 'uses' => 'Api\CounMeetingController@duplicate']);
+Route::get("coun-meetings/{counMeetingId}/send-preview", ['as' => 'api.coun-meetings.send-preview', 'uses' => 'Api\CounMeetingController@sendCouncilPreviewMail']);
 Route::resource("coun-meetings", "Api\CounMeetingController");
+
 Route::get("coun-meeting-agendas/{counMeetingAgendaId}/duplicate", ['as' => 'api.coun-meeting-agendas.duplicate', 'uses' => 'Api\CounMeetingAgendaController@duplicate']);
 Route::resource("coun-meeting-agendas", "Api\CounMeetingAgendaController");
 Route::get("coun-meeting-citations/{counMeetingCitationId}/duplicate", ['as' => 'api.coun-meeting-citations.duplicate', 'uses' => 'Api\CounMeetingCitationController@duplicate']);
@@ -96,6 +129,7 @@ Route::resource("oper-schedules", "Api\OperScheduleController");
 Route::get("oper-contractors/{operContractorId}/duplicate", ['as' => 'api.oper-contractors.duplicate', 'uses' => 'Api\OperContractorController@duplicate']);
 Route::resource("oper-contractors", "Api\OperContractorController");
 
+Route::get('oper-movements/list', 'Api\OperMovementController@operMovements');
 Route::post('oper-movements/check', 'Api\OperMovementController@movementCheck');
 Route::post('oper-movements/start', 'Api\OperMovementController@movementStart');
 Route::post('oper-movements/end', 'Api\OperMovementController@movementEnd');

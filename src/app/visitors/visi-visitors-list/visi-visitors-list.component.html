@@ -1,0 +1,105 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <!-- <ion-button [routerLink]="'/corr-packets'">
+                <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+            </ion-button> -->
+            <ion-back-button
+                [text]="''"
+                [icon]="'arrow-back-outline'">
+            </ion-back-button>
+        </ion-buttons>
+
+        <ion-buttons slot="primary">
+            <ion-button (click)="presentVisitorModal()"
+                        color="success"
+                        fill="clear"
+                        [disabled]="false">
+                <ng-container *ngIf="!platform.is('mobile')">Visitantes</ng-container>
+                <ion-icon slot="end"
+                          color="success"
+                          name="save-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+
+        <ion-title>{{'VISITANTES' | titlecase}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content class="ion-margin"
+             id="pages-content">
+    <ion-searchbar showCancelButton="focus"
+                   [cancelButtonText]="'Cancelar'"
+                   [placeholder]="'Buscar ' + ('VISITANTE' | lowercase )"
+                   (ionCancel)="this.visiVisitorsService.searchValue = ''; visiVisitorsService.getVisiVisitors()"
+                   (keyup.enter)="visiVisitorsService.getVisiVisitors()"
+                   [(ngModel)]="visiVisitorsService.searchValue"></ion-searchbar>
+
+    <ng-container *ngIf="!(loading.loading | async) && visiVisitorsService.visiVisitors?.value?.length">
+        <ion-grid class="ion-margin">
+            <ion-row>
+                <ion-col>Nombre</ion-col>
+                <ion-col>Documento</ion-col>
+                <ion-col>Unidad</ion-col>
+                <ion-col>Entrada</ion-col>
+                <ion-col>Salida</ion-col>
+                <ion-col>Aprueba</ion-col>
+                <ion-col>Placa</ion-col>
+                <ion-col>Parqueadero</ion-col>
+                <ion-col></ion-col>
+            </ion-row>
+            <ion-row *ngFor="let student of visiVisitorsService.visiVisitors.value; let index = index">
+                <ion-col>{{ student.full_name }}</ion-col>
+                <ion-col>{{ student.identification }}</ion-col>
+                <ion-col>
+                    <ng-container *ngIf="student?.visi_visitor_registers?.length">
+                        {{ student?.visi_visitor_registers[(student.visi_visitor_registers.length - 1)]?.hous_unit.name}}
+                    </ng-container>
+                </ion-col>
+                <ion-col>
+                    <ng-container *ngIf="student?.visi_visitor_registers?.length">
+                        {{ student?.visi_visitor_registers[(student.visi_visitor_registers.length - 1)]?.entry_date | dateFormat:'DD/MM/YYYY HH:mm'}}
+                    </ng-container>
+                </ion-col>
+                <ion-col>
+                    <ng-container *ngIf="student?.visi_visitor_registers?.length">
+                        {{ student?.visi_visitor_registers[(student.visi_visitor_registers.length - 1)]?.departure_date | dateFormat:'DD/MM/YYYY HH:mm'}}
+                    </ng-container>
+                </ion-col>
+                <ion-col>
+                    <ng-container *ngIf="student?.visi_visitor_registers?.length">
+                        {{ student?.visi_visitor_registers[(student.visi_visitor_registers.length - 1)]?.approved_by}}
+                    </ng-container>
+                </ion-col>
+                <ion-col>
+                    <ng-container *ngIf="student?.visi_visitor_registers?.length">
+                        {{ student?.visi_visitor_registers[(student.visi_visitor_registers.length - 1)]?.license_plate}}
+                    </ng-container>
+                </ion-col>
+                <ion-col>
+                    <ng-container *ngIf="student?.visi_visitor_registers?.length && student?.visi_visitor_registers[(student.visi_visitor_registers.length - 1)]?.visi_parking">
+                        {{ student?.visi_visitor_registers[(student.visi_visitor_registers.length - 1)]?.visi_parking.name}}
+                    </ng-container>
+                </ion-col>
+                <ion-col>
+                    <ion-button *ngIf="student.entry_status == 'out' || !student.entry_status"
+                                (click)="presentVisitorVehicleModal(student.id, student?.visi_visitor_registers[(student.visi_visitor_registers.length - 1)] ? student?.visi_visitor_registers[(student.visi_visitor_registers.length - 1)] : null)"
+                                size="small">Ingreso
+                    </ion-button>
+                    <ion-button *ngIf="student.entry_status == 'in'"
+                                (click)="markDeparture(student?.visi_visitor_registers[(student.visi_visitor_registers.length - 1)].id)"
+                                color="danger"
+                                size="small">Salida
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ng-container>
+    <ng-container *ngIf="!(loading.loading | async) && !visiVisitorsService.visiVisitors?.value?.length">
+        <ion-item>
+            <ion-icon class="text-warning"
+                      name="warning-outline"
+                      slot="start"></ion-icon>
+            <ion-label><h2>No se encontraron {{'VISITANTES' | titlecase}}</h2></ion-label>
+        </ion-item>
+    </ng-container>
+</ion-content>

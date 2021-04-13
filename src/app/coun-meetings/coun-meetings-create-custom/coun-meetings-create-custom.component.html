@@ -398,6 +398,14 @@
 
                             <div class="ion-text-center ion-margin">
                                 <ion-button *ngIf="model.status == 'in_progress'"
+                                            color="default"
+                                            (click)="saveCounMeeting(null, true)">
+                                    Enviar vista previa
+                                </ion-button>
+                            </div>
+
+                            <div class="ion-text-center ion-margin">
+                                <ion-button *ngIf="model.status == 'in_progress'"
                                             color="success"
                                             (click)="finalizeCouncil()">
                                     Finalizar Junta

@@ -1,0 +1,164 @@
+<ion-header translucent>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button (click)="dismissModal()">
+                Cancelar
+            </ion-button>
+        </ion-buttons>
+        <ion-title>Nuevo visitante</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="saveVisitorRegister()">
+                Ingresar
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+    <ion-list>
+        <form #visiVisitorsForm="ngForm"
+              novalidate
+              autocomplete="off">
+
+            <!-- name -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'NOMBRE' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.visitor_full_name"
+                           type="text"
+                           name="visitor_full_name"
+                           id="visitor_full_name-field"
+                           [required]="true"
+                           placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.full_name">
+                    <div class="error-message"
+                         *ngIf="visiVisitorsForm.form.controls['visitor_full_name']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end name -->
+
+            <!-- identification -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'IDENTIFICACIÓN' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.visitor_document"
+                           type="text"
+                           name="visitor_document"
+                           id="visitor_document-field"
+                           [required]="true"
+                           placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.identification">
+                    <div class="error-message"
+                         *ngIf="visiVisitorsForm.form.controls['visitor_document']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end identification -->
+
+            <!-- phone -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'TELÉFONO' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.visitor_phone"
+                           type="text"
+                           name="visitor_phone"
+                           id="visitor_phone-field"
+                           placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.phone">
+                    <div class="error-message"
+                         *ngIf="visiVisitorsForm.form.controls['phone']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end phone -->
+
+            <!-- email -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'EMAIL' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="model.visitor_email"
+                           type="text"
+                           name="visitor_email"
+                           id="visitor_email-field"
+                           placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.email">
+                    <div class="error-message"
+                         *ngIf="visiVisitorsForm.form.controls['email']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end phone -->
+
+            <ion-item>
+                <ion-label position="stacked">Unidad</ion-label>
+                <ion-select placeholder="Seleccione..."
+                            [name]="'register_hous_unit_id'"
+                            [id]="'register_hous_unit_id-field'"
+                            required
+                            [(ngModel)]="model.register_hous_unit_id">
+                    <ion-select-option *ngFor="let item of data.HousUnit"
+                                       [value]="item.id">{{item.name}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.hous_unit">
+                    <div class="error-message"
+                         *ngIf="visiVisitorsForm.form.controls['register_hous_unit_id']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+
+            <ion-item>
+                <ion-label position="stacked">Tipo de vehículo</ion-label>
+                <ion-select placeholder="Seleccione..."
+                            [name]="'register_vehicle_type_id'"
+                            [id]="'register_vehicle_type_id-field'"
+                            [(ngModel)]="model.register_vehicle_type_id">
+                    <ion-select-option *ngFor="let item of data.VisiVehicleType"
+                                       [value]="item.id">{{item.name}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="stacked">Placa</ion-label>
+                <ion-input [name]="'register_license_plate'"
+                           [id]="'register_license_plate-field'"
+                           [(ngModel)]="model.register_license_plate"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="stacked">Parqueadero</ion-label>
+                <ion-select placeholder="Seleccione..."
+                            [name]="'register_visi_parking_id'"
+                            [id]="'register_visi_parking_id-field'"
+                            [(ngModel)]="model.register_visi_parking_id">
+                    <ion-select-option *ngFor="let item of availableParkings(data.VisiParking)"
+                                       [value]="item.id">{{item.name}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="stacked">Tarifa</ion-label>
+                <ion-select placeholder="Seleccione..."
+                            [name]="'register_visi_rate_id'"
+                            [id]="'register_visi_rate_id-field'"
+                            [(ngModel)]="model.register_visi_rate_id">
+                    <ion-select-option *ngFor="let item of data.VisiRate"
+                                       [value]="item.id">{{item.name}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+
+        </form>
+    </ion-list>
+
+</ion-content>

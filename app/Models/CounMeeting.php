@@ -111,7 +111,7 @@ class CounMeeting extends Model
     {
         return [
             'counMeetingAgendas',
-            'counMeetingCitations',
+            'counMeetingCitations.user',
             'files'
         ];
     }

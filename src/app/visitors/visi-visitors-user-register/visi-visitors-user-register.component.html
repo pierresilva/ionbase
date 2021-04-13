@@ -1,0 +1,78 @@
+<ion-header>
+    <ion-toolbar>
+
+        <ion-buttons slot="start">
+            <!-- <ion-button [routerLink]="'/hous-units'">
+                <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+            </ion-button> -->
+            <ion-back-button
+                [text]="''"
+                [icon]="'arrow-back-outline'">
+            </ion-back-button>
+        </ion-buttons>
+
+        <ion-buttons slot="primary">
+            <ion-button (click)="visiVisitorRegisterService.saveVisiVisitorRegisters()"
+                        color="success"
+                        fill="clear">
+                <ng-container *ngIf="!platform.is('mobile')">Guardar</ng-container>
+                <ion-icon slot="end"
+                          color="success"
+                          name="save-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+
+        <ion-title>Registrar visita de {{visiVisitorRegisterService.visiVisitor.full_name}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content fullscreen>
+    <ion-card>
+        <form #visiVisitorRegistersForm="ngForm"
+              novalidate
+              autocomplete="off">
+
+            <!-- entry_date -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'FECHA de entrada' | titlecase }}</ion-label>
+                <ion-datetime name="entry_date"
+                              id="entry_date-field"
+                              [required]="true"
+                              [doneText]="'Seleccionar'"
+                              max="2040-12-31"
+                              [cancelText]="'Cancelar'"
+                              [(ngModel)]="visiVisitorRegisterService.visiVisitorRegister.entry_date"
+                              displayFormat="DD/MM/YYYY"></ion-datetime>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.entry_date">
+                    <div class="error-message"
+                         *ngIf="visiVisitorRegistersForm.form.controls['entry_date']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end entry_date -->
+
+            <!-- approved_by -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'APROBADO POR' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="visiVisitorRegisterService.visiVisitorRegister.approved_by"
+                           type="text"
+                           name="approved_by"
+                           id="approved_by-field"
+                           [required]="true"
+                           placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.approved_by">
+                    <div class="error-message"
+                         *ngIf="visiVisitorRegistersForm.form.controls['approved_by']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end approved_by -->
+
+        </form>
+    </ion-card>
+</ion-content>

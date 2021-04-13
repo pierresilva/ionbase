@@ -1,0 +1,62 @@
+<app-main-header title="{{'FACTURAS' | titlecase}}"></app-main-header>
+<ion-content id="pages-content">
+
+    <ion-searchbar showCancelButton="focus"
+                   [cancelButtonText]="'Cancelar'"
+                   [placeholder]="'Buscar...'"
+                   (ionCancel)="invoInvoicesService.search = ''; invoInvoicesService.getItems()"
+                   (keyup.enter)="invoInvoicesService.getItems()"
+                   [(ngModel)]="invoInvoicesService.search"></ion-searchbar>
+
+    <!-- List of Input Items -->
+    <ion-list>
+        <ng-container *ngIf="invoInvoicesService.items.length">
+            <ion-item *ngFor="let invoice of invoInvoicesService.items">
+                <ion-label>
+                    <h2>#{{invoice.number}} : ${{invoice.total | number:null:'es-CO'}}</h2>
+                    <h3>{{invoice.firstname}} {{invoice.lastname}} {{invoice.document_type}}: {{invoice.document}}</h3>
+                    <p>{{invoice.created_at | dateFormat:'DD/MM/YYYY'}}</p>
+                </ion-label>
+                <ion-icon (click)="openModal(invoice)"
+                          color="primary"
+                          style="cursor: pointer;"
+                          name="eye-outline"
+                          [slot]="'end'"></ion-icon>
+            </ion-item>
+        </ng-container>
+        <ng-container *ngIf="!invoInvoicesService.items.length">
+            <ion-item>
+                <ion-label>
+                    <h2>No se encontraron facturas.</h2>
+                </ion-label>
+            </ion-item>
+        </ng-container>
+    </ion-list>
+
+</ion-content>
+
+<ion-footer class="lists-footer">
+    <ion-row *ngIf="invoInvoicesService.meta">
+        <ion-col class="ion-text-center"
+                 size="12">
+            <ion-button (click)="invoInvoicesService.getItems(invoInvoicesService.meta.current_page - 1)"
+                        [disabled]="invoInvoicesService.meta.current_page == 1"
+                        fill="clear">
+                <ion-icon slot="end"
+                          name="play-outline"
+                          style="transform: rotate(180deg);"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear"
+                        [disabled]="true"> Pag: {{invoInvoicesService.meta.current_page}}
+                /{{invoInvoicesService.meta.last_page}} {{invoInvoicesService.meta.from}}
+                -{{invoInvoicesService.meta.to}}
+                /{{invoInvoicesService.meta.total}} </ion-button>
+            <ion-button (click)="invoInvoicesService.getItems(invoInvoicesService.meta.current_page + 1)"
+                        [disabled]="invoInvoicesService.meta.current_page == invoInvoicesService.meta.last_page"
+                        fill="clear">
+                <ion-icon slot="start"
+                          name="play-outline"></ion-icon>
+            </ion-button>
+        </ion-col>
+    </ion-row>
+</ion-footer>

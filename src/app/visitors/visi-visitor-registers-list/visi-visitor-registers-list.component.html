@@ -1,0 +1,107 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <!-- <ion-button [routerLink]="'/corr-packets'">
+                <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+            </ion-button> -->
+            <ion-back-button
+                [text]="''"
+                [icon]="'arrow-back-outline'">
+            </ion-back-button>
+        </ion-buttons>
+
+        <ion-buttons slot="primary">
+            <!--<ion-button color="success"
+                        fill="clear"
+                        [disabled]="false">
+                <ng-container *ngIf="!platform.is('mobile')">Historico de visitas</ng-container>
+                <ion-icon slot="end"
+                          color="success"
+                          name="save-outline"></ion-icon>
+            </ion-button>-->
+        </ion-buttons>
+
+        <ion-title>{{'REGISTROS DE VISITANTES' | titlecase}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content class="ion-margin"
+             id="pages-content">
+    <ion-searchbar placeholder="Buscar"
+                   [cancelButtonText]="'Cancelar'"
+                   [showCancelButton]="true"
+                   [debounce]="500"
+                   (ionCancel)="searchString = ''; getRegisters()"
+                   (keyup.enter)="getRegisters()"
+                   [(ngModel)]="searchString"></ion-searchbar>
+    <ion-row>
+        <ion-col>
+            <ion-item>
+                <ion-label position="floating">Fecha de ingreso</ion-label>
+                <ion-datetime displayFormat="DD/MM/YYYY"
+                              [doneText]="'OK'"
+                              [cancelText]="'Cancelar'"
+                              [(ngModel)]="searchString"
+                              (ionChange)="getRegisters()"
+                              min="2020-01-01"
+                              max="2040-12-31"></ion-datetime>
+            </ion-item>
+        </ion-col>
+    </ion-row>
+
+
+
+
+    <ion-grid class="ion-margin"
+              *ngIf="!(loading.loading | async) && registers?.length">
+        <ion-row>
+            <ion-col>Nombre</ion-col>
+            <ion-col>Unidad</ion-col>
+            <ion-col>Entrada</ion-col>
+            <ion-col>Salida</ion-col>
+            <ion-col>Vehículo</ion-col>
+            <ion-col>Parqueadero</ion-col>
+        </ion-row>
+        <ion-row *ngFor="let register of registers">
+            <ion-col>{{register.visi_visitor.full_name}}</ion-col>
+            <ion-col>{{register.hous_unit?.name}}</ion-col>
+            <ion-col>{{register.entry_date | dateFormat:'DD/MM/YY HH:MM'}}</ion-col>
+            <ion-col>{{register.departure_date | dateFormat:'DD/MM/YY HH:MM'}}</ion-col>
+            <ion-col>{{register.license_plate}} {{register.visi_vehicle_type?.name}}</ion-col>
+            <ion-col>{{register.visi_parking?.name}}</ion-col>
+        </ion-row>
+    </ion-grid>
+    <ng-container *ngIf="!(loading.loading | async) && !registers?.length">
+        <ion-item>
+            <ion-icon class="text-warning"
+                      name="warning-outline"
+                      slot="start"></ion-icon>
+            <ion-label><h2>No se encontraron {{'REGISTROS DE VISITANTES' | titlecase}}</h2></ion-label>
+        </ion-item>
+    </ng-container>
+</ion-content>
+
+<ion-footer class="lists-footer">
+    <ion-row *ngIf="meta">
+        <ion-col class="ion-text-center"
+                 size="12">
+            <ion-button (click)="getRegisters(meta.current_page - 1)"
+                        [disabled]="meta.current_page == 1"
+                        fill="clear">
+                <ion-icon slot="end"
+                          name="play-outline"
+                          style="transform: rotate(180deg);"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear"
+                        [disabled]="true"> Pag: {{meta.current_page}}
+                /{{meta.last_page}} {{meta.from}}-{{meta.to}}
+                /{{meta.total}} </ion-button>
+            <ion-button (click)="getRegisters(meta.current_page + 1)"
+                        [disabled]="meta.current_page == meta.last_page"
+                        fill="clear">
+                <ion-icon slot="start"
+                          name="play-outline"></ion-icon>
+            </ion-button>
+        </ion-col>
+    </ion-row>
+</ion-footer>
+

@@ -1,0 +1,18 @@
+<app-main-header title="{{boarMessagesService.boarMessage?.name}}"></app-main-header>
+<ion-content id="pages-content">
+    <ion-header collapse="condense">
+        <ion-toolbar>
+            <ion-title size="large">{{boarMessagesService.boarMessage?.name}}</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <span>Publicado el {{boarMessagesService.boarMessage?.created_at | dateFormat:'DD/MM/YYYY'}}</span>
+                <br><br>
+                <div [ngxSummernoteView]="boarMessagesService.boarMessage?.body"></div>
+            </ion-col>
+        </ion-row>
+
+    </ion-grid>
+</ion-content>

@@ -152,6 +152,7 @@ return [
             'to_date' => 'Hasta',
             'code' => 'Código',
             'summary' => 'Resúmen',
+            'number' => 'Número'
         ]
     ],
 

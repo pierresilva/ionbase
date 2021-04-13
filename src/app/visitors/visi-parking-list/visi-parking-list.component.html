@@ -1,0 +1,56 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <!-- <ion-button [routerLink]="'/corr-packets'">
+                <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+            </ion-button> -->
+            <ion-back-button
+                [text]="''"
+                [icon]="'arrow-back-outline'">
+            </ion-back-button>
+        </ion-buttons>
+
+        <ion-buttons slot="primary">
+            <ion-button color="success"
+                        fill="clear"
+                        [disabled]="false">
+                <ng-container *ngIf="!platform.is('mobile')">Parqueaderos</ng-container>
+                <ion-icon slot="end"
+                          color="success"
+                          name="save-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+
+        <ion-title>{{'PARQUEADEROS' | titlecase}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content class="ion-margin"
+             id="pages-content">
+    <ion-grid class="ion-margin" *ngIf="!(loading.loading | async) && parkings?.length">
+        <ion-row>
+            <ion-col>Nombre</ion-col>
+            <ion-col>Estado</ion-col>
+            <ion-col>Ocupante</ion-col>
+            <ion-col></ion-col>
+        </ion-row>
+        <ion-row *ngFor="let parking of parkings">
+            <ion-col>{{parking.name}}</ion-col>
+            <ion-col>{{parking.available ? 'Disponible' : 'Ocupado'}}</ion-col>
+            <ion-col *ngIf="!parking.visi_visitor_registers?.length">
+            </ion-col>
+            <ion-col *ngIf="parking.visi_visitor_registers?.length">
+                {{!parking.available ? parking.visi_visitor_registers[parking.visi_visitor_registers.length - 1].visi_visitor.full_name : ''}}
+            </ion-col>
+            <ion-col></ion-col>
+        </ion-row>
+    </ion-grid>
+    <ng-container *ngIf="!(loading.loading | async) && !parkings?.length">
+        <ion-item>
+            <ion-icon class="text-warning"
+                      name="warning-outline"
+                      slot="start"></ion-icon>
+            <ion-label><h2>No se encontraron {{'PARQUEADEROS' | titlecase}}</h2></ion-label>
+        </ion-item>
+    </ng-container>
+</ion-content>
+

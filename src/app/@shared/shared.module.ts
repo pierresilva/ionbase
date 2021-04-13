@@ -39,7 +39,6 @@ import {DateFormatPipe} from './pipes/date-format.pipe';
 import {SignaturePadModule} from 'angular2-signaturepad';
 import {ZeroLeadingPipe} from './pipes/zero-leading.pipe';
 import {GetParameterPipe} from './pipes/get-parameter.pipe';
-import {CustomFormsModule} from "ng2-validation";
 import {AutoCompleteModule} from "ionic4-auto-complete";
 import {NgxIonicImageViewerModule} from 'ngx-ionic-image-viewer';
 import {SettingsService} from "./services/settings.service";
@@ -48,6 +47,12 @@ import {ApiPrefixInterceptor} from "./interceptors/api-prefix.interceptor";
 import {SubdomainInterceptor} from "./interceptors/subdomain.interceptor";
 import {TimeFormatPipe} from "./pipes/time-format.pipe";
 import {CalendarModule} from "ion2-calendar";
+import {TruncatePipe} from './pipes/truencate.pipe';
+import {PrintService} from "./services/print.service";
+import { ValidationNumberMaxDirective } from './directives/validation-number-max.directive';
+import { ValidationNumberMinDirective } from './directives/validation-number-min.directive';
+import { ValidationDateMaxDirective } from './directives/validation-date-max.directive';
+import { ValidationDateMinDirective } from './directives/validation-date-min.directive';
 
 
 @NgModule({
@@ -60,6 +65,11 @@ import {CalendarModule} from "ion2-calendar";
         TimeFormatPipe,
         ZeroLeadingPipe,
         GetParameterPipe,
+        TruncatePipe,
+        ValidationNumberMaxDirective,
+        ValidationNumberMinDirective,
+        ValidationDateMaxDirective,
+        ValidationDateMinDirective,
     ],
     entryComponents: [
         MainHeaderComponent,
@@ -77,7 +87,6 @@ import {CalendarModule} from "ion2-calendar";
 
         HttpClientModule,
         FormsModule,
-        CustomFormsModule,
         ReactiveFormsModule,
         StripHtmlPipe,
         StatusPipe,
@@ -85,7 +94,12 @@ import {CalendarModule} from "ion2-calendar";
         TimeFormatPipe,
         ZeroLeadingPipe,
         GetParameterPipe,
-        CalendarModule
+        CalendarModule,
+        TruncatePipe,
+        ValidationNumberMaxDirective,
+        ValidationNumberMinDirective,
+        ValidationDateMaxDirective,
+        ValidationDateMinDirective,
     ],
     imports: [
         CommonModule,
@@ -146,6 +160,12 @@ import {CalendarModule} from "ion2-calendar";
         JsonPipe,
         ZeroLeadingPipe,
         GetParameterPipe,
+        TruncatePipe,
+        PrintService,
+        ValidationNumberMaxDirective,
+        ValidationNumberMinDirective,
+        ValidationDateMaxDirective,
+        ValidationDateMinDirective,
     ]
 })
 export class SharedModule {

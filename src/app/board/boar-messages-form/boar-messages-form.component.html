@@ -1,0 +1,113 @@
+<form #boarMessagesForm="ngForm"
+      novalidate
+      autocomplete="off">
+    <!-- name -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'NOMBRE' | titlecase }}</ion-label>
+        <ion-input [(ngModel)]="model.name"
+                   type="text"
+                   name="name"
+                   id="name-field"
+                   [required]="true"
+                   placeholder=""></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.name">
+            <div class="error-message"
+                 *ngIf="boarMessagesForm.form.controls['name']?.hasError(validation.type)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end name -->
+    <!-- body -->
+    <!--<ion-item class="item-transparent">
+        <ion-label>{{ 'cuerpo' | titlecase }}</ion-label>
+        <ion-textarea [(ngModel)]="model.body"
+                      type="text"
+                      name="body"
+                      id="body-field"
+                      [rows]="10"
+                      [required]="true"
+                      placeholder=""></ion-textarea>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.body">
+            <div class="error-message"
+                 *ngIf="boarMessagesForm.form.controls['body']?.hasError(validation.type)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>-->
+    <ion-item class="item-transparent">
+        <ion-label position="stacked" style="font-size: 1rem;">{{ 'ACTA' | titlecase }}</ion-label>
+        <input [ngxSummernote]
+               name="act"
+               id="act-field"
+               [(ngModel)]="model.body">
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.body">
+            <div class="error-message" *ngIf="boarMessagesForm.form.controls['body']?.hasError(validation.type)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end body -->
+    <!-- status -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'ESTADO' | titlecase }}</ion-label>
+        <ion-select [(ngModel)]="model.status"
+                    [required]="true"
+                    name="status"
+                    id="status-field"
+                    okText="Seleccionar"
+                    cancelText="Cancelar">
+            <ion-select-option value="active">{{ 'Activo' | titlecase }}</ion-select-option>
+            <ion-select-option value="inactive">{{ 'Inactivo' | titlecase }}</ion-select-option>
+        </ion-select>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.status">
+            <div class="error-message"
+                 *ngIf="boarMessagesForm.form.controls['status']?.hasError(validation.type)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end status -->
+    <!-- notify_to_users -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'notificar a los usuarios' | titlecase }}</ion-label>
+        <ion-toggle name="notify_to_users"
+                    id="notify_to_users-field"
+                    slot="end"
+                    [(ngModel)]="model.notify_to_users"></ion-toggle>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.notify_to_users">
+            <div class="error-message"
+                 *ngIf="boarMessagesForm.form.controls['repass']?.hasError(validation.type)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end notify_to_users -->
+    <!-- notify_to_house_units -->
+    <ion-item class="item-transparent">
+        <ion-label>{{ 'notificar a unidades habitacionales' | titlecase }}</ion-label>
+        <ion-toggle name="notify_to_house_units"
+                    id="notify_to_house_units-field"
+                    slot="end"
+                    [(ngModel)]="model.notify_to_house_units"></ion-toggle>
+    </ion-item>
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.notify_to_house_units">
+            <div class="error-message"
+                 *ngIf="boarMessagesForm.form.controls['repass']?.hasError(validation.type)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+    <!-- end notify_to_house_units -->
+</form>

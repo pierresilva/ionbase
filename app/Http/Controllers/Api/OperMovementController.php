@@ -295,15 +295,52 @@ class OperMovementController extends ApiController
 
 // end section
 
+    public function operMovements(Request $request)
+    {
+        $date = date('Y-m-d');
+
+        $operMovements = OperMovement::with(OperMovement::getRelationships());
+
+        if ($request->get('date')) {
+            $date = explode(' ', $request->get('date'))[0];
+        }
+
+        if ($request->get('oper_sector_id')) {
+            $operMovements->where('oper_sector_id', $request->get('oper_sector_id'));
+        }
+
+        if ($request->get('oper_contractor_id')) {
+            $operMovements->where('oper_contractor_id', $request->get('oper_contractor_id'));
+        }
+
+        $operMovements->where('date_statr', $date);
+
+        $movements = $operMovements->get();
+
+        return $this->responseSuccess(
+            'OK',
+            $movements
+        );
+    }
+
     public function movementCheck(Request $request)
     {
+
         if (!\Auth::user()) {
             return $this->responseError('Su sessión expiró!<br>Por favor ingrese de nuevo!', null, 401);
         }
 
         $operContractor = OperContractor::where('user_id', \Auth::user()->id)->first();
 
+        if (!$operContractor) {
+            return $this->responseError('No esta registrado como contratista!', null, 404);
+        }
+
         $operSector = OperSector::find($request->get('oper_sector_id'));
+
+        if (!$operSector) {
+            return $this->responseError('No se encrontó sector operativo!', null, 404);
+        }
 
         $operSchedules = OperSchedule::with(['operMovements' => function ($query) {
             $today = date('Y-m-d');
@@ -384,7 +421,7 @@ class OperMovementController extends ApiController
             $operMovement->update([
                 'date_end' => date('Y-m-d'),
                 'time_end' => $end,
-                'time_total' => ($diff/3600),
+                'time_total' => ($diff / 3600),
                 'photo' => $request->get('photo'),
                 'completed' => true
             ]);

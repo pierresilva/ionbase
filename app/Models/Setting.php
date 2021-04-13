@@ -9,13 +9,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Setting extends Model
 {
-    use SoftDeletes;
+    // use SoftDeletes;
 
 // generated section
 
 	// Mass Assignment
 	protected $fillable = ['name','code','value','rich_text','setting_group_id',];
-    protected $dates = ['deleted_at'];
+    // protected $dates = ['deleted_at'];
 
 
 	// Validate Rule

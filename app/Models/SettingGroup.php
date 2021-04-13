@@ -9,13 +9,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class SettingGroup extends Model
 {
-    use SoftDeletes;
+    // use SoftDeletes;
 
 // generated section
 
 	// Mass Assignment
 	protected $fillable = ['name','code',];
-    protected $dates = ['deleted_at'];
+    // protected $dates = ['deleted_at'];
 
 
 	// Validate Rule
@@ -42,10 +42,6 @@ class SettingGroup extends Model
 	public function settings() {
 		return $this->hasMany('App\Models\Setting');
 	}
-
-
-
-
 
     public static function getRelationships()
     {

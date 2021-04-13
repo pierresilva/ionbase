@@ -1,0 +1,194 @@
+<ion-header>
+    <ion-toolbar>
+
+        <ion-buttons slot="start">
+            <ion-button [routerLink]="'/invoicing/resolutions'">
+                <ion-icon slot="icon-only"
+                          name="arrow-back-outline"></ion-icon>
+            </ion-button>
+            <!--<ion-back-button
+                [text]="''"
+                [icon]="'arrow-back-outline'">
+            </ion-back-button>-->
+        </ion-buttons>
+
+        <ion-buttons slot="primary">
+            <ion-button (click)="invoResolutionsService.saveItem(invoResolutionsService.item, true)"
+                        color="success"
+                        fill="clear"
+                        [disabled]="!invoResolutionsService.form.valid">
+                <ng-container *ngIf="!platform.is('mobile')">Guardar</ng-container>
+                <ion-icon slot="end"
+                          color="success"
+                          name="save-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+
+        <ion-title>{{(id > 0) ? 'Editar' : 'Crear'}} {{'RESOLUCIONES' | titlecase}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content id="ion-content">
+    <form #invoResolutionsForm="ngForm"
+          novalidate
+          autocomplete="off">
+
+        <!-- type -->
+        <ion-item class="item-transparent">
+            <ion-label position="stacked">Tipo de resolución</ion-label>
+            <ion-select placeholder="Seleccione..."
+                        name="type"
+                        [(ngModel)]="invoResolutionsService.item.type"
+                        #type="ngModel"
+                        required>
+                <ion-select-option [value]="'POS'">POS</ion-select-option>
+                <ion-select-option [value]="'COMPUTADOR'">COMPUTADOR</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <div class="validation-errors">
+            <div class="error-message"
+                 *ngIf="!type.valid">
+                Seleccione un tipo de resolución.
+            </div>
+        </div>
+        <!-- end type -->
+
+        <!-- number -->
+        <ion-item class="item-transparent">
+            <ion-label>{{ 'NÚMERO de resolución' | titlecase }}</ion-label>
+            <ion-input [(ngModel)]="invoResolutionsService.item.number"
+                       type="text"
+                       name="number"
+                       #number="ngModel"
+                       id="number-field"
+                       [required]="true"
+                       placeholder=""></ion-input>
+        </ion-item>
+        <div class="validation-errors">
+            <div class="error-message"
+                 *ngIf="!number.valid">
+                Ingrese el número de la resolución
+            </div>
+        </div>
+        <!-- end number -->
+
+        <!-- date_from -->
+        <ion-item class="item-transparent">
+            <ion-label>{{ 'Desde' | titlecase }}</ion-label>
+            <ion-datetime displayFormat="DD/MM/YYYY"
+                          [min]="now.format('YYYY-MM-DD')"
+                          max="2040"
+                          [cancelText]="'Cancelar'"
+                          [doneText]="'OK'"
+                          [(ngModel)]="invoResolutionsService.item.date_from"
+                          name="date_from"
+                          #date_from="ngModel"
+                          id="date_from-field"
+                          [required]="true"></ion-datetime>
+        </ion-item>
+        <div class="validation-errors">
+            <div class="error-message"
+                 *ngIf="!date_from.valid">
+                Ingrese una fecha de inicio para la resolución
+            </div>
+        </div>
+        <!-- end date_from -->
+
+        <!-- date_to -->
+        <ion-item class="item-transparent">
+            <ion-label>{{ 'Hasta' | titlecase }}</ion-label>
+            <ion-datetime displayFormat="DD/MM/YYYY"
+                          type="date"
+                          [min]="invoResolutionsService.item.date_from | dateFormat:'YYYY-MM-DD'"
+                          max="2040"
+                          [minDate]="invoResolutionsService.item.date_from | dateFormat:'YYYY-MM-DD'"
+                          [cancelText]="'Cancelar'"
+                          [doneText]="'OK'"
+                          [(ngModel)]="invoResolutionsService.item.date_to"
+                          name="date_to"
+                          #date_to="ngModel"
+                          id="date_to-field"
+                          (ionChange)="setMonths()"
+                          [required]="true"></ion-datetime>
+        </ion-item>
+        <div class="validation-errors">
+            <div class="error-message"
+                 *ngIf="!date_to.valid">
+                Ingrese una fecha de inicio para la resolución
+            </div>
+        </div>
+        <!-- end date_to -->
+
+        <!-- months -->
+        <ion-item class="item-transparent">
+            <ion-label>{{ 'Meses' | titlecase }}</ion-label>
+            <ion-input type="number"
+                       [(ngModel)]="invoResolutionsService.item.months"
+                       name="months"
+                       #months="ngModel"
+                       id="months-field"
+                       [required]="true"></ion-input>
+        </ion-item>
+        <div class="validation-errors">
+            <div class="error-message"
+                 *ngIf="!months.valid">
+                Ingrese la cantidad de meses para la resolución
+            </div>
+        </div>
+        <!-- end months -->
+
+        <!-- initial -->
+        <ion-item class="item-transparent">
+            <ion-label>{{ 'número inicial' | titlecase }}</ion-label>
+            <ion-input type="number"
+                       [(ngModel)]="invoResolutionsService.item.initial"
+                       name="initial"
+                       #initial="ngModel"
+                       id="initial-field"
+                       [required]="true"></ion-input>
+        </ion-item>
+        <div class="validation-errors">
+            <div class="error-message"
+                 *ngIf="!initial.valid">
+                Ingrese el número en que inicia la facturación de la resolución
+            </div>
+        </div>
+        <!-- end initial -->
+
+        <!-- final -->
+        <ion-item class="item-transparent">
+            <ion-label>{{ 'número final' | titlecase }}</ion-label>
+            <ion-input type="number"
+                       [(ngModel)]="invoResolutionsService.item.final"
+                       name="final"
+                       #final="ngModel"
+                       id="final-field"
+                       [required]="true"></ion-input>
+        </ion-item>
+        <div class="validation-errors">
+            <div class="error-message"
+                 *ngIf="!final.valid">
+                Ingrese el número en que finaliza la facturación de la resolución
+            </div>
+        </div>
+        <!-- end final -->
+
+        <!-- current_number -->
+        <ion-item class="item-transparent">
+            <ion-label>{{ 'número de factura' | titlecase }}</ion-label>
+            <ion-input type="number"
+                       [(ngModel)]="invoResolutionsService.item.current_number"
+                       name="current_number"
+                       [readonly]="(id > 0)"
+                       #current_number="ngModel"
+                       id="current_number-field"></ion-input>
+        </ion-item>
+        <div class="validation-errors">
+            <div class="error-message"
+                 *ngIf="!current_number.valid">
+                Ingrese el número en que la facturación lleva el conteo
+            </div>
+        </div>
+        <!-- end current_number -->
+
+    </form>
+</ion-content>

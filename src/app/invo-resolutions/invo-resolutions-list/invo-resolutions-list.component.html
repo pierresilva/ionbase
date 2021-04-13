@@ -1,0 +1,65 @@
+<app-main-header title="{{'RESOLUCIONES' | titlecase}}"
+                 primaryLink="/invoicing/resolutions/0"
+                 primaryText="Crear {{'RESOLUCIONES' | lowercase}}"
+                 primaryIcon="add-circle-outline"></app-main-header>
+<ion-content id="pages-content">
+
+    <ion-searchbar showCancelButton="focus"
+                   [cancelButtonText]="'Cancelar'"
+                   [placeholder]="'Buscar...'"
+                   (ionCancel)="invoResolutionsService.search = ''; invoResolutionsService.getItems()"
+                   (keyup.enter)="invoResolutionsService.getItems()"
+                   [(ngModel)]="invoResolutionsService.search"></ion-searchbar>
+
+    <!-- List of Input Items -->
+    <ion-list>
+        <ng-container *ngIf="invoResolutionsService.items.length">
+            <ion-item *ngFor="let resolution of invoResolutionsService.items">
+                <ion-label>
+                    <h2># {{resolution.number | number:null:'es-CO'}}</h2>
+                    <h3>{{resolution.date_from | dateFormat:'DD/MM/YYYY'}} {{resolution.date_to | dateFormat:'DD/MM/YYYY'}}: {{resolution.months}} meses</h3>
+                    <p>{{resolution.initial}} - {{resolution.final}} / {{resolution.current_number}}</p>
+                </ion-label>
+                <ion-icon [routerLink]="'/invoicing/resolutions/' + resolution.id"
+                          color="primary"
+                          style="cursor: pointer;"
+                          name="eye-outline"
+                          [slot]="'end'"></ion-icon>
+            </ion-item>
+        </ng-container>
+        <ng-container *ngIf="!invoResolutionsService.items.length">
+            <ion-item>
+                <ion-label>
+                    <h2>No se encontraron resoluciones.</h2>
+                </ion-label>
+            </ion-item>
+        </ng-container>
+    </ion-list>
+
+</ion-content>
+
+<ion-footer class="lists-footer">
+    <ion-row *ngIf="invoResolutionsService.meta">
+        <ion-col class="ion-text-center"
+                 size="12">
+            <ion-button (click)="invoResolutionsService.getItems(invoResolutionsService.meta.current_page - 1)"
+                        [disabled]="invoResolutionsService.meta.current_page == 1"
+                        fill="clear">
+                <ion-icon slot="end"
+                          name="play-outline"
+                          style="transform: rotate(180deg);"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear"
+                        [disabled]="true"> Pag: {{invoResolutionsService.meta.current_page}}
+                /{{invoResolutionsService.meta.last_page}} {{invoResolutionsService.meta.from}}
+                -{{invoResolutionsService.meta.to}}
+                /{{invoResolutionsService.meta.total}} </ion-button>
+            <ion-button (click)="invoResolutionsService.getItems(invoResolutionsService.meta.current_page + 1)"
+                        [disabled]="invoResolutionsService.meta.current_page == invoResolutionsService.meta.last_page"
+                        fill="clear">
+                <ion-icon slot="start"
+                          name="play-outline"></ion-icon>
+            </ion-button>
+        </ion-col>
+    </ion-row>
+</ion-footer>

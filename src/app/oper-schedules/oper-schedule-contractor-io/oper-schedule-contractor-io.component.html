@@ -6,13 +6,31 @@
                    (scanError)="onCodeError($event)"
                    (scanSuccess)="onCodeResult($event)"></zxing-scanner>
 
-    <div class="ion-text-center">
+    <div class="ion-text-center" *ngIf="!isAdmin">
         <ion-button (click)="scan()"
                     *ngIf="!browserScanner"
                     fill="clear">Escanear QR
             <ion-icon slot="end" name="qr-code-outline"></ion-icon>
         </ion-button>
     </div>
+
+    <ng-container *ngIf="movements.length">
+        <ion-list>
+            <ion-list-header>
+                <ion-label>Agendas para hoy</ion-label>
+            </ion-list-header>
+            <ng-container *ngFor="let movement of movements">
+                <ion-item [color]="movement.completed ? 'success' : 'danger'">
+                    <ion-label>
+                        <h2><span>{{movement.name}}</span></h2>
+                        <h3><span>{{movement.oper_contractor.name}}</span></h3>
+                        <h3><span>{{movement.time_start | dateFormat:'HH:mm'}}</span> -
+                            <span>{{movement.time_end | dateFormat:'HH:mm'}}</span></h3>
+                    </ion-label>
+                </ion-item>
+            </ng-container>
+        </ion-list>
+    </ng-container>
 
     <ng-container *ngIf="operSchedules.length">
         <ion-list>

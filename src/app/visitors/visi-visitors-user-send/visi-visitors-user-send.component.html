@@ -1,0 +1,122 @@
+<ion-header>
+    <ion-toolbar>
+
+        <ion-buttons slot="start">
+            <!-- <ion-button [routerLink]="'/hous-units'">
+                <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+            </ion-button> -->
+            <ion-back-button
+                [text]="''"
+                [icon]="'arrow-back-outline'">
+            </ion-back-button>
+        </ion-buttons>
+
+        <ion-buttons slot="primary">
+            <ion-button (click)="visiVisitorsService.saveVisiVisitors()"
+                        color="success"
+                        fill="clear"
+                        [disabled]="!visiVisitorsForm.valid">
+                <ng-container *ngIf="!platform.is('mobile')">Guardar</ng-container>
+                <ion-icon slot="end" color="success" name="save-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+
+        <ion-title>Registrar {{'Visitante' | titlecase}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content fullscreen>
+    <ion-card>
+        <form #visiVisitorsForm="ngForm"
+              novalidate
+              autocomplete="off">
+
+            <!-- name -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'NOMBRE' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="visiVisitorsService.visiVisitor.value.full_name"
+                           type="text"
+                           name="full_name"
+                           id="full_name-field"
+                           [required]="true"
+                           placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.full_name">
+                    <div class="error-message"
+                         *ngIf="visiVisitorsForm.form.controls['full_name']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end name -->
+
+            <!-- identification -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'IDENTIFICACIÓN' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="visiVisitorsService.visiVisitor.value.identification"
+                           type="text"
+                           name="identification"
+                           id="identification-field"
+                           [required]="true"
+                           placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.identification">
+                    <div class="error-message"
+                         *ngIf="visiVisitorsForm.form.controls['identification']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end identification -->
+
+            <!-- phone -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'TELÉFONO' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="visiVisitorsService.visiVisitor.value.phone"
+                           type="text"
+                           name="phone"
+                           id="phone-field"
+                           placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.phone">
+                    <div class="error-message"
+                         *ngIf="visiVisitorsForm.form.controls['phone']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end phone -->
+
+            <!-- email -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'EMAIL' | titlecase }}</ion-label>
+                <ion-input [(ngModel)]="visiVisitorsService.visiVisitor.value.email"
+                           type="text"
+                           name="email"
+                           id="email-field"
+                           placeholder=""></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.email">
+                    <div class="error-message"
+                         *ngIf="visiVisitorsForm.form.controls['email']?.hasError(validation.type)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <!-- end phone -->
+
+            <!-- is_permanent -->
+            <ion-item class="item-transparent">
+                <ion-label>{{ 'PERMANENTE' | titlecase }}</ion-label>
+                <ion-toggle [(ngModel)]="visiVisitorsService.visiVisitor.value.is_permanent"
+                            name="is_permanent"
+                            id="is_permanent-field"></ion-toggle>
+            </ion-item>
+            <!-- end is_permanent -->
+
+        </form>
+    </ion-card>
+</ion-content>

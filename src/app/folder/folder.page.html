@@ -1,15 +1,17 @@
-<app-main-header title="Folder" [showSplitPanelButton]="splitPanel.show.value"></app-main-header>
+<app-main-header title="Cartelera" [showSplitPanelButton]="splitPanel.show.value"></app-main-header>
 
 <ion-content [fullscreen]="true">
     <ion-header collapse="condense">
         <ion-toolbar>
-            <ion-title size="large">{{ folder }}</ion-title>
+            <ion-title size="large">{{ 'Cartelera' }}</ion-title>
         </ion-toolbar>
     </ion-header>
 
     <div id="container">
 
-        <ion-grid>
+        <app-boar-messages-list-view></app-boar-messages-list-view>
+
+        <!--<ion-grid>
             <ion-slides pager="false"
                         [options]="slideOpts"
                         #slideWithNav
@@ -90,7 +92,7 @@
 
         <ion-card>
             <img src="https://ionicframework.com/docs/demos/api/card/madison.jpg" style="width: 100%;"/>
-        </ion-card>
+        </ion-card>-->
 
     </div>
 </ion-content>

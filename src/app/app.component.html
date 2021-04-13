@@ -65,6 +65,33 @@
                     </ion-menu-toggle>
 
                 </ion-list>
+                <ion-list *ngIf="auth.userIs(['user'])">
+                    <ion-item-divider>
+                        Menu del usuario
+                    </ion-item-divider>
+                    <ion-menu-toggle auto-hide="false">
+                        <ion-item [routerLinkActive]="'selected'"
+                                  [routerLink]="'/visitors/user'"
+                                  [routerLinkActiveOptions]="{exact: true}"
+                                  lines="none"
+                                  detail="false">
+                            <ion-icon slot="start"
+                                      ios="bookmark-outline"
+                                      md="bookmark-sharp"></ion-icon>
+                            <ion-label>Mis visitantes</ion-label>
+                        </ion-item>
+                        <ion-item [routerLinkActive]="'selected'"
+                                  [routerLink]="'/visitors/user/send'"
+                                  [routerLinkActiveOptions]="{exact: true}"
+                                  lines="none"
+                                  detail="false">
+                            <ion-icon slot="start"
+                                      ios="bookmark-outline"
+                                      md="bookmark-sharp"></ion-icon>
+                            <ion-label>Registrar visitantes</ion-label>
+                        </ion-item>
+                    </ion-menu-toggle>
+                </ion-list>
                 <ion-list id="admin-pages-list">
                     <ion-item-divider>
                         Mantenimiento Preventivo
@@ -179,35 +206,10 @@
                     </ion-menu-toggle>
 
                     <ion-item-divider>
-                        Juntas
-                    </ion-item-divider>
-                    <ion-menu-toggle auto-hide="false">
-                        <ion-item [routerLinkActive]="'selected'"
-                                  [routerLink]="'/coun-meetings/create/custom'"
-                                  lines="none"
-                                  detail="false">
-                            <ion-icon slot="start"
-                                      ios="bookmark-outline"
-                                      md="bookmark-sharp"></ion-icon>
-                            <ion-label>Crear junta</ion-label>
-                        </ion-item>
-                        <ion-item [routerLinkActive]="'selected'"
-                                  [routerLink]="'/coun-meetings/list/custom'"
-                                  lines="none"
-                                  detail="false">
-                            <ion-icon slot="start"
-                                      ios="bookmark-outline"
-                                      md="bookmark-sharp"></ion-icon>
-                            <ion-label>Registrar juntas</ion-label>
-                        </ion-item>
-                    </ion-menu-toggle>
-
-                    <ion-item-divider *ngIf="auth.userCan(['juntas.listar', 'juntas.crear'])">
                         Juntas del consejo
                     </ion-item-divider>
                     <ion-menu-toggle auto-hide="false">
                         <ion-item [routerLinkActive]="'selected'"
-                                  *ngIf="auth.userCan(['juntas.crear'])"
                                   [routerLink]="'/coun-meetings/create/custom'"
                                   lines="none"
                                   detail="false">
@@ -217,7 +219,6 @@
                             <ion-label>Crear junta</ion-label>
                         </ion-item>
                         <ion-item [routerLinkActive]="'selected'"
-                                  *ngIf="auth.userCan(['juntas.listar'])"
                                   [routerLink]="'/coun-meetings/list/custom'"
                                   lines="none"
                                   detail="false">
@@ -228,8 +229,27 @@
                         </ion-item>
                     </ion-menu-toggle>
 
+                    <ng-container *ngIf="auth.userCan(['cartelera.listar', 'cartelera.crear'])">
+                        <ion-item-divider>
+                            Cartelera
+                        </ion-item-divider>
+                        <ion-menu-toggle auto-hide="false">
+                            <ion-item [routerLinkActive]="'selected'"
+                                      [routerLinkActiveOptions]="{exact: true}"
+                                      [routerLink]="'/board'"
+                                      lines="none"
+                                      detail="false">
+                                <ion-icon slot="start"
+                                          ios="bookmark-outline"
+                                          md="bookmark-sharp"></ion-icon>
+                                <ion-label>Listar Cartelera</ion-label>
+                            </ion-item>
+
+                        </ion-menu-toggle>
+                    </ng-container>
+
                     <ion-item-divider>
-                        Correspondencia
+                        Recepción
                     </ion-item-divider>
                     <ion-menu-toggle auto-hide="false">
                         <ion-item [routerLinkActive]="'selected'"
@@ -239,9 +259,65 @@
                             <ion-icon slot="start"
                                       ios="bookmark-outline"
                                       md="bookmark-sharp"></ion-icon>
-                            <ion-label>Buzones</ion-label>
+                            <ion-label>Buzones de correspondencia</ion-label>
+                        </ion-item>
+                        <ion-item [routerLinkActive]="'selected'"
+                                  [routerLink]="'/visitors'"
+                                  [routerLinkActiveOptions]="{exact: true}"
+                                  lines="none"
+                                  detail="false">
+                            <ion-icon slot="start"
+                                      ios="bookmark-outline"
+                                      md="bookmark-sharp"></ion-icon>
+                            <ion-label>Visitantes</ion-label>
+                        </ion-item>
+                        <ion-item [routerLinkActive]="'selected'"
+                                  [routerLink]="'/visitors/parking'"
+                                  [routerLinkActiveOptions]="{exact: true}"
+                                  lines="none"
+                                  detail="false">
+                            <ion-icon slot="start"
+                                      ios="bookmark-outline"
+                                      md="bookmark-sharp"></ion-icon>
+                            <ion-label>Parqueaderos</ion-label>
+                        </ion-item>
+                        <ion-item [routerLinkActive]="'selected'"
+                                  [routerLink]="'/visitors/registers'"
+                                  [routerLinkActiveOptions]="{exact: true}"
+                                  lines="none"
+                                  detail="false">
+                            <ion-icon slot="start"
+                                      ios="bookmark-outline"
+                                      md="bookmark-sharp"></ion-icon>
+                            <ion-label>Historico</ion-label>
                         </ion-item>
                     </ion-menu-toggle>
+
+                    <ion-item-divider *ngIf="auth.userIs(['super.admin', 'admin'])">
+                        Facturación
+                    </ion-item-divider>
+
+                    <ion-item [routerLinkActive]="'selected'"
+                              [routerLink]="'/invoicing/invoices'"
+                              *ngIf="auth.userIs(['super.admin', 'admin'])"
+                              lines="none"
+                              detail="false">
+                        <ion-icon slot="start"
+                                  ios="bookmark-outline"
+                                  md="bookmark-sharp"></ion-icon>
+                        <ion-label>Facturas</ion-label>
+                    </ion-item>
+
+                    <ion-item [routerLinkActive]="'selected'"
+                              [routerLink]="'/invoicing/resolutions'"
+                              *ngIf="auth.userIs(['super.admin', 'admin'])"
+                              lines="none"
+                              detail="false">
+                        <ion-icon slot="start"
+                                  ios="bookmark-outline"
+                                  md="bookmark-sharp"></ion-icon>
+                        <ion-label>Resoluciones</ion-label>
+                    </ion-item>
 
                     <ion-item-divider *ngIf="auth.userIs(['super.admin', 'admin'])">
                         Admin
@@ -630,7 +706,6 @@
                                       md="bookmark-sharp"></ion-icon>
                             <ion-label>OPERATIVIDAD REPARACIONES</ion-label>
                         </ion-item>
-
 
                         <!-- end section -->
                     </ion-menu-toggle>

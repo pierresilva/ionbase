@@ -10,6 +10,7 @@ import {HttpClient} from "@angular/common/http";
 import {OperSchedule} from "../oper-schedule";
 import {Router} from "@angular/router";
 import {CameraService} from "../../@shared/services/camera.service";
+import {AuthService} from "../../@shared/services/auth.service";
 
 @Component({
     selector: 'app-oper-schedule-contractor-io',
@@ -31,6 +32,8 @@ export class OperScheduleContractorIoComponent implements OnInit {
 
     public operSchedules: OperSchedule[] = [];
     public files: any[] = [];
+    public movements: any[] = [];
+    public isAdmin = false;
 
     constructor(
         public operSchedulesService: OperSchedulesService,
@@ -42,14 +45,50 @@ export class OperScheduleContractorIoComponent implements OnInit {
         public http: HttpClient,
         public router: Router,
         public camera: CameraService,
+        public auth: AuthService,
     ) {
     }
 
     ngOnInit() {
+
     }
 
     ionViewWillEnter() {
         this.splitPanel.show.next(true);
+        this.getMovements();
+    }
+
+    getMovements() {
+        this.isAdmin = false;
+        for (let i = 0; i < this.auth.getRoles().length; i++) {
+            if (this.auth.getRoles()[i] == 'admin') {
+                this.isAdmin = true;
+            }
+        }
+
+        if (!this.isAdmin) {
+            const userId = this.auth.getUser().id;
+            this.api.get('oper-contractors?q[user_id:eq]=' + userId)
+                .subscribe(
+                    (res: any) => {
+                        console.log(res.data);
+                        this.api.get('oper-movements/list?oper_contractor_id=' + res.data[0].id)
+                            .subscribe((resMovements: any) => {
+                                this.movements = resMovements.data;
+                            });
+                    }
+                );
+        }
+
+        console.log('isAdmin ' + this.isAdmin);
+
+        if (this.isAdmin) {
+            this.api.get('oper-movements/list')
+                .subscribe((res: any) => {
+                    console.log(res.data);
+                    this.movements = res.data;
+                });
+        }
     }
 
     scan() {

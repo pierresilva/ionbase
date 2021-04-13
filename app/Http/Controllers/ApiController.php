@@ -135,29 +135,64 @@ class ApiController extends Controller
                         $operator = '=';
                     } elseif ($operatorSymbol == 'cont') {
                         $operator = 'like';
-                        $value = '%' . $value . '%';
+                        if ($value && $value != '') {
+                            $value = '%' . $value . '%';
+                        }
                     } elseif ($operatorSymbol == 'gt') {
                         $operator = '>=';
                     } elseif ($operatorSymbol == 'lt') {
                         $operator = '<=';
+                    } elseif ($operatorSymbol == 'notnull') {
+                        $operator = 'notNull';
+                    } elseif ($operatorSymbol == 'null') {
+                        $operator = 'null';
                     } else {
                         $operator = 'like';
-                        $value = '%' . $value . '%';
+                        if ($value && $value != '') {
+                            $value = '%' . $value . '%';
+                        }
                     }
 
                     if ($related_column_name !== '') {  // search at related table column
-                        $filterJoin = ($keyCount > 0) ? 'whereHas' : 'whereHas';
+                        $filterJoin = ($keyCount > 0) ? 'orWhereHas' : 'orWhereHas';
                         $keyCount++;
 
-                        if ($value) {
+                        if ($operator == 'nullNull' && $value && $value != '') {
+                            $query = $query->{$filterJoin}($column_name, function ($q) use ($column_name, $related_column_name, $operator, $value) {
+                                return $q->whereNotNull($related_column_name);
+                            });
+                            continue;
+                        }
+
+                        if ($operator == 'null' && $value && $value != '') {
+                            $query = $query->{$filterJoin}($column_name, function ($q) use ($column_name, $related_column_name, $operator, $value) {
+                                return $q->whereNull($related_column_name);
+                            });
+                            continue;
+                        }
+
+                        if ($value && $value != '') {
                             $query = $query->{$filterJoin}($column_name, function ($q) use ($column_name, $related_column_name, $operator, $value) {
                                 return $q->where($related_column_name, $operator, $value);
                             });
+                            continue;
                         }
 
                     } else {
-                        if ($value) {
-                            $query = $query->where($column_name, $operator, $value);
+
+                        if ($operator == 'nullNull' && $value && $value != '') {
+                            $query = $query->whereNotNull($column_name);
+                            continue;
+                        }
+
+                        if ($operator == 'null' && $value && $value != '') {
+                            $query = $query->whereNull($column_name);
+                            continue;
+                        }
+
+                        if ($value && $value != '') {
+                            $query = $query->orWhere($column_name, $operator, $value);
+                            continue;
                         }
                     }
                 }

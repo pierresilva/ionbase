@@ -94,7 +94,7 @@ export class CounMeetingsCreateCustomComponent implements OnInit {
 
     fileToUpload: any = null;
 
-    selectYears: any[] = [2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030];
+    selectYears: any[] = [2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030];
 
     constructor(
         public counMeetingsService: CounMeetingsService,
@@ -300,7 +300,7 @@ export class CounMeetingsCreateCustomComponent implements OnInit {
         return quorum;
     }
 
-    saveCounMeeting(alert: string = null) {
+    saveCounMeeting(alert: string = null, sendPreview: boolean = false) {
         if (!this.model.coun_meeting_agendas.length) {
             this.toast.present('Ingrese ordenes del dia en la pestaña agenda', 'toast-error');
             return;
@@ -314,6 +314,14 @@ export class CounMeetingsCreateCustomComponent implements OnInit {
                         this.getMeeting(res.data.id);
                         if (alert) {
                             this.toast.present(alert, 'toast-primary');
+                        }
+                        if (sendPreview) {
+                            this.http.get(environment.serverUrl + '/api/coun-meetings/' + this.counMeetingId + '/send-preview')
+                                .subscribe(
+                                    (res: any) => {
+                                        console.log(res.data);
+                                    }
+                                );
                         }
                     }
                 );

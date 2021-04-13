@@ -1,0 +1,86 @@
+<ion-header translucent>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button (click)="dismissModal()">
+                Cancelar
+            </ion-button>
+        </ion-buttons>
+        <ion-title>Ingreso de visitante</ion-title>
+        <ion-buttons slot="end">
+            <ion-button [disabled]="!visiVisitorVehicleForm.valid" (click)="saveEntry()">
+                Ingresar
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+    <form #visiVisitorVehicleForm="ngForm"
+          novalidate
+          autocomplete="off"></form>
+    <ion-list>
+        <ion-item>
+            <ion-label position="stacked">Tipo de vehículo</ion-label>
+            <ion-select placeholder="Seleccione..."
+                        name="visi_vehicle_type_id"
+                        [(ngModel)]="model.visi_vehicle_type_id"
+                        #visi_vehicle_type_id="ngModel">
+                <ion-select-option *ngFor="let item of data.VisiVehicleType"
+                                   [value]="item.id">{{item.name}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <div class="validation-errors">
+            <div class="error-message" *ngIf="!visi_vehicle_type_id.valid">
+                Seleccione un tipo de vehículo.
+            </div>
+        </div>
+
+        <ion-item>
+            <ion-label position="stacked">Placa</ion-label>
+            <ion-input placeholder="Seleccione..."
+                       name="license_plate"
+                       [(ngModel)]="model.license_plate"
+                       #license_plate="ngModel"></ion-input>
+        </ion-item>
+        <div class="validation-errors">
+            <div class="error-message" *ngIf="!license_plate.valid">
+                Ingrese un número de placa.
+            </div>
+        </div>
+
+
+        <ion-item>
+            <ion-label position="stacked">Tarifa</ion-label>
+            <ion-select placeholder="Seleccione..."
+                        name="visi_rate_id"
+                        [(ngModel)]="model.visi_rate_id"
+                        #visi_rate_id="ngModel">
+                <ion-select-option *ngFor="let item of data.VisiRate"
+                                   [value]="item.id">{{item.name}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <div class="validation-errors">
+            <div class="error-message" *ngIf="!visi_rate_id.valid">
+                Seleccione una tarifa.
+            </div>
+        </div>
+
+        <ion-item>
+            <ion-label position="stacked">Parqueadero</ion-label>
+            <ion-select placeholder="Seleccione..."
+                        name="visi_parking_id"
+                        [(ngModel)]="model.visi_parking_id"
+                        #visi_parking_id="ngModel">
+                <ion-select-option *ngFor="let item of availablesParkings(data.VisiParking)"
+                                   [value]="item.id">{{item.name}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <div class="validation-errors">
+            <div class="error-message" *ngIf="!visi_parking_id.valid">
+                Seleccione un parqueadero.
+            </div>
+        </div>
+
+    </ion-list>
+
+</ion-content>
