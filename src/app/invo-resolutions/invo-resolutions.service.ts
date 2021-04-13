@@ -219,7 +219,7 @@ export class InvoResolutionsService {
      */
     public updateItem(id: number, data: any, redirect: boolean = false) {
         this.loading = true;
-        this.api.post(this.apiUrl + '/' + id, {model: data})
+        this.api.put(this.apiUrl + '/' + id, {model: data})
             .subscribe(
                 (res: any) => {
                     this.setItem(res.data);

@@ -26,6 +26,9 @@ export class StatusPipe implements PipeTransform {
               biannual: 'Semestral',
               annual: 'Anual',
               unknown: 'Desconocido',
+              opened: 'Abierta',
+              closed: 'Cerrada',
+              canceled: 'Cancelada',
           };
 
           return status[value] ? status[value] : value;

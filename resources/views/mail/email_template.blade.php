@@ -2,10 +2,14 @@
 <html>
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="Content-Type"
+          content="text/html; charset=UTF-8"/>
 
-    <style type="text/css" rel="stylesheet" media="all">
+    <style type="text/css"
+           rel="stylesheet"
+           media="all">
         /* Media Queries */
         @media only screen and (max-width: 500px) {
             .button {
@@ -63,10 +67,15 @@ $style = [
 <?php $fontFamily = 'font-family: Arial, \'Helvetica Neue\', Helvetica, sans-serif;'; ?>
 
 <body style="{{ $style['body'] }}">
-<table width="100%" cellpadding="0" cellspacing="0">
+<table width="100%"
+       cellpadding="0"
+       cellspacing="0">
     <tr>
-        <td style="{{ $style['email-wrapper'] }}" align="center">
-            <table width="100%" cellpadding="0" cellspacing="0">
+        <td style="{{ $style['email-wrapper'] }}"
+            align="center">
+            <table width="100%"
+                   cellpadding="0"
+                   cellspacing="0">
                 <!-- Logo -->
                 <tr>
                     <td style="{{ $style['email-masthead'] }}">
@@ -74,7 +83,8 @@ $style = [
                            href="{{config('app.url')}}"
                            target="_blank">
 
-                            <img src="{{config('app.url')}}/img/notification-logo.png" style="max-height: 120px;"/>
+                            <img src="{{config('app.url')}}/img/notification-logo.png"
+                                 style="max-height: 120px;"/>
 
                         </a>
                     </td>
@@ -82,8 +92,12 @@ $style = [
 
                 <!-- Email Body -->
                 <tr>
-                    <td style="{{ $style['email-body'] }}" width="100%">
-                        <table style="{{ $style['email-body_inner'] }}" align="center" width="570" cellpadding="0"
+                    <td style="{{ $style['email-body'] }}"
+                        width="100%">
+                        <table style="{{ $style['email-body_inner'] }}"
+                               align="center"
+                               width="570"
+                               cellpadding="0"
                                cellspacing="0">
                             <tr>
                                 <td style="{{ $fontFamily }} {{ $style['email-body_cell'] }}">
@@ -99,9 +113,20 @@ $style = [
                                             {!! $line !!}
                                         </p>
                                     @endforeach
+
+                                    @if(isset($data->agendas) && count($data->agendas))
+                                        <p style="{{ $style['paragraph'] }}">
+                                            <b>Orden del día:</b><br>
+                                        @foreach($data->agendas as $agenda)
+                                            {{($agenda['order'] + 1)}}. {{$agenda['name']}}<br>
+                                        @endforeach
+                                        </p>
+                                    @endif
                                 <!-- Link Button -->
                                     @if (isset($data->anchor) && count($data->anchor))
-                                        <table style="{{ $style['body_action'] }}" align="center" width="100%"
+                                        <table style="{{ $style['body_action'] }}"
+                                               align="center"
+                                               width="100%"
                                                cellpadding="0"
                                                cellspacing="0">
                                             <tr>
@@ -115,7 +140,9 @@ $style = [
                                         </table>
                                     @endif
                                     @if (isset($data->button) && count($data->button))
-                                        <table style="{{ $style['body_action'] }}" align="center" width="100%"
+                                        <table style="{{ $style['body_action'] }}"
+                                               align="center"
+                                               width="100%"
                                                cellpadding="0"
                                                cellspacing="0">
                                             <tr>
@@ -149,7 +176,10 @@ $style = [
                 <!-- Footer -->
                 <tr>
                     <td style="background-color: #169451;">
-                        <table style="{{ $style['email-footer'] }}" align="center" width="570" cellpadding="0"
+                        <table style="{{ $style['email-footer'] }}"
+                               align="center"
+                               width="570"
+                               cellpadding="0"
                                cellspacing="0">
                             <tr>
                                 <td style="{{ $fontFamily }} {{ $style['email-footer_cell'] }}">

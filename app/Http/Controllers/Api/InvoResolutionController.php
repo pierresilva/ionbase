@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\ApiController;
 use App\Models\InvoResolution;
-use DB;
 use Illuminate\Http\Request;
 use Str;
+use DB;
 
 class InvoResolutionController extends ApiController
 {

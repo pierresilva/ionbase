@@ -256,6 +256,12 @@ class CounMeetingController extends ApiController
         }
         DB::commit();
 
+        foreach ($counMeeting->toArray()['coun_meeting_citations'] as $citation) {
+            $user = User::find($citation['user_id']);
+            // dd($user);
+            $this->sendCitationMail($user->toArray(), $counMeeting->toArray());
+        }
+
         return $this->responseSuccess(
             'JUNTASDELCONSEJO actualizado!',
             $counMeeting->toArray(),
@@ -412,6 +418,12 @@ class CounMeetingController extends ApiController
 
         $responseMeeting = CounMeeting::with(CounMeeting::getRelationships())->find($request->get('id'));
 
+        foreach ($responseMeeting->toArray()['coun_meeting_citations'] as $citation) {
+            $user = User::find($citation['user_id']);
+            // dd($user);
+            $this->sendCitationMail($user->toArray(), $responseMeeting->toArray());
+        }
+
 
         return $this->responseSuccess('Junta editada con éxito', $responseMeeting->toArray());
 
@@ -454,6 +466,8 @@ class CounMeetingController extends ApiController
         $data->intro_lines[] = $meeting['url'] ?? 'URL: ' . $meeting['url'];
 
         $data->intro_lines[] = '<br>' . $meeting['description'];
+
+        $data->agendas = $meeting['coun_meeting_agendas'];
 
         $data->outro_lines = [
             'Gracias por su atención.'
@@ -557,11 +571,13 @@ class CounMeetingController extends ApiController
         )->find($id)->toArray();
 
         // return view('pdf.council_act', $meeting);
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->getDomPDF()->set_option("enable_php", true);
 
-        $pdf = \PDF::loadView('pdf.council_act', $meeting);
+        $pdf->loadView('pdf.council_act', $meeting);
 
         // download PDF file with download method
-        return $pdf->download('pdf_file.pdf');
+        return $pdf->download(Str::slug($meeting['name']) . '.pdf');
 
         return view('pdf.council_act', $meeting);
     }
