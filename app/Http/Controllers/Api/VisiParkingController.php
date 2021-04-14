@@ -77,6 +77,8 @@ class VisiParkingController extends ApiController
 
         DB::beginTransaction();
         try {
+            $input['code'] = \Str::slug($input['name']);
+            $input['available'] = true;
             //create data
             $visiParking = VisiParking::create($input);
 
@@ -271,5 +273,39 @@ class VisiParkingController extends ApiController
             false,
             203
         );
+    }
+
+    /**
+     * Varidate input data.
+     *
+     * @return array
+     */
+    public function varidate(Request $request, VisiParking $visiParking = null)
+    {
+        $request->validate(VisiParking::getValidateRule($visiParking));
+    }
+
+    /**
+     * sync pivot data
+     *
+     * @return void
+     */
+    public function sync($pivots_data, VisiParking $visiParking)
+    {
+        foreach( $pivots_data as $pivot_child_model_name => $pivots ){
+
+            $pivotIds = [];
+            // remove 'id'
+            foreach($pivots as &$value){
+                if( array_key_exists('id', $value) ){
+                    $pivotIds[] = $value['id'];
+                    unset($value['id']);
+                }
+            }
+            unset($value);
+
+            $method = \Str::camel(\Str::plural($pivot_child_model_name) );
+            $visiParking->$method()->sync($pivotIds);
+        }
     }
 }

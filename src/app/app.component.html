@@ -248,6 +248,36 @@
                         </ion-menu-toggle>
                     </ng-container>
 
+                    <ng-container>
+                        <ion-item-divider>
+                            Parqueadero
+                        </ion-item-divider>
+                        <ion-menu-toggle auto-hide="false">
+                            <ion-item [routerLinkActive]="'selected'"
+                                      [routerLinkActiveOptions]="{exact: true}"
+                                      [routerLink]="'/visitors/rates'"
+                                      *ngIf="auth.userCan(['visi-rates.list', 'visi-rates.create'])"
+                                      lines="none"
+                                      detail="false">
+                                <ion-icon slot="start"
+                                          ios="bookmark-outline"
+                                          md="bookmark-sharp"></ion-icon>
+                                <ion-label>Tarifas</ion-label>
+                            </ion-item>
+                            <!--<ion-item [routerLinkActive]="'selected'"
+                                      [routerLinkActiveOptions]="{exact: true}"
+                                      [routerLink]="'/visitors/vehicle-types'"
+                                      *ngIf="auth.userCan(['visi-vehicle-types.list', 'visi-vehicle-types.create'])"
+                                      lines="none"
+                                      detail="false">
+                                <ion-icon slot="start"
+                                          ios="bookmark-outline"
+                                          md="bookmark-sharp"></ion-icon>
+                                <ion-label>Tipos de vehículos</ion-label>
+                            </ion-item>-->
+                        </ion-menu-toggle>
+                    </ng-container>
+
                     <ion-item-divider>
                         Recepción
                     </ion-item-divider>

@@ -183,11 +183,11 @@ export class CounMeetingsCreateCustomComponent implements OnInit {
         console.log(user);
         // this.citations.push(user.value);
 
-        if (this.counMeetingId) {
+        /*if (this.counMeetingId) {
             this.toast.present('No se pueden agregar mas citaciones', 'toast-info');
             this.userSelect.clear();
             return;
-        }
+        }*/
 
         for (let i = 0; i < this.model.coun_meeting_citations.length; i++) {
             if (this.model.coun_meeting_citations[i].user_id == user.value.id) {

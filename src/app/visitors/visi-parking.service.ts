@@ -1,21 +1,21 @@
 import {Injectable} from '@angular/core';
+import {FormGroup} from "@angular/forms";
 import {ApiService} from "../@shared/services/api.service";
 import {AlertService} from "../@shared/services/alert.service";
 import {ToastService} from "../@shared/services/toast.service";
 import {Router} from "@angular/router";
 import {AuthService} from "../@shared/services/auth.service";
-import {FormGroup} from "@angular/forms";
-import {VisiRate, VisiRateLists} from "./visi-rate";
+import {VisiParking, VisiParkingLists} from "./visi-parking";
 
 @Injectable({
     providedIn: 'root'
 })
-export class VisiRatesService {
+export class VisiParkingService {
 
     public loading: boolean = false;
 
-    public apiUrl: string = 'visi-rates'
-    public appUrl: string = 'visitors/rates'
+    public apiUrl: string = 'visi-parking'
+    public appUrl: string = 'visitors/parking'
 
     public form: FormGroup = <FormGroup>{};
 
@@ -30,9 +30,9 @@ export class VisiRatesService {
     ];
 
     public meta = null;
-    public items: VisiRate[] = [];
-    public item: VisiRate = <VisiRate>{};
-    public lists: VisiRateLists = <VisiRateLists>{};
+    public items: VisiParking[] = [];
+    public item: VisiParking = <VisiParking>{};
+    public lists: VisiParkingLists = <VisiParkingLists>{};
 
     constructor(
         public api: ApiService,
@@ -79,7 +79,7 @@ export class VisiRatesService {
      * @param meta
      * @param lists
      */
-    public setItems(items: VisiRate[] = [], meta: any = {}, lists: VisiRateLists = {}) {
+    public setItems(items: VisiParking[] = [], meta: any = {}, lists: VisiParkingLists = {}) {
         this.items = items.length ? items : [];
         this.meta = meta;
         this.lists = lists;
@@ -90,7 +90,7 @@ export class VisiRatesService {
      * @param item
      * @param lists
      */
-    public setItem(item: VisiRate = <VisiRate>{}, lists: VisiRate[] = []) {
+    public setItem(item: VisiParking = <VisiParking>{}, lists: VisiParking[] = []) {
         this.item = item;
         this.lists = lists;
     }
@@ -116,7 +116,8 @@ export class VisiRatesService {
 
         this.setSearchQuery(fields ? fields : this.fields, this.search);
         this.setSortQuery(sort.field, sort.direction);
-        this.setItem();
+        this.setItem({});
+        this.setItems([]);
 
         this.api.get(this.apiUrl + '?page=' + page + this.sortQuery + this.searchQuery)
             .subscribe(
@@ -138,8 +139,8 @@ export class VisiRatesService {
      */
     public getItem(id: number | null = null) {
         this.loading = true;
+        this.setItem();
         if (id && id != 0) {
-            this.setItem();
             this.api.get(this.apiUrl + '/' + id)
                 .subscribe(
                     (res: any) => {
@@ -152,11 +153,10 @@ export class VisiRatesService {
                     },
                 );
         } else {
-            this.setItem();
             this.api.get(this.apiUrl + '/create')
                 .subscribe(
                     (res: any) => {
-                        this.setItem(<VisiRate>{}, res.lists)
+                        this.setItem(<VisiParking>{}, res.lists)
                         this.loading = false;
                     },
                     (err: any) => {
@@ -255,9 +255,8 @@ export class VisiRatesService {
                             },
                         );
                 }
-
                 return;
             });
-
     }
+
 }

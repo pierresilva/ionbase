@@ -6,6 +6,8 @@ import {ModalController, Platform} from "@ionic/angular";
 import {HttpClient} from "@angular/common/http";
 import {VisiParking} from "../visi-parking";
 import {environment} from "../../../environments/environment";
+import {AuthService} from "../../@shared/services/auth.service";
+import {VisiParkingService} from "../visi-parking.service";
 
 @Component({
     selector: 'app-visi-parking-list',
@@ -23,6 +25,8 @@ export class VisiParkingListComponent implements OnInit {
         public modalController: ModalController,
         public platform: Platform,
         public http: HttpClient,
+        public auth: AuthService,
+        public visiParkingService: VisiParkingService
     ) {
     }
 
@@ -35,7 +39,6 @@ export class VisiParkingListComponent implements OnInit {
         this.getParkings();
     }
 
-    // TODO: Crear CRUD Servicio
     public getParkings() {
         console.log('Get parkings');
         this.loading.isLoading.next(true);

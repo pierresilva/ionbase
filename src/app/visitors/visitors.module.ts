@@ -18,6 +18,11 @@ import {VisitorModalComponent} from "./visitor-modal/visitor-modal.component";
 import {VisiInvoiceModalComponent} from "./visi-invoice-modal/visi-invoice-modal.component";
 import {VisiParkingListComponent} from "./visi-parking-list/visi-parking-list.component";
 import {VisiVisitorRegistersListComponent} from "./visi-visitor-registers-list/visi-visitor-registers-list.component";
+import {VisiParkingFormComponent} from "./visi-parking-form/visi-parking-form.component";
+import {VisiRateListComponent} from "./visi-rate-list/visi-rate-list.component";
+import {VisiRateFormComponent} from "./visi-rate-form/visi-rate-form.component";
+import {VisiVehicleTypeListComponent} from "./visi-vehicle-type-list/visi-vehicle-type-list.component";
+import {VisiVehicleTypeFormComponent} from "./visi-vehicle-type-form/visi-vehicle-type-form.component";
 
 
 @NgModule({
@@ -35,6 +40,11 @@ import {VisiVisitorRegistersListComponent} from "./visi-visitor-registers-list/v
         VisiInvoiceModalComponent,
         VisiParkingListComponent,
         VisiVisitorRegistersListComponent,
+        VisiParkingFormComponent,
+        VisiRateListComponent,
+        VisiRateFormComponent,
+        VisiVehicleTypeListComponent,
+        VisiVehicleTypeFormComponent,
     ],
     imports: [
         CommonModule,

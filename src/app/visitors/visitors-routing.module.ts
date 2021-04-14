@@ -10,6 +10,11 @@ import {VisiVisitorsUserRegisterComponent} from "./visi-visitors-user-register/v
 import {VisiParkingListComponent} from "./visi-parking-list/visi-parking-list.component";
 import {VisiVisitorRegisterService} from "./visi-visitor-register.service";
 import {VisiVisitorRegistersListComponent} from "./visi-visitor-registers-list/visi-visitor-registers-list.component";
+import {VisiParkingFormComponent} from "./visi-parking-form/visi-parking-form.component";
+import {VisiRateListComponent} from "./visi-rate-list/visi-rate-list.component";
+import {VisiRateFormComponent} from "./visi-rate-form/visi-rate-form.component";
+import {VisiVehicleTypeListComponent} from "./visi-vehicle-type-list/visi-vehicle-type-list.component";
+import {VisiVehicleTypeFormComponent} from "./visi-vehicle-type-form/visi-vehicle-type-form.component";
 
 const routes: Routes = [
     {
@@ -51,6 +56,26 @@ const routes: Routes = [
     {
         path: 'parking',
         component: VisiParkingListComponent
+    },
+    {
+        path: 'parking/:id',
+        component: VisiParkingFormComponent
+    },
+    {
+        path: 'rates',
+        component: VisiRateListComponent
+    },
+    {
+        path: 'rates/:id',
+        component: VisiRateFormComponent
+    },
+    {
+        path: 'vehicle-types',
+        component: VisiVehicleTypeListComponent
+    },
+    {
+        path: 'vehicle-types/:id',
+        component: VisiVehicleTypeFormComponent
     },
     {
         path: 'registers',

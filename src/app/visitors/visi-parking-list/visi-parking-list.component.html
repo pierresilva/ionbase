@@ -1,9 +1,9 @@
 <ion-header>
     <ion-toolbar>
         <ion-buttons slot="start">
-            <!-- <ion-button [routerLink]="'/corr-packets'">
-                <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
-            </ion-button> -->
+            <!--<ion-button [routerLink]="'/visitors/parking/0'">
+               <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+           </ion-button>-->
             <ion-back-button
                 [text]="''"
                 [icon]="'arrow-back-outline'">
@@ -12,12 +12,14 @@
 
         <ion-buttons slot="primary">
             <ion-button color="success"
+                        *ngIf="auth.userCan(['visi-parking.create'])"
+                        [routerLink]="'/visitors/parking/0'"
                         fill="clear"
                         [disabled]="false">
-                <ng-container *ngIf="!platform.is('mobile')">Parqueaderos</ng-container>
+                <ng-container *ngIf="!platform.is('mobile')">Crear Parqueaderos</ng-container>
                 <ion-icon slot="end"
                           color="success"
-                          name="save-outline"></ion-icon>
+                          name="add-circle-outline"></ion-icon>
             </ion-button>
         </ion-buttons>
 
@@ -26,22 +28,34 @@
 </ion-header>
 <ion-content class="ion-margin"
              id="pages-content">
-    <ion-grid class="ion-margin" *ngIf="!(loading.loading | async) && parkings?.length">
+    <ion-grid class="ion-margin"
+              *ngIf="!(loading.loading | async) && parkings?.length">
         <ion-row>
             <ion-col>Nombre</ion-col>
             <ion-col>Estado</ion-col>
             <ion-col>Ocupante</ion-col>
-            <ion-col></ion-col>
+            <ion-col *ngIf="auth.userCan(['visi-parking.create'])"></ion-col>
         </ion-row>
         <ion-row *ngFor="let parking of parkings">
-            <ion-col>{{parking.name}}</ion-col>
-            <ion-col>{{parking.available ? 'Disponible' : 'Ocupado'}}</ion-col>
-            <ion-col *ngIf="!parking.visi_visitor_registers?.length">
-            </ion-col>
-            <ion-col *ngIf="parking.visi_visitor_registers?.length">
+            <ion-col [ngStyle]="{background: parking.available ? 'green' : 'red'}">{{parking.name}}</ion-col>
+            <ion-col [ngStyle]="{background: parking.available ? 'green' : 'red'}">{{parking.available ? 'Disponible' : 'Ocupado'}}</ion-col>
+            <ion-col [ngStyle]="{background: parking.available ? 'green' : 'red'}"
+                     *ngIf="!parking.visi_visitor_registers?.length"></ion-col>
+            <ion-col [ngStyle]="{background: parking.available ? 'green' : 'red'}"
+                     *ngIf="parking.visi_visitor_registers?.length">
                 {{!parking.available ? parking.visi_visitor_registers[parking.visi_visitor_registers.length - 1].visi_visitor.full_name : ''}}
             </ion-col>
-            <ion-col></ion-col>
+            <ion-col [ngStyle]="{background: parking.available ? 'green' : 'red'}"
+                     *ngIf="auth.userCan(['visi-parking.create'])">
+                <ion-icon style="cursor: pointer; padding-right: 12px;"
+                          [routerLink]="'/visitors/parking/' + parking.id"
+                          color="primary"
+                          name="eye-outline"></ion-icon>
+                <ion-icon style="cursor: pointer;"
+                          color="danger"
+                          (click)="visiParkingService.deleteItem(parking.id, true)"
+                          name="trash-outline"></ion-icon>
+            </ion-col>
         </ion-row>
     </ion-grid>
     <ng-container *ngIf="!(loading.loading | async) && !parkings?.length">

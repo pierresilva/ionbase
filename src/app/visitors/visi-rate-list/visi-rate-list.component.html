@@ -1,0 +1,57 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <!--<ion-button [routerLink]="'/visitors/parking/0'">
+               <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+           </ion-button>-->
+            <ion-back-button
+                [text]="''"
+                [icon]="'arrow-back-outline'">
+            </ion-back-button>
+        </ion-buttons>
+
+        <ion-buttons slot="primary">
+            <ion-button color="success"
+                        *ngIf="auth.userCan(['visi-rates.create'])"
+                        [routerLink]="'/visitors/rates/0'"
+                        fill="clear"
+                        [disabled]="false">
+                <ng-container *ngIf="!platform.is('mobile')">Crear tarifa</ng-container>
+                <ion-icon slot="end"
+                          color="success"
+                          name="add-circle-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+
+        <ion-title>{{'TARIFAS' | titlecase}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content class="ion-margin"
+             id="pages-content">
+    <ion-list>
+        <ion-item *ngIf="!visiRatesService.items.length">
+            <ion-label>
+                <h2>No se encontraron tarifas!</h2>
+            </ion-label>
+        </ion-item>
+        <ng-container *ngIf="visiRatesService.items.length">
+            <ion-item *ngFor="let item of visiRatesService.items">
+                <ion-label>
+                    <h2>{{item.name}}</h2>
+                    <h3>${{item.value | number:'0.0':'es-CO'}}/min</h3>
+                </ion-label>
+                <div>
+                    <ion-icon color="primary"
+                              style="cursor: pointer; margin-right: 12px;"
+                              [routerLink]="'/visitors/rates/' + item.id"
+                              name="eye-outline"></ion-icon>
+                    <ion-icon color="danger"
+                              style="cursor: pointer;"
+                              (click)="visiRatesService.deleteItem(item.id)"
+                              name="trash-outline"></ion-icon>
+                </div>
+            </ion-item>
+        </ng-container>
+
+    </ion-list>
+</ion-content>

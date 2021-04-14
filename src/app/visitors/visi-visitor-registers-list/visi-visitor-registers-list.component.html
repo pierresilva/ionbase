@@ -58,6 +58,7 @@
             <ion-col>Unidad</ion-col>
             <ion-col>Entrada</ion-col>
             <ion-col>Salida</ion-col>
+            <ion-col>Tiempo</ion-col>
             <ion-col>Vehículo</ion-col>
             <ion-col>Parqueadero</ion-col>
         </ion-row>
@@ -66,6 +67,7 @@
             <ion-col>{{register.hous_unit?.name}}</ion-col>
             <ion-col>{{register.entry_date | dateFormat:'DD/MM/YY HH:MM'}}</ion-col>
             <ion-col>{{register.departure_date | dateFormat:'DD/MM/YY HH:MM'}}</ion-col>
+            <ion-col>{{register.total_minutes}}</ion-col>
             <ion-col>{{register.license_plate}} {{register.visi_vehicle_type?.name}}</ion-col>
             <ion-col>{{register.visi_parking?.name}}</ion-col>
         </ion-row>

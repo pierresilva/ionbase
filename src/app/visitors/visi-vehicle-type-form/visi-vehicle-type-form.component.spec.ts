@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { InvoInvoicesFormComponent } from './invo-invoices-form.component';
+import { VisiVehicleTypeFormComponent } from './visi-vehicle-type-form.component';
 
-describe('InvoInvoicesFormComponent', () => {
-  let component: InvoInvoicesFormComponent;
-  let fixture: ComponentFixture<InvoInvoicesFormComponent>;
+describe('VisiVehicleTypeFormComponent', () => {
+  let component: VisiVehicleTypeFormComponent;
+  let fixture: ComponentFixture<VisiVehicleTypeFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ InvoInvoicesFormComponent ],
+      declarations: [ VisiVehicleTypeFormComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(InvoInvoicesFormComponent);
+    fixture = TestBed.createComponent(VisiVehicleTypeFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

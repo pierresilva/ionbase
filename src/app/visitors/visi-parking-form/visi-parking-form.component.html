@@ -1,0 +1,50 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <!--<ion-button [routerLink]="'/visitors/parking/0'">
+               <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+           </ion-button>-->
+            <ion-back-button
+                [text]="''"
+                [icon]="'arrow-back-outline'">
+            </ion-back-button>
+        </ion-buttons>
+
+        <ion-buttons slot="primary">
+            <ion-button color="success"
+                        *ngIf="auth.userCan(['visi-parking.create'])"
+                        (click)="visiParkingService.saveItem(visiParkingService.item, true)"
+                        fill="clear"
+                        [disabled]="!visiParkingForm.valid">
+                <ng-container *ngIf="!platform.is('mobile')">Guardar Parqueadero</ng-container>
+                <ion-icon slot="end" color="success" name="save-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+
+        <ion-title>{{'PARQUEADEROS' | titlecase}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content id="pages-content">
+    <form #visiParkingForm="ngForm"
+          novalidate
+          autocomplete="off">
+
+        <!-- name -->
+        <ion-item class="item-transparent">
+            <ion-label>{{ 'Nombre' | titlecase }}</ion-label>
+            <ion-input type="text"
+                       [(ngModel)]="visiParkingService.item.name"
+                       name="name"
+                       #name="ngModel"
+                       id="name-field"
+                       [required]="true"></ion-input>
+        </ion-item>
+        <div class="validation-errors">
+            <div class="error-message"
+                 *ngIf="!name.valid">
+                Ingrese el nombre del parqueadero
+            </div>
+        </div>
+        <!-- end name -->
+    </form>
+</ion-content>

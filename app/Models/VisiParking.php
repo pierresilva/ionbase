@@ -19,14 +19,14 @@ class VisiParking extends Model
     // Validate Rule
     public static function getValidateRule(VisiParking $visiParking = null)
     {
-        $ignoreUnique = null;
+        $ignoreUnique = '';
         if ($visiParking) {
-            $ignoreUnique = $visiParking->id;
+            $ignoreUnique = ',' . $visiParking->id;
         }
         $tableName = 'visi_parkings';
         $validationRule = [
 
-            'model.name' => 'required',
+            'model.name' => 'required|unique:' . $tableName . ',name' . $ignoreUnique,
             'model.code' => 'nullable',
             'model.available' => 'nullable',
         ];

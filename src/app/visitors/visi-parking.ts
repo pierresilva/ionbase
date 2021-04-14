@@ -10,3 +10,7 @@ export interface VisiParking {
     deleted_at?: any;
     visi_visitor_registers?: VisiVisitorRegister[]
 }
+
+export interface VisiParkingLists {
+
+}

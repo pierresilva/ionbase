@@ -16,7 +16,7 @@ class VisiVehicleTypeController extends ApiController
     public function index()
     {
         //
-        $visiVehicleTypes = VisiVehicleType::where('id', '>', 1)->get();
+        $visiVehicleTypes = VisiVehicleType::where('id', '>=', 1)->get();
 
         return $this->responseSuccess('OK', $visiVehicleTypes->toArray());
     }

@@ -7,3 +7,7 @@ export interface VisiRate {
     created_at?: any;
     updated_at?: any;
 }
+
+export interface VisiRateLists {
+    
+}

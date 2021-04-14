@@ -254,7 +254,7 @@
 
                         <ion-card [ngStyle]="{'display': (type == 'citations') ? 'block' : 'none'}">
                             <ion-list-header>Citaciones adicionales</ion-list-header>
-                            <ion-list *ngIf="!counMeetingId">
+                            <ion-list>
                                 <ion-item class="item-transparent">
                                     <ion-label>Usuarios</ion-label>
                                     <ionic-selectable #userSelect
