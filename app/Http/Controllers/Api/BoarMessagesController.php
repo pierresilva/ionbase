@@ -160,9 +160,10 @@ class BoarMessagesController extends ApiController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\JsonResponse
+     * @throws \Throwable
      */
     public function update(Request $request, $id)
     {
@@ -208,7 +209,7 @@ class BoarMessagesController extends ApiController
 
                 foreach ($houseUnits as $houseUnit) {
 
-                    if ($houseUnit['contact_email']) {
+                    if ($houseUnit['contact_email'] && filter_var($houseUnit['contact_email'], FILTER_VALIDATE_EMAIL)) {
                         $usersArray[] = [
                             'name' => ($houseUnit['contact_first_name'] ?? '') . ' ' . ($houseUnit['contact_last_name'] ?? ''),
                             'email' => $houseUnit['contact_email']

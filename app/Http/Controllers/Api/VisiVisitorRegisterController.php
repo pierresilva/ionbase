@@ -381,6 +381,9 @@ class VisiVisitorRegisterController extends ApiController
         );
     }
 
+    /**
+     * @throws \Throwable
+     */
     public function exit(Request $request, $registerId)
     {
 

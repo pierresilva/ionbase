@@ -78,6 +78,7 @@ class InvoResolutionController extends ApiController
         DB::beginTransaction();
         try {
             //create data
+            $input['current_number'] = $request->get('current_number') ?? 1;
             $boarMessage = InvoResolution::create($input);
 
             //sync(attach/detach)
